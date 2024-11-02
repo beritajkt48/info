@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Berita JKT48</title>
+
+    <style>
+        /* Reset margin dan padding */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Mengatur tampilan body */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-image: url('jkt48.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        /* Kontainer utama dengan responsif */
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* Gaya untuk gambar profil */
+        .profile-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+            border: 2px solid white;
+        }
+
+        /* Heading */
+        h1 {
+            color: white;
+            margin-bottom: 5px;
+        }
+
+        h2 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1rem;
+        }
+
+        /* Tombol tautan */
+        .button {
+            width: 80%;
+            max-width: 400px;
+            background-color: #ffffff;
+            color: #888888;
+            border: none;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 24px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            text-decoration: none;
+            text-align: center;
+            font-size: 1rem;
+        }
+
+        .button:hover {
+            background-color: #888888;
+            color: white;
+            transform: scale(1.05);
+        }
+
+        /* Responsif untuk perangkat kecil */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            h2 {
+                font-size: 0.875rem;
+            }
+
+            .button {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+
+    <script>
+        // Mencegah klik kanan
+        document.addEventListener('contextmenu', event => event.preventDefault());
+
+        // Mencegah penggunaan tombol F12 dan inspeksi
+        document.addEventListener('keydown', event => {
+            if (event.key === 'F12' || (event.ctrlKey && event.shiftKey && (event.key === 'I' || event.key === 'J')) || (event.ctrlKey && event.key === 'U')) {
+                event.preventDefault();
+            }
+        });
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <img class="profile-image" src="https://ugc.production.linktr.ee/9f5b0d04-5cc2-42f8-adc8-d4177c6ca28f_ngidol.jpeg" alt="Profile Image">
+        <h1>Ngidol JKT48</h1>
+        <h2>Selamat datang<br>SDWEW</h2>
+
+        <a href="https://gebix.my.id/menu.html" target="_blank" class="button">Jadwal JKT48</a>
+        <a href="https://shope.ee/4KwOWR2Y3W" target="_blank" class="button">Shopee</a>
+        <a href="https://wa.me/628970400899" target="_blank" class="button">WhatsApp 1</a>
+        <a href="https://wa.me/628973100347" target="_blank" class="button">WhatsApp 2</a>
+        <a href="https://x.com/Ngidol_Jketi48" target="_blank" class="button">X Twitter</a>
+    </div>
+</body>
+
+</html>
