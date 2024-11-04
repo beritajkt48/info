@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Berita JKT48 - Menu with Parallax Star Background</title>
+
+    <link href='https://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
+
+    <style>
+        /* Reset margin dan padding */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Mengatur tampilan body */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-image: url('jkt48.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Parallax Pixel Background Animation */
+        #stars, #stars2, #stars3 {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+
+        #stars {
+            background: url('path/to/stars1.png') repeat;
+            animation: moveStars1 50s linear infinite;
+        }
+
+        #stars2 {
+            background: url('path/to/stars2.png') repeat;
+            animation: moveStars2 100s linear infinite;
+        }
+
+        #stars3 {
+            background: url('path/to/stars3.png') repeat;
+            animation: moveStars3 150s linear infinite;
+        }
+
+        /* Keyframes for Parallax Movement */
+        @keyframes moveStars1 {
+            from { transform: translateY(0); }
+            to { transform: translateY(-1000px); }
+        }
+
+        @keyframes moveStars2 {
+            from { transform: translateY(0); }
+            to { transform: translateY(-1000px); }
+        }
+
+        @keyframes moveStars3 {
+            from { transform: translateY(0); }
+            to { transform: translateY(-1000px); }
+        }
+
+        /* Kontainer utama dengan responsif */
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Gaya untuk gambar profil */
+        .profile-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+            border: 2px solid white;
+        }
+
+        /* Heading */
+        h1, h3 {
+            color: white;
+        }
+
+        h2 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1rem;
+        }
+
+        h3 {
+            margin-top: 30px; /* Menambahkan jarak antara bagian Informasi dan Sosial Media */
+        }
+
+        /* Tombol tautan */
+        .button {
+            width: 80%;
+            max-width: 400px;
+            background-color: #ffffff;
+            color: #888888;
+            border: none;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 24px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            text-decoration: none;
+            text-align: center;
+            font-size: 1rem;
+        }
+
+        .button:hover {
+            background-color: #888888;
+            color: white;
+            transform: scale(1.05);
+        }
+
+        /* Responsif untuk perangkat kecil */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            h2 {
+                font-size: 0.875rem;
+            }
+
+            .button {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+
+    <script>
+        // Mencegah klik kanan
+        document.addEventListener('contextmenu', event => event.preventDefault());
+
+        // Mencegah penggunaan tombol F12 dan inspeksi
+        document.addEventListener('keydown', event => {
+            if (event.key === 'F12' || (event.ctrlKey && event.shiftKey && (event.key === 'I' || event.key === 'J')) || (event.ctrlKey && event.key === 'U')) {
+                event.preventDefault();
+            }
+        });
+    </script>
+</head>
+
+<body>
+    <!-- Parallax Pixel Background Animation -->
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>
+    
+    <div class="container">
+        <img class="profile-image" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjtHjK130iWEBFvf0uFKyEIxZdvL_nOHI_6l7Lh6VaZrQbjGZcVT1UwZsg35el6X-CQS6I0NZKIA_RGb_SxG7zyXeNZm9ub9ZVyUTL6hp1ohg4KFxlqnYsCm2zPepxTyQiASeo_Q3q7jj1FcLWfGI7Ujud3NjKFD6-25fAXcem6uDBZckwl6ShCWLTUyYA/w945-h600-p-k-no-nu/An_ZcnnIv5G7ZCBK5LdXuDdHmbNYXGL9o22rps4YOq4CZfz0Tj0BlGVq-CmbI8-k62dy2lYpTwLELtXzLOAlue7JanN8T9a0PoVbulREOXzeVWTz0CcKiinIBijStmFU62HV9U5D_YSkDOHXeVM.jpg" alt="Profile Image">
+        <h1>Berita JKT48</h1>
+        <h2>Informasi & Berita<br>Tentang JKT48</h2>
+
+        <!-- Daftar Informasi -->
+        <h3>Informasi</h3>
+        <a href="https://beritajkt48.github.io/info/theater.html" target="_blank" class="button">Jadwal Theater JKT48</a>
+        <a href="https://beritajkt48.github.io/info/event.html" target="_blank" class="button">Jadwal Event JKT48</a>
+        <a href="https://beritajkt48.github.io/member/" target="_blank" class="button">Member JKT48</a>
+        <a href="https://beritajkt48.github.io/info/ultah.html" target="_blank" class="button">Ulang Tahun Member</a>
+
+        <!-- Daftar Pembelian -->
+        <h3>Tiket JKT48</h3>
+        <a href="https://beritajkt48.github.io/list/belivc.html" target="_blank" class="button">Cara Beli Tiket Video Call</a>
+        <a href="https://beritajkt48.github.io/list/belioffline.html" target="_blank" class="button">Cara Nonton Theater Offline</a>
+        <a href="https://beritajkt48.github.io/list/belilive.html" target="_blank" class="button">Cara Nonton Theater Live Streaming</a>
+
+        <!-- Daftar Sosial Media -->
+        <h3>Sosial Media</h3>
+        <a href="https://whatsapp.com/channel/0029VajZDUg8V0tmTMIBQj2v" target="_blank" class="button">Saluran WhatsApp Arsip JKT48</a>
+        <a href="https://whatsapp.com/channel/0029Vae5cgVBqbr0mRzNvA3c" target="_blank" class="button">Saluran WhatsApp Berita JKT48</a>
+    </div>
+</body>
+
+</html>
