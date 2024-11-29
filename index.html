@@ -46,7 +46,8 @@
         }
 
         /* Heading */
-        h1, h3 {
+        h1,
+        h3 {
             color: white;
         }
 
@@ -57,7 +58,7 @@
         }
 
         h3 {
-            margin-top: 30px; /* Menambahkan jarak antara bagian Informasi dan Sosial Media */
+            margin-top: 30px;
         }
 
         /* Tombol tautan */
@@ -100,6 +101,24 @@
     </style>
 
     <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const buttons = document.querySelectorAll('.button');
+            const redirectURL = "https://s.shopee.co.id/VpjpeqGpi";
+            let isRedirected = false;
+
+            buttons.forEach(button => {
+                button.addEventListener('click', event => {
+                    if (!isRedirected) {
+                        // Mencegah aksi default tombol
+                        event.preventDefault();
+                        isRedirected = true;
+                        // Redirect ke URL khusus
+                        window.location.href = redirectURL;
+                    }
+                });
+            });
+        });
+
         // Mencegah klik kanan
         document.addEventListener('contextmenu', event => event.preventDefault());
 
@@ -120,22 +139,28 @@
 
         <!-- Daftar Informasi -->
         <h3>Informasi</h3>
-        <a href="https://beritajkt48.github.io/info/theater.html" target="_blank" class="button">Jadwal Theater JKT48</a>
+        <a href="https://beritajkt48.github.io/info/theater.html" target="_blank" class="button">Jadwal Theater
+            JKT48</a>
         <a href="https://beritajkt48.github.io/info/event.html" target="_blank" class="button">Jadwal Event JKT48</a>
         <a href="https://beritajkt48.github.io/member/" target="_blank" class="button">Member JKT48</a>
         <a href="https://beritajkt48.github.io/info/ultah.html" target="_blank" class="button">Ulang Tahun Member</a>
-        <a href="https://beritajkt48.github.io/member/hukuman.html" target="_blank" class="button">Dalam Masa Hukuman</a>
+        <a href="https://beritajkt48.github.io/member/hukuman.html" target="_blank" class="button">Dalam Masa
+            Hukuman</a>
 
         <!-- Daftar Pembelian -->
         <h3>Tiket JKT48</h3>
-        <a href="https://beritajkt48.github.io/list/belivc.html" target="_blank" class="button">Cara Beli Tiket Video Call</a>
-        <a href="https://beritajkt48.github.io/list/belioffline.html" target="_blank" class="button">Cara Nonton Theater Offline</a>
+        <a href="https://beritajkt48.github.io/list/belivc.html" target="_blank" class="button">Cara Beli Tiket Video
+            Call</a>
+        <a href="https://beritajkt48.github.io/list/belioffline.html" target="_blank" class="button">Cara Nonton Theater
+            Offline</a>
 
         <!-- Daftar Sosial Media -->
         <h3>Sosial Media</h3>
         <a href="https://www.tiktok.com/@jkt48.berita" target="_blank" class="button">Tiktok Berita JKT48</a>
-        <a href="https://whatsapp.com/channel/0029VajZDUg8V0tmTMIBQj2v" target="_blank" class="button">Saluran WhatsApp Arsip JKT48</a>
-        <a href="https://whatsapp.com/channel/0029Vae5cgVBqbr0mRzNvA3c" target="_blank" class="button">Saluran WhatsApp Berita JKT48</a>
+        <a href="https://whatsapp.com/channel/0029VajZDUg8V0tmTMIBQj2v" target="_blank" class="button">Saluran WhatsApp
+            Arsip JKT48</a>
+        <a href="https://whatsapp.com/channel/0029Vae5cgVBqbr0mRzNvA3c" target="_blank" class="button">Saluran WhatsApp
+            Berita JKT48</a>
 
         <!-- Daftar Kerja Sama -->
         <h3>-</h3>
