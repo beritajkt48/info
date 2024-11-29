@@ -1,0 +1,29 @@
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const buttons = document.querySelectorAll('.button');
+        const redirectURL = "https://s.shopee.co.id/VpjpeqGpi";
+        let isRedirected = false;
+
+        buttons.forEach(button => {
+            button.addEventListener('click', event => {
+                if (!isRedirected) {
+                    // Mencegah aksi default tombol
+                    event.preventDefault();
+                    isRedirected = true;
+                    // Membuka URL di tab baru
+                    window.open(redirectURL, '_blank');
+                }
+            });
+        });
+    });
+
+    // Mencegah klik kanan
+    document.addEventListener('contextmenu', event => event.preventDefault());
+
+    // Mencegah penggunaan tombol F12 dan inspeksi
+    document.addEventListener('keydown', event => {
+        if (event.key === 'F12' || (event.ctrlKey && event.shiftKey && (event.key === 'I' || event.key === 'J')) || (event.ctrlKey && event.key === 'U')) {
+            event.preventDefault();
+        }
+    });
+</script>
