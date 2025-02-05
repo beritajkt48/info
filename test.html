@@ -4,10 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Berita JKT48 - Menu with Parallax Star Background</title>
-
-    <link href='https://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
+    <title>Berita JKT48 - Menu</title>
 
     <style>
         /* Reset margin dan padding */
@@ -20,53 +17,12 @@
         /* Mengatur tampilan body */
         body {
             font-family: 'Arial', sans-serif;
-            background-image: url('jkt48.jpg');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            position: relative;
-            overflow: hidden;
-        }
-
-        /* Parallax Pixel Background Animation */
-        #stars, #stars2, #stars3 {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            z-index: -1;
-        }
-
-        #stars {
-            background: url('path/to/stars1.png') repeat;
-            animation: moveStars1 50s linear infinite;
-        }
-
-        #stars2 {
-            background: url('path/to/stars2.png') repeat;
-            animation: moveStars2 100s linear infinite;
-        }
-
-        #stars3 {
-            background: url('path/to/stars3.png') repeat;
-            animation: moveStars3 150s linear infinite;
-        }
-
-        /* Keyframes for Parallax Movement */
-        @keyframes moveStars1 {
-            from { transform: translateY(0); }
-            to { transform: translateY(-1000px); }
-        }
-
-        @keyframes moveStars2 {
-            from { transform: translateY(0); }
-            to { transform: translateY(-1000px); }
-        }
-
-        @keyframes moveStars3 {
-            from { transform: translateY(0); }
-            to { transform: translateY(-1000px); }
+            background-image: url('bd.gif'); /* Ganti dengan path ke file GIF */
+            background-size: cover; /* Mengatur ukuran background agar menutupi seluruh layar */
+            background-position: center; /* Mengatur posisi background di tengah */
+            background-attachment: fixed; /* Membuat latar belakang tetap saat scroll */
+            background-repeat: no-repeat; /* Memastikan background tidak diulang */
+            min-height: 100vh; /* Memastikan body memenuhi layar */
         }
 
         /* Kontainer utama dengan responsif */
@@ -76,11 +32,9 @@
             align-items: center;
             justify-content: center;
             min-height: 100vh;
-            background: rgba(0, 0, 0, 0.6);
+            background: rgba(0, 0, 0, 0.6); /* Warna latar belakang semi-transparan */
             padding: 20px;
             text-align: center;
-            position: relative;
-            z-index: 1;
         }
 
         /* Gaya untuk gambar profil */
@@ -94,7 +48,8 @@
         }
 
         /* Heading */
-        h1, h3 {
+        h1,
+        h3 {
             color: white;
         }
 
@@ -105,7 +60,7 @@
         }
 
         h3 {
-            margin-top: 30px; /* Menambahkan jarak antara bagian Informasi dan Sosial Media */
+            margin-top: 30px;
         }
 
         /* Tombol tautan */
@@ -148,6 +103,24 @@
     </style>
 
     <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const buttons = document.querySelectorAll('.button');
+            const redirectURL = "https://s.shopee.co.id/VpjpeqGpi";
+            let isRedirected = false;
+
+            buttons.forEach(button => {
+                button.addEventListener('click', event => {
+                    if (!isRedirected) {
+                        // Mencegah aksi default tombol
+                        event.preventDefault();
+                        isRedirected = true;
+                        // Membuka URL di tab baru
+                        window.open(redirectURL, '_blank');
+                    }
+                });
+            });
+        });
+
         // Mencegah klik kanan
         document.addEventListener('contextmenu', event => event.preventDefault());
 
@@ -161,11 +134,6 @@
 </head>
 
 <body>
-    <!-- Parallax Pixel Background Animation -->
-    <div id="stars"></div>
-    <div id="stars2"></div>
-    <div id="stars3"></div>
-    
     <div class="container">
         <img class="profile-image" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjtHjK130iWEBFvf0uFKyEIxZdvL_nOHI_6l7Lh6VaZrQbjGZcVT1UwZsg35el6X-CQS6I0NZKIA_RGb_SxG7zyXeNZm9ub9ZVyUTL6hp1ohg4KFxlqnYsCm2zPepxTyQiASeo_Q3q7jj1FcLWfGI7Ujud3NjKFD6-25fAXcem6uDBZckwl6ShCWLTUyYA/w945-h600-p-k-no-nu/An_ZcnnIv5G7ZCBK5LdXuDdHmbNYXGL9o22rps4YOq4CZfz0Tj0BlGVq-CmbI8-k62dy2lYpTwLELtXzLOAlue7JanN8T9a0PoVbulREOXzeVWTz0CcKiinIBijStmFU62HV9U5D_YSkDOHXeVM.jpg" alt="Profile Image">
         <h1>Berita JKT48</h1>
@@ -173,21 +141,25 @@
 
         <!-- Daftar Informasi -->
         <h3>Informasi</h3>
-        <a href="https://beritajkt48.github.io/info/theater.html" target="_blank" class="button">Jadwal Theater JKT48</a>
         <a href="https://beritajkt48.github.io/info/event.html" target="_blank" class="button">Jadwal Event JKT48</a>
         <a href="https://beritajkt48.github.io/member/" target="_blank" class="button">Member JKT48</a>
         <a href="https://beritajkt48.github.io/info/ultah.html" target="_blank" class="button">Ulang Tahun Member</a>
+        <a href="https://beritajkt48.github.io/member/hukuman.html" target="_blank" class="button">Dalam Masa Hukuman</a>
 
         <!-- Daftar Pembelian -->
         <h3>Tiket JKT48</h3>
         <a href="https://beritajkt48.github.io/list/belivc.html" target="_blank" class="button">Cara Beli Tiket Video Call</a>
         <a href="https://beritajkt48.github.io/list/belioffline.html" target="_blank" class="button">Cara Nonton Theater Offline</a>
-        <a href="https://beritajkt48.github.io/list/belilive.html" target="_blank" class="button">Cara Nonton Theater Live Streaming</a>
 
         <!-- Daftar Sosial Media -->
         <h3>Sosial Media</h3>
+        <a href="https://www.tiktok.com/@jkt48.berita" target="_blank" class="button">Tiktok Berita JKT48</a>
         <a href="https://whatsapp.com/channel/0029VajZDUg8V0tmTMIBQj2v" target="_blank" class="button">Saluran WhatsApp Arsip JKT48</a>
         <a href="https://whatsapp.com/channel/0029Vae5cgVBqbr0mRzNvA3c" target="_blank" class="button">Saluran WhatsApp Berita JKT48</a>
+
+        <!-- Daftar Kerja Sama -->
+        <h3>-</h3>
+        <a href="https://beritajkt48.github.io/info/" target="_blank" class="button">Media Partner</a>
     </div>
 </body>
 
