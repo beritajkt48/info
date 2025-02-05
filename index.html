@@ -17,10 +17,12 @@
         /* Mengatur tampilan body */
         body {
             font-family: 'Arial', sans-serif;
-            background-image: url('jkt48.jpg');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
+            background-image: url('bd.gif'); /* Ganti dengan path ke file GIF */
+            background-size: cover; /* Mengatur ukuran background agar menutupi seluruh layar */
+            background-position: center; /* Mengatur posisi background di tengah */
+            background-attachment: fixed; /* Membuat latar belakang tetap saat scroll */
+            background-repeat: no-repeat; /* Memastikan background tidak diulang */
+            min-height: 100vh; /* Memastikan body memenuhi layar */
         }
 
         /* Kontainer utama dengan responsif */
@@ -30,7 +32,7 @@
             align-items: center;
             justify-content: center;
             min-height: 100vh;
-            background: rgba(0, 0, 0, 0.6);
+            background: rgba(0, 0, 0, 0.6); /* Warna latar belakang semi-transparan */
             padding: 20px;
             text-align: center;
         }
