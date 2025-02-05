@@ -7,7 +7,10 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f9f9f9;
+            background-image: url('bd.gif'); /* Background GIF */
+            background-size: cover; /* Menyesuaikan ukuran background dengan layar */
+            background-repeat: repeat; /* Mengulang background secara otomatis */
+            background-attachment: fixed; /* Menjaga background tetap di tempat saat scroll */
             color: #333;
             padding: 20px;
         }
@@ -58,6 +61,13 @@
         .event-link:hover {
             background-color: #2980b9;
             transform: translateY(-2px);
+        }
+
+        /* Responsif untuk perangkat kecil (seluler dan tablet) */
+        @media (max-width: 768px) {
+            .event-box {
+                width: 100%;
+            }
         }
     </style>
 </head>
@@ -115,15 +125,13 @@
             <div class="event-detail">Pembelian Live Streaming Klik</div>
             <a href="https://bit.ly/4eKPhmz" target="_blank" class="event-link">Detail Event</a>
         </div>
-        
-       
     </div>
-        <div style="text-align: center; margin-top: 20px;">
+
+    <div style="text-align: center; margin-top: 20px;">
         <a href="https://beritajkt48.github.io/info/" style="color: #3867d6; text-decoration: none; font-size: 16px; border: 1px solid #3867d6; padding: 8px 16px; border-radius: 4px; display: inline-block; transition: background-color 0.3s, color 0.3s;">
             Halaman Utama
         </a>
     </div>
-
 
 </body>
 </html>
