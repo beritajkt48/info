@@ -1,94 +1,162 @@
-const express = require("express");
-const fs = require("fs");
-const path = require("path");
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jadwal Event JKT48 Maret 2025</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('bd.gif'); /* Background GIF */
+            background-size: cover;
+            background-repeat: repeat;
+            background-attachment: fixed;
+            color: #333;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #e74c3c;
+        }
+        h2 {
+            text-align: center;
+            color: #2c3e50;
+            margin-top: 30px;
+        }
+        .event-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 10px;
+        }
+        .event-box {
+            width: 300px;
+            padding: 20px;
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+        }
+        .event-box:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        .event-title {
+            font-size: 18px;
+            color: #e74c3c;
+            margin-bottom: 10px;
+        }
+        .event-detail {
+            font-size: 14px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .event-link {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        .event-link:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+        }
+        @media (max-width: 768px) {
+            .event-box {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
 
-const app = express();
-const port = 3000;
+    <h1>Jadwal Event JKT48 - Maret 2025</h1>
 
-// Variabel untuk menyimpan satu-satunya IP yang diperbolehkan
-let activeIP = null;
+    <!-- Minggu Pertama (1-7 Maret) -->
+    <h2>Minggu Pertama (1 - 7 Maret)</h2>
+    <div class="event-container">
+        <div class="event-box">
+            <div class="event-title">HOST SWEET HOST</div>
+            <div class="event-detail">Tanggal: Kamis, 6 Maret 2025</div>
+            <div class="event-detail">Jam: 19:30 WIB</div>
+            <a href="https://bit.ly/4eKPhmz" target="_blank" class="event-link">Detail Event</a>
+        </div>
+        <div class="event-box">
+            <div class="event-title">THE BATTLE: VOCAL QUEENS</div>
+            <div class="event-detail">Tanggal: Jumat, 7 Maret 2025</div>
+            <div class="event-detail">Jam: 19:30 WIB</div>
+            <a href="https://bit.ly/4eKPhmz" target="_blank" class="event-link">Detail Event</a>
+        </div>
+    </div>
 
-// Middleware untuk membatasi akses ke 1 IP
-app.use((req, res, next) => {
-    const userIP = req.headers["x-forwarded-for"] || req.socket.remoteAddress;
+    <!-- Minggu Kedua (8-14 Maret) -->
+    <h2>Minggu Kedua (8 - 14 Maret)</h2>
+    <div class="event-container">
+        <div class="event-box">
+            <div class="event-title">CATUR ASTA</div>
+            <div class="event-detail">Tanggal: Sabtu, 8 Maret 2025</div>
+            <div class="event-detail">Jam: 19:30 WIB</div>
+            <a href="https://bit.ly/4eKPhmz" target="_blank" class="event-link">Detail Event</a>
+        </div>
+        <div class="event-box">
+            <div class="event-title">JKT48 School</div>
+            <div class="event-detail">Tanggal: Minggu, 9 Maret 2025</div>
+            <div class="event-detail">Jam: 19:30 WIB</div>
+            <a href="https://bit.ly/4eKPhmz" target="_blank" class="event-link">Detail Event</a>
+        </div>
+        <div class="event-box">
+            <div class="event-title">FAMILY 48</div>
+            <div class="event-detail">Tanggal: Kamis, 13 Maret 2025</div>
+            <div class="event-detail">Jam: 19:30 WIB</div>
+            <a href="https://bit.ly/4eKPhmz" target="_blank" class="event-link">Detail Event</a>
+        </div>
+        <div class="event-box">
+            <div class="event-title">THE BATTLE: DANCING QUEENS</div>
+            <div class="event-detail">Tanggal: Jumat, 14 Maret 2025</div>
+            <div class="event-detail">Jam: 19:30 WIB</div>
+            <a href="https://bit.ly/4eKPhmz" target="_blank" class="event-link">Detail Event</a>
+        </div>
+    </div>
 
-    // Jika belum ada IP yang terdaftar, simpan yang pertama masuk
-    if (!activeIP) {
-        activeIP = userIP;
-        console.log(`IP ${userIP} sekarang memiliki akses.`);
-    }
+    <!-- Minggu Ketiga (15-21 Maret) -->
+    <h2>Minggu Ketiga (15 - 21 Maret)</h2>
+    <div class="event-container">
+        <div class="event-box">
+            <div class="event-title">CATUR ASTA</div>
+            <div class="event-detail">Tanggal: Sabtu, 15 Maret 2025</div>
+            <div class="event-detail">Jam: 19:30 WIB</div>
+            <a href="https://bit.ly/4eKPhmz" target="_blank" class="event-link">Detail Event</a>
+        </div>
+        <div class="event-box">
+            <div class="event-title">JKT48 School</div>
+            <div class="event-detail">Tanggal: Minggu, 16 Maret 2025</div>
+            <div class="event-detail">Jam: 19:30 WIB</div>
+            <a href="https://bit.ly/4eKPhmz" target="_blank" class="event-link">Detail Event</a>
+        </div>
+    </div>
 
-    // Jika IP berbeda, tolak akses
-    if (userIP !== activeIP) {
-        return res.send("<h1>Silahkan keluar dari perangkat lainnya.</h1>");
-    }
+    <!-- Minggu Keempat (22-31 Maret) -->
+    <h2>Minggu Keempat (22 - 31 Maret)</h2>
+    <div class="event-container">
+        <div class="event-box">
+            <div class="event-title">Coming Soon</div>
+            <div class="event-detail">Tanggal: -</div>
+            <div class="event-detail">Jam: -</div>
+            <a href="#" class="event-link">Detail Event</a>
+        </div>
+    </div>
 
-    next();
-});
+    <div style="text-align: center; margin-top: 20px;">
+        <a href="https://beritajkt48.github.io/info/" style="color: #3867d6; text-decoration: none; font-size: 16px; border: 1px solid #3867d6; padding: 8px 16px; border-radius: 4px; display: inline-block; transition: background-color 0.3s, color 0.3s;">
+            Halaman Utama
+        </a>
+    </div>
 
-// Halaman utama dengan HTML langsung dari server
-app.get("/", (req, res) => {
-    res.send(`
-        <!DOCTYPE html>
-        <html lang="id">
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Streaming Video</title>
-            <script>
-                document.addEventListener("DOMContentLoaded", function() {
-                    console.log("Halaman berhasil dimuat!");
-                    alert("Selamat datang di halaman streaming!");
-                });
-            </script>
-        </head>
-        <body>
-            <h1>Selamat Menonton!</h1>
-            <video width="640" height="360" controls>
-                <source src="/video" type="video/mp4">
-                Browser Anda tidak mendukung pemutaran video.
-            </video>
-        </body>
-        </html>
-    `);
-});
-
-// Streaming video (gunakan file video lokal)
-app.get("/video", (req, res) => {
-    const videoPath = path.join(__dirname, "video.mp4"); // Ganti dengan file video yang ingin Anda gunakan
-    if (!fs.existsSync(videoPath)) {
-        return res.status(404).send("Video tidak ditemukan!");
-    }
-
-    const stat = fs.statSync(videoPath);
-    const fileSize = stat.size;
-    const range = req.headers.range;
-
-    if (range) {
-        const parts = range.replace(/bytes=/, "").split("-");
-        const start = parseInt(parts[0], 10);
-        const end = parts[1] ? parseInt(parts[1], 10) : fileSize - 1;
-        const chunksize = end - start + 1;
-        const file = fs.createReadStream(videoPath, { start, end });
-
-        res.writeHead(206, {
-            "Content-Range": `bytes ${start}-${end}/${fileSize}`,
-            "Accept-Ranges": "bytes",
-            "Content-Length": chunksize,
-            "Content-Type": "video/mp4",
-        });
-
-        file.pipe(res);
-    } else {
-        res.writeHead(200, {
-            "Content-Length": fileSize,
-            "Content-Type": "video/mp4",
-        });
-        fs.createReadStream(videoPath).pipe(res);
-    }
-});
-
-// Jalankan server
-app.listen(port, () => {
-    console.log(`Server berjalan di http://localhost:${port}`);
-});
+</body>
+</html>
