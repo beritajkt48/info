@@ -8,31 +8,37 @@
         body {
             font-family: Arial, sans-serif;
             background-image: url('bd.gif'); /* Background GIF */
-            background-size: cover; /* Menyesuaikan ukuran background dengan layar */
-            background-repeat: repeat; /* Mengulang background secara otomatis */
-            background-attachment: fixed; /* Menjaga background tetap di tempat saat scroll */
-            color: #333;
+            background-size: cover;
+            background-repeat: repeat;
+            background-attachment: fixed;
+            color: #fff; /* Mengubah teks menjadi putih */
             padding: 20px;
         }
         h1 {
             text-align: center;
             color: #e74c3c;
         }
+        h2 {
+            text-align: center;
+            color: #fff; /* Warna putih untuk teks subjudul */
+            margin-top: 30px;
+        }
         .event-container {
             display: flex;
             flex-wrap: wrap;
             gap: 20px;
             justify-content: center;
-            margin-top: 20px;
+            margin-top: 10px;
         }
         .event-box {
             width: 300px;
             padding: 20px;
-            background-color: #ffffff;
+            background-color: rgba(255, 255, 255, 0.9); /* Latar belakang transparan */
             border: 1px solid #ddd;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             transition: transform 0.2s;
+            color: #333; /* Warna teks hitam untuk keterbacaan */
         }
         .event-box:hover {
             transform: scale(1.05);
@@ -62,8 +68,6 @@
             background-color: #2980b9;
             transform: translateY(-2px);
         }
-
-        /* Responsif untuk perangkat kecil (seluler dan tablet) */
         @media (max-width: 768px) {
             .event-box {
                 width: 100%;
@@ -75,67 +79,82 @@
 
     <h1>Jadwal Event JKT48 - Maret 2025</h1>
 
+    <!-- Tanggal 1-7 Maret -->
+    <h2>1 - 7 Maret</h2>
     <div class="event-container">
         <div class="event-box">
             <div class="event-title">HOST SWEET HOST</div>
             <div class="event-detail">Tanggal: Kamis, 6 Maret 2025</div>
             <div class="event-detail">Jam: 19:30 WIB</div>
-            <div class="event-detail">Pembelian Live Streaming Klik</div>
             <a href="https://bit.ly/4eKPhmz" target="_blank" class="event-link">Detail Event</a>
         </div>
-       <div class="event-box">
+        <div class="event-box">
             <div class="event-title">THE BATTLE: VOCAL QUEENS</div>
             <div class="event-detail">Tanggal: Jumat, 7 Maret 2025</div>
             <div class="event-detail">Jam: 19:30 WIB</div>
-            <div class="event-detail">Pembelian Live Streaming Klik</div>
             <a href="https://bit.ly/4eKPhmz" target="_blank" class="event-link">Detail Event</a>
         </div>
+    </div>
+
+    <!-- Tanggal 8-14 Maret -->
+    <h2>8 - 14 Maret</h2>
+    <div class="event-container">
         <div class="event-box">
             <div class="event-title">CATUR ASTA</div>
             <div class="event-detail">Tanggal: Sabtu, 8 Maret 2025</div>
             <div class="event-detail">Jam: 19:30 WIB</div>
-            <div class="event-detail">Pembelian Live Streaming Klik</div>
             <a href="https://bit.ly/4eKPhmz" target="_blank" class="event-link">Detail Event</a>
         </div>
         <div class="event-box">
             <div class="event-title">JKT48 School</div>
             <div class="event-detail">Tanggal: Minggu, 9 Maret 2025</div>
             <div class="event-detail">Jam: 19:30 WIB</div>
-            <div class="event-detail">Pembelian Live Streaming Klik</div>
             <a href="https://bit.ly/4eKPhmz" target="_blank" class="event-link">Detail Event</a>
         </div>
         <div class="event-box">
             <div class="event-title">FAMILY 48</div>
             <div class="event-detail">Tanggal: Kamis, 13 Maret 2025</div>
             <div class="event-detail">Jam: 19:30 WIB</div>
-            <div class="event-detail">Pembelian Live Streaming Klik</div>
             <a href="https://bit.ly/4eKPhmz" target="_blank" class="event-link">Detail Event</a>
         </div>
         <div class="event-box">
             <div class="event-title">THE BATTLE: DANCING QUEENS</div>
             <div class="event-detail">Tanggal: Jumat, 14 Maret 2025</div>
             <div class="event-detail">Jam: 19:30 WIB</div>
-            <div class="event-detail">Pembelian Live Streaming Klik</div>
-            <a href="https://bit.ly/4eKPhmz" target="_blank" class="event-link">Detail Event</a>
-        </div>
-        <div class="event-box">
-            <div class="event-title">CATUR ASTA</div>
-            <div class="event-detail">Tanggal: Sabtu, 15 Maret 2025</div>
-            <div class="event-detail">Jam: 19:30 WIB</div>
-            <div class="event-detail">Pembelian Live Streaming Klik</div>
-            <a href="https://bit.ly/4eKPhmz" target="_blank" class="event-link">Detail Event</a>
-        </div>
-        <div class="event-box">
-            <div class="event-title">JKT48 School</div>
-            <div class="event-detail">Tanggal: Minggu, 16 Mar 2025</div>
-            <div class="event-detail">Jam: 19:30 WIB</div>
-            <div class="event-detail">Pembelian Live Streaming Klik</div>
             <a href="https://bit.ly/4eKPhmz" target="_blank" class="event-link">Detail Event</a>
         </div>
     </div>
 
+    <!-- Tanggal 15-21 Maret -->
+    <h2>15 - 21 Maret</h2>
+    <div class="event-container">
+        <div class="event-box">
+            <div class="event-title">CATUR ASTA</div>
+            <div class="event-detail">Tanggal: Sabtu, 15 Maret 2025</div>
+            <div class="event-detail">Jam: 19:30 WIB</div>
+            <a href="https://bit.ly/4eKPhmz" target="_blank" class="event-link">Detail Event</a>
+        </div>
+        <div class="event-box">
+            <div class="event-title">JKT48 School</div>
+            <div class="event-detail">Tanggal: Minggu, 16 Maret 2025</div>
+            <div class="event-detail">Jam: 19:30 WIB</div>
+            <a href="https://bit.ly/4eKPhmz" target="_blank" class="event-link">Detail Event</a>
+        </div>
+    </div>
+
+    <!-- Tanggal 22-31 Maret -->
+    <h2>22 - 31 Maret</h2>
+    <div class="event-container">
+        <div class="event-box">
+            <div class="event-title">Coming Soon</div>
+            <div class="event-detail">Tanggal: -</div>
+            <div class="event-detail">Jam: -</div>
+            <a href="#" class="event-link">Detail Event</a>
+        </div>
+    </div>
+
     <div style="text-align: center; margin-top: 20px;">
-        <a href="https://beritajkt48.github.io/info/" style="color: #3867d6; text-decoration: none; font-size: 16px; border: 1px solid #3867d6; padding: 8px 16px; border-radius: 4px; display: inline-block; transition: background-color 0.3s, color 0.3s;">
+        <a href="https://beritajkt48.github.io/info/" style="color: #fff; text-decoration: none; font-size: 16px; border: 1px solid #fff; padding: 8px 16px; border-radius: 4px; display: inline-block; transition: background-color 0.3s, color 0.3s;">
             Halaman Utama
         </a>
     </div>
