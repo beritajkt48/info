@@ -3,160 +3,154 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jadwal Event JKT48 Maret 2025</title>
+    <title>Jadwal Live Streaming Theater JKT48</title>
     <style>
-        body {
+        /* Reset dasar */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
             font-family: Arial, sans-serif;
-            background-image: url('bd.gif'); /* Background GIF */
-            background-size: cover;
-            background-repeat: repeat;
-            background-attachment: fixed;
-            color: #fff; /* Mengubah teks menjadi putih */
+        }
+
+        body {
+            background-color: #f4f4f4;
+            color: #333;
+            text-align: center;
+        }
+
+        /* Header */
+        header {
+            background-color: #d91a2a;
+            color: white;
             padding: 20px;
+            font-size: 24px;
+            font-weight: bold;
         }
-        h1 {
-            text-align: center;
-            color: #e74c3c;
-        }
-        h2 {
-            text-align: center;
-            color: #fff; /* Warna putih untuk teks subjudul */
-            margin-top: 30px;
-        }
-        .event-container {
+
+        /* Container utama */
+        .container {
             display: flex;
             flex-wrap: wrap;
-            gap: 20px;
             justify-content: center;
+            padding: 20px;
+            gap: 20px;
+        }
+
+        /* Kartu produk */
+        .product-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 320px;
+            text-align: center;
+        }
+
+        .product-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .product-card h2 {
+            font-size: 20px;
+            margin: 10px 0;
+            color: #d91a2a;
+        }
+
+        .product-card p {
+            font-size: 14px;
+            color: #555;
+            margin: 5px 0;
+        }
+
+        .price {
+            font-size: 18px;
+            font-weight: bold;
+            color: #d91a2a;
+            margin: 10px 0;
+        }
+
+        /* Tombol beli */
+        .buy-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
             margin-top: 10px;
         }
-        .event-box {
-            width: 300px;
-            padding: 20px;
-            background-color: rgba(255, 255, 255, 0.9); /* Latar belakang transparan */
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.2s;
-            color: #333; /* Warna teks hitam untuk keterbacaan */
-        }
-        .event-box:hover {
-            transform: scale(1.05);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-        }
-        .event-title {
-            font-size: 18px;
-            color: #e74c3c;
-            margin-bottom: 10px;
-        }
-        .event-detail {
-            font-size: 14px;
-            color: #333;
-            margin-bottom: 10px;
-        }
-        .event-link {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #3498db;
-            color: white;
+
+        .buy-buttons a {
             text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            padding: 8px 12px;
             border-radius: 5px;
-            font-weight: bold;
-            transition: background-color 0.3s, transform 0.2s;
+            transition: 0.3s;
         }
-        .event-link:hover {
-            background-color: #2980b9;
-            transform: translateY(-2px);
+
+        .buy-buttons a img {
+            width: 20px;
+            height: 20px;
+            margin-right: 5px;
         }
+
+        .buy-buttons a:hover {
+            background-color: #eee;
+        }
+
+        /* Responsif */
         @media (max-width: 768px) {
-            .event-box {
-                width: 100%;
+            .container {
+                flex-direction: column;
+                align-items: center;
             }
         }
     </style>
 </head>
 <body>
 
-    <h1>Jadwal Event JKT48 - Maret 2025</h1>
+    <header>Jadwal Live Streaming Theater JKT48</header>
 
-    <!-- Tanggal 1-7 Maret -->
-    <h2>1 - 7 Maret</h2>
-    <div class="event-container">
-        <div class="event-box">
-            <div class="event-title">HOST SWEET HOST</div>
-            <div class="event-detail">Tanggal: Kamis, 6 Maret 2025</div>
-            <div class="event-detail">Jam: 19:30 WIB</div>
-            <a href="https://bit.ly/4eKPhmz" target="_blank" class="event-link">Detail Event</a>
+    <div class="container">
+        <!-- Produk 1: Pajama Drive -->
+        <div class="product-card">
+            <img src="pajama.png" alt="Pajama Drive">
+            <h2>Pajama Drive</h2>
+            <p>🗓️ Sabtu, 22 Mar 2025</p>
+            <p>🕒 19:30 WIB</p>
+            <p><strong>Lineup:</strong> Gracie, Greesel, Jessi, Lulu, Levi, Regie, Virgi, Auwia, Rilly, Giaa, Maira, Ekin, Jemima, Mikaela, Intan.</p>
+            <p class="price">Rp. 7.000</p>
+            <div class="buy-buttons">
+                <a href="https://wa.me/628973100347" target="_blank">
+                    <img src="wa.png" alt="WhatsApp"> Beli via WA
+                </a>
+                <a href="https://s.shopee.co.id/AUg4dsQtYw" target="_blank">
+                    <img src="shopee.png" alt="Shopee"> Beli di Shopee
+                </a>
+            </div>
         </div>
-        <div class="event-box">
-            <div class="event-title">THE BATTLE: VOCAL QUEENS</div>
-            <div class="event-detail">Tanggal: Jumat, 7 Maret 2025</div>
-            <div class="event-detail">Jam: 19:30 WIB</div>
-            <a href="https://bit.ly/4eKPhmz" target="_blank" class="event-link">Detail Event</a>
-        </div>
-    </div>
 
-    <!-- Tanggal 8-14 Maret -->
-    <h2>8 - 14 Maret</h2>
-    <div class="event-container">
-        <div class="event-box">
-            <div class="event-title">CATUR ASTA</div>
-            <div class="event-detail">Tanggal: Sabtu, 8 Maret 2025</div>
-            <div class="event-detail">Jam: 19:30 WIB</div>
-            <a href="https://bit.ly/4eKPhmz" target="_blank" class="event-link">Detail Event</a>
+        <!-- Produk 2: Aturan Anti Cinta -->
+        <div class="product-card">
+            <img src="aturananticinta.png" alt="Aturan Anti Cinta">
+            <h2>Aturan Anti Cinta</h2>
+            <p>🗓️ Jumat, 21 Mar 2025</p>
+            <p>🕒 19:30 WIB</p>
+            <p><strong>Lineup:</strong> Amanda, Anindya, Lia, Oniel, Danella, Olla, Freya, Gita, Greesel, Eli, Indira, Jessi, Lulu, Marsha, Muthe, Kimmy.</p>
+            <p class="price">Rp. 7.000</p>
+            <div class="buy-buttons">
+                <a href="https://wa.me/628973100347" target="_blank">
+                    <img src="wa.png" alt="WhatsApp"> Beli via WA
+                </a>
+                <a href="https://s.shopee.co.id/AUg4dsQtYw" target="_blank">
+                    <img src="shopee.png" alt="Shopee"> Beli di Shopee
+                </a>
+            </div>
         </div>
-        <div class="event-box">
-            <div class="event-title">JKT48 School</div>
-            <div class="event-detail">Tanggal: Minggu, 9 Maret 2025</div>
-            <div class="event-detail">Jam: 19:30 WIB</div>
-            <a href="https://bit.ly/4eKPhmz" target="_blank" class="event-link">Detail Event</a>
-        </div>
-        <div class="event-box">
-            <div class="event-title">FAMILY 48</div>
-            <div class="event-detail">Tanggal: Kamis, 13 Maret 2025</div>
-            <div class="event-detail">Jam: 19:30 WIB</div>
-            <a href="https://bit.ly/4eKPhmz" target="_blank" class="event-link">Detail Event</a>
-        </div>
-        <div class="event-box">
-            <div class="event-title">THE BATTLE: DANCING QUEENS</div>
-            <div class="event-detail">Tanggal: Jumat, 14 Maret 2025</div>
-            <div class="event-detail">Jam: 19:30 WIB</div>
-            <a href="https://bit.ly/4eKPhmz" target="_blank" class="event-link">Detail Event</a>
-        </div>
-    </div>
-
-    <!-- Tanggal 15-21 Maret -->
-    <h2>15 - 21 Maret</h2>
-    <div class="event-container">
-        <div class="event-box">
-            <div class="event-title">CATUR ASTA</div>
-            <div class="event-detail">Tanggal: Sabtu, 15 Maret 2025</div>
-            <div class="event-detail">Jam: 19:30 WIB</div>
-            <a href="https://bit.ly/4eKPhmz" target="_blank" class="event-link">Detail Event</a>
-        </div>
-        <div class="event-box">
-            <div class="event-title">JKT48 School</div>
-            <div class="event-detail">Tanggal: Minggu, 16 Maret 2025</div>
-            <div class="event-detail">Jam: 19:30 WIB</div>
-            <a href="https://bit.ly/4eKPhmz" target="_blank" class="event-link">Detail Event</a>
-        </div>
-    </div>
-
-    <!-- Tanggal 22-31 Maret -->
-    <h2>22 - 31 Maret</h2>
-    <div class="event-container">
-        <div class="event-box">
-            <div class="event-title">Coming Soon</div>
-            <div class="event-detail">Tanggal: -</div>
-            <div class="event-detail">Jam: -</div>
-            <a href="#" class="event-link">Detail Event</a>
-        </div>
-    </div>
-
-    <div style="text-align: center; margin-top: 20px;">
-        <a href="https://beritajkt48.github.io/info/" style="color: #fff; text-decoration: none; font-size: 16px; border: 1px solid #fff; padding: 8px 16px; border-radius: 4px; display: inline-block; transition: background-color 0.3s, color 0.3s;">
-            Halaman Utama
-        </a>
     </div>
 
 </body>
