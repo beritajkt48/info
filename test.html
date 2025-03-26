@@ -194,8 +194,10 @@
     </div>
 <!-- Produk Eksklusif: Membership JKT48 TV -->
 <div class="membership-card">
+    <img src="jkt48tv.jpg" alt="Membership JKT48 TV">
     <h2>🔥 Membership JKT48 TV – 1 Bulan 🔥</h2>
-    <p class="original-price">Rp. 374.000 <span class="discounted-price">Rp. 65.000</span></p>
+    <p class="original-price">Rp. 374.000</p>
+    <p class="discounted-price">Rp. 65.000</p>
     <p>🎥 Live streaming pertunjukan teater melalui YouTube <strong>JKT48 TV</strong>.</p>
     <p>📅 Akses nonton show theater selama 1 bulan.</p>
     <p>🔄 Bonus replay selama membership aktif.</p>
@@ -215,12 +217,25 @@
         background: #ffffff;
         padding: 20px;
         border-radius: 12px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
         width: 90%;
         max-width: 400px;
         margin: 20px auto;
         text-align: center;
         border: 2px solid #d91a2a;
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .membership-card:hover {
+        transform: scale(1.02);
+    }
+
+    .membership-card img {
+        width: 100%;
+        max-height: 200px;
+        object-fit: cover;
+        border-radius: 8px;
+        margin-bottom: 15px;
     }
 
     .membership-card h2 {
@@ -233,15 +248,15 @@
         font-size: 16px;
         color: #888;
         text-decoration: line-through;
-        display: inline-block;
-        margin-bottom: 5px;
+        display: block;
     }
 
     .discounted-price {
-        font-size: 20px;
+        font-size: 22px;
         font-weight: bold;
         color: #d91a2a;
-        margin-left: 8px;
+        margin-top: 5px;
+        display: block;
     }
 
     .membership-card p {
@@ -263,8 +278,8 @@
         align-items: center;
         justify-content: center;
         background-color: #ffffff;
-        border: 1px solid #d91a2a;
-        padding: 8px 12px;
+        border: 2px solid #d91a2a;
+        padding: 10px 15px;
         border-radius: 5px;
         transition: 0.3s;
         color: #d91a2a;
@@ -297,7 +312,7 @@
         }
 
         .discounted-price {
-            font-size: 18px;
+            font-size: 20px;
         }
 
         .membership-card p {
@@ -305,6 +320,7 @@
         }
     }
 </style>
+
 
 
     <!-- Footer -->
