@@ -192,93 +192,116 @@
             </div>
         </div>
     </div>
-
-    <!-- Daftar Harga Streaming JKT48 -->
-<div class="price-list">
-    <h2>💻 Daftar Harga Layanan Streaming JKT48 🎥</h2>
-    
-    <div class="price-item">
-        <h3>🎭 Live Theater Sharing</h3>
-        <p class="price-tag">Rp7.000 – Rp10.000</p>
-        <p>Menonton siaran langsung pertunjukan teater melalui website resmi. Setelah pembayaran, cukup kirim email untuk mendapatkan tautan streaming.</p>
+<!-- Produk Eksklusif: Membership JKT48 TV -->
+<div class="membership-card">
+    <h2>🔥 Membership JKT48 TV – 1 Bulan 🔥</h2>
+    <p class="original-price">Rp. 374.000 <span class="discounted-price">Rp. 65.000</span></p>
+    <p>🎥 Live streaming pertunjukan teater melalui YouTube <strong>JKT48 TV</strong>.</p>
+    <p>📅 Akses nonton show theater selama 1 bulan.</p>
+    <p>🔄 Bonus replay selama membership aktif.</p>
+    <div class="buy-buttons">
+        <a href="https://wa.me/628973100347" target="_blank">
+            <img src="wa.png" alt="WhatsApp"> Beli via WA
+        </a>
+        <a href="https://s.shopee.co.id/AUg4dsQtYw" target="_blank">
+            <img src="shopee.png" alt="Shopee"> Beli di Shopee
+        </a>
     </div>
-
-    <div class="price-item">
-        <h3>📺 Membership JKT48 TV</h3>
-        <p class="price-tag">Rp65.000 / bulan</p>
-        <p>Live streaming pertunjukan teater melalui YouTube <strong>JKT48 TV</strong> dengan akses selama 1 bulan dan bonus tayangan ulang selama membership aktif.</p>
-    </div>
-
-    <p class="replay-info">📌 <strong>Khusus Tayangan Ulang Membership JKT48 TV:</strong>  
-        Anda dapat request tayangan ulang setelah show selesai, dan replay akan segera dikirimkan.</p>
 </div>
 
-<!-- CSS untuk daftar harga -->
+<!-- CSS untuk Membership JKT48 TV -->
 <style>
-    .price-list {
-        background: white;
-        padding: 15px;
-        border-radius: 10px;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    .membership-card {
+        background: #ffffff;
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         width: 90%;
-        max-width: 500px;
+        max-width: 400px;
         margin: 20px auto;
         text-align: center;
+        border: 2px solid #d91a2a;
     }
 
-    .price-list h2 {
+    .membership-card h2 {
+        font-size: 20px;
         color: #d91a2a;
-        font-size: 18px;
         margin-bottom: 10px;
     }
 
-    .price-item {
-        background: #f9f9f9;
-        padding: 10px;
-        border-radius: 8px;
-        margin-bottom: 10px;
-    }
-
-    .price-item h3 {
+    .original-price {
         font-size: 16px;
-        color: #d91a2a;
+        color: #888;
+        text-decoration: line-through;
+        display: inline-block;
         margin-bottom: 5px;
     }
 
-    .price-tag {
-        font-size: 16px;
+    .discounted-price {
+        font-size: 20px;
         font-weight: bold;
         color: #d91a2a;
-        margin-bottom: 5px;
+        margin-left: 8px;
     }
 
-    .price-item p {
+    .membership-card p {
         font-size: 14px;
         color: #555;
+        margin: 5px 0;
     }
 
-    .replay-info {
-        font-size: 13px;
-        color: #333;
+    .buy-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
         margin-top: 10px;
     }
 
+    .buy-buttons a {
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #ffffff;
+        border: 1px solid #d91a2a;
+        padding: 8px 12px;
+        border-radius: 5px;
+        transition: 0.3s;
+        color: #d91a2a;
+        font-weight: bold;
+    }
+
+    .buy-buttons a img {
+        width: 20px;
+        height: 20px;
+        margin-right: 5px;
+    }
+
+    .buy-buttons a:hover {
+        background-color: #d91a2a;
+        color: white;
+    }
+
     @media (max-width: 480px) {
-        .price-list {
+        .membership-card {
             width: 95%;
-            padding: 10px;
+            padding: 15px;
         }
 
-        .price-list h2 {
-            font-size: 16px;
+        .membership-card h2 {
+            font-size: 18px;
         }
 
-        .price-item h3, .price-tag {
+        .original-price {
             font-size: 14px;
         }
 
-        .price-item p, .replay-info {
-            font-size: 12px;
+        .discounted-price {
+            font-size: 18px;
+        }
+
+        .membership-card p {
+            font-size: 13px;
         }
     }
 </style>
