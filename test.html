@@ -195,70 +195,94 @@
 
     <!-- Daftar Harga Streaming JKT48 -->
 <div class="price-list">
-    <h2>Daftar Harga Layanan Streaming JKT48</h2>
-    <table>
-        <tr>
-            <th>Jenis Layanan</th>
-            <th>Harga</th>
-            <th>Deskripsi</th>
-        </tr>
-        <tr>
-            <td>Live Theater Sharing</td>
-            <td>Rp7.000–Rp10.000</td>
-            <td>Menonton siaran langsung pertunjukan teater melalui situs web resmi kami. Setelah pembayaran, kirimkan email untuk menerima tautan streaming.</td>
-        </tr>
-        <tr>
-            <td>Membership JKT48 TV</td>
-            <td>Rp65.000</td>
-            <td>Akses live streaming pertunjukan teater selama satu bulan melalui kanal YouTube <strong>JKT48 TV</strong>, termasuk bonus tayangan ulang.</td>
-        </tr>
-    </table>
-    <p><strong>📌 Khusus Tayangan Ulang Membership JKT48 TV:</strong>  
-        Anda dapat mengajukan permintaan tayangan ulang setelah pertunjukan selesai. Replay akan segera dikirimkan kepada Anda.</p>
+    <h2>💻 Daftar Harga Layanan Streaming JKT48 🎥</h2>
+    
+    <div class="price-item">
+        <h3>🎭 Live Theater Sharing</h3>
+        <p class="price-tag">Rp7.000 – Rp10.000</p>
+        <p>Menonton siaran langsung pertunjukan teater melalui website resmi. Setelah pembayaran, cukup kirim email untuk mendapatkan tautan streaming.</p>
+    </div>
+
+    <div class="price-item">
+        <h3>📺 Membership JKT48 TV</h3>
+        <p class="price-tag">Rp65.000 / bulan</p>
+        <p>Live streaming pertunjukan teater melalui YouTube <strong>JKT48 TV</strong> dengan akses selama 1 bulan dan bonus tayangan ulang selama membership aktif.</p>
+    </div>
+
+    <p class="replay-info">📌 <strong>Khusus Tayangan Ulang Membership JKT48 TV:</strong>  
+        Anda dapat request tayangan ulang setelah show selesai, dan replay akan segera dikirimkan.</p>
 </div>
 
 <!-- CSS untuk daftar harga -->
 <style>
     .price-list {
         background: white;
-        padding: 20px;
+        padding: 15px;
         border-radius: 10px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        width: 80%;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        width: 90%;
+        max-width: 500px;
         margin: 20px auto;
         text-align: center;
     }
 
     .price-list h2 {
         color: #d91a2a;
-        margin-bottom: 15px;
+        font-size: 18px;
+        margin-bottom: 10px;
     }
 
-    .price-list table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-bottom: 15px;
-    }
-
-    .price-list table, .price-list th, .price-list td {
-        border: 1px solid #ddd;
-    }
-
-    .price-list th, .price-list td {
+    .price-item {
+        background: #f9f9f9;
         padding: 10px;
-        text-align: center;
+        border-radius: 8px;
+        margin-bottom: 10px;
     }
 
-    .price-list th {
-        background-color: #d91a2a;
-        color: white;
+    .price-item h3 {
+        font-size: 16px;
+        color: #d91a2a;
+        margin-bottom: 5px;
     }
 
-    .price-list p {
+    .price-tag {
+        font-size: 16px;
+        font-weight: bold;
+        color: #d91a2a;
+        margin-bottom: 5px;
+    }
+
+    .price-item p {
         font-size: 14px;
         color: #555;
     }
+
+    .replay-info {
+        font-size: 13px;
+        color: #333;
+        margin-top: 10px;
+    }
+
+    @media (max-width: 480px) {
+        .price-list {
+            width: 95%;
+            padding: 10px;
+        }
+
+        .price-list h2 {
+            font-size: 16px;
+        }
+
+        .price-item h3, .price-tag {
+            font-size: 14px;
+        }
+
+        .price-item p, .replay-info {
+            font-size: 12px;
+        }
+    }
 </style>
+
 
     <!-- Footer -->
     <div class="footer-container">
