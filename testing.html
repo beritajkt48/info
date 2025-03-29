@@ -70,19 +70,33 @@
             margin: 5px 0;
         }
 
-        .event a {
-            text-decoration: none;
-            color: #ffdd57;
+        /* Tombol Detail Event */
+        .detail-btn {
+            display: inline-block;
+            padding: 10px 15px;
+            margin-top: 10px;
+            font-size: 14px;
             font-weight: bold;
-            transition: 0.3s;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: white;
+            background: linear-gradient(145deg, #ff4b2b, #ff1e56);
+            border-radius: 8px;
+            box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
+            transition: all 0.2s ease;
         }
 
-        .event a:hover {
-            color: #ffcc00;
-            text-decoration: underline;
+        .detail-btn:hover {
+            background: linear-gradient(145deg, #ff1e56, #ff4b2b);
+            transform: scale(1.05);
         }
 
-        /* Tombol */
+        .detail-btn:active {
+            transform: scale(0.95);
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Tombol Jadwal Lainnya */
         .btn {
             display: block;
             width: 100%;
@@ -96,11 +110,17 @@
             background: linear-gradient(45deg, #ff416c, #ff4b2b);
             border-radius: 8px;
             transition: 0.3s ease;
+            box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
         }
 
         .btn:hover {
             background: linear-gradient(45deg, #ff4b2b, #ff416c);
             transform: scale(1.05);
+        }
+
+        .btn:active {
+            transform: scale(0.95);
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
         }
     </style>
 </head>
@@ -114,7 +134,7 @@
             <p>🗓️ Rabu, 26 Maret 2025</p>
             <p>🕒 19:30 WIB</p>
             <p>📍 Jakarta</p>
-            <p><a href="https://jkt48.com/event" target="_blank">Detail Event</a></p>
+            <a href="https://jkt48.com/event" class="detail-btn" target="_blank">Detail Event</a>
         </div>
 
         <div class="event">
@@ -122,7 +142,7 @@
             <p>🗓️ Kamis, 27 Maret 2025</p>
             <p>🕒 19:30 WIB</p>
             <p>📍 Jakarta</p>
-            <p><a href="https://jkt48.com/event" target="_blank">Detail Event</a></p>
+            <a href="https://jkt48.com/event" class="detail-btn" target="_blank">Detail Event</a>
         </div>
 
         <div class="event">
@@ -130,7 +150,7 @@
             <p>🗓️ Jumat, 28 Maret 2025</p>
             <p>🕒 19:30 WIB</p>
             <p>📍 Jakarta</p>
-            <p><a href="https://jkt48.com/event" target="_blank">Detail Event</a></p>
+            <a href="https://jkt48.com/event" class="detail-btn" target="_blank">Detail Event</a>
         </div>
 
         <a href="https://github.com/beritajkt48/event/" class="btn">Cek Jadwal Lainnya</a>
