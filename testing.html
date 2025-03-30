@@ -1,178 +1,183 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Berita JKT48 - Menu</title>
-
+    <title>Portofolio - Mochamad Ilham Alqarani</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        /* Reset margin dan padding */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
         }
-
-        /* Body - Background Abstrak Biru-Hitam */
         body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(-45deg, #000428, #004e92, #000428);
-            background-size: 400% 400%;
-            animation: gradientBG 10s ease infinite;
-            overflow-x: hidden;
-            min-height: 100vh;
+            background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
             color: white;
-        }
-
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        /* Stars Effect */
-        .stars {
-            width: 2px;
-            height: 2px;
-            background: white;
-            position: absolute;
-            animation: twinkling 6s infinite linear;
-            opacity: 0.6;
-        }
-
-        @keyframes twinkling {
-            0% { transform: translateY(0px); opacity: 0.8; }
-            50% { opacity: 0.3; }
-            100% { transform: translateY(100vh); opacity: 0.8; }
-        }
-
-        /* Container */
-        .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 40px 20px;
             text-align: center;
+            padding: 50px 20px;
             position: relative;
-            z-index: 2;
+            overflow: hidden;
+            animation: fadeIn 1.5s ease-in-out;
         }
-
-        /* Profile Image */
-        .profile-image {
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Efek bintang */
+        .stars {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+        }
+        .stars span {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: white;
+            opacity: 0.8;
+            box-shadow: 0 0 5px white;
+            animation: twinkle 2s infinite ease-in-out alternate;
+        }
+        @keyframes twinkle {
+            from { opacity: 0.3; }
+            to { opacity: 1; }
+        }
+        
+        .profile {
+            max-width: 400px;
+            margin: auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
+            transform: scale(0.8);
+            animation: scaleUp 1s ease-in-out forwards;
+        }
+        @keyframes scaleUp {
+            to { transform: scale(1); }
+        }
+        .profile img {
             width: 150px;
             height: 150px;
             border-radius: 50%;
+            border: 4px solid white;
             object-fit: cover;
+        }
+        h1 {
+            font-size: 26px;
+            margin-top: 10px;
+        }
+        p {
+            font-size: 16px;
             margin-bottom: 15px;
-            border: 2px solid white;
+            opacity: 0.8;
         }
-
-        /* Heading */
-        h1, h3 {
-            color: white;
+        .social-links {
+            margin-top: 15px;
         }
-
-        h2 {
-            color: white;
-            margin-bottom: 20px;
-            font-size: 1rem;
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            margin: 5px;
+            background: white;
+            border-radius: 50%;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-
-        h3 {
+        .social-links a img {
+            width: 60%;
+        }
+        .social-links a:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 10px rgba(255, 255, 255, 0.3);
+        }
+        .experience {
             margin-top: 30px;
+            text-align: left;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
-
-        /* Button */
-        .button {
-            width: 80%;
-            max-width: 400px;
-            background-color: #ffffff;
-            color: #004e92;
-            border: none;
-            padding: 15px;
-            margin: 10px 0;
-            border-radius: 24px;
-            cursor: pointer;
-            transition: background-color 0.3s, transform 0.2s;
+        .experience h2 {
+            font-size: 22px;
+            border-bottom: 2px solid white;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+        }
+        .experience ul {
+            list-style: none;
+        }
+        .experience li {
+            margin-bottom: 10px;
+        }
+        .experience a {
+            color: #FFD700;
             text-decoration: none;
-            text-align: center;
-            font-size: 1rem;
-            display: inline-block;
+            font-weight: 600;
         }
-
-        .button:hover {
-            background-color: #004e92;
-            color: white;
-            transform: scale(1.05);
-        }
-
-        /* Responsiveness */
-        @media (max-width: 600px) {
-            h1 { font-size: 1.5rem; }
-            h2 { font-size: 0.875rem; }
-            .button { font-size: 0.9rem; }
+        .experience a:hover {
+            text-decoration: underline;
         }
     </style>
+</head>
+<body>
+
+    <!-- Efek bintang -->
+    <div class="stars" id="stars"></div>
+
+    <div class="profile">
+        <img src="https://pbs.twimg.com/profile_images/1762135465816412161/AfcmSAIq_400x400.jpg" alt="Foto Profil">
+        <h1>Mochamad Ilham Alqarani</h1>
+        <p>23 Tahun | Kota Blitar, Jawa Timur, Indonesia</p>
+
+        <div class="social-links">
+            <a href="https://www.instagram.com/alkraniii/" target="_blank">
+                <img src="instagram.jpg" alt="Instagram">
+            </a>
+        </div>
+    </div>
+
+    <div class="experience">
+        <h2>Pengalaman</h2>
+        <ul>
+            <li>Admin Sosial Media di <a href="https://www.tiktok.com/@ngidoljeketi48" target="_blank">Ngidol JKT48 (TikTok)</a> - 53.000+ Follower</li>
+            <li>Pengelola <a href="https://www.tiktok.com/@jkt48.berita?lang=id-ID" target="_blank">Berita JKT48 (TikTok)</a> - 8.000+ Follower</li>
+            <li>Pengelola <a href="https://www.instagram.com/beritajkt48_/" target="_blank">Berita JKT48 (Instagram)</a> - 56.000+ Follower</li>
+            <li>Pengelola <a href="https://whatsapp.com/channel/0029Vae5cgVBqbr0mRzNvA3c" target="_blank">Berita JKT48 (WhatsApp Channel)</a> - 141.000+ Follower</li>
+        </ul>
+    </div>
 
     <script>
-        // Membuat bintang secara dinamis
-        document.addEventListener("DOMContentLoaded", function() {
-            const starsContainer = document.body;
+        // Menambahkan bintang secara acak
+        const starsContainer = document.getElementById('stars');
+        for (let i = 0; i < 100; i++) {
+            let star = document.createElement('span');
+            let size = Math.random() * 3 + 1;
+            let posX = Math.random() * window.innerWidth;
+            let posY = Math.random() * window.innerHeight;
+            let delay = Math.random() * 2;
 
-            for (let i = 0; i < 100; i++) {
-                let star = document.createElement("div");
-                star.className = "stars";
-                star.style.top = Math.random() * 100 + "vh";
-                star.style.left = Math.random() * 100 + "vw";
-                star.style.animationDuration = (Math.random() * 3 + 3) + "s";
-                starsContainer.appendChild(star);
-            }
-        });
+            star.style.width = size + 'px';
+            star.style.height = size + 'px';
+            star.style.left = posX + 'px';
+            star.style.top = posY + 'px';
+            star.style.animationDelay = delay + 's';
 
-        // Mencegah Klik Kanan
-        document.addEventListener('contextmenu', event => event.preventDefault());
-
-        // Mencegah Inspect Element
-        document.addEventListener('keydown', event => {
-            if (event.key === 'F12' || 
-                (event.ctrlKey && event.shiftKey && (event.key === 'I' || event.key === 'J')) || 
-                (event.ctrlKey && event.key === 'U')) {
-                event.preventDefault();
-            }
-        });
+            starsContainer.appendChild(star);
+        }
     </script>
-</head>
 
-<body>
-    <div class="container">
-        <img class="profile-image" src="https://p16-sign-sg.tiktokcdn.com/tos-alisg-avt-0068/f550f31134292b4d7da9ff8dd97a02ec~tplv-tiktokx-cropcenter:1080:1080.jpeg?dr=14579&refresh_token=20002dcb&x-expires=1743400800&x-signature=Psnc%2FaCh%2BgN0AnO4H3vHxpaXwsM%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=my" alt="Profile Image">
-        <h1>Berita JKT48</h1>
-        <h2>Informasi & Berita<br>Tentang JKT48</h2>
-
-        <!-- Daftar Informasi -->
-        <h3>Informasi</h3>
-        <a href="https://beritajkt48.github.io/event/" target="_blank" class="button">Jadwal Event JKT48</a>
-        <a href="https://beritajkt48.github.io/member/" target="_blank" class="button">Member JKT48</a>
-        <a href="https://beritajkt48.github.io/info/birthday/" target="_blank" class="button">Ulang Tahun Member</a>
-
-        <!-- Daftar Pembelian -->
-        <h3>Tiket JKT48</h3>
-        <a href="https://beritajkt48.github.io/list/belivc.html" target="_blank" class="button">Cara Beli Tiket Video Call</a>
-        <a href="https://beritajkt48.github.io/list/belioffline.html" target="_blank" class="button">Cara Nonton Theater Offline</a>
-
-        <!-- Daftar Sosial Media -->
-        <h3>Sosial Media</h3>
-        <a href="https://www.instagram.com/beritajkt48_/" target="_blank" class="button">Instagram Berita JKT48</a>
-        <a href="https://www.tiktok.com/@jkt48.berita" target="_blank" class="button">Tiktok Berita JKT48</a>
-        <a href="https://whatsapp.com/channel/0029VajZDUg8V0tmTMIBQj2v" target="_blank" class="button">Saluran WhatsApp Arsip JKT48</a>
-        <a href="https://whatsapp.com/channel/0029Vae5cgVBqbr0mRzNvA3c" target="_blank" class="button">Saluran WhatsApp Berita JKT48</a>
-
-        <!-- Daftar Kerja Sama -->
-        <h3>-</h3>
-        <a href="https://beritajkt48.github.io/info/" target="_blank" class="button">Media Partner (CLOSE)</a>
-    </div>
 </body>
-
 </html>
