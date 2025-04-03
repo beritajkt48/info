@@ -175,8 +175,8 @@
 
     .popup-content {
         position: relative;
-        background: #fff;
-        padding: 10px;
+        background: transparent; /* Hapus background putih */
+        padding: 0;
         border-radius: 10px;
         text-align: center;
         max-width: 90%;
@@ -186,16 +186,19 @@
     .popup-content img {
         width: 100%;
         border-radius: 10px;
-        display: block; /* Pastikan gambar tampil */
+        display: block;
     }
 
     .close-btn {
         position: absolute;
-        top: 5px;
-        right: 10px;
-        font-size: 20px;
+        top: -10px;
+        right: -10px;
+        font-size: 24px;
         font-weight: bold;
-        color: #555;
+        color: white;
+        background: black;
+        padding: 5px 10px;
+        border-radius: 50%;
         cursor: pointer;
     }
 
@@ -220,19 +223,6 @@
     }
 </script>
 
-
-<!-- JavaScript untuk Pop-up -->
-<script>
-    // Tampilkan pop-up setelah 1 detik (1000ms)
-    setTimeout(function() {
-        document.getElementById("popup").style.display = "flex";
-    }, 1000);
-
-    // Fungsi untuk menutup pop-up
-    function closePopup() {
-        document.getElementById("popup").style.display = "none";
-    }
-</script>
 
 
 
