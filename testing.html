@@ -24,7 +24,7 @@
         var video = document.getElementById('video');
         if (Hls.isSupported()) {
             var hls = new Hls();
-            hls.loadSource('https://4b964ca68cf1.us-east-1.playback.live-video.net/api/video/v1/us-east-1.050891932989.channel.Xi0d4B0CWTzb.m3u8');
+            hls.loadSource('https://hls-css.live.showroom-live.com/live/07d43523e3dfb3d2780d0befcf7463199c268393ba92d2e3e4ed5594c50db686_l.m3u8');
             hls.attachMedia(video);
             hls.on(Hls.Events.MANIFEST_PARSED, function () {
                 video.play();
@@ -32,7 +32,7 @@
         }
         // HLS.js is not supported on this browser, fallback to HTML5 video
         else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-            video.src = 'https://4b964ca68cf1.us-east-1.playback.live-video.net/api/video/v1/us-east-1.050891932989.channel.Xi0d4B0CWTzb.m3u8';
+            video.src = 'https://hls-css.live.showroom-live.com/live/07d43523e3dfb3d2780d0befcf7463199c268393ba92d2e3e4ed5594c50db686_l.m3u8';
             video.addEventListener('canplay', function () {
                 video.play();
             });
