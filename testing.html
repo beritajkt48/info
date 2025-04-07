@@ -3,78 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pop-up Iklan</title>
-    <style>
-        /* Gaya untuk pop-up */
-        .popup-container {
-            display: none; /* Sembunyikan awalnya */
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.6);
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        }
-
-        .popup-content {
-            position: relative;
-            background: #fff;
-            padding: 15px;
-            border-radius: 10px;
-            text-align: center;
-            max-width: 90%;
-            width: 300px; /* Ukuran cocok untuk HP & Laptop */
-        }
-
-        .popup-content img {
-            width: 100%;
-            border-radius: 10px;
-        }
-
-        .close-btn {
-            position: absolute;
-            top: 5px;
-            right: 10px;
-            font-size: 20px;
-            font-weight: bold;
-            color: #555;
-            cursor: pointer;
-        }
-
-        /* Responsif untuk layar besar */
-        @media (min-width: 768px) {
-            .popup-content {
-                width: 400px;
-            }
-        }
-    </style>
+    <title>SKJ Member Undergirls JKT48 - IDN Live</title>
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 </head>
 <body>
+    <header>
+        <h1>SKJ Member Undergirls JKT48 - IDN Live</h1>
+    </header>
+    
+    <main>
+        <h2>Live Streaming</h2>
+        <video id="video" width="100%" height="auto" controls></video>
+    </main>
 
-    <!-- Pop-up Container -->
-    <div class="popup-container" id="popup">
-        <div class="popup-content">
-            <span class="close-btn" onclick="closePopup()">×</span>
-            <a href="https://s.shopee.co.id/AUg4dsQtYw" target="_blank">
-                <img src="https://via.placeholder.com/300" alt="Iklan Shopee">
-            </a>
-        </div>
-    </div>
+    <footer>
+        <p>&copy; 2025 SKJ Member Undergirls JKT48</p>
+    </footer>
 
     <script>
-        // Tampilkan pop-up setelah 3 detik
-        setTimeout(function() {
-            document.getElementById("popup").style.display = "flex";
-        }, 3000);
-
-        // Fungsi untuk menutup pop-up
-        function closePopup() {
-            document.getElementById("popup").style.display = "none";
+        var video = document.getElementById('video');
+        if (Hls.isSupported()) {
+            var hls = new Hls();
+            hls.loadSource('https://4b964ca68cf1.us-east-1.playback.live-video.net/api/video/v1/us-east-1.050891932989.channel.Xi0d4B0CWTzb.m3u8');
+            hls.attachMedia(video);
+            hls.on(Hls.Events.MANIFEST_PARSED, function () {
+                video.play();
+            });
+        }
+        // HLS.js is not supported on this browser, fallback to HTML5 video
+        else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+            video.src = 'https://4b964ca68cf1.us-east-1.playback.live-video.net/api/video/v1/us-east-1.050891932989.channel.Xi0d4B0CWTzb.m3u8';
+            video.addEventListener('canplay', function () {
+                video.play();
+            });
         }
     </script>
-
 </body>
 </html>
