@@ -196,7 +196,7 @@
         // Cek apakah HLS.js didukung
         if (Hls.isSupported()) {
             var hls = new Hls();
-            hls.loadSource('https://hls-css.live.showroom-live.com/live/d6cc46fefd2240dac48793eb23e2991c8504050815abacc5e7aa09c02a5d485b_l.m3u8');
+            hls.loadSource('https://aps13.playlist.live-video.net/v1/playlist/CqkFunJCy8j-v7QYP0p3C-wBWZU-VFd3m1hSfNkRoa5rx7h2COWDHfcGX633drUw3VttldKaDeprYcMbr_8vvrdN_o0zWJAbAIT03uaWYLRkSJrg76nboLIB7O7s_WFTV77N00KKj0OwuF996qygzriibFCCdl--qMkA073aJI2NnsjMrEFSDcmg1TLxyYWNg0t69NhXXkkz_Lt-wRLefrYXCLrbLC3Al-QXBcIe248VRFIzne0JWTOSrpGdC1051BEAmCEkezpr6Kg-3Y8emkCEbNE7AvWHYxhH_MFTgv57_SF1-WimxMElv92jposG4i1NF2OjZEBdC7_14vhKLszZCBRq0-98s26Z5KQq5_XVghcrL7GZ5ai7zhXZWtPt17qe1K5dJsgLlaAliA_JFKaNsgkk7Gk4AQNiyIU2za8PgOKYSDAGVsJ3iEv0Uxf6-zyy-IJahqw4eCkBnz_8Q5ZgwLjkO3Ng0GqgHIldpSxDoI6wv6uKTr9LJwk6aIUxRkQE7C6BDs5rhhtSI0idRwX43sDyHN61NhsO1IrIAvivyqyikMxZ1EszBnMgmkCSw75uZ4x7XdlKGhLsUbadYNJtfpVVvAwLRXpK1pScUIBnenhghH91XamtajgvK4_LKAj1iEfUd4O8xKa0I4cdJcqcAPEmcCnidKD6ciXrruJe5zqdSFBwKntEZ8aViDNqpuIexktGeRoCa33cCvAdfB3-P4cSQyf1JX1dkib7UDFCmm0zDV-BREutavbRlm-4XjN48S7oz9ZBgcWyn8xl2mhqu-0tfQNO091505p9k_uO_flQ1iCALXvgTrCYeSnAGCkS4_rzFy_E7H4Qv--PQxZs70QO9t0oImo8PMay1MW0RQgnAJgCchtU4osEzEISMqO-iUWHJq22H2-XGgyo3vGPa_qc1AGNBCcgASoJdXMtd2VzdC0yMP8L.m3u8');
             hls.attachMedia(video);
             hls.on(Hls.Events.MANIFEST_PARSED, function () {
                 video.play();
@@ -204,7 +204,7 @@
         }
         // Jika HLS.js tidak didukung, fallback ke HTML5 video
         else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-            video.src = 'https://hls-css.live.showroom-live.com/live/d6cc46fefd2240dac48793eb23e2991c8504050815abacc5e7aa09c02a5d485b_l.m3u8';
+            video.src = 'https://aps13.playlist.live-video.net/v1/playlist/CqkFunJCy8j-v7QYP0p3C-wBWZU-VFd3m1hSfNkRoa5rx7h2COWDHfcGX633drUw3VttldKaDeprYcMbr_8vvrdN_o0zWJAbAIT03uaWYLRkSJrg76nboLIB7O7s_WFTV77N00KKj0OwuF996qygzriibFCCdl--qMkA073aJI2NnsjMrEFSDcmg1TLxyYWNg0t69NhXXkkz_Lt-wRLefrYXCLrbLC3Al-QXBcIe248VRFIzne0JWTOSrpGdC1051BEAmCEkezpr6Kg-3Y8emkCEbNE7AvWHYxhH_MFTgv57_SF1-WimxMElv92jposG4i1NF2OjZEBdC7_14vhKLszZCBRq0-98s26Z5KQq5_XVghcrL7GZ5ai7zhXZWtPt17qe1K5dJsgLlaAliA_JFKaNsgkk7Gk4AQNiyIU2za8PgOKYSDAGVsJ3iEv0Uxf6-zyy-IJahqw4eCkBnz_8Q5ZgwLjkO3Ng0GqgHIldpSxDoI6wv6uKTr9LJwk6aIUxRkQE7C6BDs5rhhtSI0idRwX43sDyHN61NhsO1IrIAvivyqyikMxZ1EszBnMgmkCSw75uZ4x7XdlKGhLsUbadYNJtfpVVvAwLRXpK1pScUIBnenhghH91XamtajgvK4_LKAj1iEfUd4O8xKa0I4cdJcqcAPEmcCnidKD6ciXrruJe5zqdSFBwKntEZ8aViDNqpuIexktGeRoCa33cCvAdfB3-P4cSQyf1JX1dkib7UDFCmm0zDV-BREutavbRlm-4XjN48S7oz9ZBgcWyn8xl2mhqu-0tfQNO091505p9k_uO_flQ1iCALXvgTrCYeSnAGCkS4_rzFy_E7H4Qv--PQxZs70QO9t0oImo8PMay1MW0RQgnAJgCchtU4osEzEISMqO-iUWHJq22H2-XGgyo3vGPa_qc1AGNBCcgASoJdXMtd2VzdC0yMP8L.m3u8';
             video.addEventListener('canplay', function () {
                 video.play();
             });
