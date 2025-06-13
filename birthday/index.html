@@ -1,136 +1,168 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ulang Tahun Member JKT48</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f7f7f7;
-            margin: 20px;
-            line-height: 1.6;
-        }
-        .container {
-            max-width: 600px;
-            margin: auto;
-            background-color: #ffffff;
-            border-radius: 8px;
-            padding: 15px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        h1 {
-            text-align: center;
-            color: #4b6587;
-            margin-bottom: 20px;
-        }
-        .month {
-            margin-bottom: 15px;
-            border-radius: 8px;
-            background-color: rgba(0, 0, 0, 0.1);
-            padding: 10px;
-        }
-        .month h2 {
-            color: #3867d6;
-            margin-bottom: 8px;
-            text-align: center;
-        }
-        .birthday {
-            display: flex;
-            justify-content: space-between;
-            padding: 5px 10px;
-            background-color: rgba(255, 255, 255, 0.8);
-            margin-bottom: 5px;
-            border-radius: 5px;
-        }
-        .birthday span {
-            font-weight: bold;
-            color: #333;
-        }
-    </style>
-</head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ulang Tahun Member JKT48</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #f5f7fa, #e0eafc);
+      margin: 0;
+      padding: 20px;
+      color: #333;
+    }
 
-    <!-- Pop-up Iklan -->
-<div class="popup-container" id="popup">
-    <div class="popup-content">
-        <span class="close-btn" onclick="closePopup()">×</span>
-        <a href="https://s.shopee.co.id/AUg4dsQtYw" target="_blank">
-            <img src="iklan.png" alt="Iklan JKT48">
-        </a>
-    </div>
-</div>
+    .container {
+      max-width: 800px;
+      margin: auto;
+      background: #fff;
+      border-radius: 16px;
+      padding: 20px 30px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+    }
 
-<!-- CSS untuk Pop-up -->
-<style>
+    h1 {
+      text-align: center;
+      color: #1e3a8a;
+      margin-bottom: 30px;
+      font-size: 28px;
+    }
+
+    .month {
+      margin-bottom: 25px;
+      background: #f0f4ff;
+      border-radius: 12px;
+      padding: 15px;
+      box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.05);
+    }
+
+    .month h2 {
+      text-align: center;
+      color: #2563eb;
+      margin-bottom: 15px;
+      font-size: 20px;
+    }
+
+    .birthday {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 14px;
+      background: #ffffff;
+      border-radius: 8px;
+      margin-bottom: 8px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+      transition: transform 0.2s ease;
+    }
+
+    .birthday:hover {
+      transform: scale(1.01);
+    }
+
+    .birthday span:first-child::before {
+      content: '🎂 ';
+    }
+
+    .birthday span {
+      font-weight: 500;
+      font-size: 15px;
+    }
+
+    /* Tombol halaman utama */
+    .button-home {
+      display: inline-block;
+      text-align: center;
+      margin: 20px auto 0;
+      padding: 10px 20px;
+      border-radius: 8px;
+      border: 2px solid #2563eb;
+      background-color: #fff;
+      color: #2563eb;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .button-home:hover {
+      background-color: #2563eb;
+      color: #fff;
+    }
+
+    /* Popup iklan */
     .popup-container {
-        display: none; /* Awalnya disembunyikan */
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.6);
-        justify-content: center;
-        align-items: center;
-        z-index: 9999;
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      animation: fadeIn 0.3s ease;
     }
 
     .popup-content {
-        position: relative;
-        background: transparent; /* Hapus background putih */
-        padding: 0;
-        border-radius: 10px;
-        text-align: center;
-        max-width: 90%;
-        width: 320px; /* Ukuran pas untuk HP & Laptop */
+      position: relative;
+      background: transparent;
+      border-radius: 12px;
+      max-width: 90%;
+      width: 320px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     }
 
     .popup-content img {
-        width: 100%;
-        border-radius: 10px;
-        display: block;
+      width: 100%;
+      border-radius: 12px;
+      display: block;
     }
 
     .close-btn {
-        position: absolute;
-        top: -10px;
-        right: -10px;
-        font-size: 24px;
-        font-weight: bold;
-        color: white;
-        background: black;
-        padding: 5px 10px;
-        border-radius: 50%;
-        cursor: pointer;
+      position: absolute;
+      top: -10px; right: -10px;
+      font-size: 20px;
+      font-weight: bold;
+      color: white;
+      background: black;
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
     }
 
-    /* Responsif untuk layar lebih besar */
     @media (min-width: 768px) {
-        .popup-content {
-            width: 400px;
-        }
+      .popup-content {
+        width: 400px;
+      }
     }
-</style>
 
-<!-- JavaScript untuk Pop-up -->
-<script>
-    // Tampilkan pop-up setelah 1 detik (1000ms)
-    setTimeout(function() {
-        document.getElementById("popup").style.display = "flex";
-    }, 1000);
-
-    // Fungsi untuk menutup pop-up
-    function closePopup() {
-        document.getElementById("popup").style.display = "none";
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
-</script>
-    
+  </style>
+</head>
+
 <body>
-    <div class="container">
-        <h1>Ulang Tahun Member JKT48</h1>
-        
-        <div class="month">
+  <!-- Iklan Pop-up -->
+  <div class="popup-container" id="popup">
+    <div class="popup-content">
+      <span class="close-btn" onclick="closePopup()">×</span>
+      <a href="https://s.shopee.co.id/AUg4dsQtYw" target="_blank">
+        <img src="iklan.png" alt="Iklan JKT48" />
+      </a>
+    </div>
+  </div>
+
+  <!-- Konten utama -->
+  <div class="container">
+    <h1>Ulang Tahun Member JKT48</h1>
+
+    <div class="month">
             <h2>Januari</h2>
             <div class="birthday"><span>9 Januari</span> <span>Marsha</span></div>
             <div class="birthday"><span>10 Januari</span> <span>Greesel</span></div>
@@ -233,13 +265,25 @@
             <div class="birthday"><span>16 Desember</span> <span>Daisy</span></div>
             <div class="birthday"><span>17 Desember</span> <span>Amanda</span></div>
             <div class="birthday"><span>23 Desember</span> <span>Chelsea</span></div>
-        </div>
-    </div>
-        <div style="text-align: center; margin-top: 20px;">
-        <a href="https://beritajkt48.github.io/info/" style="color: #3867d6; text-decoration: none; font-size: 16px; border: 1px solid #3867d6; padding: 8px 16px; border-radius: 4px; display: inline-block; transition: background-color 0.3s, color 0.3s;">
-            Halaman Utama
-        </a>
+       </div>
     </div>
 
+    <!-- Copy bulan lain dari versi sebelumnya... -->
+
+    <div style="text-align: center;">
+      <a class="button-home" href="https://beritajkt48.github.io/info/">Halaman Utama</a>
+    </div>
+  </div>
+
+  <!-- Script Pop-up -->
+  <script>
+    setTimeout(function () {
+      document.getElementById("popup").style.display = "flex";
+    }, 1000);
+
+    function closePopup() {
+      document.getElementById("popup").style.display = "none";
+    }
+  </script>
 </body>
 </html>
