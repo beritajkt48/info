@@ -3,287 +3,127 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ulang Tahun Member JKT48</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+  <title>Paid Promote - Berita JKT48</title>
   <style>
     body {
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #f5f7fa, #e0eafc);
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f9f9f9;
       margin: 0;
-      padding: 20px;
+      padding: 0;
       color: #333;
     }
 
     .container {
-      max-width: 800px;
-      margin: auto;
-      background: #fff;
+      max-width: 700px;
+      margin: 40px auto;
+      padding: 30px;
+      background-color: #ffffff;
       border-radius: 16px;
-      padding: 20px 30px;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
     }
 
     h1 {
       text-align: center;
-      color: #1e3a8a;
-      margin-bottom: 30px;
-      font-size: 28px;
+      color: #e0004d;
+      margin-bottom: 20px;
     }
 
-    .month {
-      margin-bottom: 25px;
-      background: #f0f4ff;
-      border-radius: 12px;
-      padding: 15px;
-      box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.05);
-    }
-
-    .month h2 {
-      text-align: center;
-      color: #2563eb;
-      margin-bottom: 15px;
-      font-size: 20px;
-    }
-
-    .birthday {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 10px 14px;
-      background: #ffffff;
+    .info-box {
+      background: #ffeef2;
+      padding: 16px;
       border-radius: 8px;
-      margin-bottom: 8px;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-      transition: transform 0.2s ease;
+      margin-bottom: 20px;
+      border-left: 4px solid #e0004d;
     }
 
-    .birthday:hover {
-      transform: scale(1.01);
-    }
-
-    .birthday span:first-child::before {
-      content: '🎂 ';
-    }
-
-    .birthday span {
-      font-weight: 500;
-      font-size: 15px;
-    }
-
-    /* Tombol halaman utama */
-    .button-home {
-      display: inline-block;
-      text-align: center;
-      margin: 20px auto 0;
-      padding: 10px 20px;
-      border-radius: 8px;
-      border: 2px solid #2563eb;
-      background-color: #fff;
-      color: #2563eb;
-      text-decoration: none;
-      font-weight: 600;
-      transition: all 0.3s ease;
-    }
-
-    .button-home:hover {
-      background-color: #2563eb;
-      color: #fff;
-    }
-
-    /* Popup iklan */
-    .popup-container {
-      display: none;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0, 0, 0, 0.5);
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-      animation: fadeIn 0.3s ease;
-    }
-
-    .popup-content {
-      position: relative;
-      background: transparent;
-      border-radius: 12px;
-      max-width: 90%;
-      width: 320px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    }
-
-    .popup-content img {
-      width: 100%;
-      border-radius: 12px;
+    .info-box strong {
       display: block;
+      font-size: 18px;
     }
 
-    .close-btn {
-      position: absolute;
-      top: -10px; right: -10px;
-      font-size: 20px;
+    ul {
+      padding-left: 20px;
+      margin-bottom: 20px;
+    }
+
+    li {
+      margin-bottom: 10px;
+    }
+
+    .note {
+      background-color: #fff3cd;
+      color: #856404;
+      padding: 14px;
+      border-radius: 8px;
+      border-left: 4px solid #ffc107;
+      margin-top: 20px;
+    }
+
+    .contact {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .contact a {
+      display: inline-block;
+      margin: 5px;
+      text-decoration: none;
+      background-color: #e0004d;
+      color: #fff;
+      padding: 12px 20px;
+      border-radius: 8px;
       font-weight: bold;
-      color: white;
-      background: black;
-      width: 32px; height: 32px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+      transition: background 0.3s;
     }
 
-    @media (min-width: 768px) {
-      .popup-content {
-        width: 400px;
+    .contact a:hover {
+      background-color: #c70042;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        margin: 20px;
+        padding: 20px;
       }
-    }
 
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+      .contact a {
+        width: 100%;
+        box-sizing: border-box;
+      }
     }
   </style>
 </head>
-
 <body>
-  <!-- Iklan Pop-up -->
-  <div class="popup-container" id="popup">
-    <div class="popup-content">
-      <span class="close-btn" onclick="closePopup()">×</span>
-      <a href="https://s.shopee.co.id/AUg4dsQtYw" target="_blank">
-        <img src="iklan.png" alt="Iklan JKT48" />
-      </a>
-    </div>
-  </div>
-
-  <!-- Konten utama -->
   <div class="container">
-    <h1>Ulang Tahun Member JKT48</h1>
+    <h1>Price List Paid Promote</h1>
 
-    <div class="month">
-            <h2>Januari</h2>
-            <div class="birthday"><span>9 Januari</span> <span>Marsha</span></div>
-            <div class="birthday"><span>10 Januari</span> <span>Greesel</span></div>
-            <div class="birthday"><span>13 Januari</span> <span>Ribka</span></div>
-            <div class="birthday"><span>16 Januari</span> <span>Feni</span></div>
-            <div class="birthday"><span>24 Januari</span> <span>Levi</span></div>
-        </div>
-
-        <div class="month">
-            <h2>Februari</h2>
-            <div class="birthday"><span>4 Februari</span> <span>Fiony</span></div>
-            <div class="birthday"><span>13 Februari</span> <span>Freya</span></div>
-            <div class="birthday"><span>16 Februari</span> <span>Trisha</span></div>
-            <div class="birthday"><span>24 Februari</span> <span>Intan</span></div>
-            <div class="birthday"><span>26 Februari</span> <span>Olla</span></div>
-        </div>
-
-        <div class="month">
-            <h2>Maret</h2>
-            <div class="birthday"><span>8 Maret</span> <span>Kimmy</span></div>
-            <div class="birthday"><span>20 Maret</span> <span>Indah</span></div>
-        </div>
-
-        <div class="month">
-            <h2>April</h2>
-            <div class="birthday"><span>1 April</span> <span>Rilly</span></div>
-            <div class="birthday"><span>9 April</span> <span>Elin</span></div>
-            <div class="birthday"><span>22 April</span> <span>Michie</span></div>
-            <div class="birthday"><span>26 April</span> <span>Indira</span></div>
-        </div>
-
-        <div class="month">
-            <h2>Mei</h2>
-            <div class="birthday"><span>28 Mei</span> <span>Cathy</span></div>
-        </div>
-
-        <div class="month">
-            <h2>Juni</h2>
-            <div class="birthday"><span>15 Juni</span> <span>Eli</span></div>
-            <div class="birthday"><span>18 Juni</span> <span>Nayla</span></div>
-            <div class="birthday"><span>23 Juni</span> <span>Gendis</span></div>
-            <div class="birthday"><span>30 Juni</span> <span>Gita</span></div>
-        </div>
-
-        <div class="month">
-            <h2>Juli</h2>
-            <div class="birthday"><span>1 Juli</span> <span>Giaa</span></div>
-            <div class="birthday"><span>9 Juli</span> <span>Ekin</span></div>
-            <div class="birthday"><span>12 Juli</span> <span>Muthe</span></div>
-            <div class="birthday"><span>14 Juli</span> <span>Auwia</span></div>
-            <div class="birthday"><span>26 Juli</span> <span>Oniel</span></div>
-            <div class="birthday"><span>26 Juli</span> <span>Kathrina</span></div>
-            <div class="birthday"><span>28 Juli</span> <span>Fritzy</span></div>
-        </div>
-
-        <div class="month">
-            <h2>Agustus</h2>
-            <div class="birthday"><span>6 Agustus</span> <span>Aralie</span></div>
-            <div class="birthday"><span>6 Agustus</span> <span>Virgi</span></div>
-            <div class="birthday"><span>7 Agustus</span> <span>Ella</span></div>
-            <div class="birthday"><span>13 Agustus</span> <span>Maira</span></div>
-            <div class="birthday"><span>21 Agustus</span> <span>Erine</span></div>
-            <div class="birthday"><span>26 Agustus</span> <span>Alya</span></div>
-            <div class="birthday"><span>31 Agustus</span> <span>Gracia</span></div>
-        </div>
-
-        <div class="month">
-            <h2>September</h2>
-            <div class="birthday"><span>1 September</span> <span>Delynn</span></div>
-            <div class="birthday"><span>1 September</span> <span>Nala</span></div>
-            <div class="birthday"><span>13 September</span> <span>Lyn</span></div>
-            <div class="birthday"><span>14 September</span> <span>Lana</span></div>
-            <div class="birthday"><span>23 September</span> <span>Jessi</span></div>
-        </div>
-
-        <div class="month">
-            <h2>Oktober</h2>
-            <div class="birthday"><span>16 Oktober</span> <span>Nachia</span></div>
-            <div class="birthday"><span>18 Oktober</span> <span>Anindya</span></div>
-            <div class="birthday"><span>18 Oktober</span> <span>Gracie</span></div>
-            <div class="birthday"><span>19 Oktober</span> <span>Lily</span></div>
-            <div class="birthday"><span>23 Oktober</span> <span>Lulu</span></div>
-            <div class="birthday"><span>29 Oktober</span> <span>Lia</span></div>
-        </div>
-
-        <div class="month">
-            <h2>November</h2>
-            <div class="birthday"><span>3 November</span> <span>Oline</span></div>
-            <div class="birthday"><span>9 November</span> <span>Jemima</span></div>
-            <div class="birthday"><span>11 November</span> <span>Raisha</span></div>
-            <div class="birthday"><span>22 November</span> <span>Cynthia</span></div>
-        </div>
-
-        <div class="month">
-            <h2>Desember</h2>
-            <div class="birthday"><span>5 Desember</span> <span>Christy</span></div>
-            <div class="birthday"><span>10 Desember</span> <span>Regie</span></div>
-            <div class="birthday"><span>15 Desember</span> <span>Mikaela</span></div>
-            <div class="birthday"><span>16 Desember</span> <span>Danella</span></div>
-            <div class="birthday"><span>16 Desember</span> <span>Daisy</span></div>
-            <div class="birthday"><span>17 Desember</span> <span>Amanda</span></div>
-            <div class="birthday"><span>23 Desember</span> <span>Chelsea</span></div>
-       </div>
+    <div class="info-box">
+      <strong>Saluran Berita JKT48</strong>
+      Saat ini memiliki lebih dari <strong>148.000 pengikut</strong> di WhatsApp Channel.
     </div>
 
-    <!-- Copy bulan lain dari versi sebelumnya... -->
+    <ul>
+      <li><strong>Rp20.000 / jam</strong> (untuk 1–2 jam tayang)</li>
+      <li><strong>Rp15.000 / jam</strong> (untuk durasi lebih dari 2 jam)</li>
+      <li><strong>Maksimal durasi:</strong> 4 jam per hari</li>
+    </ul>
 
-    <div style="text-align: center;">
-      <a class="button-home" href="https://beritajkt48.github.io/info/">Halaman Utama</a>
+    <div class="note">
+      Selama Paid Promote aktif, tidak akan ada postingan lain yang muncul hingga waktu tayang berakhir.  
+      <br><br>
+      Setelah durasi selesai, postingan akan dihapus dari saluran.
+    </div>
+
+    <div class="note" style="background-color: #f8d7da; color: #721c24; border-left-color: #f5c6cb;">
+      ❌ Tidak menerima promosi saluran WhatsApp, akun media sosial, atau sejenisnya.<br>
+      ✅ Hanya untuk promosi produk yang relevan dengan JKT48 (merchandise, desain fanbase, acara, dll).
+    </div>
+
+    <div class="contact">
+      <p>Hubungi kami untuk pemesanan:</p>
+      <a href="https://t.me/beritajk48" target="_blank">Telegram: @beritajk48</a>
+      <a href="mailto:genfeedz@gmail.com">Email: genfeedz@gmail.com</a>
     </div>
   </div>
-
-  <!-- Script Pop-up -->
-  <script>
-    setTimeout(function () {
-      document.getElementById("popup").style.display = "flex";
-    }, 1000);
-
-    function closePopup() {
-      document.getElementById("popup").style.display = "none";
-    }
-  </script>
 </body>
 </html>
