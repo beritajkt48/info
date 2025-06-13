@@ -1,259 +1,208 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Berita JKT48 - Menu</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Berita JKT48</title>
 
-    <style>
-        /* Reset margin dan padding */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
-        /* Body - Background Abstrak Biru-Hitam */
-        body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(-45deg, #000428, #004e92, #000428);
-            background-size: 400% 400%;
-            animation: gradientBG 10s ease infinite;
-            overflow-x: hidden;
-            min-height: 100vh;
-            color: white;
-        }
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: start;
+      padding: 40px 20px;
+    }
 
-        /* Stars Effect */
-        .stars {
-            width: 2px;
-            height: 2px;
-            background: white;
-            position: absolute;
-            animation: twinkling 6s infinite linear;
-            opacity: 0.6;
-        }
+    .container {
+      width: 100%;
+      max-width: 480px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 24px;
+      padding: 30px 20px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(10px);
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
 
-        @keyframes twinkling {
-            0% { transform: translateY(0px); opacity: 0.8; }
-            50% { opacity: 0.3; }
-            100% { transform: translateY(100vh); opacity: 0.8; }
-        }
+    .profile-image {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 3px solid #fff;
+      object-fit: cover;
+      margin-bottom: 20px;
+    }
 
-        /* Container */
-        .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 40px 20px;
-            text-align: center;
-            position: relative;
-            z-index: 2;
-        }
+    h1 {
+      font-size: 1.8rem;
+      margin-bottom: 5px;
+    }
 
-        /* Profile Image */
-        .profile-image {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-bottom: 15px;
-            border: 2px solid white;
-        }
+    h2 {
+      font-size: 1rem;
+      font-weight: 400;
+      margin-bottom: 30px;
+      color: #ddd;
+    }
 
-        /* Heading */
-        h1, h3 {
-            color: white;
-        }
+    h3 {
+      font-size: 1rem;
+      margin-top: 30px;
+      margin-bottom: 10px;
+      color: #a0c4ff;
+    }
 
-        h2 {
-            color: white;
-            margin-bottom: 20px;
-            font-size: 1rem;
-        }
+    .button {
+      display: block;
+      width: 100%;
+      background-color: #ffffff;
+      color: #1e3c72;
+      font-weight: 600;
+      text-decoration: none;
+      border: none;
+      border-radius: 30px;
+      padding: 12px 20px;
+      margin: 8px 0;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+    }
 
-        h3 {
-            margin-top: 30px;
-        }
+    .button:hover {
+      background-color: #1e3c72;
+      color: #ffffff;
+      transform: scale(1.03);
+    }
 
-        /* Button */
-        .button {
-            width: 80%;
-            max-width: 400px;
-            background-color: #ffffff;
-            color: #004e92;
-            border: none;
-            padding: 15px;
-            margin: 10px 0;
-            border-radius: 24px;
-            cursor: pointer;
-            transition: background-color 0.3s, transform 0.2s;
-            text-decoration: none;
-            text-align: center;
-            font-size: 1rem;
-            display: inline-block;
-        }
-
-        .button:hover {
-            background-color: #004e92;
-            color: white;
-            transform: scale(1.05);
-        }
-
-        /* Responsiveness */
-        @media (max-width: 600px) {
-            h1 { font-size: 1.5rem; }
-            h2 { font-size: 0.875rem; }
-            .button { font-size: 0.9rem; }
-        }
-    </style>
-
-    <script>
-        // Membuat bintang secara dinamis
-        document.addEventListener("DOMContentLoaded", function() {
-            const starsContainer = document.body;
-
-            for (let i = 0; i < 100; i++) {
-                let star = document.createElement("div");
-                star.className = "stars";
-                star.style.top = Math.random() * 100 + "vh";
-                star.style.left = Math.random() * 100 + "vw";
-                star.style.animationDuration = (Math.random() * 3 + 3) + "s";
-                starsContainer.appendChild(star);
-            }
-        });
-
-        // Mencegah Klik Kanan
-        document.addEventListener('contextmenu', event => event.preventDefault());
-
-        // Mencegah Inspect Element
-        document.addEventListener('keydown', event => {
-            if (event.key === 'F12' || 
-                (event.ctrlKey && event.shiftKey && (event.key === 'I' || event.key === 'J')) || 
-                (event.ctrlKey && event.key === 'U')) {
-                event.preventDefault();
-            }
-        });
-    </script>
-</head>
-
-    <!-- Pop-up Iklan -->
-<div class="popup-container" id="popup">
-    <div class="popup-content">
-        <span class="close-btn" onclick="closePopup()">×</span>
-        <a href="https://s.shopee.co.id/AUg4dsQtYw" target="_blank">
-            <img src="iklan.png" alt="Iklan JKT48">
-        </a>
-    </div>
-</div>
-
-<!-- CSS untuk Pop-up -->
-<style>
+    /* Popup Styles */
     .popup-container {
-        display: none; /* Awalnya disembunyikan */
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.6);
-        justify-content: center;
-        align-items: center;
-        z-index: 9999;
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
     }
 
     .popup-content {
-        position: relative;
-        background: transparent; /* Hapus background putih */
-        padding: 0;
-        border-radius: 10px;
-        text-align: center;
-        max-width: 90%;
-        width: 320px; /* Ukuran pas untuk HP & Laptop */
+      position: relative;
+      background: transparent;
+      padding: 0;
+      border-radius: 10px;
+      text-align: center;
+      max-width: 90%;
+      width: 320px;
     }
 
     .popup-content img {
-        width: 100%;
-        border-radius: 10px;
-        display: block;
+      width: 100%;
+      border-radius: 10px;
+      display: block;
     }
 
     .close-btn {
-        position: absolute;
-        top: -10px;
-        right: -10px;
-        font-size: 24px;
-        font-weight: bold;
-        color: white;
-        background: black;
-        padding: 5px 10px;
-        border-radius: 50%;
-        cursor: pointer;
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      font-size: 24px;
+      font-weight: bold;
+      color: white;
+      background: black;
+      padding: 5px 10px;
+      border-radius: 50%;
+      cursor: pointer;
     }
 
-    /* Responsif untuk layar lebih besar */
     @media (min-width: 768px) {
-        .popup-content {
-            width: 400px;
-        }
+      .popup-content {
+        width: 400px;
+      }
     }
-</style>
 
-<!-- JavaScript untuk Pop-up -->
-<script>
-    // Tampilkan pop-up setelah 1 detik (1000ms)
-    setTimeout(function() {
-        document.getElementById("popup").style.display = "flex";
-    }, 1000);
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 1.5rem;
+      }
 
-    // Fungsi untuk menutup pop-up
-    function closePopup() {
-        document.getElementById("popup").style.display = "none";
+      .container {
+        padding: 20px 15px;
+      }
+
+      .button {
+        font-size: 0.9rem;
+      }
     }
-</script>
-
+  </style>
+</head>
 
 <body>
-    <div class="container">
-        <img class="profile-image" src="https://pps.whatsapp.net/m1/v/t24/An-bBQ5vgJpHx6gB3sCTRuKmiYEEkIUGVwyP54HrC99C8blPZGbvDS2k64duRG2M-rWjwmWImQtcdUYvIg8DupQG9oAuxB_y6fP3YAP7KkJV3wz-ukjBoeB79wauqfOkTmX5PJLMoCCv8FtNMew?stp=dst-jpg_tt6&ccb=10-5&oh=01_Q5Aa1gHmptnR2LHLL4fbzRMfpkR1LOqEPvtd9YjxOh-aJW_0Kg&oe=682ACEFD&_nc_sid=5e03e0&_nc_cat=111" alt="Profile Image">
-        <h1>Berita JKT48</h1>
-        <h2>Informasi & Berita<br>Tentang JKT48</h2>
-
-        <!-- Daftar Kerja Sama -->
-        <h3>Contact Person</h3>
-        <a href="https://beritajkt48.github.io/info/endorse/a/" target="_blank" class="button">Kerjasama atau Media Partner</a>
-
-        <!-- Daftar Informasi -->
-        <h3>Informasi</h3>
-        <a href="https://beritajkt48.github.io/event/" target="_blank" class="button">Jadwal Event JKT48</a>
-        <a href="https://beritajkt48.github.io/member/" target="_blank" class="button">Member JKT48</a>
-        <a href="https://beritajkt48.github.io/info/birthday/" target="_blank" class="button">Ulang Tahun Member</a>
-        <a href="https://beritajkt48.github.io/member/generasi/" target="_blank" class="button">Saluran WA Generasi JKT48</a>
-
-        <!-- Daftar Pembelian -->
-        <h3>Koleksi</h3>
-        <a href="https://beritajkt48.github.io/a/photobook/" target="_blank" class="button">Digital Photobook</a>
-
-        <!-- Daftar Pembelian -->
-        <h3>Tiket JKT48</h3>
-        <a href="https://beritajkt48.github.io/list/belivc.html" target="_blank" class="button">Cara Beli Tiket Video Call</a>
-        <a href="https://beritajkt48.github.io/list/belioffline.html" target="_blank" class="button">Cara Nonton Theater Offline</a>
-
-        <!-- Daftar Sosial Media -->
-        <h3>Sosial Media</h3>
-        <a href="https://www.tiktok.com/@jkt48.berita" target="_blank" class="button">Tiktok Berita JKT48</a>
-        <a href="https://whatsapp.com/channel/0029VajZDUg8V0tmTMIBQj2v" target="_blank" class="button">Saluran WhatsApp Arsip JKT48</a>
-        <a href="https://whatsapp.com/channel/0029Vb1GlrdBPzjc0lWHlS2U" target="_blank" class="button">Saluran WhatsApp Jadwal Show/Event</a>
-        <a href="https://whatsapp.com/channel/0029Vae5cgVBqbr0mRzNvA3c" target="_blank" class="button">Saluran WhatsApp Berita JKT48</a>
+  <!-- Popup Iklan -->
+  <div class="popup-container" id="popup">
+    <div class="popup-content">
+      <span class="close-btn" onclick="closePopup()">×</span>
+      <a href="https://s.shopee.co.id/AUg4dsQtYw" target="_blank">
+        <img src="iklan.png" alt="Iklan JKT48" />
+      </a>
     </div>
-</body>
+  </div>
 
+  <!-- Konten Utama -->
+  <div class="container">
+    <img class="profile-image" src="beritaprofil.jpg" alt="Profile Image" />
+    <h1>Berita JKT48</h1>
+    <h2>Informasi & Berita Tentang JKT48</h2>
+
+    <h3>Contact Person</h3>
+    <a href="https://beritajkt48.github.io/info/endorse/a/" target="_blank" class="button">Kerjasama atau Media Partner</a>
+
+    <h3>Informasi</h3>
+    <a href="https://beritajkt48.github.io/event/" target="_blank" class="button">Jadwal Event JKT48</a>
+    <a href="https://beritajkt48.github.io/member/" target="_blank" class="button">Member JKT48</a>
+    <a href="https://beritajkt48.github.io/info/birthday/" target="_blank" class="button">Ulang Tahun Member</a>
+    <a href="https://beritajkt48.github.io/member/generasi/" target="_blank" class="button">Saluran WhatsApp Generasi</a>
+
+    <h3>Koleksi</h3>
+    <a href="https://beritajkt48.github.io/a/photobook/" target="_blank" class="button">Digital Photobook</a>
+
+    <h3>Tiket JKT48</h3>
+    <a href="https://beritajkt48.github.io/list/belivc.html" target="_blank" class="button">Beli Tiket Video Call</a>
+    <a href="https://beritajkt48.github.io/list/belioffline.html" target="_blank" class="button">Nonton Theater Offline</a>
+
+    <h3>Sosial Media</h3>
+    <a href="https://www.tiktok.com/@jkt48.berita" target="_blank" class="button">TikTok Berita JKT48</a>
+    <a href="https://whatsapp.com/channel/0029VajZDUg8V0tmTMIBQj2v" target="_blank" class="button">WhatsApp Arsip JKT48</a>
+    <a href="https://whatsapp.com/channel/0029Vb1GlrdBPzjc0lWHlS2U" target="_blank" class="button">WhatsApp Jadwal Show/Event</a>
+    <a href="https://whatsapp.com/channel/0029Vae5cgVBqbr0mRzNvA3c" target="_blank" class="button">WhatsApp Berita JKT48</a>
+  </div>
+
+  <!-- Script untuk Popup -->
+  <script>
+    // Tampilkan popup setelah 1 detik
+    setTimeout(() => {
+      document.getElementById("popup").style.display = "flex";
+    }, 1000);
+
+    function closePopup() {
+      document.getElementById("popup").style.display = "none";
+    }
+  </script>
+</body>
 </html>
