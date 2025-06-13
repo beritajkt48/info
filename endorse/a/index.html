@@ -3,173 +3,122 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Open Paid Promote - Berita JKT48</title>
+  <title>Paid Promote | Berita JKT48</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
-
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
     }
 
     body {
-      background: linear-gradient(135deg, #001f3f, #000000);
-      color: white;
-      padding: 20px;
+      font-family: 'Outfit', sans-serif;
+      background: linear-gradient(135deg, #0d0c1d, #1f1c2c);
+      color: #ffffff;
       min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      position: relative;
-      overflow-x: hidden;
+      padding: 20px;
     }
 
-    .stars {
-      position: fixed;
+    .card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 40px 30px;
+      backdrop-filter: blur(15px);
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+      max-width: 500px;
       width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    .star {
-      position: absolute;
-      width: 2px;
-      height: 2px;
-      background: white;
-      opacity: 0;
-      border-radius: 50%;
-      animation: twinkle 2s infinite alternate;
-    }
-
-    @keyframes twinkle {
-      0% { opacity: 0; }
-      100% { opacity: 1; }
-    }
-
-    .container {
-      position: relative;
-      background: rgba(255, 255, 255, 0.08);
-      padding: 30px 25px;
-      border-radius: 15px;
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.15);
-      max-width: 600px;
-      width: 100%;
-      z-index: 1;
-      backdrop-filter: blur(10px);
       text-align: center;
+      animation: fadeIn 1s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     h1 {
-      font-size: 24px;
+      font-size: 28px;
       font-weight: 600;
-      margin-bottom: 20px;
+      margin-bottom: 16px;
     }
 
     p {
-      font-size: 15px;
-      margin-bottom: 16px;
-      line-height: 1.6;
+      font-size: 16px;
+      margin-bottom: 20px;
+      color: #ccc;
     }
 
-    .contact-links {
+    .cta-buttons {
       display: flex;
       flex-direction: column;
-      gap: 12px;
-      margin-top: 20px;
+      gap: 15px;
+      margin-top: 25px;
     }
 
-    .contact-links a {
-      display: inline-block;
-      padding: 12px 20px;
-      color: white;
+    .cta-buttons a {
       text-decoration: none;
-      border: 1px solid white;
-      border-radius: 10px;
-      transition: background 0.3s ease, transform 0.2s ease;
+      background: #ffffff10;
+      border: 1px solid #ffffff30;
+      color: white;
+      padding: 12px 18px;
+      border-radius: 12px;
+      font-size: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      transition: 0.3s ease;
     }
 
-    .contact-links a:hover {
-      background: rgba(255, 255, 255, 0.2);
-      transform: scale(1.02);
+    .cta-buttons a:hover {
+      background: #ffffff25;
+      transform: scale(1.03);
+    }
+
+    .note {
+      font-size: 13px;
+      color: #aaa;
+      margin-top: 25px;
     }
 
     .footer {
-      margin-top: 25px;
+      margin-top: 30px;
       font-size: 13px;
-      opacity: 0.75;
+      color: #777;
     }
 
-    /* Responsive Styles */
-    @media (min-width: 600px) {
-      .contact-links {
-        flex-direction: row;
-        justify-content: center;
-        flex-wrap: wrap;
-      }
-    }
-
-    @media (max-width: 400px) {
+    @media (max-width: 480px) {
       h1 {
-        font-size: 20px;
+        font-size: 22px;
       }
 
-      p {
-        font-size: 14px;
-      }
-
-      .contact-links a {
-        font-size: 14px;
-        padding: 10px 15px;
+      .cta-buttons a {
+        font-size: 15px;
+        padding: 10px 14px;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- Efek Bintang -->
-  <div class="stars"></div>
+  <div class="card">
+    <h1>✨ Open Paid Promote & Endorse</h1>
+    <p>Promosikan brand, produk, atau acara kamu lewat platform <b>Berita JKT48</b>! Jangkau ribuan fans aktif dengan mudah dan cepat.</p>
 
-  <!-- Kontainer Konten -->
-  <div class="container">
-    <h1>Open Paid Promote & Endorse</h1>
-    <p>Ingin produk, brand, atau event kamu dikenal lebih luas?</p>
-    <p>Kami membuka kesempatan Paid Promote, Endorse, dan Media Partner melalui Berita JKT48.</p>
-    <p>Cocok untuk brand lokal, UMKM, kreator konten, atau penyelenggara event yang ingin menjangkau penggemar JKT48.</p>
-
-    <div class="contact-links">
-      <a href="https://t.me/beritajk48" target="_blank">📲 Telegram: @beritajk48</a>
-      <a href="mailto:genfeedz@gmail.com">✉️ Email: genfeedz@gmail.com</a>
-      <a href="https://tiktok.com/@beritajkt48" target="_blank">🎵 TikTok: @beritajkt48</a>
+    <div class="cta-buttons">
+      <a href="https://t.me/beritajk48" target="_blank">📲 Hubungi via Telegram</a>
+      <a href="mailto:genfeedz@gmail.com">✉️ Kirim Email</a>
+      <a href="https://tiktok.com/@beritajkt48" target="_blank">🎵 Lihat TikTok Kami</a>
     </div>
 
-    <p style="margin-top: 25px; font-size: 13px; opacity: 0.8;">
-      ⚠️ Kami tidak menerima kerja sama dengan pihak terkait judi, konten dewasa (18+), atau aktivitas ilegal.
-    </p>
-
+    <p class="note">❗ Tidak menerima kerja sama dengan judi, konten dewasa, atau aktivitas ilegal.</p>
     <p class="footer">© 2025 Berita JKT48</p>
   </div>
-
-  <script>
-    const starsContainer = document.querySelector('.stars');
-    for (let i = 0; i < 100; i++) {
-      let star = document.createElement('div');
-      star.classList.add('star');
-      let x = Math.random() * window.innerWidth;
-      let y = Math.random() * window.innerHeight;
-      let delay = Math.random() * 2;
-      let duration = Math.random() * 2 + 1;
-      star.style.left = `${x}px`;
-      star.style.top = `${y}px`;
-      star.style.animationDelay = `${delay}s`;
-      star.style.animationDuration = `${duration}s`;
-      starsContainer.appendChild(star);
-    }
-  </script>
 
 </body>
 </html>
