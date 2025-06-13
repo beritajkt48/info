@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Open Paid Promote - Berita JKT48</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #001f3f, #000000);
+      color: white;
+      text-align: center;
+      padding: 20px;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    .stars {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+    }
+
+    .star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: white;
+      opacity: 0;
+      border-radius: 50%;
+      animation: twinkle 2s infinite alternate;
+    }
+
+    @keyframes twinkle {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    .container {
+      position: relative;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.2);
+      max-width: 700px;
+      margin: auto;
+      backdrop-filter: blur(10px);
+    }
+
+    h1 {
+      font-size: 28px;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 16px;
+      margin-bottom: 15px;
+      line-height: 1.6;
+    }
+
+    .contact-links a {
+      display: inline-block;
+      margin: 10px 15px;
+      padding: 10px 20px;
+      color: white;
+      text-decoration: none;
+      border: 1px solid white;
+      border-radius: 8px;
+      transition: background 0.3s ease;
+    }
+
+    .contact-links a:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .footer {
+      margin-top: 25px;
+      font-size: 14px;
+      opacity: 0.8;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Bintang -->
+  <div class="stars"></div>
+
+  <div class="container">
+    <h1>Open Paid Promote & Endorse</h1>
+    <p>Ingin produk, brand, atau event kamu dikenal lebih luas?</p>
+    <p>Kami membuka kesempatan untuk Paid Promote, Endorse, dan Kerja Sama Media di platform Berita JKT48.</p>
+    <p>Cocok untuk brand lokal, UMKM, kreator konten, event organizer, dan lainnya yang ingin menjangkau audiens pecinta JKT48!</p>
+
+    <div class="contact-links">
+      <a href="https://t.me/beritajk48" target="_blank">📲 Hubungi via Telegram</a>
+      <a href="mailto:genfeedz@gmail.com">✉️ Kirim Email</a>
+      <a href="https://tiktok.com/@beritajkt48" target="_blank">🎵 Lihat di TikTok</a>
+    </div>
+
+    <p style="margin-top: 20px; font-size: 14px; opacity: 0.8;">Kami tidak menerima kerja sama dengan platform judi, konten dewasa, atau aktivitas ilegal.</p>
+    
+    <p class="footer">© 2025 Berita JKT48</p>
+  </div>
+
+  <script>
+    const starsContainer = document.querySelector('.stars');
+    for (let i = 0; i < 100; i++) {
+      let star = document.createElement('div');
+      star.classList.add('star');
+      let x = Math.random() * window.innerWidth;
+      let y = Math.random() * window.innerHeight;
+      let delay = Math.random() * 2;
+      let duration = Math.random() * 2 + 1;
+      star.style.left = `${x}px`;
+      star.style.top = `${y}px`;
+      star.style.animationDelay = `${delay}s`;
+      star.style.animationDuration = `${duration}s`;
+      starsContainer.appendChild(star);
+    }
+  </script>
+
+</body>
+</html>
