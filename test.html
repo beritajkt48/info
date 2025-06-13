@@ -1,425 +1,135 @@
 <!DOCTYPE html>
 <html lang="id">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Jadwal Live Streaming Theater JKT48</title>
-	<style type="text/css">/* Reset dasar */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Berita JKT48</title>
 
-        body {
-            background-color: #f4f4f4;
-            color: #333;
-            text-align: center;
-        }
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
-        /* Header */
-        header {
-            background-color: #d91a2a;
-            color: white;
-            padding: 20px;
-            font-size: 24px;
-            font-weight: bold;
-        }
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        /* Container utama */
-        .container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            padding: 20px;
-            gap: 20px;
-        }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: start;
+      padding: 40px 20px;
+    }
 
-        /* Kartu produk */
-        .product-card {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 320px;
-            text-align: center;
-        }
+    .container {
+      width: 100%;
+      max-width: 480px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 24px;
+      padding: 30px 20px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(10px);
+      text-align: center;
+    }
 
-        .product-card img {
-            width: 100%;
-            height: auto;
-            border-radius: 10px;
-        }
+    .profile-image {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 3px solid #fff;
+      object-fit: cover;
+      margin-bottom: 20px;
+    }
 
-        .product-card h2 {
-            font-size: 20px;
-            margin: 10px 0;
-            color: #d91a2a;
-        }
+    h1 {
+      font-size: 1.8rem;
+      margin-bottom: 5px;
+    }
 
-        .product-card p {
-            font-size: 14px;
-            color: #555;
-            margin: 5px 0;
-        }
+    h2 {
+      font-size: 1rem;
+      font-weight: 400;
+      margin-bottom: 30px;
+      color: #ddd;
+    }
 
-        .price {
-            font-size: 18px;
-            font-weight: bold;
-            color: #d91a2a;
-            margin: 10px 0;
-        }
+    h3 {
+      font-size: 1rem;
+      margin-top: 30px;
+      margin-bottom: 10px;
+      color: #a0c4ff;
+    }
 
-        /* Tombol beli */
-        .buy-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 10px;
-        }
+    .button {
+      display: block;
+      width: 100%;
+      background-color: #ffffff;
+      color: #1e3c72;
+      font-weight: 600;
+      text-decoration: none;
+      border: none;
+      border-radius: 30px;
+      padding: 12px 20px;
+      margin: 8px 0;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+    }
 
-        .buy-buttons a {
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: #ffffff;
-            border: 1px solid #ddd;
-            padding: 8px 12px;
-            border-radius: 5px;
-            transition: 0.3s;
-        }
+    .button:hover {
+      background-color: #1e3c72;
+      color: #ffffff;
+      transform: scale(1.03);
+    }
 
-        .buy-buttons a img {
-            width: 20px;
-            height: 20px;
-            margin-right: 5px;
-        }
+    /* Responsive */
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 1.5rem;
+      }
 
-        .buy-buttons a:hover {
-            background-color: #eee;
-        }
+      .container {
+        padding: 20px 15px;
+      }
 
-        /* Footer */
-        .footer-container {
-            background-color: #222; /* Warna latar belakang footer */
-            color: white;
-            padding: 30px 20px;
-            margin-top: 30px;
-        }
-
-        .footer-container h3 {
-            margin-bottom: 15px;
-            font-size: 20px;
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-            padding: 10px 0;
-        }
-
-        .footer-links a {
-            text-decoration: none;
-            color: white;
-            font-size: 16px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: 0.3s;
-        }
-
-        .footer-links a img {
-            width: 24px;
-            height: 24px;
-        }
-
-        .footer-links a:hover {
-            color: #f4a261;
-        }
-
-        /* Responsif */
-        @media (max-width: 768px) {
-            .container {
-                flex-direction: column;
-                align-items: center;
-            }
-        }
-	</style>
+      .button {
+        font-size: 0.9rem;
+      }
+    }
+  </style>
 </head>
-	<!-- Pop-up Iklan -->
-<div class="popup-container" id="popup">
-    <div class="popup-content">
-        <span class="close-btn" onclick="closePopup()">×</span>
-        <a href="https://s.shopee.co.id/AUg4dsQtYw" target="_blank">
-            <img src="iklan.png" alt="Iklan JKT48">
-        </a>
-    </div>
-</div>
-
-<!-- CSS untuk Pop-up -->
-<style>
-    .popup-container {
-        display: none; /* Awalnya disembunyikan */
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.6);
-        justify-content: center;
-        align-items: center;
-        z-index: 9999;
-    }
-
-    .popup-content {
-        position: relative;
-        background: transparent; /* Hapus background putih */
-        padding: 0;
-        border-radius: 10px;
-        text-align: center;
-        max-width: 90%;
-        width: 320px; /* Ukuran pas untuk HP & Laptop */
-    }
-
-    .popup-content img {
-        width: 100%;
-        border-radius: 10px;
-        display: block;
-    }
-
-    .close-btn {
-        position: absolute;
-        top: -10px;
-        right: -10px;
-        font-size: 24px;
-        font-weight: bold;
-        color: white;
-        background: black;
-        padding: 5px 10px;
-        border-radius: 50%;
-        cursor: pointer;
-    }
-
-    /* Responsif untuk layar lebih besar */
-    @media (min-width: 768px) {
-        .popup-content {
-            width: 400px;
-        }
-    }
-</style>
-
-<!-- JavaScript untuk Pop-up -->
-<script>
-    // Tampilkan pop-up setelah 1 detik (1000ms)
-    setTimeout(function() {
-        document.getElementById("popup").style.display = "flex";
-    }, 1000);
-
-    // Fungsi untuk menutup pop-up
-    function closePopup() {
-        document.getElementById("popup").style.display = "none";
-    }
-</script>
-
-
-
-
 
 <body>
-<header>Jadwal Live Streaming Theater JKT48</header>
+  <div class="container">
+    <img class="profile-image" src="beritaprofil.jpg" alt="Profile Image" />
+    <h1>Berita JKT48</h1>
+    <h2>Informasi & Berita Tentang JKT48</h2>
 
-<div class="container"><!-- Produk 1: Pajama Drive -->
-<div class="product-card"><img alt="QUIT GAME" src="quitgame.jpg" />
-<h2>QUIT GAME</h2>
+    <h3>Contact Person</h3>
+    <a href="https://beritajkt48.github.io/info/endorse/a/" target="_blank" class="button">Kerjasama atau Media Partner</a>
 
-<p>🗓️ Rabu, 26 Mar 2025</p>
+    <h3>Informasi</h3>
+    <a href="https://beritajkt48.github.io/event/" target="_blank" class="button">Jadwal Event JKT48</a>
+    <a href="https://beritajkt48.github.io/member/" target="_blank" class="button">Member JKT48</a>
+    <a href="https://beritajkt48.github.io/info/birthday/" target="_blank" class="button">Ulang Tahun Member</a>
+    <a href="https://beritajkt48.github.io/member/generasi/" target="_blank" class="button">Saluran WA Generasi</a>
 
-<p>🕒 19:30 WIB</p>
+    <h3>Koleksi</h3>
+    <a href="https://beritajkt48.github.io/a/photobook/" target="_blank" class="button">Digital Photobook</a>
 
-<p><strong>Lineup:</strong> &nbsp;Alya, Cathy, Elin, Daisy, Ella, Gendis, Eli, Marsha, Gracia, Lily, Trisha, Nayla..</p>
+    <h3>Tiket JKT48</h3>
+    <a href="https://beritajkt48.github.io/list/belivc.html" target="_blank" class="button">Beli Tiket Video Call</a>
+    <a href="https://beritajkt48.github.io/list/belioffline.html" target="_blank" class="button">Nonton Theater Offline</a>
 
-<p class="price">Rp. 10.000</p>
-
-<div class="buy-buttons"><a href="https://wa.me/628973100347" target="_blank"><img alt="WhatsApp" src="whatsapp.jpeg" /> Whatsapp</a> <a href="https://s.shopee.co.id/AUg4dsQtYw" target="_blank"> <img alt="Shopee" src="shopee.jpg" /> Shopee</a></div>
-</div>
-<!-- Produk 2: Aturan Anti Cinta -->
-
-<div class="product-card"><img alt="JKT48 SCHOOL" src="jkt48school.jpg" />
-<h2>JKT48 SCHOOL</h2>
-
-<p>🗓️ Kamis, 27 Mar 2025</p>
-
-<p>🕒 19:30 WIB</p>
-
-<p><strong>Lineup:</strong> Christy, Kathrina, Virgi, Auwia, Rilly, Giaa, Maira, Ekin, Jemima, Mikaela, Intan.</p>
-
-<p class="price">Rp. 7.000</p>
-
-<div class="buy-buttons"><a href="https://wa.me/628973100347" target="_blank"><img alt="WhatsApp" src="whatsapp.jpeg" /> Whatsapp</a> <a href="https://s.shopee.co.id/AUg4dsQtYw" target="_blank"> <img alt="Shopee" src="shopee.jpg" /> Shopee</a></div>
-</div>
-<!-- Produk 2: Aturan Anti Cinta -->
-
-<div class="product-card"><img alt="Aturan Anti Cinta" src="caturasta.jpg" />
-<h2>CATUR ASTA</h2>
-
-<p>🗓️ Jumat, 28 Mar 2025</p>
-
-<p>🕒 19:30 WIB</p>
-
-<p><strong>Lineup:</strong> Christy, Lia, Oniel, Olla, Freya, Ella, Gita, Greesel, Eli, Indah, Jessi, Kathrina, Lulu, Marsha, Muthe, Gracia.</p>
-
-<p class="price">Rp. 10.000</p>
-
-<div class="buy-buttons"><a href="https://wa.me/628973100347" target="_blank"><img alt="WhatsApp" src="whatsapp.jpeg" /> Whatsapp</a> <a href="https://s.shopee.co.id/AUg4dsQtYw" target="_blank"> <img alt="Shopee" src="shopee.jpg" /> Shopee</a></div>
-</div>
-</div>
-<!-- Produk Eksklusif: Membership JKT48 TV -->
-
-<div class="membership-card"><img alt="Membership JKT48 TV" src="jkt48tv.jpg" />
-<h2>Membership JKT48 TV &ndash; 1 Bulan</h2>
-
-<p class="original-price">Rp. 374.000</p>
-
-<p class="discounted-price">Rp. 65.000</p>
-
-<p>🎥 Live streaming pertunjukan teater melalui YouTube <strong>JKT48 TV</strong>.</p>
-
-<p>📅 Akses nonton show theater selama 1 bulan.</p>
-
-<p>🔄 Bonus replay selama membership aktif.</p>
-
-<div class="buy-buttons"><a href="https://wa.me/628973100347" target="_blank"><img alt="WhatsApp" src="whatsapp.jpeg" /> Whatsapp</a> <a href="https://s.shopee.co.id/AUg4dsQtYw" target="_blank"> <img alt="Shopee" src="shopee.jpg" />Shopee </a></div>
-</div>
-<!-- CSS untuk Membership JKT48 TV -->
-<style type="text/css">.membership-card {
-        background: #ffffff;
-        padding: 20px;
-        border-radius: 12px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-        width: 90%;
-        max-width: 400px;
-        margin: 30px auto;
-        text-align: center;
-        border: 2px solid #d91a2a;
-        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-    }
-
-    .membership-card:hover {
-        transform: scale(1.02);
-        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
-    }
-
-    .membership-card img {
-        width: 100%;
-        max-height: 200px;
-        object-fit: cover;
-        border-radius: 8px;
-        margin-bottom: 15px;
-    }
-
-    .membership-card h2 {
-        font-size: 22px;
-        color: #d91a2a;
-        margin-bottom: 10px;
-    }
-
-    .original-price {
-        font-size: 16px;
-        color: #888;
-        text-decoration: line-through;
-        display: block;
-        margin-bottom: 3px;
-    }
-
-    .discounted-price {
-        font-size: 24px;
-        font-weight: bold;
-        color: #d91a2a;
-        margin-bottom: 10px;
-        display: block;
-    }
-
-    .membership-card p {
-        font-size: 14px;
-        color: #555;
-        margin: 5px 0;
-        line-height: 1.6;
-    }
-
-    .buy-buttons {
-        display: flex;
-        justify-content: center;
-        gap: 10px;
-        margin-top: 15px;
-    }
-
-    .buy-buttons a {
-        text-decoration: none;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: white;
-        border: 2px solid #d91a2a;
-        padding: 10px 15px;
-        border-radius: 6px;
-        transition: 0.3s;
-        color: #d91a2a;
-        font-weight: bold;
-    }
-
-    .buy-buttons a img {
-        width: 20px;
-        height: 20px;
-        margin-right: 5px;
-    }
-
-    .buy-buttons a:hover {
-        background-color: #d91a2a;
-        color: white;
-        transform: scale(1.05);
-    }
-
-    /* Responsif untuk HP */
-    @media (max-width: 480px) {
-        .membership-card {
-            width: 95%;
-            padding: 15px;
-        }
-
-        .membership-card h2 {
-            font-size: 20px;
-        }
-
-        .original-price {
-            font-size: 14px;
-        }
-
-        .discounted-price {
-            font-size: 22px;
-        }
-
-        .membership-card p {
-            font-size: 13px;
-        }
-
-        .buy-buttons {
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .buy-buttons a {
-            width: 100%;
-            padding: 10px;
-        }
-    }
-</style>
-<!-- Footer -->
-<div class="footer-container">
-<h3>Info selengkapnya</h3>
-
-<div class="footer-links"><a href="https://whatsapp.com/channel/0029VakLjElFCCoYNijlNk1l" target="_blank"><img alt="WhatsApp" src="whatsapp.jpeg" /> Saluran WhatsApp </a> <a href="https://www.ngidoljkt48.com/" target="_blank"> <img alt="Website" src="website.jpg" /> Website </a> <a href="https://s.shopee.co.id/AUg4dsQtYw" target="_blank"> <img alt="Shopee" src="shopee.jpg" /> Toko Shopee </a></div>
-</div>
+    <h3>Sosial Media</h3>
+    <a href="https://www.tiktok.com/@jkt48.berita" target="_blank" class="button">TikTok Berita JKT48</a>
+    <a href="https://whatsapp.com/channel/0029VajZDUg8V0tmTMIBQj2v" target="_blank" class="button">WA Arsip JKT48</a>
+    <a href="https://whatsapp.com/channel/0029Vb1GlrdBPzjc0lWHlS2U" target="_blank" class="button">WA Jadwal Show/Event</a>
+    <a href="https://whatsapp.com/channel/0029Vae5cgVBqbr0mRzNvA3c" target="_blank" class="button">WA Berita JKT48</a>
+  </div>
 </body>
 </html>
