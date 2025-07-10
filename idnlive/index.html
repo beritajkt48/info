@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Streaming - Fritzy & Daisy</title>
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: white;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+
+        .stream-controls {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .stream-btn {
+            background: rgba(255,255,255,0.2);
+            border: 2px solid rgba(255,255,255,0.3);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .stream-btn:hover {
+            background: rgba(255,255,255,0.3);
+            border-color: rgba(255,255,255,0.5);
+            transform: translateY(-2px);
+        }
+
+        .stream-btn.active {
+            background: rgba(255,255,255,0.4);
+            border-color: rgba(255,255,255,0.6);
+        }
+
+        .video-container {
+            display: grid;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .video-container.single {
+            grid-template-columns: 1fr;
+        }
+
+        .video-container.dual {
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        }
+
+        .video-wrapper {
+            background: rgba(0,0,0,0.3);
+            border-radius: 15px;
+            padding: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .video-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            text-align: center;
+            color: #fff;
+        }
+
+        video {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            background: #000;
+            min-height: 250px;
+        }
+
+        .status {
+            margin-top: 10px;
+            text-align: center;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .status.live {
+            color: #4ade80;
+        }
+
+        .status.error {
+            color: #f87171;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .video-container.dual {
+                grid-template-columns: 1fr;
+            }
+
+            .stream-controls {
+                gap: 10px;
+            }
+
+            .stream-btn {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+        }
+
+        .loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 250px;
+            font-size: 1.1rem;
+        }
+
+        .spinner {
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-top: 2px solid white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-right: 10px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔴 Live Streaming</h1>
+            <p class="subtitle">Watch Fritzy & Daisy Live Streams</p>
+        </header>
+
+        <div class="stream-controls">
+            <button class="stream-btn active" onclick="showStream('both')">Both Streams</button>
+            <button class="stream-btn" onclick="showStream('fritzy')">Fritzy Only</button>
+            <button class="stream-btn" onclick="showStream('daisy')">Daisy Only</button>
+        </div>
+
+        <div class="video-container dual" id="videoContainer">
+            <div class="video-wrapper" id="fritzyWrapper">
+                <div class="video-title">🎬 Fritzy Stream</div>
+                <video id="fritzyVideo" controls muted playsinline>
+                    <p>Your browser does not support the video tag.</p>
+                </video>
+                <div class="status" id="fritzyStatus">
+                    <div class="loading">
+                        <div class="spinner"></div>
+                        Loading stream...
+                    </div>
+                </div>
+            </div>
+
+            <div class="video-wrapper" id="daisyWrapper">
+                <div class="video-title">🌼 Daisy Stream</div>
+                <video id="daisyVideo" controls muted playsinline>
+                    <p>Your browser does not support the video tag.</p>
+                </video>
+                <div class="status" id="daisyStatus">
+                    <div class="loading">
+                        <div class="spinner"></div>
+                        Loading stream...
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>Live streaming powered by HLS technology</p>
+        </div>
+    </div>
+
+    <script>
+        // Stream URLs
+        const streams = {
+            fritzy: 'https://aps13.playlist.live-video.net/v1/playlist/CtAFQeqtMS9yQAKl3dLlzMjjmzXHVaPdS1bXCQZ_eTVS9A7HFVFR_KVz4Y5mUFFtqOAdlmpbN1Ax-_Jsf7SBw-l4hIjU1WvvcSJ7fk8aAQILR9HTLdD-JkBE4Os29rFK8ld0vC_hV3PK7SIxeF7kdHNIkabdfdxPJxZAbrwCO-4YMkDkxoUuVIlM1Oo1kK3umOfQ61hlt0nGKmPDhPxkZ9OFMld1obmL7ZwBgVa7O7C8HxYix3VFy2tcKGf-k3Z0QumShl11B6pUM94wOCBq4H4jW0rMXVN6iq0FCgxYy6NEj6RuMihNnpVb5BgslbWfXpDGNzJ4AQuYVV3hrCqeJb9tbpTy1pRm1VL53Gh0SNz-INTlIlZFVhErbseGETJEAUE-tSqEtJmQXAGu0sKfAxIYjZeIAKUEPKZY27oIEcDlEL2CSLYHrXc-Ak9u64Ed3Z4ldQTPbADgSpJQF0b8xZ9tlNS0oRLSKnNvQ2QJku1rabd-a4aH5gHZgBVmN2DbMwZ7KVLYtCwIn16v4Yn1GWmtJI6ILMD0J_2wqMan28af5L0Vxie_UUavOwPFsutOC9RdGP5-B8hHilfPnueF2yrjhXf1wnkrXatGCNbrHnlDQ0iDKsWQTtxP8M5x_f6KMIqLlXIjAaGsxartplhlG69mIOYocN0PJ3iAIrHw_JfEaKd3K4Uq1DOGpDUphHfHrmM4inyH862IGmseSL53HEWKwVTtT7dMEr0kyQn0FJXjGY-DMPgpnTzxs-8nlshsWE1ym-5XocWB6DWIevp-qonD7z0Av0N-SBlaZZOW5zk6TJXE7SNEllPv4CtPpxdUB9BNJIys560OmKUxpD2k5j8JXPw3QsYc83GWFdyziYUtV3hbNrd-i4fyqhESvjReMJZM3QUrm1bjXHxzB3cdU96KXIXu-g5otb7h8mWUJPSJdWV2m3MuW4ovUDr-c7Tjky1IGgz0CFC589MzlIHdG28gASoJdXMtd2VzdC0yMNsM.m3u8',
+            daisy: 'https://aps11.playlist.live-video.net/v1/playlist/Cs4FWljrK3bqQakvjD3ZpIqq4Nxv1MG_CkyivMF_leam4-aF53sFrS5zb8noPsVAhbC1tWw03sDLKHAKhOBWG1ywK2I7QNGxWlj3nPnB_gdVZWIpeqRrTXi_GrP6V43EYzWKR9EMhXoSeP1i_5XCvvO3N-ccEiRAmuboa0m173mnt5PFIQz-zXtiVdXLf3jn58O4gULMnHzjxgFeCF_jKL1DgHjADf5aldve0OW0rxYuZdNNgYeU_wfTIw4E1vSRUzD5_AqcpNjqXUrkRtiCmZfuzE_3dQPMufdVxkClqbUMmG4Agv-o5imLtNCDBwB3bBYHkuxGm8pTDStyA7mV2rrvl96B7QMaHQP_pqvlAPnOfH7MFmRTow1KfKcP3EEPhtHT5fKkuKfsgMxDli1mvCBuQQKzFZKLIbcvAzcesh9rsPY1tKeUT3A7xePiua3LXUhi4bgPRX1ApGdpJ3AaqgdbPf3kW91m_Sf5_1XL9jjZa8V3wErRF1dFVkc4Qm63ZhUyl4bUJkdpo6fjZjA7uR_hbKqaAC1YaZibh0jhRQ8zoNKQOG-s-jl9m14wVFVdy-LaIUOAsgcAgHcQzW5ciU309AONP5fY17wP3-nmT3ht3Omt0T-skkCqnyBN9EVNGc4LYNCpoVg-aXb-F02iPCNJS6SP5ZE_3tLmQ4XhxhG6JUNBBIHhUhdDZSsIvyvoZ6OXtIoqdObusGE4yhzyIT0YMCZUnkZsgLt2AuUeUib-aUFTK5LrKnjlPzHnSSCYt4ccKGXMZdxmBDcQOKlKVVlvUhSkRYWVBKvojKQX3hA7QNng1AW1eMHkUIJen5i4pshRCbhAgImN0TLt8vh_ccaziGHL5S_pHO9ausrHzRcHWb6C2vfMGo1Osc7YIExzf-1OzK0YbJe_FiJ8Iasy7rHNnGHLPD54VWUCLy6NFyM1-6s9hPh7vQa5JjT77dTqzhoMjxMUA8HYiLHc7igUIAEqCXVzLXdlc3QtMjDbDA.m3u8'
+        };
+
+        let hlsFritzy, hlsDaisy;
+
+        // Initialize streams
+        function initializeStreams() {
+            initializeStream('fritzy', streams.fritzy);
+            initializeStream('daisy', streams.daisy);
+        }
+
+        function initializeStream(streamName, streamUrl) {
+            const video = document.getElementById(streamName + 'Video');
+            const status = document.getElementById(streamName + 'Status');
+
+            if (Hls.isSupported()) {
+                const hls = new Hls({
+                    enableWorker: true,
+                    lowLatencyMode: true,
+                    backBufferLength: 90
+                });
+
+                hls.loadSource(streamUrl);
+                hls.attachMedia(video);
+
+                hls.on(Hls.Events.MANIFEST_PARSED, function() {
+                    status.innerHTML = '<span class="live">🔴 Live</span>';
+                });
+
+                hls.on(Hls.Events.ERROR, function(event, data) {
+                    console.error('HLS Error:', data);
+                    status.innerHTML = '<span class="error">❌ Connection Error</span>';
+                });
+
+                // Store HLS instance
+                if (streamName === 'fritzy') {
+                    hlsFritzy = hls;
+                } else {
+                    hlsDaisy = hls;
+                }
+
+            } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+                // Safari native HLS support
+                video.src = streamUrl;
+                video.addEventListener('loadedmetadata', function() {
+                    status.innerHTML = '<span class="live">🔴 Live</span>';
+                });
+                video.addEventListener('error', function() {
+                    status.innerHTML = '<span class="error">❌ Connection Error</span>';
+                });
+            } else {
+                status.innerHTML = '<span class="error">❌ HLS not supported</span>';
+            }
+        }
+
+        // Stream control functions
+        function showStream(type) {
+            const container = document.getElementById('videoContainer');
+            const fritzyWrapper = document.getElementById('fritzyWrapper');
+            const daisyWrapper = document.getElementById('daisyWrapper');
+            const buttons = document.querySelectorAll('.stream-btn');
+
+            // Update button states
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            // Show/hide streams
+            switch(type) {
+                case 'both':
+                    container.className = 'video-container dual';
+                    fritzyWrapper.style.display = 'block';
+                    daisyWrapper.style.display = 'block';
+                    break;
+                case 'fritzy':
+                    container.className = 'video-container single';
+                    fritzyWrapper.style.display = 'block';
+                    daisyWrapper.style.display = 'none';
+                    break;
+                case 'daisy':
+                    container.className = 'video-container single';
+                    fritzyWrapper.style.display = 'none';
+                    daisyWrapper.style.display = 'block';
+                    break;
+            }
+        }
+
+        // Auto-play handling
+        function attemptAutoplay() {
+            const videos = document.querySelectorAll('video');
+            videos.forEach(video => {
+                video.play().catch(e => {
+                    console.log('Autoplay prevented:', e);
+                });
+            });
+        }
+
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeStreams();
+            
+            // Attempt autoplay after a short delay
+            setTimeout(attemptAutoplay, 2000);
+        });
+
+        // Cleanup on page unload
+        window.addEventListener('beforeunload', function() {
+            if (hlsFritzy) hlsFritzy.destroy();
+            if (hlsDaisy) hlsDaisy.destroy();
+        });
+    </script>
+</body>
+</html>
