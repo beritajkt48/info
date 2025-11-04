@@ -3,34 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pernyataan Kebijakan Berita JKT48</title>
+    <title>Kebijakan Kemitraan - Berita JKT48</title>
     <style>
-        /* Import Font Google */
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
-        /* Reset CSS */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
         }
 
-        /* Background Gradasi Dua Warna (Biru & Hitam) */
         body {
-            background: linear-gradient(135deg, #001f3f, #000000);
-            overflow-x: hidden;
-            color: white;
-            text-align: center;
-            padding: 20px;
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #1e293b;
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
+            padding: 20px;
             position: relative;
+            overflow-x: hidden;
         }
 
-        /* Efek Bintang Animasi */
+        /* Animated Background Stars */
         .stars {
             position: fixed;
             width: 100%;
@@ -38,6 +34,7 @@
             top: 0;
             left: 0;
             pointer-events: none;
+            z-index: 1;
         }
 
         .star {
@@ -47,95 +44,252 @@
             background: white;
             opacity: 0;
             border-radius: 50%;
-            animation: twinkle 2s infinite alternate;
+            animation: twinkle 3s infinite;
         }
 
         @keyframes twinkle {
-            0% { opacity: 0; }
-            100% { opacity: 1; }
+            0%, 100% { opacity: 0; }
+            50% { opacity: 0.8; }
         }
 
-        /* Container Utama */
         .container {
             position: relative;
-            background: rgba(255, 255, 255, 0.1);
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0px 0px 20px rgba(255, 255, 255, 0.2);
-            max-width: 700px;
-            margin: auto;
-            backdrop-filter: blur(10px);
+            z-index: 2;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 800px;
+            width: 100%;
+            padding: 60px 40px;
         }
 
-        h1 {
-            font-size: 26px;
-            font-weight: 600;
+        /* Header */
+        .header {
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .header h1 {
+            font-size: 32px;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 14px;
+            color: #64748b;
+        }
+
+        /* Content */
+        .content {
+            margin-bottom: 40px;
+        }
+
+        .content p {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #475569;
             margin-bottom: 20px;
         }
 
-        p {
-            font-size: 16px;
-            margin-bottom: 10px;
-            line-height: 1.6;
+        .content p strong {
+            color: #0f172a;
+            font-weight: 600;
         }
 
-        /* List Kebijakan */
+        /* Policy List */
+        .policy-section {
+            margin: 30px 0;
+        }
+
+        .policy-section h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #0f172a;
+            margin-bottom: 15px;
+        }
+
         .policy-list {
-            text-align: left;
-            margin-top: 15px;
-            padding-left: 20px;
+            list-style: none;
+            padding-left: 0;
         }
 
         .policy-list li {
-            margin-bottom: 8px;
             font-size: 16px;
+            line-height: 1.8;
+            color: #475569;
+            margin-bottom: 12px;
+            padding-left: 24px;
+            position: relative;
+        }
+
+        .policy-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #3b82f6;
+            font-weight: bold;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            padding: 30px;
+            border-radius: 12px;
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        .contact-section h3 {
+            color: white;
+            font-size: 18px;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #25d366;
+            color: white;
+            padding: 14px 32px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            border: 2px solid #25d366;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+        }
+
+        .whatsapp-btn:hover {
+            background: #20ba5a;
+            border-color: #20ba5a;
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .whatsapp-icon {
+            width: 20px;
+            height: 20px;
         }
 
         /* Footer */
         .footer {
-            margin-top: 20px;
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 2px solid #e2e8f0;
+            text-align: center;
             font-size: 14px;
-            opacity: 0.8;
+            color: #94a3b8;
+        }
+
+        /* Responsive */
+        @media (max-width: 640px) {
+            .container {
+                padding: 40px 24px;
+            }
+
+            .header h1 {
+                font-size: 24px;
+            }
+
+            .content p {
+                font-size: 15px;
+            }
+
+            .policy-list li {
+                font-size: 15px;
+            }
+
+            .whatsapp-btn {
+                padding: 12px 24px;
+                font-size: 14px;
+            }
         }
     </style>
 </head>
 <body>
 
-    <!-- Efek Bintang -->
+    <!-- Background Stars -->
     <div class="stars"></div>
 
-    <!-- Container Utama -->
+    <!-- Main Container -->
     <div class="container">
-        <h1>Pernyataan Kebijakan Berita JKT48</h1>
-        <p>Berita JKT48 tidak menjual atau memberikan akses kepemilikan serta pengelolaan saluran kepada pihak mana pun. Seluruh kendali tetap berada di tangan Berita JKT48 tanpa keterlibatan pihak ketiga dalam bentuk transaksi apa pun.</p>
-        <p>Saat ini, layanan endorse, promosi berbayar (paid promote), dan media partner ditutup sementara tanpa batas waktu yang ditentukan. Oleh karena itu, kami tidak menerima tawaran atau permintaan kerja sama terkait promosi hingga pemberitahuan lebih lanjut.</p>
-        <p>Berita JKT48 hanya bekerja sama dengan pihak yang memiliki keterkaitan langsung dengan JKT48. Kami menolak segala bentuk kerja sama dengan:</p>
+        
+        <!-- Header -->
+        <div class="header">
+            <h1>Kebijakan Kemitraan</h1>
+            <p>Berita JKT48 - Media Resmi Informasi</p>
+        </div>
 
-        <ul class="policy-list">
-            <li><b>Judi online</b>, termasuk platform perjudian digital.</li>
-            <li><b>Konten dewasa (18+)</b>, seperti pornografi atau materi eksplisit.</li>
-            <li><b>Aktivitas ilegal</b>, termasuk penipuan, penyebaran hoaks, atau pelanggaran hukum lainnya.</li>
-        </ul>
+        <!-- Content -->
+        <div class="content">
+            <p><strong>Berita JKT48</strong> tidak menjual atau memberikan akses kepemilikan serta pengelolaan saluran kepada pihak mana pun. Seluruh kendali tetap berada di tangan Berita JKT48 tanpa keterlibatan pihak ketiga dalam bentuk transaksi apa pun.</p>
 
-        <p>Kebijakan ini bertujuan untuk menjaga integritas, profesionalisme, dan standar etika dalam menyajikan informasi. Kami menghargai pengertian dan dukungan dari semua pihak.</p>
+            <!-- Policy Section 1 -->
+            <div class="policy-section">
+                <h3>Status Layanan Kemitraan</h3>
+                <p>Saat ini, layanan endorse, promosi berbayar <em>(paid promote)</em>, dan media partner ditutup sementara tanpa batas waktu yang ditentukan. Oleh karena itu, kami tidak menerima tawaran atau permintaan kerja sama terkait promosi hingga pemberitahuan lebih lanjut.</p>
+            </div>
 
-        <p class="footer">© 2024 Berita JKT48</p>
+            <!-- Policy Section 2 -->
+            <div class="policy-section">
+                <h3>Kriteria Kemitraan</h3>
+                <p>Berita JKT48 hanya bekerja sama dengan pihak yang memiliki keterkaitan langsung dengan JKT48. Kami menolak segala bentuk kerja sama dengan kategori berikut:</p>
+                
+                <ul class="policy-list">
+                    <li><strong>Judi Online</strong> - Termasuk semua platform perjudian digital dan permainan berbayar.</li>
+                    <li><strong>Konten Dewasa (18+)</strong> - Seperti pornografi, materi eksplisit, dan konten tidak layak.</li>
+                    <li><strong>Aktivitas Ilegal</strong> - Termasuk penipuan, penyebaran hoaks, atau pelanggaran hukum lainnya.</li>
+                </ul>
+            </div>
+
+            <!-- Policy Section 3 -->
+            <div class="policy-section">
+                <h3>Komitmen Kami</h3>
+                <p>Kebijakan ini bertujuan untuk menjaga integritas, profesionalisme, dan standar etika dalam menyajikan informasi berkualitas. Kami menghargai pengertian dan dukungan dari semua pihak dalam mempertahankan kredibilitas Berita JKT48.</p>
+            </div>
+        </div>
+
+        <!-- Contact Section -->
+        <div class="contact-section">
+            <h3>Hubungi Kami</h3>
+            <a href="https://wa.me/6285711128781" class="whatsapp-btn" target="_blank" rel="noopener noreferrer">
+                <svg class="whatsapp-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421-7.403h-.004c-1.33 0-2.623-.356-3.757-1.039l-.27-.159-.279.046c-.633.088-1.235.241-1.8.555l.036-.02c.158-.089.316-.177.474-.266l.26-.15c1.202-.688 2.565-1.055 4.042-1.055 3.864 0 7.01 3.146 7.01 7.01 0 1.864-.746 3.646-2.102 4.915l-.127.12.033.278c.363 3.043-1.271 5.682-4.36 6.667-.943.303-1.926.453-2.918.453-.947 0-1.875-.14-2.769-.418l.14.042c.833.268 1.741.414 2.629.414 1.973 0 3.847-.52 5.487-1.505 2.302-1.344 3.83-3.672 3.83-6.187 0-4.011-3.268-7.277-7.277-7.277"/>
+                </svg>
+                Hubungi via WhatsApp
+            </a>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>© 2025 Berita JKT48. Semua hak dilindungi.</p>
+            <p>Kebijakan ini berlaku efektif sejak tahun 2024 dan dapat diperbarui sewaktu-waktu.</p>
+        </div>
+
     </div>
 
     <script>
-        // Menambahkan bintang ke dalam elemen .stars
+        // Generate animated stars
         const starsContainer = document.querySelector('.stars');
-        for (let i = 0; i < 100; i++) { // Jumlah bintang
-            let star = document.createElement('div');
+        for (let i = 0; i < 80; i++) {
+            const star = document.createElement('div');
             star.classList.add('star');
-            let x = Math.random() * window.innerWidth;
-            let y = Math.random() * window.innerHeight;
-            let delay = Math.random() * 2;
-            let duration = Math.random() * 2 + 1;
+            const x = Math.random() * window.innerWidth;
+            const y = Math.random() * window.innerHeight;
+            const delay = Math.random() * 3;
+            const duration = Math.random() * 2 + 2;
+            
             star.style.left = `${x}px`;
             star.style.top = `${y}px`;
             star.style.animationDelay = `${delay}s`;
             star.style.animationDuration = `${duration}s`;
+            
             starsContainer.appendChild(star);
         }
     </script>
