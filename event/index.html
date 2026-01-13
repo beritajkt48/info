@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JKT48 Event Schedule</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0a0a0a;
+            color: #f0f0f0;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Animated Stars Background */
+        .stars-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px) translateX(0px); }
+            100% { transform: translateY(-100vh) translateX(20px); }
+        }
+
+        .star-moving {
+            animation: twinkle 3s infinite, float 20s linear infinite;
+        }
+
+        /* Main Content */
+        .container {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            animation: fadeIn 0.8s ease-in;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .header p {
+            color: #999;
+            font-size: 1rem;
+            font-weight: 300;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Main Wrapper */
+        .schedule-wrapper {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        /* Month Selector */
+        .month-selector {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .month-selector h2 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #333;
+        }
+
+        .month-btn {
+            padding: 12px 16px;
+            border: 2px solid #333;
+            background: transparent;
+            color: #f0f0f0;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            text-transform: capitalize;
+        }
+
+        .month-btn:hover {
+            border-color: #f0f0f0;
+            background: rgba(240, 240, 240, 0.05);
+        }
+
+        .month-btn.active {
+            background: #f0f0f0;
+            color: #0a0a0a;
+            border-color: #f0f0f0;
+        }
+
+        /* Event List */
+        .event-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .event-list h2 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #333;
+        }
+
+        .event-item {
+            background: rgba(50, 50, 50, 0.5);
+            border-left: 4px solid #666;
+            padding: 16px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .event-item:hover {
+            background: rgba(80, 80, 80, 0.7);
+            border-left-color: #f0f0f0;
+            transform: translateX(5px);
+        }
+
+        .event-date {
+            font-size: 0.85rem;
+            color: #999;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .event-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .event-location {
+            font-size: 0.9rem;
+            color: #bbb;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-bottom: 10px;
+        }
+
+        .event-location::before {
+            content: "📍";
+        }
+
+        /* Event Tags */
+        .event-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .event-tag {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .tag-jakarta {
+            background: #ff6b6b;
+            color: white;
+        }
+
+        .tag-luar-kota {
+            background: #4ecdc4;
+            color: white;
+        }
+
+        .tag-gagal {
+            background: #95a5a6;
+            color: white;
+        }
+
+        /* Event Statistics */
+        .event-stats {
+            background: rgba(50, 50, 50, 0.5);
+            border: 1px solid #333;
+            padding: 20px;
+            border-radius: 4px;
+            margin-top: 20px;
+        }
+
+        .event-stats h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+        }
+
+        .stat-item {
+            background: rgba(30, 30, 30, 0.8);
+            padding: 12px;
+            border-radius: 4px;
+            text-align: center;
+            border-left: 3px solid #666;
+        }
+
+        .stat-item.total {
+            border-left-color: #f0f0f0;
+        }
+
+        .stat-item.jakarta {
+            border-left-color: #ff6b6b;
+        }
+
+        .stat-item.luar-kota {
+            border-left-color: #4ecdc4;
+        }
+
+        .stat-item.gagal {
+            border-left-color: #95a5a6;
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: #666;
+        }
+
+        .empty-state p {
+            font-size: 1rem;
+            font-style: italic;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .schedule-wrapper {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .month-selector {
+                flex-direction: row;
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+
+            .month-selector h2 {
+                width: 100%;
+            }
+
+            .month-btn {
+                flex: 1;
+                min-width: calc(50% - 5px);
+            }
+
+            .event-list h2 {
+                margin-top: 20px;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 20px 16px;
+            }
+
+            .header h1 {
+                font-size: 1.5rem;
+            }
+
+            .event-title {
+                font-size: 1rem;
+            }
+
+            .month-btn {
+                min-width: calc(50% - 5px);
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Stars Background -->
+    <div class="stars-container" id="starsContainer"></div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="header">
+            <h1>JKT48</h1>
+            <p>Event Schedule 2026</p>
+        </div>
+
+        <div class="schedule-wrapper">
+            <!-- Month Selector -->
+            <div class="month-selector" id="monthSelector"></div>
+
+            <!-- Event List -->
+            <div class="event-list">
+                <h2 id="eventMonthTitle">Pilih Bulan</h2>
+                <div id="eventContainer"></div>
+                <!-- Add statistics section -->
+                <div id="statsContainer"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const eventData = {
+            'januari': [
+                { date: '2026-01-08', title: 'Pertaruhan Cinta', location: 'JKT48 Theater & IDN Live', tags: ['jakarta'] },
+                { date: '2026-01-09', title: 'Cara Meminum Ramune', location: 'JKT48 Theater & IDN Live', tags: ['jakarta'] },
+                { date: '2026-01-10', title: 'Sambil Menggandeng Erat Tanganku', location: 'JKT48 Theater & IDN Live', tags: ['jakarta'] },
+                { date: '2026-01-10', title: 'Konser Raya 31 Tahun Indosiar Luar Biasa', location: 'Indosiar & vidio.com', tags: ['jakarta'] },
+                { date: '2026-01-11', title: 'Cara Meminum Ramune', location: 'JKT48 Theater & IDN Live', tags: ['jakarta'] },
+                { date: '2026-01-13', title: 'Temen Main Ep.1 New Year Starts With Us!', location: 'IDN Live', tags: ['jakarta'] },
+                { date: '2026-01-14', title: 'Episode 2 Mika’s Corner', location: 'IDN Live Paid Room', tags: ['jakarta'] },
+                { date: '2026-01-15', title: 'Cara Meminum Ramune', location: 'JKT48 Theater & IDN Live', tags: ['jakarta'] },
+                { date: '2026-01-16', title: 'Sambil Menggandeng Erat Tanganku', location: 'JKT48 Theater & IDN Live', tags: ['jakarta'] },
+                { date: '2026-01-17', title: 'Cara Meminum Ramune', location: 'JKT48 Theater & IDN Live', tags: ['jakarta'] },
+                { date: '2026-01-18', title: 'Sambil Menggandeng Erat Tanganku', location: 'JKT48 Theater & IDN Live', tags: ['jakarta'] },
+                { date: '2026-01-18', title: 'Pertaruhan Cinta', location: 'JKT48 Theater & IDN Live', tags: ['jakarta'] }
+            ],
+            'februari': [
+                { date: '2026-02-07', title: 'AIEROFEST 2026', location: 'Uptown Park, Summarecon Mall Serpong', tags: ['luar-kota'] }
+            ],
+            'maret': [
+    { date: '2026-03-25', title: 'Laguna Music Fest', location: 'ASS Mall Brebes, Kabupaten Brebes', tags: ['luar-kota'] }
+],
+'april': [
+    { date: '2026-04-25', title: 'none', location: 'none', tags: ['gagal'] }
+],
+'mei': [
+    { date: '2026-05-01', title: 'none', location: 'none', tags: ['gagal'] }
+],
+'juni': [
+    { date: '2026-06-20', title: 'none', location: 'none', tags: ['luar-kota'] }
+],
+'juli': [
+    { date: '2026-07-08', title: 'none', location: 'none', tags: ['gagal'] }
+],
+'agustus': [
+    { date: '2026-08-22', title: 'none', location: 'none', tags: ['luar-kota'] }
+],
+'september': [
+    { date: '2026-09-12', title: 'none', location: 'none', tags: ['jakarta'] }
+],
+'oktober': [
+    { date: '2026-10-18', title: 'none', location: 'none', tags: ['gagal'] }
+],
+'november': [
+    { date: '2026-11-25', title: 'none', location: 'none', tags: ['luar-kota'] }
+],
+'desember': [
+    { date: '2026-12-20', title: 'none', location: 'none', tags: ['luar-kota'] }
+]
+        };
+
+        const months = Object.keys(eventData);
+        const monthSelector = document.getElementById('monthSelector');
+        const eventContainer = document.getElementById('eventContainer');
+        const eventMonthTitle = document.getElementById('eventMonthTitle');
+        const statsContainer = document.getElementById('statsContainer');
+
+        function getTagClass(tag) {
+            switch(tag) {
+                case 'jakarta': return 'tag-jakarta';
+                case 'luar-kota': return 'tag-luar-kota';
+                case 'gagal': return 'tag-gagal';
+                default: return '';
+            }
+        }
+
+        function getTagLabel(tag) {
+            switch(tag) {
+                case 'jakarta': return 'Jakarta';
+                case 'luar-kota': return 'Luar Kota';
+                case 'gagal': return 'Gagal';
+                default: return tag;
+            }
+        }
+
+        function calculateStats(events) {
+            const stats = {
+                total: events.length,
+                jakarta: 0,
+                'luar-kota': 0,
+                gagal: 0
+            };
+
+            events.forEach(event => {
+                if (event.tags) {
+                    event.tags.forEach(tag => {
+                        if (stats.hasOwnProperty(tag)) {
+                            stats[tag]++;
+                        }
+                    });
+                }
+            });
+
+            return stats;
+        }
+
+        function renderStats(stats) {
+            statsContainer.innerHTML = `
+                <div class="event-stats">
+                    <h3>Statistik Bulan</h3>
+                    <div class="stats-grid">
+                        <div class="stat-item total">
+                            <div class="stat-value">${stats.total}</div>
+                            <div class="stat-label">Total Event</div>
+                        </div>
+                        <div class="stat-item jakarta">
+                            <div class="stat-value">${stats.jakarta}</div>
+                            <div class="stat-label">Jakarta</div>
+                        </div>
+                        <div class="stat-item luar-kota">
+                            <div class="stat-value">${stats['luar-kota']}</div>
+                            <div class="stat-label">Luar Kota</div>
+                        </div>
+                        <div class="stat-item gagal">
+                            <div class="stat-value">${stats.gagal}</div>
+                            <div class="stat-label">Gagal</div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Initialize Month Buttons
+        function initializeMonths() {
+            const title = document.createElement('h2');
+            title.textContent = 'Bulan';
+            monthSelector.appendChild(title);
+
+            months.forEach(month => {
+                const btn = document.createElement('button');
+                btn.className = 'month-btn';
+                btn.textContent = month.charAt(0).toUpperCase() + month.slice(1);
+                btn.dataset.month = month;
+
+                btn.addEventListener('click', () => selectMonth(month, btn));
+
+                monthSelector.appendChild(btn);
+            });
+        }
+
+        // Select Month and Display Events
+        function selectMonth(month, btnElement) {
+            // Update active button
+            document.querySelectorAll('.month-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            btnElement.classList.add('active');
+
+            // Update events
+            const events = eventData[month];
+            eventMonthTitle.textContent = 'Jadwal ' + month.charAt(0).toUpperCase() + month.slice(1);
+            eventContainer.innerHTML = '';
+
+            if (events && events.length > 0) {
+                events.forEach(event => {
+                    const eventEl = document.createElement('div');
+                    eventEl.className = 'event-item';
+                    
+                    let tagsHTML = '';
+                    if (event.tags && event.tags.length > 0) {
+                        tagsHTML = `
+                            <div class="event-tags">
+                                ${event.tags.map(tag => `<span class="event-tag ${getTagClass(tag)}">${getTagLabel(tag)}</span>`).join('')}
+                            </div>
+                        `;
+                    }
+
+                    eventEl.innerHTML = `
+                        <div class="event-date">${formatDate(event.date)}</div>
+                        <div class="event-title">${event.title}</div>
+                        <div class="event-location">${event.location}</div>
+                        ${tagsHTML}
+                    `;
+                    eventContainer.appendChild(eventEl);
+                });
+
+                const stats = calculateStats(events);
+                renderStats(stats);
+            } else {
+                eventContainer.innerHTML = '<div class="empty-state"><p>Tidak ada jadwal untuk bulan ini</p></div>';
+                statsContainer.innerHTML = '';
+            }
+        }
+
+        // Format Date
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('id-ID', {
+                weekday: 'short',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+        }
+
+        // Generate Random Stars
+        function generateStars() {
+            const starsContainer = document.getElementById('starsContainer');
+            const starCount = window.innerWidth > 768 ? 100 : 50;
+
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                
+                const size = Math.random() * 2 + 1;
+                const x = Math.random() * 100;
+                const y = Math.random() * 100;
+                const duration = Math.random() * 3 + 2;
+                const delay = Math.random() * 5;
+
+                star.style.width = size + 'px';
+                star.style.height = size + 'px';
+                star.style.left = x + '%';
+                star.style.top = y + '%';
+                star.style.animationDuration = duration + 's';
+                star.style.animationDelay = delay + 's';
+
+                // Add moving animation to some stars
+                if (Math.random() > 0.7) {
+                    star.classList.add('star-moving');
+                    star.style.animationDelay = delay + 's, ' + (Math.random() * 10) + 's';
+                }
+
+                starsContainer.appendChild(star);
+            }
+        }
+
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', () => {
+            generateStars();
+            initializeMonths();
+            // Set first month as default
+            const firstBtn = document.querySelector('[data-month="januari"]');
+            if (firstBtn) selectMonth('januari', firstBtn);
+        });
+
+        // Regenerate stars on resize
+        window.addEventListener('resize', () => {
+            const starsContainer = document.getElementById('starsContainer');
+            starsContainer.innerHTML = '';
+            generateStars();
+        });
+    </script>
+</body>
+</html>
