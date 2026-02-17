@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JKT48 - Member Punishment Tracker</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #3b82f6;
+            --primary-dark: #1e40af;
+            --secondary: #06b6d4;
+            --danger: #ef4444;
+            --success: #10b981;
+            --dark: #0f172a;
+            --dark-light: #1e293b;
+            --gray-light: #f1f5f9;
+            --gray-medium: #94a3b8;
+            --white: #ffffff;
+            --border-color: #e2e8f0;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --shadow-dark: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            background-color: var(--white);
+            color: var(--dark);
+            line-height: 1.6;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        body.dark-mode {
+            background-color: var(--dark);
+            color: var(--gray-light);
+        }
+
+        /* Header */
+        header {
+            background-color: var(--white);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            transition: all 0.3s ease;
+        }
+
+        body.dark-mode header {
+            background-color: var(--dark-light);
+            border-bottom-color: #334155;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo::before {
+            content: "♪";
+            font-size: 1.8rem;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        body.dark-mode nav a {
+            color: var(--gray-light);
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            transform: rotate(20deg);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark);
+        }
+
+        body.dark-mode .mobile-menu-btn {
+            color: var(--gray-light);
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 4rem 0;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, rgba(6, 182, 212, 0.05) 100%);
+            border-radius: 1rem;
+            margin: 2rem 0;
+        }
+
+        body.dark-mode .hero {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(6, 182, 212, 0.1) 100%);
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--gray-medium);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin: 2rem 0;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .stat-card {
+            background: var(--white);
+            border: 1px solid var(--border-color);
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        body.dark-mode .stat-card {
+            background: var(--dark-light);
+            border-color: #334155;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--gray-medium);
+            margin-top: 0.5rem;
+        }
+
+        /* Filter Buttons */
+        .filter-section {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.75rem 1.5rem;
+            border: 2px solid var(--border-color);
+            background: var(--white);
+            color: var(--dark);
+            border-radius: 0.5rem;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        body.dark-mode .filter-btn {
+            background: var(--dark-light);
+            border-color: #334155;
+            color: var(--gray-light);
+        }
+
+        .filter-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .filter-btn.active {
+            background: var(--primary);
+            color: var(--white);
+            border-color: var(--primary);
+        }
+
+        /* Grid */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        /* Member Card */
+        .member-card {
+            background: var(--white);
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        body.dark-mode .member-card {
+            background: var(--dark-light);
+            border-color: #334155;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .member-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow);
+            border-color: var(--primary);
+        }
+
+        .member-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 1rem;
+        }
+
+        .member-name {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        body.dark-mode .member-name {
+            color: var(--white);
+        }
+
+        .member-gen {
+            font-size: 0.8rem;
+            color: var(--gray-medium);
+            margin-top: 0.25rem;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 0.35rem 0.75rem;
+            border-radius: 0.3rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .status-active {
+            background-color: rgba(59, 130, 246, 0.15);
+            color: var(--primary);
+        }
+
+        .status-completed {
+            background-color: rgba(16, 185, 129, 0.15);
+            color: var(--success);
+        }
+
+        .member-date {
+            font-size: 0.9rem;
+            color: var(--gray-medium);
+            margin: 1rem 0;
+            padding: 1rem;
+            background: var(--gray-light);
+            border-radius: 0.5rem;
+            text-align: center;
+        }
+
+        body.dark-mode .member-date {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--gray-light);
+        }
+
+        .countdown {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-align: center;
+            margin: 0.5rem 0;
+            font-family: 'Courier New', monospace;
+        }
+
+        .countdown-label {
+            font-size: 0.8rem;
+            color: var(--gray-medium);
+            text-align: center;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: var(--gray-light);
+            border-radius: 10px;
+            margin: 1rem 0;
+            overflow: hidden;
+        }
+
+        body.dark-mode .progress-bar {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 10px;
+            transition: width 0.3s ease;
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 3rem;
+            color: var(--gray-medium);
+        }
+
+        .empty-state h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        body.dark-mode .empty-state h3 {
+            color: var(--gray-light);
+        }
+
+        /* About Section */
+        .about-section {
+            background: var(--gray-light);
+            padding: 3rem;
+            border-radius: 1rem;
+            margin: 3rem 0;
+        }
+
+        body.dark-mode .about-section {
+            background: var(--dark-light);
+        }
+
+        .about-section h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+        }
+
+        body.dark-mode .about-section h2 {
+            color: var(--white);
+        }
+
+        .about-section p {
+            color: var(--gray-medium);
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: var(--gray-light);
+            padding: 3rem;
+            margin-top: 4rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: var(--white);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            color: var(--gray-light);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            display: inline-block;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a:hover {
+            color: var(--primary);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #334155;
+            font-size: 0.9rem;
+            color: var(--gray-medium);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero-stats {
+                grid-template-columns: 1fr;
+            }
+
+            nav {
+                display: none;
+            }
+
+            nav.active {
+                display: block;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: var(--white);
+                flex-direction: column;
+                gap: 0;
+                border-bottom: 1px solid var(--border-color);
+                padding: 1rem;
+            }
+
+            body.dark-mode nav.active {
+                background: var(--dark-light);
+                border-bottom-color: #334155;
+            }
+
+            nav.active ul {
+                flex-direction: column;
+                gap: 0;
+            }
+
+            nav.active a {
+                display: block;
+                padding: 0.75rem;
+                border-bottom: 1px solid var(--border-color);
+            }
+
+            body.dark-mode nav.active a {
+                border-bottom-color: #334155;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                padding: 2rem 0;
+                margin: 1rem 0;
+            }
+
+            .filter-section {
+                gap: 0.5rem;
+            }
+
+            .filter-btn {
+                padding: 0.6rem 1rem;
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header-container {
+                padding: 0 1rem;
+            }
+
+            .logo {
+                font-size: 1.2rem;
+            }
+
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            .about-section {
+                padding: 1.5rem;
+            }
+
+            footer {
+                padding: 1.5rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <a href="#" class="logo">JKT48 Tracker</a>
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">☰</button>
+            <nav id="nav">
+                <ul>
+                    <li><a href="#home">Beranda</a></li>
+                    <li><a href="#members">Member</a></li>
+                    <li><a href="#about">Tentang</a></li>
+                    <li><button class="theme-toggle" onclick="toggleTheme()">🌙</button></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <h1>JKT48 Punishment Tracker</h1>
+            <p>Pantau hukuman member JKT48 secara real-time dengan countdown timer yang akurat</p>
+            
+            <div class="hero-stats">
+                <div class="stat-card">
+                    <div class="stat-number" id="totalMembers">11</div>
+                    <div class="stat-label">Total Member</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="activeCount">0</div>
+                    <div class="stat-label">Aktif</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="completedCount">0</div>
+                    <div class="stat-label">Selesai</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Filter Section -->
+        <div class="filter-section">
+            <button class="filter-btn active" onclick="filterMembers('all')">Semua</button>
+            <button class="filter-btn" onclick="filterMembers('active')">Aktif</button>
+            <button class="filter-btn" onclick="filterMembers('completed')">Selesai</button>
+        </div>
+
+        <!-- Members Grid -->
+        <section id="members">
+            <div class="grid" id="membersGrid">
+                <!-- Members will be loaded here by JavaScript -->
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="about-section" id="about">
+            <h2>Tentang Tracker Ini</h2>
+            <p>JKT48 Punishment Tracker adalah aplikasi yang dirancang untuk memantau hukuman member JKT48 secara real-time. Setiap member yang mendapatkan hukuman akan ditampilkan dengan countdown timer yang menunjukkan sisa waktu hukuman mereka.</p>
+            <p>Tracker ini mengupdate secara otomatis setiap detik untuk memberikan informasi yang paling akurat. Anda dapat memfilter member berdasarkan status hukuman mereka (aktif atau selesai).</p>
+            <p>Data hukuman diperbarui secara berkala dan mencerminkan informasi terkini dari JKT48.</p>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Menu</h3>
+                <ul>
+                    <li><a href="#home">Beranda</a></li>
+                    <li><a href="#members">Member</a></li>
+                    <li><a href="#about">Tentang</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <ul>
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">Twitter/X</a></li>
+                    <li><a href="#">TikTok</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Lainnya</h3>
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 JKT48 Punishment Tracker. Unofficial fan-made project.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Member Data
+        const members = [
+            {
+                id: 1,
+                name: "Akbar Ridho",
+                gen: "Gen 1",
+                endDate: new Date(Date.now() + 5 * 24 * 60 * 60 * 1000),
+                status: "active"
+            },
+            {
+                id: 2,
+                name: "Shinta Naomi",
+                gen: "Gen 2",
+                endDate: new Date(Date.now() + 12 * 24 * 60 * 60 * 1000),
+                status: "active"
+            },
+            {
+                id: 3,
+                name: "Nabilah Ratna",
+                gen: "Gen 3",
+                endDate: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
+                status: "active"
+            },
+            {
+                id: 4,
+                name: "Mutiara Azzahra",
+                gen: "Gen 4",
+                endDate: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000),
+                status: "completed"
+            },
+            {
+                id: 5,
+                name: "Riskha Fairuz",
+                gen: "Gen 5",
+                endDate: new Date(Date.now() + 8 * 24 * 60 * 60 * 1000),
+                status: "active"
+            },
+            {
+                id: 6,
+                name: "Ivanka Gultom",
+                gen: "Gen 6",
+                endDate: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000),
+                status: "completed"
+            },
+            {
+                id: 7,
+                name: "Siti Seo Jung",
+                gen: "Gen 7",
+                endDate: new Date(Date.now() + 15 * 24 * 60 * 60 * 1000),
+                status: "active"
+            },
+            {
+                id: 8,
+                name: "Yuka Naruumi",
+                gen: "Gen 7",
+                endDate: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000),
+                status: "completed"
+            },
+            {
+                id: 9,
+                name: "Giga Samudra",
+                gen: "Gen 8",
+                endDate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+                status: "active"
+            },
+            {
+                id: 10,
+                name: "Citra Anggita",
+                gen: "Gen 8",
+                endDate: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000),
+                status: "completed"
+            },
+            {
+                id: 11,
+                name: "Audrey Olivia",
+                gen: "Gen 9",
+                endDate: new Date(Date.now() + 10 * 24 * 60 * 60 * 1000),
+                status: "active"
+            }
+        ];
+
+        let currentFilter = "all";
+
+        // Format date
+        function formatDate(date) {
+            const options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
+            return date.toLocaleDateString('id-ID', options);
+        }
+
+        // Calculate countdown
+        function getCountdown(endDate) {
+            const now = new Date();
+            const diff = endDate - now;
+
+            if (diff <= 0) {
+                return { days: 0, hours: 0, minutes: 0, seconds: 0, isExpired: true };
+            }
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+            return { days, hours, minutes, seconds, isExpired: false };
+        }
+
+        // Get progress percentage
+        function getProgress(endDate) {
+            const totalTime = 30 * 24 * 60 * 60 * 1000; // 30 days
+            const now = new Date();
+            const startDate = new Date(endDate.getTime() - totalTime);
+            const elapsed = now - startDate;
+            const progress = Math.max(0, Math.min(100, (elapsed / totalTime) * 100));
+            return progress;
+        }
+
+        // Render members
+        function renderMembers() {
+            const grid = document.getElementById('membersGrid');
+            grid.innerHTML = '';
+
+            const filtered = members.filter(member => {
+                if (currentFilter === 'all') return true;
+                if (currentFilter === 'active') return member.status === 'active';
+                if (currentFilter === 'completed') return member.status === 'completed';
+            });
+
+            if (filtered.length === 0) {
+                grid.innerHTML = '<div class="empty-state" style="grid-column: 1/-1;"><h3>Tidak ada data</h3><p>Belum ada member dengan status yang dipilih.</p></div>';
+                return;
+            }
+
+            filtered.forEach(member => {
+                const countdown = getCountdown(member.endDate);
+                const progress = getProgress(member.endDate);
+                const statusText = member.status === 'active' ? 'Aktif' : 'Selesai';
+
+                const card = document.createElement('div');
+                card.className = 'member-card';
+                card.innerHTML = `
+                    <div class="member-header">
+                        <div>
+                            <div class="member-name">${member.name}</div>
+                            <div class="member-gen">${member.gen}</div>
+                        </div>
+                        <span class="status-badge status-${member.status}">${statusText}</span>
+                    </div>
+                    
+                    <div class="member-date">
+                        Selesai: ${formatDate(member.endDate)}
+                    </div>
+
+                    ${member.status === 'active' ? `
+                        <div class="countdown">
+                            ${countdown.days}d ${countdown.hours}h ${countdown.minutes}m ${countdown.seconds}s
+                        </div>
+                        <div class="countdown-label">Sisa waktu hukuman</div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: ${progress}%"></div>
+                        </div>
+                    ` : `
+                        <div class="countdown" style="color: var(--success);">✓ Selesai</div>
+                    `}
+                `;
+
+                grid.appendChild(card);
+            });
+
+            updateStats();
+        }
+
+        // Update stats
+        function updateStats() {
+            const activeCount = members.filter(m => m.status === 'active').length;
+            const completedCount = members.filter(m => m.status === 'completed').length;
+
+            document.getElementById('activeCount').textContent = activeCount;
+            document.getElementById('completedCount').textContent = completedCount;
+        }
+
+        // Filter members
+        function filterMembers(type) {
+            currentFilter = type;
+
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            renderMembers();
+        }
+
+        // Toggle theme
+        function toggleTheme() {
+            document.body.classList.toggle('dark-mode');
+            localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+            updateThemeIcon();
+        }
+
+        // Update theme icon
+        function updateThemeIcon() {
+            const icon = document.querySelector('.theme-toggle');
+            icon.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+        }
+
+        // Toggle mobile menu
+        function toggleMobileMenu() {
+            const nav = document.getElementById('nav');
+            nav.classList.toggle('active');
+        }
+
+        // Close mobile menu when link clicked
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('nav').classList.remove('active');
+            });
+        });
+
+        // Initialize theme
+        function initTheme() {
+            const theme = localStorage.getItem('theme');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+            if (theme === 'dark' || (!theme && prefersDark)) {
+                document.body.classList.add('dark-mode');
+            }
+            updateThemeIcon();
+        }
+
+        // Update counters every second
+        setInterval(() => {
+            renderMembers();
+        }, 1000);
+
+        // Initial render
+        initTheme();
+        renderMembers();
+    </script>
+</body>
+</html>
