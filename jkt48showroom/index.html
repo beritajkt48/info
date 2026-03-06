@@ -252,53 +252,53 @@
         dayjs.locale('id');
 
         const ROOM_ID = "35265046";
+        const EVENT_ID = "41907";
         const FIREBASE_PATH = "rooms/jkt48";
         const CORS_PROXY = "https://api.allorigins.win/get?url=";
-        const COMPETITION_API = "https://api.crstlnz.my.id/api/showroom_competition_detail";
+        const RANKING_API = `https://www.showroom-live.com/api/events/${EVENT_ID}/ranking`;
         const LIVE_ROOMS_API = "https://www.showroom-live.com/api/event/jkt48_japantvcompetition/onlive_rooms";
 
-        async function fetchCompetitionData() {
+        async function fetchRankingData() {
             try {
-                const response = await fetch(COMPETITION_API);
+                const response = await fetch(RANKING_API);
                 if (!response.ok) throw new Error(`HTTP ${response.status}`);
                 
                 const data = await response.json();
-                renderCompetitionInfo(data);
+                renderRankingInfo(data);
             } catch (error) {
-                console.error("Error fetching competition data:", error);
+                console.error("Error fetching ranking data:", error);
                 document.getElementById("competition-info").innerHTML = `
                     <div class="text-center py-8">
-                        <p class="text-gray-600">Gagal memuat data kompetisi</p>
+                        <p class="text-gray-600">Gagal memuat data ranking</p>
                     </div>
                 `;
             }
         }
 
-        function renderCompetitionInfo(data) {
+        function renderRankingInfo(data) {
             const container = document.getElementById("competition-info");
             if (!data) {
-                container.innerHTML = '<p class="text-gray-600">Data kompetisi tidak tersedia</p>';
+                container.innerHTML = '<p class="text-gray-600">Data ranking tidak tersedia</p>';
                 return;
             }
 
             let html = '';
-            if (data.name) {
-                html += `<h3 class="text-xl font-bold text-gray-800">${data.name}</h3>`;
+            if (data.event_name) {
+                html += `<h3 class="text-xl font-bold text-gray-800 mb-4">${data.event_name}</h3>`;
             }
-            if (data.description) {
-                html += `<p class="text-gray-700 mt-3">${data.description}</p>`;
+            
+            if (data.message) {
+                html += `<p class="text-gray-700 text-lg font-semibold mb-4">${data.message}</p>`;
             }
-            if (data.started_at) {
-                html += `<p class="text-gray-600 mt-2"><strong>Mulai:</strong> ${new Date(data.started_at).toLocaleDateString('id-ID')}</p>`;
-            }
-            if (data.ended_at) {
-                html += `<p class="text-gray-600"><strong>Berakhir:</strong> ${new Date(data.ended_at).toLocaleDateString('id-ID')}</p>`;
+
+            if (data.ranking_update_time) {
+                html += `<p class="text-gray-600"><strong>Waktu Update:</strong> ${new Date(data.ranking_update_time).toLocaleString('id-ID')}</p>`;
             }
             
             if (html) {
                 container.innerHTML = html;
             } else {
-                container.innerHTML = '<p class="text-gray-600">Data kompetisi tidak tersedia</p>';
+                container.innerHTML = '<p class="text-gray-600">Data ranking tidak tersedia</p>';
             }
         }
 
@@ -492,9 +492,9 @@
 
         // Initialize - Load cached data first, then fetch fresh data
         async function init() {
-            // Fetch competition and live rooms data
+            // Fetch ranking and live rooms data
             await Promise.all([
-                fetchCompetitionData(),
+                fetchRankingData(),
                 fetchLiveRooms(),
                 loadDataFromFirebase(),
                 fetchDataFromShowroom()
@@ -507,7 +507,7 @@
         // Refresh data every 30 seconds
         setInterval(() => {
             Promise.all([
-                fetchCompetitionData(),
+                fetchRankingData(),
                 fetchLiveRooms(),
                 fetchDataFromShowroom()
             ]).catch(e => console.error("Auto-refresh error:", e));
