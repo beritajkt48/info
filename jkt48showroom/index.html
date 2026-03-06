@@ -241,8 +241,8 @@
 const liveURL = `https://www.showroom-live.com/api/event/jkt48_japantvcompetition/onlive_rooms?_=${Date.now()}`;
 
                 const [rankingRes, liveRes] = await Promise.all([
-                    fetch(proxy(rankingURL)),
-                    fetch(proxy(liveURL))
+                    fetch(proxy(rankingURL), { cache: "no-store" }),
+fetch(proxy(liveURL), { cache: "no-store" })
                 ]);
 
                 const rankingJson = await rankingRes.json();
@@ -351,7 +351,7 @@ const liveURL = `https://www.showroom-live.com/api/event/jkt48_japantvcompetitio
         }
 
         fetchShowroomData();
-        setInterval(fetchShowroomData, 300000);
+        setInterval(fetchShowroomData, 60000);
     </script>
 </body>
 </html>
