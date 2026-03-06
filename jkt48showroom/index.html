@@ -237,8 +237,8 @@
 
         async function fetchShowroomData(){
             try{
-                const rankingURL = `https://www.showroom-live.com/api/events/${EVENT_ID}/ranking?room_id=${ROOM_ID}`;
-                const liveURL = `https://www.showroom-live.com/api/event/jkt48_japantvcompetition/onlive_rooms`;
+                const rankingURL = `https://www.showroom-live.com/api/events/${EVENT_ID}/ranking?room_id=${ROOM_ID}&_=${Date.now()}`;
+const liveURL = `https://www.showroom-live.com/api/event/jkt48_japantvcompetition/onlive_rooms?_=${Date.now()}`;
 
                 const [rankingRes, liveRes] = await Promise.all([
                     fetch(proxy(rankingURL)),
@@ -278,7 +278,7 @@
 
                 row.innerHTML = `
                     <div class="flex items-center gap-4">
-                        <div class="rank-badge rank-${member.rank}">
+                        <div class="rank-badge ${member.rank <= 3 ? `rank-${member.rank}` : 'bg-gray-200 text-gray-700'}">
                             ${member.rank}
                         </div>
                         <img src="${member.room.image_square}" class="w-12 h-12 rounded-xl object-cover" alt="${member.room.name}">
@@ -335,7 +335,7 @@
                 card.className = "glass-card p-4 flex items-center gap-4";
 
                 card.innerHTML = `
-                    <img src="${room.image}" class="w-14 h-14 rounded-xl" alt="${room.room_name}">
+                    <img src="${room.image || 'https://static.showroom-live.com/assets/img/noimage.png'}" class="w-14 h-14 rounded-xl">
                     <div>
                         <div class="font-bold">
                             ${room.room_name}
