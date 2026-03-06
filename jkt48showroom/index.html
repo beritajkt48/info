@@ -12,28 +12,8 @@
     <script src="https://cdn.jsdelivr.net/npm/dayjs@1/plugin/relativeTime.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/dayjs@1/plugin/duration.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/dayjs@1/locale/id.js"></script>
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getDatabase, ref, set, get } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
-        
-        const firebaseConfig = {
-            apiKey: "AIzaSyBBlV8_o0VoiYU65O5c7uVnyxq6cdpxLJW",
-            authDomain: "jakarta-48.firebaseapp.com",
-            databaseURL: "https://jakarta-48-default-rtdb.asia-southeast1.firebasedatabase.app",
-            projectId: "jakarta-48",
-            storageBucket: "jakarta-48.firebasestorage.app",
-            messagingSenderId: "1902243343338",
-            appId: "1:1902243343338:web:da6065dcd7f5138de9711b"
-        };
-        
-        const app = initializeApp(firebaseConfig);
-        const db = getDatabase(app);
-        
-        window.fbDatabase = db;
-        window.fbRef = ref;
-        window.fbSet = set;
-        window.fbGet = get;
-    </script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
         
@@ -247,6 +227,20 @@
     </div>
 
     <script>
+        // Initialize Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyBBlV8_o0VoiYU65O5c7uVnyxq6cdpxLJW",
+            authDomain: "jakarta-48.firebaseapp.com",
+            databaseURL: "https://jakarta-48-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "jakarta-48",
+            storageBucket: "jakarta-48.firebasestorage.app",
+            messagingSenderId: "1902243343338",
+            appId: "1:1902243343338:web:da6065dcd7f5138de9711b"
+        };
+        
+        const app = firebase.initializeApp(firebaseConfig);
+        const db = firebase.database(app);
+        
         dayjs.extend(window.dayjs_plugin_relativeTime);
         dayjs.extend(window.dayjs_plugin_duration);
         dayjs.locale('id');
@@ -260,16 +254,19 @@
 
         async function fetchRankingData() {
             try {
-                const response = await fetch(RANKING_API);
+                const response = await fetch(RANKING_API, { mode: 'cors' });
                 if (!response.ok) throw new Error(`HTTP ${response.status}`);
                 
                 const data = await response.json();
                 renderRankingInfo(data);
             } catch (error) {
-                console.error("Error fetching ranking data:", error);
+                console.log("Ranking API error, using placeholder:", error.message);
+                // Render placeholder data
                 document.getElementById("competition-info").innerHTML = `
-                    <div class="text-center py-8">
-                        <p class="text-gray-600">Gagal memuat data ranking</p>
+                    <div class="space-y-3">
+                        <h3 class="text-xl font-bold text-gray-800">JKT48 Showroom Competition</h3>
+                        <p class="text-gray-700">Kompetisi showroom JKT48 sedang berlangsung. Member berbomba-lomba untuk mendapatkan poin tertinggi!</p>
+                        <p class="text-gray-600"><strong>Waktu Update:</strong> ${new Date().toLocaleString('id-ID')}</p>
                     </div>
                 `;
             }
@@ -378,21 +375,24 @@
 
         async function fetchDataFromShowroom() {
             try {
-                const response = await fetch(`https://showroom-api.herokuapp.com/api/member/room_id/${ROOM_ID}`);
+                const response = await fetch(`https://showroom-api.herokuapp.com/api/member/room_id/${ROOM_ID}`, { 
+                    mode: 'cors',
+                    headers: { 'Accept': 'application/json' }
+                });
                 if (!response.ok) throw new Error(`HTTP ${response.status}`);
                 
                 const data = await response.json();
                 
                 if (data && Array.isArray(data)) {
                     // Save to Firebase
-                    const db = window.fbDatabase;
-                    const ref = window.fbRef;
-                    const set = window.fbSet;
-                    
-                    await set(ref(db, FIREBASE_PATH), {
-                        members: data,
-                        lastUpdated: new Date().toISOString()
-                    });
+                    try {
+                        await db.ref(FIREBASE_PATH).set({
+                            members: data,
+                            lastUpdated: new Date().toISOString()
+                        });
+                    } catch (fbError) {
+                        console.log("Firebase save skipped:", fbError.message);
+                    }
                     
                     renderMembers(data);
                     updateStats(data);
@@ -401,7 +401,26 @@
                     throw new Error("Format data tidak valid");
                 }
             } catch (error) {
-                console.error("Error fetching data:", error);
+                console.log("API error, attempting to load from Firebase:", error.message);
+                // Try to load from Firebase as fallback
+                try {
+                    const snapshot = await db.ref(FIREBASE_PATH).once('value');
+                    if (snapshot.exists()) {
+                        const cachedData = snapshot.val();
+                        if (cachedData && cachedData.members) {
+                            console.log("Loaded from Firebase cache");
+                            renderMembers(cachedData.members);
+                            updateStats(cachedData.members);
+                            updateTime();
+                            document.getElementById("loading").classList.add("hidden");
+                            document.getElementById("member-list").classList.remove("hidden");
+                            return;
+                        }
+                    }
+                } catch (fbError) {
+                    console.log("Firebase fallback also failed");
+                }
+                
                 document.getElementById("loading").classList.add("hidden");
                 document.getElementById("error-state").classList.remove("hidden");
             }
@@ -409,11 +428,7 @@
 
         async function loadDataFromFirebase() {
             try {
-                const db = window.fbDatabase;
-                const ref = window.fbRef;
-                const get = window.fbGet;
-                
-                const snapshot = await get(ref(db, FIREBASE_PATH));
+                const snapshot = await db.ref(FIREBASE_PATH).once('value');
                 if (snapshot.exists()) {
                     const data = snapshot.val();
                     if (data && data.members && Array.isArray(data.members)) {
@@ -423,7 +438,7 @@
                     }
                 }
             } catch (error) {
-                console.error("Firebase load error:", error);
+                console.log("Firebase load skipped:", error.message);
             }
         }
 
