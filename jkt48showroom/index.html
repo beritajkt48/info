@@ -227,306 +227,131 @@
     </div>
 
     <script>
-        // Initialize Firebase
-        const firebaseConfig = {
-            apiKey: "AIzaSyBBlV8_o0VoiYU65O5c7uVnyxq6cdpxLJW",
-            authDomain: "jakarta-48.firebaseapp.com",
-            databaseURL: "https://jakarta-48-default-rtdb.asia-southeast1.firebasedatabase.app",
-            projectId: "jakarta-48",
-            storageBucket: "jakarta-48.firebasestorage.app",
-            messagingSenderId: "1902243343338",
-            appId: "1:1902243343338:web:da6065dcd7f5138de9711b"
-        };
-        
-        const app = firebase.initializeApp(firebaseConfig);
-        const db = firebase.database(app);
-        
-        dayjs.extend(window.dayjs_plugin_relativeTime);
-        dayjs.extend(window.dayjs_plugin_duration);
-        dayjs.locale('id');
-
-        const ROOM_ID = "35265046";
         const EVENT_ID = "41907";
-        const FIREBASE_PATH = "rooms/jkt48";
-        const CORS_PROXY = "https://api.allorigins.win/get?url=";
-        const RANKING_API = `https://www.showroom-live.com/api/events/${EVENT_ID}/ranking`;
-        const LIVE_ROOMS_API = "https://www.showroom-live.com/api/event/jkt48_japantvcompetition/onlive_rooms";
+        const ROOM_ID = "510011";
+        const PROXY = "https://api.allorigins.win/get?url=";
 
-        async function fetchRankingData() {
-            try {
-                const response = await fetch(RANKING_API, { mode: 'cors' });
-                if (!response.ok) throw new Error(`HTTP ${response.status}`);
-                
-                const data = await response.json();
-                renderRankingInfo(data);
-            } catch (error) {
-                console.log("Ranking API error, using placeholder:", error.message);
-                // Render placeholder data
-                document.getElementById("competition-info").innerHTML = `
-                    <div class="space-y-3">
-                        <h3 class="text-xl font-bold text-gray-800">JKT48 Showroom Competition</h3>
-                        <p class="text-gray-700">Kompetisi showroom JKT48 sedang berlangsung. Member berbomba-lomba untuk mendapatkan poin tertinggi!</p>
-                        <p class="text-gray-600"><strong>Waktu Update:</strong> ${new Date().toLocaleString('id-ID')}</p>
-                    </div>
-                `;
-            }
+        function proxy(url){
+            return PROXY + encodeURIComponent(url);
         }
 
-        function renderRankingInfo(data) {
-            const container = document.getElementById("competition-info");
-            if (!data) {
-                container.innerHTML = '<p class="text-gray-600">Data ranking tidak tersedia</p>';
-                return;
-            }
+        async function fetchShowroomData(){
+            try{
+                const rankingURL = `https://www.showroom-live.com/api/events/${EVENT_ID}/ranking?room_id=${ROOM_ID}`;
+                const liveURL = `https://www.showroom-live.com/api/event/jkt48_japantvcompetition/onlive_rooms`;
 
-            let html = '';
-            if (data.event_name) {
-                html += `<h3 class="text-xl font-bold text-gray-800 mb-4">${data.event_name}</h3>`;
-            }
-            
-            if (data.message) {
-                html += `<p class="text-gray-700 text-lg font-semibold mb-4">${data.message}</p>`;
-            }
+                const [rankingRes, liveRes] = await Promise.all([
+                    fetch(proxy(rankingURL)),
+                    fetch(proxy(liveURL))
+                ]);
 
-            if (data.ranking_update_time) {
-                html += `<p class="text-gray-600"><strong>Waktu Update:</strong> ${new Date(data.ranking_update_time).toLocaleString('id-ID')}</p>`;
-            }
-            
-            if (html) {
-                container.innerHTML = html;
-            } else {
-                container.innerHTML = '<p class="text-gray-600">Data ranking tidak tersedia</p>';
-            }
-        }
+                const rankingJson = await rankingRes.json();
+                const liveJson = await liveRes.json();
 
-        async function fetchLiveRooms() {
-            try {
-                const response = await fetch(LIVE_ROOMS_API);
-                if (!response.ok) throw new Error(`HTTP ${response.status}`);
-                
-                const data = await response.json();
-                renderLiveRooms(data);
-            } catch (error) {
-                console.error("Error fetching live rooms:", error);
-                // Fallback: try with CORS proxy
-                try {
-                    const proxyUrl = CORS_PROXY + encodeURIComponent(LIVE_ROOMS_API);
-                    const response = await fetch(proxyUrl);
-                    if (!response.ok) throw new Error(`HTTP ${response.status}`);
-                    
-                    const result = await response.json();
-                    const data = JSON.parse(result.contents);
-                    renderLiveRooms(data);
-                } catch (proxyError) {
-                    console.error("Error fetching with proxy:", proxyError);
-                    document.getElementById("live-rooms-list").innerHTML = `
-                        <div class="col-span-full text-center py-8">
-                            <p class="text-gray-600">Gagal memuat live rooms</p>
-                        </div>
-                    `;
-                }
-            }
-        }
+                const rankingData = JSON.parse(rankingJson.contents);
+                const liveData = JSON.parse(liveJson.contents);
 
-        function renderLiveRooms(data) {
-            const container = document.getElementById("live-rooms-list");
-            if (!data || (Array.isArray(data) && data.length === 0) || (data.onlive_rooms && data.onlive_rooms.length === 0)) {
-                container.innerHTML = `
-                    <div class="col-span-full text-center py-8">
-                        <p class="text-gray-600 font-medium">Tidak ada room yang sedang live</p>
-                    </div>
-                `;
-                return;
-            }
-
-            const rooms = Array.isArray(data) ? data : (data.onlive_rooms || []);
-            
-            if (rooms.length === 0) {
-                container.innerHTML = `
-                    <div class="col-span-full text-center py-8">
-                        <p class="text-gray-600 font-medium">Tidak ada room yang sedang live</p>
-                    </div>
-                `;
-                return;
-            }
-
-            container.innerHTML = '';
-            rooms.slice(0, 6).forEach((room) => {
-                const roomCard = `
-                    <div class="glass-card p-4 rounded-2xl flex items-start gap-4 hover:shadow-lg transition-all">
-                        <div class="flex-1">
-                            <div class="flex items-start justify-between">
-                                <div>
-                                    <h4 class="font-bold text-gray-800 text-lg">${room.main_name || room.name || 'Unknown'}</h4>
-                                    <p class="text-sm text-gray-600 mt-1">${room.sub_name || ''}</p>
-                                </div>
-                                <span class="inline-flex items-center gap-1 bg-red-100 text-red-700 px-3 py-1 rounded-full text-xs font-bold">
-                                    <span class="w-2 h-2 bg-red-600 rounded-full live-pulse"></span>
-                                    LIVE
-                                </span>
-                            </div>
-                            <p class="text-gray-700 font-semibold mt-3 text-lg gradient-text">${(room.view_count || 0).toLocaleString('id-ID')} viewers</p>
-                        </div>
-                    </div>
-                `;
-                container.innerHTML += roomCard;
-            });
-        }
-
-        async function fetchDataFromShowroom() {
-            try {
-                const response = await fetch(`https://showroom-api.herokuapp.com/api/member/room_id/${ROOM_ID}`, { 
-                    mode: 'cors',
-                    headers: { 'Accept': 'application/json' }
-                });
-                if (!response.ok) throw new Error(`HTTP ${response.status}`);
-                
-                const data = await response.json();
-                
-                if (data && Array.isArray(data)) {
-                    // Save to Firebase
-                    try {
-                        await db.ref(FIREBASE_PATH).set({
-                            members: data,
-                            lastUpdated: new Date().toISOString()
-                        });
-                    } catch (fbError) {
-                        console.log("Firebase save skipped:", fbError.message);
-                    }
-                    
-                    renderMembers(data);
-                    updateStats(data);
-                    updateTime();
-                } else {
-                    throw new Error("Format data tidak valid");
-                }
-            } catch (error) {
-                console.log("API error, attempting to load from Firebase:", error.message);
-                // Try to load from Firebase as fallback
-                try {
-                    const snapshot = await db.ref(FIREBASE_PATH).once('value');
-                    if (snapshot.exists()) {
-                        const cachedData = snapshot.val();
-                        if (cachedData && cachedData.members) {
-                            console.log("Loaded from Firebase cache");
-                            renderMembers(cachedData.members);
-                            updateStats(cachedData.members);
-                            updateTime();
-                            document.getElementById("loading").classList.add("hidden");
-                            document.getElementById("member-list").classList.remove("hidden");
-                            return;
-                        }
-                    }
-                } catch (fbError) {
-                    console.log("Firebase fallback also failed");
-                }
-                
-                document.getElementById("loading").classList.add("hidden");
+                renderData(rankingData, liveData);
+            }catch(err){
+                console.error("API ERROR", err);
                 document.getElementById("error-state").classList.remove("hidden");
             }
         }
 
-        async function loadDataFromFirebase() {
-            try {
-                const snapshot = await db.ref(FIREBASE_PATH).once('value');
-                if (snapshot.exists()) {
-                    const data = snapshot.val();
-                    if (data && data.members && Array.isArray(data.members)) {
-                        renderMembers(data.members);
-                        updateStats(data.members);
-                        updateTime();
-                    }
-                }
-            } catch (error) {
-                console.log("Firebase load skipped:", error.message);
-            }
-        }
+        function renderData(rankingData, liveData){
+            const list = document.getElementById("member-list");
+            const loading = document.getElementById("loading");
 
-        function renderMembers(members) {
-            const memberList = document.getElementById("member-list");
-            memberList.innerHTML = "";
+            list.innerHTML = "";
 
-            if (members.length === 0) {
-                memberList.innerHTML = '<p class="text-center text-gray-500 py-8">Tidak ada data member</p>';
-                document.getElementById("loading").classList.add("hidden");
-                memberList.classList.remove("hidden");
-                return;
-            }
+            const ranking = rankingData.ranking || [];
+            const liveRooms = (liveData.rooms || []).map(r => r.room_id);
 
-            // Sort by points (highest first)
-            const sortedMembers = [...members].sort((a, b) => (b.point || 0) - (a.point || 0));
+            let totalPoints = 0;
 
-            sortedMembers.forEach((member, index) => {
-                const rankClass = index === 0 ? "rank-1" : index === 1 ? "rank-2" : index === 2 ? "rank-3" : "";
-                const rowClass = index === 0 ? "ranking-row-1" : index === 1 ? "ranking-row-2" : index === 2 ? "ranking-row-3" : "";
+            ranking.forEach(member => {
+                totalPoints += member.point;
+                const isLive = liveRooms.includes(member.room.room_id);
 
-                const memberHTML = `
-                    <div class="member-card ${rowClass} p-4 md:p-6 rounded-2xl flex items-center justify-between gap-4 transition-all hover:shadow-lg">
-                        <div class="flex items-center gap-4 flex-1">
-                            <div class="rank-badge ${rankClass}">
-                                ${index + 1}
+                const row = document.createElement("div");
+                row.className = "member-card glass-card p-4 flex items-center justify-between";
+
+                row.innerHTML = `
+                    <div class="flex items-center gap-4">
+                        <div class="rank-badge rank-${member.rank}">
+                            ${member.rank}
+                        </div>
+                        <img src="${member.room.image_square}" class="w-12 h-12 rounded-xl object-cover" alt="${member.room.name}">
+                        <div>
+                            <div class="font-bold text-gray-800">
+                                ${member.room.name}
                             </div>
-                            <div class="flex-1">
-                                <h3 class="font-bold text-lg md:text-xl text-gray-800">${member.name || "Unknown"}</h3>
-                                <p class="text-sm text-gray-600 mt-1">JKT48 Member</p>
+                            <div class="text-xs text-gray-500">
+                                Room ID: ${member.room.room_id}
                             </div>
                         </div>
-                        <div class="text-right">
-                            <p class="font-bold text-xl md:text-2xl gradient-text">${(member.point || 0).toLocaleString('id-ID')}</p>
-                            <p class="text-xs md:text-sm text-gray-600 font-medium mt-1">Points</p>
+                    </div>
+                    <div class="text-right">
+                        ${
+                            isLive
+                            ? `<span class="bg-red-500 text-white text-xs px-2 py-1 rounded live-pulse">LIVE</span>`
+                            : ""
+                        }
+                        <div class="font-bold text-lg text-gray-800">
+                            ${new Intl.NumberFormat("id-ID").format(member.point)}
                         </div>
                     </div>
                 `;
-                memberList.innerHTML += memberHTML;
+
+                list.appendChild(row);
             });
 
-            document.getElementById("loading").classList.add("hidden");
-            memberList.classList.remove("hidden");
+            document.getElementById("total-members").innerText = ranking.length;
+            document.getElementById("total-points").innerText = new Intl.NumberFormat("id-ID").format(totalPoints);
+
+            loading.classList.add("hidden");
+            list.classList.remove("hidden");
+
+            const now = new Date().toLocaleTimeString("id-ID");
+            document.getElementById("update-time").innerText = now;
+            document.getElementById("last-updated").innerText = now;
+
+            renderLiveRooms(liveData);
         }
 
-        function updateStats(members) {
-            const totalMembers = members.length;
-            const totalPoints = members.reduce((sum, m) => sum + (m.point || 0), 0);
-            
-            document.getElementById("total-members").textContent = totalMembers;
-            document.getElementById("total-points").textContent = totalPoints.toLocaleString("id-ID");
-            document.getElementById("last-updated").textContent = new Date().toLocaleDateString("id-ID", { 
-                day: "numeric", 
-                month: "short" 
+        function renderLiveRooms(data){
+            const container = document.getElementById("live-rooms-list");
+            container.innerHTML = "";
+
+            const rooms = data.rooms || [];
+
+            if(rooms.length === 0){
+                container.innerHTML = "<p class='text-gray-500'>Tidak ada member live</p>";
+                return;
+            }
+
+            rooms.forEach(room => {
+                const card = document.createElement("div");
+                card.className = "glass-card p-4 flex items-center gap-4";
+
+                card.innerHTML = `
+                    <img src="${room.image}" class="w-14 h-14 rounded-xl" alt="${room.room_name}">
+                    <div>
+                        <div class="font-bold">
+                            ${room.room_name}
+                        </div>
+                        <a href="https://www.showroom-live.com/r/${room.room_url_key}" target="_blank" class="text-sm text-orange-600 font-semibold">
+                            Buka Showroom
+                        </a>
+                    </div>
+                `;
+
+                container.appendChild(card);
             });
         }
 
-        function updateTime() {
-            const now = new Date();
-            const timeString = now.toLocaleTimeString("id-ID", { 
-                hour: "2-digit", 
-                minute: "2-digit" 
-            });
-            document.getElementById("update-time").textContent = timeString;
-        }
-
-        // Initialize - Load cached data first, then fetch fresh data
-        async function init() {
-            // Fetch ranking and live rooms data
-            await Promise.all([
-                fetchRankingData(),
-                fetchLiveRooms(),
-                loadDataFromFirebase(),
-                fetchDataFromShowroom()
-            ]);
-        }
-
-        // Fetch data on page load
-        init();
-
-        // Refresh data every 30 seconds
-        setInterval(() => {
-            Promise.all([
-                fetchRankingData(),
-                fetchLiveRooms(),
-                fetchDataFromShowroom()
-            ]).catch(e => console.error("Auto-refresh error:", e));
-        }, 30000);
+        fetchShowroomData();
+        setInterval(fetchShowroomData, 300000);
     </script>
 </body>
 </html>
