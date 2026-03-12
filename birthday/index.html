@@ -14,12 +14,12 @@
 
     body {
       font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #ff006e 0%, #00d9ff 50%, #ff006e 100%);
+      background: linear-gradient(135deg, #1a1a1a 0%, #333333 50%, #1a1a1a 100%);
       background-size: 400% 400%;
       animation: gradientShift 15s ease infinite;
       min-height: 100vh;
       padding: 20px;
-      color: #333;
+      color: #fff;
     }
 
     @keyframes gradientShift {
@@ -31,12 +31,12 @@
     .container {
       max-width: 800px;
       margin: auto;
-      background: rgba(255, 255, 255, 0.95);
+      background: rgba(255, 255, 255, 0.98);
       backdrop-filter: blur(10px);
       border-radius: 20px;
       padding: 30px;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-      border: 1px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(0, 0, 0, 0.2);
       animation: slideUp 0.6s ease;
     }
 
@@ -53,7 +53,7 @@
 
     h1 {
       text-align: center;
-      background: linear-gradient(135deg, #ff006e, #00d9ff);
+      background: linear-gradient(135deg, #000000, #333333);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -65,10 +65,10 @@
 
     .month {
       margin-bottom: 20px;
-      background: linear-gradient(135deg, rgba(255, 0, 110, 0.08), rgba(0, 217, 255, 0.08));
+      background: linear-gradient(135deg, rgba(240, 240, 240, 0.9), rgba(220, 220, 220, 0.9));
       border-radius: 16px;
       padding: 18px;
-      border: 1px solid rgba(255, 0, 110, 0.2);
+      border: 1px solid rgba(0, 0, 0, 0.15);
       animation: fadeInUp 0.5s ease forwards;
       opacity: 0;
     }
@@ -94,7 +94,7 @@
 
     .month h2 {
       text-align: center;
-      background: linear-gradient(135deg, #ff006e, #00d9ff);
+      background: linear-gradient(135deg, #000000, #555555);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -108,19 +108,19 @@
       justify-content: space-between;
       align-items: center;
       padding: 12px 16px;
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7));
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(245, 245, 245, 0.9));
       border-radius: 12px;
       margin-bottom: 8px;
-      box-shadow: 0 4px 15px rgba(255, 0, 110, 0.1);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
       transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-      border: 1px solid rgba(255, 0, 110, 0.15);
+      border: 1px solid rgba(0, 0, 0, 0.1);
       cursor: pointer;
     }
 
     .birthday:hover {
       transform: translateY(-4px);
-      box-shadow: 0 8px 25px rgba(255, 0, 110, 0.25);
-      background: linear-gradient(135deg, rgba(255, 0, 110, 0.1), rgba(0, 217, 255, 0.1));
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+      background: linear-gradient(135deg, rgba(220, 220, 220, 0.5), rgba(200, 200, 200, 0.5));
     }
 
     .birthday span:first-child::before {
@@ -135,7 +135,7 @@
     }
 
     .birthday span:last-child {
-      background: linear-gradient(135deg, #ff006e, #00d9ff);
+      background: linear-gradient(135deg, #000000, #333333);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -149,13 +149,13 @@
       padding: 14px 32px;
       border-radius: 12px;
       border: none;
-      background: linear-gradient(135deg, #ff006e, #00d9ff);
+      background: linear-gradient(135deg, #1a1a1a, #333333);
       color: white;
       text-decoration: none;
       font-weight: 600;
       font-size: 16px;
       transition: all 0.3s ease;
-      box-shadow: 0 8px 20px rgba(255, 0, 110, 0.3);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
       cursor: pointer;
       width: 100%;
       max-width: 300px;
@@ -163,7 +163,7 @@
 
     .button-home:hover {
       transform: translateY(-3px);
-      box-shadow: 0 12px 30px rgba(255, 0, 110, 0.4);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
     }
 
     .button-home:active {
@@ -224,7 +224,7 @@
       font-size: 28px;
       font-weight: bold;
       color: white;
-      background: linear-gradient(135deg, #ff006e, #00d9ff);
+      background: linear-gradient(135deg, #1a1a1a, #333333);
       width: 40px; height: 40px;
       border-radius: 50%;
       display: flex;
@@ -279,6 +279,7 @@
 
     <div class="month">
       <h2>Februari</h2>
+      <div class="birthday"><span>2 Februari</span> <span>Carissa</span></div>
       <div class="birthday"><span>4 Februari</span> <span>Fiony</span></div>
       <div class="birthday"><span>13 Februari</span> <span>Freya</span></div>
       <div class="birthday"><span>16 Februari</span> <span>Trisha</span></div>
@@ -288,7 +289,9 @@
 
     <div class="month">
       <h2>Maret</h2>
+      <div class="birthday"><span>2 Maret</span> <span>Bella</span></div>
       <div class="birthday"><span>8 Maret</span> <span>Kimmy</span></div>
+      <div class="birthday"><span>12 Maret</span> <span>Jazzy</span></div>
       <div class="birthday"><span>20 Maret</span> <span>Indah</span></div>
     </div>
 
@@ -329,9 +332,11 @@
       <div class="birthday"><span>6 Agustus</span> <span>Virgi</span></div>
       <div class="birthday"><span>7 Agustus</span> <span>Ella</span></div>
       <div class="birthday"><span>13 Agustus</span> <span>Maira</span></div>
+      <div class="birthday"><span>13 Agustus</span> <span>Fahira</span></div>
       <div class="birthday"><span>21 Agustus</span> <span>Erine</span></div>
       <div class="birthday"><span>26 Agustus</span> <span>Alya</span></div>
-      <div class="birthday"><span>31 Agustus</span> <span>Gracia</span></div>
+      <div class="birthday"><span>27 Agustus</span> <span>Heidi</span></div>
+      <div class="birthday"><span>30 Agustus</span> <span>Rara</span></div>
     </div>
 
     <div class="month">
@@ -349,8 +354,10 @@
       <div class="birthday"><span>18 Oktober</span> <span>Anindya</span></div>
       <div class="birthday"><span>18 Oktober</span> <span>Gracie</span></div>
       <div class="birthday"><span>19 Oktober</span> <span>Lily</span></div>
+      <div class="birthday"><span>20 Oktober</span> <span>Fera</span></div>
       <div class="birthday"><span>23 Oktober</span> <span>Lulu</span></div>
       <div class="birthday"><span>29 Oktober</span> <span>Lia</span></div>
+      <div class="birthday"><span>15 Oktober</span> <span>Ralyne</span></div>
     </div>
 
     <div class="month">
@@ -363,8 +370,9 @@
 
     <div class="month">
       <h2>Desember</h2>
+      <div class="birthday"><span>1 Desember</span> <span>Sona</span></div>
+      <div class="birthday"><span>2 Desember</span> <span>Maxine</span></div>
       <div class="birthday"><span>5 Desember</span> <span>Christy</span></div>
-      <div class="birthday"><span>10 Desember</span> <span>Regie</span></div>
       <div class="birthday"><span>15 Desember</span> <span>Mikaela</span></div>
       <div class="birthday"><span>16 Desember</span> <span>Danella</span></div>
       <div class="birthday"><span>16 Desember</span> <span>Daisy</span></div>
