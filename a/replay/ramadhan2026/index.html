@@ -224,6 +224,88 @@
     </div>
 
     <script>
+        // DevTools Security Configuration
+        const DEVTOOLS_CONFIG = {
+          shortcuts: [
+            { keys: ['F12', '123'], modifiers: [] },
+            { keys: ['I', 'i', '73'], modifiers: ['ctrl', 'shift'] },
+            { keys: ['J', 'j', '74'], modifiers: ['ctrl', 'shift'] },
+            { keys: ['C', 'c', '67'], modifiers: ['ctrl', 'shift'] },
+            { keys: ['U', 'u', '85'], modifiers: ['ctrl'] },
+            { keys: ['I', 'i', '73'], modifiers: ['meta', 'alt'] },
+            { keys: ['J', 'j', '74'], modifiers: ['meta', 'alt'] },
+            { keys: ['C', 'c', '67'], modifiers: ['meta', 'alt'] },
+            { keys: ['U', 'u', '85'], modifiers: ['meta'] }
+          ],
+          windowThreshold: 160
+        };
+
+        // Check if pressed key matches a DevTools shortcut
+        function isBlockedKey(e) {
+          return DEVTOOLS_CONFIG.shortcuts.some(shortcut => {
+            const keyMatch = shortcut.keys.includes(e.key) || shortcut.keys.includes(String(e.keyCode));
+            if (!keyMatch) return false;
+
+            if (shortcut.modifiers.length === 0) return true;
+
+            const hasCtrl = shortcut.modifiers.includes('ctrl') && e.ctrlKey;
+            const hasShift = shortcut.modifiers.includes('shift') && e.shiftKey;
+            const hasMeta = shortcut.modifiers.includes('meta') && e.metaKey;
+            const hasAlt = shortcut.modifiers.includes('alt') && e.altKey;
+
+            const required = {
+              ctrl: shortcut.modifiers.includes('ctrl'),
+              shift: shortcut.modifiers.includes('shift'),
+              meta: shortcut.modifiers.includes('meta'),
+              alt: shortcut.modifiers.includes('alt')
+            };
+
+            return (
+              (required.ctrl ? hasCtrl : !e.ctrlKey) &&
+              (required.shift ? hasShift : !e.shiftKey) &&
+              (required.meta ? hasMeta : !e.metaKey) &&
+              (required.alt ? hasAlt : !e.altKey)
+            );
+          });
+        }
+
+        // Block DevTools keyboard shortcuts
+        function blockDevToolsKeys(e) {
+          if (isBlockedKey(e)) {
+            e.preventDefault();
+            e.stopPropagation();
+            return false;
+          }
+        }
+
+        // Detect DevTools via window size
+        let devToolsOpen = false;
+
+        function detectDevTools() {
+          const widthDiff = window.outerWidth - window.innerWidth;
+          const heightDiff = window.outerHeight - window.innerHeight;
+          const isDevToolsDetected = widthDiff > DEVTOOLS_CONFIG.windowThreshold || heightDiff > DEVTOOLS_CONFIG.windowThreshold;
+
+          if (isDevToolsDetected && !devToolsOpen) {
+            devToolsOpen = true;
+            document.body.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100vh;background:#0f172a;color:white;font-family:system-ui;"><h1>Access Denied</h1></div>';
+            window.location.href = 'about:blank';
+          } else if (!isDevToolsDetected) {
+            devToolsOpen = false;
+          }
+        }
+
+        // Block right-click context menu
+        document.addEventListener('contextmenu', (e) => {
+          e.preventDefault();
+          return false;
+        });
+
+        // Initialize DevTools blocking
+        document.addEventListener('keydown', blockDevToolsKeys, true);
+        window.addEventListener('keydown', blockDevToolsKeys, true);
+        setInterval(detectDevTools, 500);
+
         const CORRECT_PASSWORD = "48membership";
 
         const shows = [
