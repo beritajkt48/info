@@ -13,8 +13,8 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #0a0a0a;
-            color: #f0f0f0;
+            background: linear-gradient(135deg, #fff5f7 0%, #ffe8f0 100%);
+            color: #2d2d2d;
             overflow-x: hidden;
             position: relative;
         }
@@ -72,10 +72,11 @@
             margin-bottom: 10px;
             letter-spacing: 2px;
             text-transform: uppercase;
+            color: #ff4444;
         }
 
         .header p {
-            color: #999;
+            color: #d9678f;
             font-size: 1rem;
             font-weight: 300;
         }
@@ -107,16 +108,17 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             padding-bottom: 10px;
-            border-bottom: 2px solid #333;
+            border-bottom: 3px solid #ff4444;
+            color: #ff4444;
         }
 
         .month-btn {
             padding: 12px 16px;
-            border: 2px solid #333;
-            background: transparent;
-            color: #f0f0f0;
+            border: 2px solid #ffb3b3;
+            background: rgba(255, 255, 255, 0.6);
+            color: #ff4444;
             cursor: pointer;
-            border-radius: 4px;
+            border-radius: 20px;
             font-size: 0.95rem;
             font-weight: 500;
             transition: all 0.3s ease;
@@ -124,14 +126,17 @@
         }
 
         .month-btn:hover {
-            border-color: #f0f0f0;
-            background: rgba(240, 240, 240, 0.05);
+            border-color: #ff4444;
+            background: rgba(255, 68, 68, 0.1);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 68, 68, 0.2);
         }
 
         .month-btn.active {
-            background: #f0f0f0;
-            color: #0a0a0a;
-            border-color: #f0f0f0;
+            background: #ff4444;
+            color: white;
+            border-color: #ff4444;
+            box-shadow: 0 4px 16px rgba(255, 68, 68, 0.4);
         }
 
         /* Event List */
@@ -148,27 +153,30 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             padding-bottom: 10px;
-            border-bottom: 2px solid #333;
+            border-bottom: 3px solid #ff4444;
+            color: #ff4444;
         }
 
         .event-item {
-            background: rgba(50, 50, 50, 0.5);
-            border-left: 4px solid #666;
+            background: rgba(255, 255, 255, 0.7);
+            border-left: 4px solid #ffb3b3;
             padding: 16px;
-            border-radius: 4px;
+            border-radius: 12px;
             transition: all 0.3s ease;
             cursor: pointer;
+            box-shadow: 0 2px 8px rgba(255, 68, 68, 0.1);
         }
 
         .event-item:hover {
-            background: rgba(80, 80, 80, 0.7);
-            border-left-color: #f0f0f0;
+            background: rgba(255, 255, 255, 0.95);
+            border-left-color: #ff4444;
             transform: translateX(5px);
+            box-shadow: 0 4px 16px rgba(255, 68, 68, 0.2);
         }
 
         .event-date {
             font-size: 0.85rem;
-            color: #999;
+            color: #d9678f;
             font-weight: 600;
             text-transform: uppercase;
             margin-bottom: 5px;
@@ -178,11 +186,12 @@
             font-size: 1.1rem;
             font-weight: 600;
             margin-bottom: 8px;
+            color: #ff4444;
         }
 
         .event-location {
             font-size: 0.9rem;
-            color: #bbb;
+            color: #555;
             display: flex;
             align-items: center;
             gap: 5px;
@@ -202,36 +211,38 @@
 
         .event-tag {
             display: inline-block;
-            padding: 4px 10px;
-            border-radius: 12px;
+            padding: 6px 12px;
+            border-radius: 20px;
             font-size: 0.75rem;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            font-weight: bold;
         }
 
         .tag-jakarta {
-            background: #ff6b6b;
+            background: #ff4444;
             color: white;
         }
 
         .tag-luar-kota {
-            background: #4ecdc4;
+            background: #22c55e;
             color: white;
         }
 
         .tag-gagal {
-            background: #95a5a6;
+            background: #0ea5e9;
             color: white;
         }
 
         /* Event Statistics */
         .event-stats {
-            background: rgba(50, 50, 50, 0.5);
-            border: 1px solid #333;
+            background: rgba(255, 255, 255, 0.8);
+            border: 2px solid #ffb3b3;
             padding: 20px;
-            border-radius: 4px;
+            border-radius: 16px;
             margin-top: 20px;
+            box-shadow: 0 4px 12px rgba(255, 68, 68, 0.1);
         }
 
         .event-stats h3 {
@@ -240,6 +251,7 @@
             margin-bottom: 15px;
             text-transform: uppercase;
             letter-spacing: 1px;
+            color: #ff4444;
         }
 
         .stats-grid {
@@ -249,38 +261,45 @@
         }
 
         .stat-item {
-            background: rgba(30, 30, 30, 0.8);
+            background: rgba(255, 250, 250, 0.9);
             padding: 12px;
-            border-radius: 4px;
+            border-radius: 12px;
             text-align: center;
-            border-left: 3px solid #666;
+            border-left: 3px solid #ffb3b3;
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 68, 68, 0.15);
         }
 
         .stat-item.total {
-            border-left-color: #f0f0f0;
+            border-left-color: #ff4444;
         }
 
         .stat-item.jakarta {
-            border-left-color: #ff6b6b;
+            border-left-color: #ff4444;
         }
 
         .stat-item.luar-kota {
-            border-left-color: #4ecdc4;
+            border-left-color: #22c55e;
         }
 
         .stat-item.gagal {
-            border-left-color: #95a5a6;
+            border-left-color: #0ea5e9;
         }
 
         .stat-value {
             font-size: 1.5rem;
             font-weight: 700;
             margin-bottom: 5px;
+            color: #ff4444;
         }
 
         .stat-label {
             font-size: 0.75rem;
-            color: #999;
+            color: #d9678f;
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
@@ -288,7 +307,10 @@
         .empty-state {
             text-align: center;
             padding: 40px 20px;
-            color: #666;
+            color: #d9678f;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 12px;
+            border: 2px dashed #ffb3b3;
         }
 
         .empty-state p {
