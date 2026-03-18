@@ -12,18 +12,19 @@
         }
 
         :root {
-            --primary: #FF6B9D;
-            --secondary: #4ECDC4;
-            --accent: #FFE66D;
-            --dark: #2C3E50;
-            --light: #F7F9FC;
+            --primary: #FF5555;
+            --secondary: #FF5555;
+            --accent: #FF5555;
+            --dark: #333333;
+            --light: #F5E6E8;
             --white: #FFFFFF;
+            --gray: #999999;
             --radius: 20px;
         }
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            background: var(--light);
             color: var(--dark);
             line-height: 1.6;
             min-height: 100vh;
@@ -56,22 +57,19 @@
             font-size: 3.5rem;
             font-weight: 900;
             margin-bottom: 10px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 50%, var(--accent) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: var(--primary);
             letter-spacing: -2px;
         }
 
         .subtitle {
             font-size: 1.2rem;
-            color: #666;
+            color: var(--gray);
             font-weight: 500;
         }
 
         .divider {
             height: 4px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+            background: var(--primary);
             width: 200px;
             margin: 20px auto;
             border-radius: 10px;
@@ -118,19 +116,19 @@
             left: 0;
             right: 0;
             height: 6px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            background: var(--primary);
         }
 
         .term-card:nth-child(2)::before {
-            background: linear-gradient(90deg, var(--secondary), var(--accent));
+            background: var(--primary);
         }
 
         .term-card:nth-child(3)::before {
-            background: linear-gradient(90deg, var(--accent), var(--primary));
+            background: var(--primary);
         }
 
         .term-card:nth-child(4)::before {
-            background: linear-gradient(90deg, var(--primary), var(--accent));
+            background: var(--primary);
         }
 
         .term-card:hover {
@@ -142,8 +140,9 @@
             display: inline-block;
             width: 50px;
             height: 50px;
-            background: var(--accent);
-            color: var(--dark);
+            background: var(--white);
+            color: var(--primary);
+            border: 3px solid var(--primary);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -151,7 +150,7 @@
             font-weight: bold;
             font-size: 1.3rem;
             margin-bottom: 15px;
-            box-shadow: 0 4px 15px rgba(255, 230, 109, 0.3);
+            box-shadow: 0 4px 15px rgba(255, 85, 85, 0.2);
         }
 
         .term-name {
@@ -163,12 +162,11 @@
         }
 
         .term-card:nth-child(2) .term-name {
-            color: var(--secondary);
+            color: var(--primary);
         }
 
         .term-card:nth-child(3) .term-name {
-            color: var(--accent);
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            color: var(--primary);
         }
 
         .term-card:nth-child(4) .term-name {
@@ -177,7 +175,7 @@
 
         .term-description {
             font-size: 1rem;
-            color: #555;
+            color: var(--gray);
             line-height: 1.8;
             font-weight: 500;
         }
@@ -200,11 +198,11 @@
         }
 
         .term-card:nth-child(2) .badge {
-            color: var(--secondary);
+            color: var(--primary);
         }
 
         .term-card:nth-child(3) .badge {
-            color: var(--accent);
+            color: var(--primary);
         }
 
         .term-card:nth-child(4) .badge {
@@ -221,19 +219,9 @@
         }
 
         .footer-text {
-            color: #666;
+            color: var(--gray);
             font-size: 1rem;
             margin-bottom: 10px;
-        }
-
-        .heart {
-            color: var(--primary);
-            animation: heartbeat 1.5s infinite;
-        }
-
-        @keyframes heartbeat {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.2); }
         }
 
         @media (max-width: 768px) {
@@ -277,60 +265,56 @@
 <body>
     <div class="container">
         <header>
-            <h1 class="title">📚 Kamus Dasar Fans JKT48</h1>
-            <p class="subtitle">Panduan Istilah untuk Semua JKT48 Lovers!</p>
+            <h1 class="title">Kamus Dasar Fans JKT48</h1>
+            <p class="subtitle">Panduan Istilah untuk Semua JKT48 Lovers</p>
             <div class="divider"></div>
         </header>
 
         <div class="dictionary-grid">
             <!-- Card 1: Isshou -->
             <div class="term-card">
-                <span class="emoji-icon">👗</span>
                 <div class="term-number">1</div>
                 <h2 class="term-name">Isshou</h2>
                 <p class="term-description">
                     Adalah kostum atau pakaian panggung khusus yang dikenakan member saat tampil di atas panggung JKT48.
                 </p>
-                <span class="badge">🎭 Kostum Panggung</span>
+                <span class="badge">Kostum Panggung</span>
             </div>
 
             <!-- Card 2: Seifuku -->
             <div class="term-card">
-                <span class="emoji-icon">👩‍🎓</span>
                 <div class="term-number">2</div>
                 <h2 class="term-name">Seifuku</h2>
                 <p class="term-description">
                     Adalah seragam atau kostum khas yang dikenakan oleh anggota JKT48, sering kali bergaya sekolah Jepang atau tema spesifik sesuai lagu/single.
                 </p>
-                <span class="badge">✨ Kostum Ikonik</span>
+                <span class="badge">Kostum Ikonik</span>
             </div>
 
             <!-- Card 3: Roulette -->
             <div class="term-card">
-                <span class="emoji-icon">🎲</span>
                 <div class="term-number">3</div>
                 <h2 class="term-name">Roulette</h2>
                 <p class="term-description">
                     Adalah sistem undian atau mekanisme pembelian tiket untuk sesi foto berdua (2-shot) antara penggemar dan member JKT48 tertentu, baik secara langsung di teater.
                 </p>
-                <span class="badge">🎯 Mekanisme Undian</span>
+                <span class="badge">Mekanisme Undian</span>
             </div>
 
             <!-- Card 4: 2 Shot JKT48 -->
             <div class="term-card">
-                <span class="emoji-icon">📸</span>
                 <div class="term-number">4</div>
                 <h2 class="term-name">2 Shot JKT48</h2>
                 <p class="term-description">
                     Adalah sesi foto eksklusif berdua antara penggemar dan member JKT48 pilihan menggunakan kamera profesional (biasanya Instax atau kamera jepret langsung), sering kali diadakan dalam acara Personal Meet and Greet atau event spesial.
                 </p>
-                <span class="badge">📷 Momen Spesial</span>
+                <span class="badge">Momen Spesial</span>
             </div>
         </div>
 
         <footer>
-            <p class="footer-text">💜 Semoga kamus ini membantu Anda memahami dunia JKT48 dengan lebih baik!</p>
-            <p class="footer-text">Tetap mendukung JKT48 dengan penuh cinta <span class="heart">❤️</span></p>
+            <p class="footer-text">Semoga kamus ini membantu Anda memahami dunia JKT48 dengan lebih baik!</p>
+            <p class="footer-text">Tetap mendukung JKT48 dengan penuh cinta</p>
         </footer>
     </div>
 </body>
