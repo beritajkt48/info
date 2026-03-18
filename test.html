@@ -2,9 +2,12 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ulang Tahun Member JKT48</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Berita JKT48</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
   <style>
     * {
       margin: 0;
@@ -12,32 +15,31 @@
       box-sizing: border-box;
     }
 
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #1a1a1a 0%, #333333 50%, #1a1a1a 100%);
-      background-size: 400% 400%;
-      animation: gradientShift 15s ease infinite;
-      min-height: 100vh;
-      padding: 20px;
-      color: #fff;
+    @keyframes float-bounce {
+      0%, 100% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-20px);
+      }
     }
 
-    @keyframes gradientShift {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+    @keyframes spin-slow {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
     }
 
-    .container {
-      max-width: 800px;
-      margin: auto;
-      background: rgba(255, 255, 255, 0.98);
-      backdrop-filter: blur(10px);
-      border-radius: 20px;
-      padding: 30px;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-      border: 1px solid rgba(0, 0, 0, 0.2);
-      animation: slideUp 0.6s ease;
+    @keyframes pulse-scale {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.1);
+      }
     }
 
     @keyframes slideUp {
@@ -51,161 +53,261 @@
       }
     }
 
-    h1 {
-      text-align: center;
-      background: linear-gradient(135deg, #000000, #333333);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      margin-bottom: 30px;
-      font-size: 32px;
-      font-weight: 700;
-      letter-spacing: 1px;
-    }
-
-    .month {
-      margin-bottom: 20px;
-      background: linear-gradient(135deg, rgba(240, 240, 240, 0.9), rgba(220, 220, 220, 0.9));
-      border-radius: 16px;
-      padding: 18px;
-      border: 1px solid rgba(0, 0, 0, 0.15);
-      animation: fadeInUp 0.5s ease forwards;
-      opacity: 0;
-    }
-
-    .month:nth-child(1) { animation-delay: 0.1s; }
-    .month:nth-child(2) { animation-delay: 0.15s; }
-    .month:nth-child(3) { animation-delay: 0.2s; }
-    .month:nth-child(4) { animation-delay: 0.25s; }
-    .month:nth-child(5) { animation-delay: 0.3s; }
-    .month:nth-child(6) { animation-delay: 0.35s; }
-    .month:nth-child(7) { animation-delay: 0.4s; }
-    .month:nth-child(8) { animation-delay: 0.45s; }
-    .month:nth-child(9) { animation-delay: 0.5s; }
-    .month:nth-child(10) { animation-delay: 0.55s; }
-    .month:nth-child(11) { animation-delay: 0.6s; }
-    .month:nth-child(12) { animation-delay: 0.65s; }
-
-    @keyframes fadeInUp {
-      to {
-        opacity: 1;
-      }
-    }
-
-    .month h2 {
-      text-align: center;
-      background: linear-gradient(135deg, #000000, #555555);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      margin-bottom: 15px;
-      font-size: 22px;
-      font-weight: 700;
-    }
-
-    .birthday {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 12px 16px;
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(245, 245, 245, 0.9));
-      border-radius: 12px;
-      margin-bottom: 8px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-      border: 1px solid rgba(0, 0, 0, 0.1);
-      cursor: pointer;
-    }
-
-    .birthday:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-      background: linear-gradient(135deg, rgba(220, 220, 220, 0.5), rgba(200, 200, 200, 0.5));
-    }
-
-    .birthday span:first-child::before {
-      content: '🎂 ';
-      margin-right: 4px;
-    }
-
-    .birthday span {
-      font-weight: 500;
-      font-size: 15px;
-      color: #333;
-    }
-
-    .birthday span:last-child {
-      background: linear-gradient(135deg, #000000, #333333);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      font-weight: 600;
-    }
-
-    .button-home {
-      display: inline-block;
-      text-align: center;
-      margin: 30px auto 0;
-      padding: 14px 32px;
-      border-radius: 12px;
-      border: none;
-      background: linear-gradient(135deg, #1a1a1a, #333333);
-      color: white;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 16px;
-      transition: all 0.3s ease;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-      cursor: pointer;
-      width: 100%;
-      max-width: 300px;
-    }
-
-    .button-home:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
-    }
-
-    .button-home:active {
-      transform: translateY(-1px);
-    }
-
-    .button-wrapper {
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #f8f5f5 0%, #ffe8f0 50%, #f8f5f5 100%);
+      color: #2d2d2d;
+      min-height: 100vh;
       display: flex;
       justify-content: center;
-      width: 100%;
+      align-items: flex-start;
+      padding: 40px 20px;
+      position: relative;
+      overflow-x: hidden;
     }
 
-    /* Popup iklan */
+    /* Decorative background elements */
+    .decorative-bg {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    /* Animated star bursts */
+    .star-burst {
+      position: absolute;
+      opacity: 0.7;
+    }
+
+    .star-burst.blue {
+      top: 5%;
+      left: 5%;
+      width: 120px;
+      height: 120px;
+      color: #0099ff;
+      animation: spin-slow 20s linear infinite;
+    }
+
+    .star-burst.green {
+      top: 15%;
+      right: 10%;
+      width: 100px;
+      height: 100px;
+      color: #00dd44;
+      animation: spin-slow 25s linear infinite reverse;
+    }
+
+    .star-burst.pink {
+      bottom: 15%;
+      left: 8%;
+      width: 140px;
+      height: 140px;
+      color: #ff1493;
+      animation: spin-slow 22s linear infinite;
+    }
+
+    /* Floating stars */
+    .float-star {
+      position: absolute;
+      animation: float-bounce 3s ease-in-out infinite;
+    }
+
+    .float-star.yellow-1 {
+      top: 25%;
+      right: 15%;
+      animation-delay: 0s;
+      color: #ffdd00;
+      font-size: 32px;
+    }
+
+    .float-star.yellow-2 {
+      bottom: 30%;
+      right: 5%;
+      animation-delay: 1s;
+      color: #ffdd00;
+      font-size: 24px;
+    }
+
+    .float-star.white-1 {
+      top: 35%;
+      left: 12%;
+      animation-delay: 0.5s;
+      color: #ffffff;
+      font-size: 20px;
+      opacity: 0.8;
+    }
+
+    .float-star.white-2 {
+      bottom: 20%;
+      right: 25%;
+      animation-delay: 1.5s;
+      color: #ffffff;
+      font-size: 16px;
+      opacity: 0.7;
+    }
+
+    /* SVG styles for star bursts */
+    svg {
+      display: block;
+    }
+
+    svg circle {
+      fill: currentColor;
+    }
+
+    svg rect {
+      fill: currentColor;
+    }
+
+    svg line {
+      stroke: currentColor;
+      stroke-linecap: round;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 500px;
+      background: linear-gradient(135deg, #ffffff 0%, #fef5f8 100%);
+      border-radius: 24px;
+      padding: 45px 30px;
+      box-shadow: 0 20px 60px rgba(255, 68, 68, 0.2);
+      border: 2px solid rgba(255, 68, 68, 0.1);
+      text-align: center;
+      position: relative;
+      z-index: 1;
+      animation: slideUp 0.6s ease-out;
+    }
+
+    /* Profile image styling */
+    .profile-image {
+      width: 150px;
+      height: 150px;
+      border-radius: 20px;
+      border: 4px solid #ff4444;
+      object-fit: cover;
+      margin: 0 auto 30px;
+      box-shadow: 0 12px 28px rgba(255, 68, 68, 0.3);
+      transition: transform 0.3s ease;
+      display: block;
+    }
+
+    .profile-image:hover {
+      transform: scale(1.08) rotate(3deg);
+    }
+
+    h1 {
+      font-size: 2.4rem;
+      margin-bottom: 10px;
+      color: #ff4444;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+
+    h2 {
+      font-size: 1.1rem;
+      font-weight: 500;
+      margin-bottom: 40px;
+      color: #666;
+      letter-spacing: 0.3px;
+    }
+
+    h3 {
+      font-size: 0.95rem;
+      margin-top: 40px;
+      margin-bottom: 18px;
+      color: #ff4444;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-weight: 700;
+    }
+
+    /* Button styling */
+    .button {
+      display: block;
+      width: 100%;
+      background: linear-gradient(135deg, #ff4444 0%, #ff6b6b 100%);
+      color: #ffffff;
+      font-weight: 600;
+      text-decoration: none;
+      border: none;
+      border-radius: 12px;
+      padding: 16px 24px;
+      margin: 12px 0;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(255, 68, 68, 0.25);
+    }
+
+    .button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.2);
+      transition: left 0.3s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: 0 12px 32px rgba(255, 68, 68, 0.35);
+    }
+
+    .button:hover::before {
+      left: 100%;
+    }
+
+    .button:active {
+      transform: translateY(-1px) scale(0.98);
+    }
+
+    /* Popup styling */
     .popup-container {
       display: none;
       position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0, 0, 0, 0.6);
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 68, 68, 0.9);
       justify-content: center;
       align-items: center;
       z-index: 9999;
       animation: fadeIn 0.3s ease;
-      backdrop-filter: blur(4px);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
 
     .popup-content {
       position: relative;
       background: transparent;
+      padding: 0;
       border-radius: 20px;
+      text-align: center;
       max-width: 90%;
-      width: 320px;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-      animation: popIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      width: 360px;
+      animation: popIn 0.4s ease;
+      overflow: hidden;
     }
 
     @keyframes popIn {
-      0% {
+      from {
         opacity: 0;
         transform: scale(0.8);
       }
-      100% {
+      to {
         opacity: 1;
         transform: scale(1);
       }
@@ -215,179 +317,174 @@
       width: 100%;
       border-radius: 20px;
       display: block;
-      border: 3px solid rgba(255, 0, 110, 0.3);
+      box-shadow: 0 16px 48px rgba(255, 68, 68, 0.4);
     }
 
+    /* Close button styling */
     .close-btn {
       position: absolute;
-      top: -15px; right: -15px;
-      font-size: 28px;
+      top: -18px;
+      right: -18px;
+      font-size: 32px;
       font-weight: bold;
-      color: white;
-      background: linear-gradient(135deg, #1a1a1a, #333333);
-      width: 40px; height: 40px;
+      color: #ffffff;
+      background: linear-gradient(135deg, #ff4444 0%, #ff6b6b 100%);
+      width: 50px;
+      height: 50px;
       border-radius: 50%;
+      cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      cursor: pointer;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
       transition: all 0.3s ease;
-      border: 2px solid white;
+      box-shadow: 0 8px 20px rgba(255, 68, 68, 0.35);
+      border: none;
     }
 
     .close-btn:hover {
-      transform: rotate(90deg) scale(1.1);
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+      transform: rotate(90deg) scale(1.15);
+      box-shadow: 0 12px 32px rgba(255, 68, 68, 0.4);
     }
 
     @media (min-width: 768px) {
       .popup-content {
-        width: 400px;
+        width: 420px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 2rem;
+      }
+
+      .container {
+        padding: 35px 20px;
+      }
+
+      .button {
+        font-size: 0.9rem;
+        padding: 14px 20px;
+      }
+
+      .profile-image {
+        width: 120px;
+        height: 120px;
+      }
+
+      .star-burst.blue {
+        width: 80px;
+        height: 80px;
+      }
+
+      .star-burst.green {
+        width: 70px;
+        height: 70px;
+      }
+
+      .star-burst.pink {
+        width: 100px;
+        height: 100px;
       }
     }
   </style>
 </head>
 
 <body>
-  <!-- Iklan Pop-up -->
+  <!-- Decorative background elements -->
+  <div class="decorative-bg">
+    <!-- Blue star burst (top left) -->
+    <svg class="star-burst blue" viewBox="0 0 100 100" fill="currentColor">
+      <circle cx="50" cy="50" r="8" />
+      <rect x="46" y="10" width="8" height="25" transform="rotate(0 50 50)" rx="4" />
+      <rect x="46" y="10" width="8" height="25" transform="rotate(45 50 50)" rx="4" />
+      <rect x="46" y="10" width="8" height="25" transform="rotate(90 50 50)" rx="4" />
+      <rect x="46" y="10" width="8" height="25" transform="rotate(135 50 50)" rx="4" />
+      <rect x="46" y="10" width="8" height="25" transform="rotate(180 50 50)" rx="4" />
+      <rect x="46" y="10" width="8" height="25" transform="rotate(225 50 50)" rx="4" />
+      <rect x="46" y="10" width="8" height="25" transform="rotate(270 50 50)" rx="4" />
+      <rect x="46" y="10" width="8" height="25" transform="rotate(315 50 50)" rx="4" />
+    </svg>
+
+    <!-- Green star burst (top right) -->
+    <svg class="star-burst green" viewBox="0 0 100 100" fill="currentColor">
+      <circle cx="50" cy="50" r="6" />
+      <rect x="46" y="8" width="8" height="28" transform="rotate(0 50 50)" rx="4" />
+      <rect x="46" y="8" width="8" height="28" transform="rotate(45 50 50)" rx="4" />
+      <rect x="46" y="8" width="8" height="28" transform="rotate(90 50 50)" rx="4" />
+      <rect x="46" y="8" width="8" height="28" transform="rotate(135 50 50)" rx="4" />
+      <rect x="46" y="8" width="8" height="28" transform="rotate(180 50 50)" rx="4" />
+      <rect x="46" y="8" width="8" height="28" transform="rotate(225 50 50)" rx="4" />
+      <rect x="46" y="8" width="8" height="28" transform="rotate(270 50 50)" rx="4" />
+      <rect x="46" y="8" width="8" height="28" transform="rotate(315 50 50)" rx="4" />
+    </svg>
+
+    <!-- Pink star burst (bottom left) -->
+    <svg class="star-burst pink" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2">
+      <line x1="50" y1="10" x2="50" y2="40" transform="rotate(0 50 50)" stroke-linecap="round" />
+      <line x1="50" y1="10" x2="50" y2="40" transform="rotate(30 50 50)" stroke-linecap="round" />
+      <line x1="50" y1="10" x2="50" y2="40" transform="rotate(60 50 50)" stroke-linecap="round" />
+      <line x1="50" y1="10" x2="50" y2="40" transform="rotate(90 50 50)" stroke-linecap="round" />
+      <line x1="50" y1="10" x2="50" y2="40" transform="rotate(120 50 50)" stroke-linecap="round" />
+      <line x1="50" y1="10" x2="50" y2="40" transform="rotate(150 50 50)" stroke-linecap="round" />
+      <line x1="50" y1="10" x2="50" y2="40" transform="rotate(180 50 50)" stroke-linecap="round" />
+      <line x1="50" y1="10" x2="50" y2="40" transform="rotate(210 50 50)" stroke-linecap="round" />
+      <line x1="50" y1="10" x2="50" y2="40" transform="rotate(240 50 50)" stroke-linecap="round" />
+      <line x1="50" y1="10" x2="50" y2="40" transform="rotate(270 50 50)" stroke-linecap="round" />
+      <line x1="50" y1="10" x2="50" y2="40" transform="rotate(300 50 50)" stroke-linecap="round" />
+      <line x1="50" y1="10" x2="50" y2="40" transform="rotate(330 50 50)" stroke-linecap="round" />
+    </svg>
+
+    <!-- Floating stars -->
+    <div class="float-star yellow-1">✨</div>
+    <div class="float-star yellow-2">⭐</div>
+    <div class="float-star white-1">✨</div>
+    <div class="float-star white-2">✨</div>
+  </div>
+
+  <!-- Popup Iklan -->
   <div class="popup-container" id="popup">
     <div class="popup-content">
-      <span class="close-btn" onclick="closePopup()">×</span>
-      <a href="https://s.shopee.co.id/AUg4dsQtYw" target="_blank">
+      <button class="close-btn" onclick="closePopup()">×</button>
+      <a href="https://shopee.co.id/product/516305057/20493183995" target="_blank">
         <img src="iklan.png" alt="Iklan JKT48" />
       </a>
     </div>
   </div>
 
-  <!-- Konten utama -->
+  <!-- Konten Utama -->
   <div class="container">
-    <h1>Ulang Tahun Member JKT48</h1>
+    <img class="profile-image" src="beritaprofil.jpg" alt="Profile Image" />
+    <h1>Berita JKT48</h1>
+    <h2>Informasi & Berita Tentang JKT48</h2>
 
-    <div class="month">
-      <h2>Januari</h2>
-      <div class="birthday"><span>9 Januari</span> <span>Marsha</span></div>
-      <div class="birthday"><span>10 Januari</span> <span>Greesel</span></div>
-      <div class="birthday"><span>13 Januari</span> <span>Ribka</span></div>
-      <div class="birthday"><span>16 Januari</span> <span>Feni</span></div>
-      <div class="birthday"><span>24 Januari</span> <span>Levi</span></div>
-    </div>
+    <h3>JKT48 27th Single</h3>
+    <a href="https://youtu.be/CZl-mHmdyaA?si=B-Ui-A3cPeqFGA7i" target="_blank" class="button">Andai 'Ku Bukan Idola</a>
 
-    <div class="month">
-      <h2>Februari</h2>
-      <div class="birthday"><span>2 Februari</span> <span>Carissa</span></div>
-      <div class="birthday"><span>4 Februari</span> <span>Fiony</span></div>
-      <div class="birthday"><span>13 Februari</span> <span>Freya</span></div>
-      <div class="birthday"><span>16 Februari</span> <span>Trisha</span></div>
-      <div class="birthday"><span>24 Februari</span> <span>Intan</span></div>
-      <div class="birthday"><span>26 Februari</span> <span>Olla</span></div>
-    </div>
+    <h3>Contact Person</h3>
+    <a href="https://beritajkt48.my.id/paidpromote/" target="_blank" class="button">Paid Promote</a>
+    <a href="https://beritajkt48.my.id/" target="_blank" class="button">Kerja Sama & Media Partner ke email genfeedz@gmail.com</a>
 
-    <div class="month">
-      <h2>Maret</h2>
-      <div class="birthday"><span>2 Maret</span> <span>Bella</span></div>
-      <div class="birthday"><span>8 Maret</span> <span>Kimmy</span></div>
-      <div class="birthday"><span>12 Maret</span> <span>Jazzy</span></div>
-      <div class="birthday"><span>20 Maret</span> <span>Indah</span></div>
-    </div>
+    <h3>Dukungan</h3>
+    <a href="https://saweria.co/beritajkt48" target="_blank" class="button">Saweria</a>
 
-    <div class="month">
-      <h2>April</h2>
-      <div class="birthday"><span>1 April</span> <span>Rilly</span></div>
-      <div class="birthday"><span>9 April</span> <span>Elin</span></div>
-      <div class="birthday"><span>22 April</span> <span>Michie</span></div>
-    </div>
+    <h3>Informasi</h3>
+    <a href="http://beritajkt48.my.id/event/" target="_blank" class="button">Jadwal JKT48</a>
+    <a href="https://beritajkt48.github.io/member/" target="_blank" class="button">Member JKT48</a>
+    <a href="https://beritajkt48.github.io/info/birthday/" target="_blank" class="button">Ulang Tahun Member</a>
+    
+    <h3>Tools</h3>
+    <a href="https://beritajkt48.my.id/hukuman/" target="_blank" class="button">Masa Hukuman</a>
 
-    <div class="month">
-      <h2>Mei</h2>
-      <div class="birthday"><span>28 Mei</span> <span>Cathy</span></div>
-    </div>
-
-    <div class="month">
-      <h2>Juni</h2>
-      <div class="birthday"><span>15 Juni</span> <span>Eli</span></div>
-      <div class="birthday"><span>18 Juni</span> <span>Nayla</span></div>
-      <div class="birthday"><span>23 Juni</span> <span>Gendis</span></div>
-      <div class="birthday"><span>30 Juni</span> <span>Gita</span></div>
-    </div>
-
-    <div class="month">
-      <h2>Juli</h2>
-      <div class="birthday"><span>1 Juli</span> <span>Giaa</span></div>
-      <div class="birthday"><span>9 Juli</span> <span>Ekin</span></div>
-      <div class="birthday"><span>12 Juli</span> <span>Muthe</span></div>
-      <div class="birthday"><span>14 Juli</span> <span>Auwia</span></div>
-      <div class="birthday"><span>26 Juli</span> <span>Oniel</span></div>
-      <div class="birthday"><span>26 Juli</span> <span>Kathrina</span></div>
-      <div class="birthday"><span>28 Juli</span> <span>Fritzy</span></div>
-    </div>
-
-    <div class="month">
-      <h2>Agustus</h2>
-      <div class="birthday"><span>6 Agustus</span> <span>Aralie</span></div>
-      <div class="birthday"><span>6 Agustus</span> <span>Virgi</span></div>
-      <div class="birthday"><span>7 Agustus</span> <span>Ella</span></div>
-      <div class="birthday"><span>13 Agustus</span> <span>Maira</span></div>
-      <div class="birthday"><span>13 Agustus</span> <span>Fahira</span></div>
-      <div class="birthday"><span>21 Agustus</span> <span>Erine</span></div>
-      <div class="birthday"><span>26 Agustus</span> <span>Alya</span></div>
-      <div class="birthday"><span>27 Agustus</span> <span>Heidi</span></div>
-      <div class="birthday"><span>30 Agustus</span> <span>Rara</span></div>
-    </div>
-
-    <div class="month">
-      <h2>September</h2>
-      <div class="birthday"><span>1 September</span> <span>Delynn</span></div>
-      <div class="birthday"><span>1 September</span> <span>Nala</span></div>
-      <div class="birthday"><span>13 September</span> <span>Lyn</span></div>
-      <div class="birthday"><span>14 September</span> <span>Lana</span></div>
-      <div class="birthday"><span>23 September</span> <span>Jessi</span></div>
-    </div>
-
-    <div class="month">
-      <h2>Oktober</h2>
-      <div class="birthday"><span>16 Oktober</span> <span>Nachia</span></div>
-      <div class="birthday"><span>18 Oktober</span> <span>Anindya</span></div>
-      <div class="birthday"><span>18 Oktober</span> <span>Gracie</span></div>
-      <div class="birthday"><span>19 Oktober</span> <span>Lily</span></div>
-      <div class="birthday"><span>20 Oktober</span> <span>Fera</span></div>
-      <div class="birthday"><span>23 Oktober</span> <span>Lulu</span></div>
-      <div class="birthday"><span>29 Oktober</span> <span>Lia</span></div>
-      <div class="birthday"><span>15 Oktober</span> <span>Ralyne</span></div>
-    </div>
-
-    <div class="month">
-      <h2>November</h2>
-      <div class="birthday"><span>3 November</span> <span>Oline</span></div>
-      <div class="birthday"><span>9 November</span> <span>Jemima</span></div>
-      <div class="birthday"><span>11 November</span> <span>Raisha</span></div>
-      <div class="birthday"><span>22 November</span> <span>Cynthia</span></div>
-    </div>
-
-    <div class="month">
-      <h2>Desember</h2>
-      <div class="birthday"><span>1 Desember</span> <span>Sona</span></div>
-      <div class="birthday"><span>2 Desember</span> <span>Maxine</span></div>
-      <div class="birthday"><span>5 Desember</span> <span>Christy</span></div>
-      <div class="birthday"><span>15 Desember</span> <span>Mikaela</span></div>
-      <div class="birthday"><span>16 Desember</span> <span>Danella</span></div>
-      <div class="birthday"><span>16 Desember</span> <span>Daisy</span></div>
-      <div class="birthday"><span>17 Desember</span> <span>Amanda</span></div>
-      <div class="birthday"><span>23 Desember</span> <span>Chelsea</span></div>
-    </div>
-
-    <div class="button-wrapper">
-      <a class="button-home" href="https://beritajkt48.github.io/info/">Halaman Utama</a>
-    </div>
+    <h3>Sosial Media</h3>
+    <a href="https://www.tiktok.com/@jkt48.berita" target="_blank" class="button">Tiktok</a>
+    <a href="https://www.youtube.com/@beritajeketi48" target="_blank" class="button">Youtube</a>
+    <a href="https://whatsapp.com/channel/0029Vb1GlrdBPzjc0lWHlS2U" target="_blank" class="button">WhatsApp Jadwal Show/Event</a>
+    <a href="https://whatsapp.com/channel/0029Vae5cgVBqbr0mRzNvA3c" target="_blank" class="button">WhatsApp Berita JKT48</a>
   </div>
 
-  <!-- Script Pop-up -->
   <script>
-    setTimeout(function () {
+    // Tampilkan popup setelah 1 detik
+    setTimeout(() => {
       document.getElementById("popup").style.display = "flex";
     }, 1000);
 
