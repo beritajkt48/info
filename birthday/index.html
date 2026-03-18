@@ -14,12 +14,12 @@
 
     body {
       font-family: 'Poppins', sans-serif;
-      background: linear-gradient(135deg, #1a1a1a 0%, #333333 50%, #1a1a1a 100%);
+      background: linear-gradient(135deg, #fff5f7 0%, #ffe8f0 100%);
       background-size: 400% 400%;
       animation: gradientShift 15s ease infinite;
       min-height: 100vh;
       padding: 20px;
-      color: #fff;
+      color: #2d2d2d;
     }
 
     @keyframes gradientShift {
@@ -31,12 +31,12 @@
     .container {
       max-width: 800px;
       margin: auto;
-      background: rgba(255, 255, 255, 0.98);
+      background: rgba(255, 255, 255, 0.95);
       backdrop-filter: blur(10px);
-      border-radius: 20px;
+      border-radius: 24px;
       padding: 30px;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-      border: 1px solid rgba(0, 0, 0, 0.2);
+      box-shadow: 0 8px 32px rgba(255, 68, 68, 0.15);
+      border: 2px solid rgba(255, 179, 179, 0.3);
       animation: slideUp 0.6s ease;
     }
 
@@ -53,10 +53,7 @@
 
     h1 {
       text-align: center;
-      background: linear-gradient(135deg, #000000, #333333);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      color: #ff4444;
       margin-bottom: 30px;
       font-size: 32px;
       font-weight: 700;
@@ -65,12 +62,13 @@
 
     .month {
       margin-bottom: 20px;
-      background: linear-gradient(135deg, rgba(240, 240, 240, 0.9), rgba(220, 220, 220, 0.9));
+      background: rgba(255, 250, 250, 0.8);
       border-radius: 16px;
       padding: 18px;
-      border: 1px solid rgba(0, 0, 0, 0.15);
+      border: 2px solid rgba(255, 179, 179, 0.3);
       animation: fadeInUp 0.5s ease forwards;
       opacity: 0;
+      box-shadow: 0 4px 12px rgba(255, 68, 68, 0.08);
     }
 
     .month:nth-child(1) { animation-delay: 0.1s; }
@@ -94,10 +92,7 @@
 
     .month h2 {
       text-align: center;
-      background: linear-gradient(135deg, #000000, #555555);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      color: #ff4444;
       margin-bottom: 15px;
       font-size: 22px;
       font-weight: 700;
@@ -108,19 +103,20 @@
       justify-content: space-between;
       align-items: center;
       padding: 12px 16px;
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(245, 245, 245, 0.9));
+      background: rgba(255, 255, 255, 0.9);
       border-radius: 12px;
       margin-bottom: 8px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+      box-shadow: 0 2px 8px rgba(255, 68, 68, 0.1);
       transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-      border: 1px solid rgba(0, 0, 0, 0.1);
+      border: 1px solid rgba(255, 179, 179, 0.2);
       cursor: pointer;
     }
 
     .birthday:hover {
       transform: translateY(-4px);
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-      background: linear-gradient(135deg, rgba(220, 220, 220, 0.5), rgba(200, 200, 200, 0.5));
+      box-shadow: 0 6px 20px rgba(255, 68, 68, 0.2);
+      background: rgba(255, 250, 250, 1);
+      border-color: rgba(255, 68, 68, 0.3);
     }
 
     .birthday span:first-child::before {
@@ -131,14 +127,11 @@
     .birthday span {
       font-weight: 500;
       font-size: 15px;
-      color: #333;
+      color: #555;
     }
 
     .birthday span:last-child {
-      background: linear-gradient(135deg, #000000, #333333);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      color: #ff4444;
       font-weight: 600;
     }
 
@@ -147,15 +140,15 @@
       text-align: center;
       margin: 30px auto 0;
       padding: 14px 32px;
-      border-radius: 12px;
+      border-radius: 20px;
       border: none;
-      background: linear-gradient(135deg, #1a1a1a, #333333);
+      background: #ff4444;
       color: white;
       text-decoration: none;
       font-weight: 600;
       font-size: 16px;
       transition: all 0.3s ease;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 4px 16px rgba(255, 68, 68, 0.4);
       cursor: pointer;
       width: 100%;
       max-width: 300px;
@@ -163,7 +156,8 @@
 
     .button-home:hover {
       transform: translateY(-3px);
-      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+      box-shadow: 0 8px 24px rgba(255, 68, 68, 0.5);
+      background: #ff5555;
     }
 
     .button-home:active {
@@ -224,20 +218,21 @@
       font-size: 28px;
       font-weight: bold;
       color: white;
-      background: linear-gradient(135deg, #1a1a1a, #333333);
+      background: #ff4444;
       width: 40px; height: 40px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 4px 15px rgba(255, 68, 68, 0.4);
       transition: all 0.3s ease;
       border: 2px solid white;
     }
 
     .close-btn:hover {
       transform: rotate(90deg) scale(1.1);
+      background: #ff5555;
     }
 
     @keyframes fadeIn {
