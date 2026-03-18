@@ -75,6 +75,70 @@
             border-radius: 10px;
         }
 
+        .search-container {
+            display: flex;
+            gap: 10px;
+            max-width: 500px;
+            margin: 40px auto 30px;
+            animation: slideDown 0.6s ease-out 0.2s both;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 14px 20px;
+            font-size: 1rem;
+            border: 2px solid var(--primary);
+            border-radius: 15px;
+            background: var(--white);
+            color: var(--dark);
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .search-input:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(255, 85, 85, 0.1);
+            border-color: var(--primary);
+        }
+
+        .search-input::placeholder {
+            color: #ccc;
+        }
+
+        .search-btn {
+            padding: 14px 30px;
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            border-radius: 15px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .search-btn:hover {
+            background: #FF3333;
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(255, 85, 85, 0.3);
+        }
+
+        .search-btn:active {
+            transform: scale(0.98);
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--gray);
+            font-size: 1.1rem;
+        }
+
+        .term-card.hidden {
+            display: none;
+        }
+
         .dictionary-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -268,6 +332,16 @@
             <h1 class="title">Kamus Dasar Fans JKT48</h1>
             <p class="subtitle">Panduan Istilah untuk Semua JKT48 Lovers</p>
             <div class="divider"></div>
+
+            <div class="search-container">
+                <input 
+                    type="text" 
+                    id="searchInput" 
+                    class="search-input" 
+                    placeholder="Cari istilah..."
+                >
+                <button id="searchBtn" class="search-btn">Cari</button>
+            </div>
         </header>
 
         <div class="dictionary-grid">
@@ -317,5 +391,61 @@
             <p class="footer-text">Tetap mendukung JKT48 dengan penuh cinta</p>
         </footer>
     </div>
+
+    <script>
+        const searchInput = document.getElementById('searchInput');
+        const searchBtn = document.getElementById('searchBtn');
+        const termCards = document.querySelectorAll('.term-card');
+        const dictionaryGrid = document.querySelector('.dictionary-grid');
+
+        function performSearch() {
+            const searchTerm = searchInput.value.toLowerCase().trim();
+            let visibleCount = 0;
+
+            termCards.forEach(card => {
+                const termName = card.querySelector('.term-name').textContent.toLowerCase();
+                const termDesc = card.querySelector('.term-description').textContent.toLowerCase();
+                const badge = card.querySelector('.badge').textContent.toLowerCase();
+
+                if (termName.includes(searchTerm) || termDesc.includes(searchTerm) || badge.includes(searchTerm)) {
+                    card.classList.remove('hidden');
+                    visibleCount++;
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+
+            if (searchTerm === '') {
+                termCards.forEach(card => card.classList.remove('hidden'));
+            }
+
+            if (visibleCount === 0 && searchTerm !== '') {
+                if (!document.querySelector('.no-results')) {
+                    const noResults = document.createElement('div');
+                    noResults.className = 'no-results';
+                    noResults.textContent = 'Tidak ada hasil pencarian untuk "' + searchTerm + '"';
+                    dictionaryGrid.appendChild(noResults);
+                }
+            } else {
+                const noResults = document.querySelector('.no-results');
+                if (noResults) noResults.remove();
+            }
+        }
+
+        searchBtn.addEventListener('click', performSearch);
+        searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                performSearch();
+            }
+        });
+
+        searchInput.addEventListener('input', () => {
+            if (searchInput.value === '') {
+                termCards.forEach(card => card.classList.remove('hidden'));
+                const noResults = document.querySelector('.no-results');
+                if (noResults) noResults.remove();
+            }
+        });
+    </script>
 </body>
 </html>
