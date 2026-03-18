@@ -15,76 +15,31 @@
       box-sizing: border-box;
     }
 
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: #0a0a0a;
-      color: #f0f0f0;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: start;
-      padding: 40px 20px;
-      position: relative;
-      overflow-x: hidden;
-    }
-
-    /*  Background bintang bergerak minimalis */
-    .stars {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    .star {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      background: #f0f0f0;
-      border-radius: 50%;
-      opacity: 0.6;
-    }
-
-    @keyframes twinkle {
-      0%, 100% { opacity: 0.3; }
-      50% { opacity: 0.8; }
-    }
-
-    @keyframes float-up {
-      0% {
+    @keyframes float-bounce {
+      0%, 100% {
         transform: translateY(0px);
-        opacity: 0.6;
       }
-      100% {
-        transform: translateY(-100px);
-        opacity: 0;
+      50% {
+        transform: translateY(-20px);
       }
     }
 
-    .star.twinkle {
-      animation: twinkle 3s ease-in-out infinite;
+    @keyframes spin-slow {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
     }
 
-    .star.float {
-      animation: float-up 8s ease-in infinite;
-    }
-    /*  End background stars */
-
-    .container {
-      width: 100%;
-      max-width: 480px;
-      background: #1a1a1a;
-      border-radius: 16px;
-      padding: 40px 25px;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
-      border: 1px solid #333;
-      text-align: center;
-      position: relative;
-      z-index: 1;
-      animation: slideUp 0.6s ease-out;
+    @keyframes pulse-scale {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.1);
+      }
     }
 
     @keyframes slideUp {
@@ -98,80 +53,224 @@
       }
     }
 
-    /*  Profile image styling minimalis */
-    .profile-image {
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #f8f5f5 0%, #ffe8f0 50%, #f8f5f5 100%);
+      color: #2d2d2d;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 40px 20px;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Decorative background elements */
+    .decorative-bg {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    /* Animated star bursts */
+    .star-burst {
+      position: absolute;
+      opacity: 0.7;
+    }
+
+    .star-burst.blue {
+      top: 5%;
+      left: 5%;
+      width: 120px;
+      height: 120px;
+      color: #0099ff;
+      animation: spin-slow 20s linear infinite;
+    }
+
+    .star-burst.green {
+      top: 15%;
+      right: 10%;
+      width: 100px;
+      height: 100px;
+      color: #00dd44;
+      animation: spin-slow 25s linear infinite reverse;
+    }
+
+    .star-burst.pink {
+      bottom: 15%;
+      left: 8%;
       width: 140px;
       height: 140px;
-      border-radius: 50%;
-      border: 3px solid #666;
+      color: #ff1493;
+      animation: spin-slow 22s linear infinite;
+    }
+
+    /* Floating stars */
+    .float-star {
+      position: absolute;
+      animation: float-bounce 3s ease-in-out infinite;
+    }
+
+    .float-star.yellow-1 {
+      top: 25%;
+      right: 15%;
+      animation-delay: 0s;
+      color: #ffdd00;
+      font-size: 32px;
+    }
+
+    .float-star.yellow-2 {
+      bottom: 30%;
+      right: 5%;
+      animation-delay: 1s;
+      color: #ffdd00;
+      font-size: 24px;
+    }
+
+    .float-star.white-1 {
+      top: 35%;
+      left: 12%;
+      animation-delay: 0.5s;
+      color: #ffffff;
+      font-size: 20px;
+      opacity: 0.8;
+    }
+
+    .float-star.white-2 {
+      bottom: 20%;
+      right: 25%;
+      animation-delay: 1.5s;
+      color: #ffffff;
+      font-size: 16px;
+      opacity: 0.7;
+    }
+
+    /* SVG styles for star bursts */
+    svg {
+      display: block;
+    }
+
+    svg circle {
+      fill: currentColor;
+    }
+
+    svg rect {
+      fill: currentColor;
+    }
+
+    svg line {
+      stroke: currentColor;
+      stroke-linecap: round;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 500px;
+      background: linear-gradient(135deg, #ffffff 0%, #fef5f8 100%);
+      border-radius: 24px;
+      padding: 45px 30px;
+      box-shadow: 0 20px 60px rgba(255, 68, 68, 0.2);
+      border: 2px solid rgba(255, 68, 68, 0.1);
+      text-align: center;
+      position: relative;
+      z-index: 1;
+      animation: slideUp 0.6s ease-out;
+    }
+
+    /* Profile image styling */
+    .profile-image {
+      width: 150px;
+      height: 150px;
+      border-radius: 20px;
+      border: 4px solid #ff4444;
       object-fit: cover;
-      margin-bottom: 25px;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+      margin: 0 auto 30px;
+      box-shadow: 0 12px 28px rgba(255, 68, 68, 0.3);
       transition: transform 0.3s ease;
+      display: block;
     }
 
     .profile-image:hover {
-      transform: scale(1.05);
+      transform: scale(1.08) rotate(3deg);
     }
-    /*  End profile image */
 
     h1 {
-      font-size: 2.2rem;
-      margin-bottom: 8px;
-      color: #f0f0f0;
+      font-size: 2.4rem;
+      margin-bottom: 10px;
+      color: #ff4444;
       font-weight: 700;
       letter-spacing: -0.5px;
     }
 
     h2 {
-      font-size: 1.05rem;
-      font-weight: 400;
-      margin-bottom: 35px;
-      color: #999;
-      letter-spacing: 0.5px;
+      font-size: 1.1rem;
+      font-weight: 500;
+      margin-bottom: 40px;
+      color: #666;
+      letter-spacing: 0.3px;
     }
 
     h3 {
-      font-size: 0.9rem;
-      margin-top: 35px;
-      margin-bottom: 15px;
-      color: #ccc;
+      font-size: 0.95rem;
+      margin-top: 40px;
+      margin-bottom: 18px;
+      color: #ff4444;
       text-transform: uppercase;
-      letter-spacing: 1.2px;
-      font-weight: 600;
+      letter-spacing: 1.5px;
+      font-weight: 700;
     }
 
-    /*  Button styling minimalis */
+    /* Button styling */
     .button {
       display: block;
       width: 100%;
-      background: #333;
-      color: #f0f0f0;
-      font-weight: 500;
+      background: linear-gradient(135deg, #ff4444 0%, #ff6b6b 100%);
+      color: #ffffff;
+      font-weight: 600;
       text-decoration: none;
-      border: 1px solid #555;
-      border-radius: 8px;
-      padding: 14px 20px;
-      margin: 10px 0;
+      border: none;
+      border-radius: 12px;
+      padding: 16px 24px;
+      margin: 12px 0;
       font-size: 0.95rem;
       transition: all 0.3s ease;
       position: relative;
       overflow: hidden;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(255, 68, 68, 0.25);
+    }
+
+    .button::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.2);
+      transition: left 0.3s ease;
     }
 
     .button:hover {
-      background: #444;
-      border-color: #666;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: 0 12px 32px rgba(255, 68, 68, 0.35);
+    }
+
+    .button:hover::before {
+      left: 100%;
     }
 
     .button:active {
-      transform: translateY(0px);
+      transform: translateY(-1px) scale(0.98);
     }
-    /*  End button styling */
 
-    /*  Popup styling minimalis */
+    /* Popup styling */
     .popup-container {
       display: none;
       position: fixed;
@@ -179,7 +278,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.85);
+      background: rgba(255, 68, 68, 0.9);
       justify-content: center;
       align-items: center;
       z-index: 9999;
@@ -195,10 +294,10 @@
       position: relative;
       background: transparent;
       padding: 0;
-      border-radius: 12px;
+      border-radius: 20px;
       text-align: center;
       max-width: 90%;
-      width: 320px;
+      width: 360px;
       animation: popIn 0.4s ease;
       overflow: hidden;
     }
@@ -216,71 +315,136 @@
 
     .popup-content img {
       width: 100%;
-      border-radius: 12px;
+      border-radius: 20px;
       display: block;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7);
+      box-shadow: 0 16px 48px rgba(255, 68, 68, 0.4);
     }
 
-    /*  Close button styling minimalis */
+    /* Close button styling */
     .close-btn {
       position: absolute;
-      top: -15px;
-      right: -15px;
-      font-size: 28px;
+      top: -18px;
+      right: -18px;
+      font-size: 32px;
       font-weight: bold;
-      color: #f0f0f0;
-      background: #333;
-      width: 40px;
-      height: 40px;
+      color: #ffffff;
+      background: linear-gradient(135deg, #ff4444 0%, #ff6b6b 100%);
+      width: 50px;
+      height: 50px;
       border-radius: 50%;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
       transition: all 0.3s ease;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-      border: 1px solid #555;
+      box-shadow: 0 8px 20px rgba(255, 68, 68, 0.35);
+      border: none;
     }
 
     .close-btn:hover {
-      background: #444;
-      transform: rotate(90deg) scale(1.1);
-      border-color: #666;
+      transform: rotate(90deg) scale(1.15);
+      box-shadow: 0 12px 32px rgba(255, 68, 68, 0.4);
     }
-    /*  End close button */
 
     @media (min-width: 768px) {
       .popup-content {
-        width: 400px;
+        width: 420px;
       }
     }
 
     @media (max-width: 480px) {
       h1 {
-        font-size: 1.8rem;
+        font-size: 2rem;
       }
 
       .container {
-        padding: 30px 20px;
+        padding: 35px 20px;
       }
 
       .button {
         font-size: 0.9rem;
-        padding: 12px 18px;
+        padding: 14px 20px;
+      }
+
+      .profile-image {
+        width: 120px;
+        height: 120px;
+      }
+
+      .star-burst.blue {
+        width: 80px;
+        height: 80px;
+      }
+
+      .star-burst.green {
+        width: 70px;
+        height: 70px;
+      }
+
+      .star-burst.pink {
+        width: 100px;
+        height: 100px;
       }
     }
   </style>
 </head>
 
 <body>
-  <!--  Background bintang -->
-  <div class="stars" id="starsContainer"></div>
-  <!--  End stars -->
+  <!-- Decorative background elements -->
+  <div class="decorative-bg">
+    <!-- Blue star burst (top left) -->
+    <svg class="star-burst blue" viewBox="0 0 100 100" fill="currentColor">
+      <circle cx="50" cy="50" r="8" />
+      <rect x="46" y="10" width="8" height="25" transform="rotate(0 50 50)" rx="4" />
+      <rect x="46" y="10" width="8" height="25" transform="rotate(45 50 50)" rx="4" />
+      <rect x="46" y="10" width="8" height="25" transform="rotate(90 50 50)" rx="4" />
+      <rect x="46" y="10" width="8" height="25" transform="rotate(135 50 50)" rx="4" />
+      <rect x="46" y="10" width="8" height="25" transform="rotate(180 50 50)" rx="4" />
+      <rect x="46" y="10" width="8" height="25" transform="rotate(225 50 50)" rx="4" />
+      <rect x="46" y="10" width="8" height="25" transform="rotate(270 50 50)" rx="4" />
+      <rect x="46" y="10" width="8" height="25" transform="rotate(315 50 50)" rx="4" />
+    </svg>
+
+    <!-- Green star burst (top right) -->
+    <svg class="star-burst green" viewBox="0 0 100 100" fill="currentColor">
+      <circle cx="50" cy="50" r="6" />
+      <rect x="46" y="8" width="8" height="28" transform="rotate(0 50 50)" rx="4" />
+      <rect x="46" y="8" width="8" height="28" transform="rotate(45 50 50)" rx="4" />
+      <rect x="46" y="8" width="8" height="28" transform="rotate(90 50 50)" rx="4" />
+      <rect x="46" y="8" width="8" height="28" transform="rotate(135 50 50)" rx="4" />
+      <rect x="46" y="8" width="8" height="28" transform="rotate(180 50 50)" rx="4" />
+      <rect x="46" y="8" width="8" height="28" transform="rotate(225 50 50)" rx="4" />
+      <rect x="46" y="8" width="8" height="28" transform="rotate(270 50 50)" rx="4" />
+      <rect x="46" y="8" width="8" height="28" transform="rotate(315 50 50)" rx="4" />
+    </svg>
+
+    <!-- Pink star burst (bottom left) -->
+    <svg class="star-burst pink" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2">
+      <line x1="50" y1="10" x2="50" y2="40" transform="rotate(0 50 50)" stroke-linecap="round" />
+      <line x1="50" y1="10" x2="50" y2="40" transform="rotate(30 50 50)" stroke-linecap="round" />
+      <line x1="50" y1="10" x2="50" y2="40" transform="rotate(60 50 50)" stroke-linecap="round" />
+      <line x1="50" y1="10" x2="50" y2="40" transform="rotate(90 50 50)" stroke-linecap="round" />
+      <line x1="50" y1="10" x2="50" y2="40" transform="rotate(120 50 50)" stroke-linecap="round" />
+      <line x1="50" y1="10" x2="50" y2="40" transform="rotate(150 50 50)" stroke-linecap="round" />
+      <line x1="50" y1="10" x2="50" y2="40" transform="rotate(180 50 50)" stroke-linecap="round" />
+      <line x1="50" y1="10" x2="50" y2="40" transform="rotate(210 50 50)" stroke-linecap="round" />
+      <line x1="50" y1="10" x2="50" y2="40" transform="rotate(240 50 50)" stroke-linecap="round" />
+      <line x1="50" y1="10" x2="50" y2="40" transform="rotate(270 50 50)" stroke-linecap="round" />
+      <line x1="50" y1="10" x2="50" y2="40" transform="rotate(300 50 50)" stroke-linecap="round" />
+      <line x1="50" y1="10" x2="50" y2="40" transform="rotate(330 50 50)" stroke-linecap="round" />
+    </svg>
+
+    <!-- Floating stars -->
+    <div class="float-star yellow-1">✨</div>
+    <div class="float-star yellow-2">⭐</div>
+    <div class="float-star white-1">✨</div>
+    <div class="float-star white-2">✨</div>
+  </div>
 
   <!-- Popup Iklan -->
   <div class="popup-container" id="popup">
     <div class="popup-content">
-      <span class="close-btn" onclick="closePopup()">×</span>
+      <button class="close-btn" onclick="closePopup()">×</button>
       <a href="https://shopee.co.id/product/516305057/20493183995" target="_blank">
         <img src="iklan.png" alt="Iklan JKT48" />
       </a>
@@ -289,7 +453,7 @@
 
   <!-- Konten Utama -->
   <div class="container">
-    <img class="profile-image" src="beritaprofil.jpg" alt="Profile Image" />
+    <img class="profile-image" src="beritav2.jpg" alt="Profile Image" />
     <h1>Berita JKT48</h1>
     <h2>Informasi & Berita Tentang JKT48</h2>
 
@@ -318,34 +482,7 @@
     <a href="https://whatsapp.com/channel/0029Vae5cgVBqbr0mRzNvA3c" target="_blank" class="button">WhatsApp Berita JKT48</a>
   </div>
 
-  <!-- Script untuk Popup dan Background Stars -->
   <script>
-    //  Generate background stars animation
-    function generateStars() {
-      const starsContainer = document.getElementById('starsContainer');
-      
-      // Generate random stars
-      for (let i = 0; i < 100; i++) {
-        const star = document.createElement('div');
-        star.className = 'star';
-        star.style.left = Math.random() * 100 + '%';
-        star.style.top = Math.random() * 100 + '%';
-        
-        if (Math.random() > 0.5) {
-          star.classList.add('twinkle');
-          star.style.animationDelay = Math.random() * 3 + 's';
-        } else {
-          star.classList.add('float');
-          star.style.animationDelay = Math.random() * 8 + 's';
-        }
-        
-        starsContainer.appendChild(star);
-      }
-    }
-
-    generateStars();
-    //  End stars generation
-
     // Tampilkan popup setelah 1 detik
     setTimeout(() => {
       document.getElementById("popup").style.display = "flex";
