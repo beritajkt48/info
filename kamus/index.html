@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kamus Dasar Fans JKT48</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #FF5555;
+            --secondary: #FF5555;
+            --accent: #FF5555;
+            --dark: #333333;
+            --light: #F5E6E8;
+            --white: #FFFFFF;
+            --gray: #999999;
+            --radius: 20px;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            animation: slideDown 0.6s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .title {
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 10px;
+            color: var(--primary);
+            letter-spacing: -2px;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: var(--gray);
+            font-weight: 500;
+        }
+
+        .divider {
+            height: 4px;
+            background: var(--primary);
+            width: 200px;
+            margin: 20px auto;
+            border-radius: 10px;
+        }
+
+        .search-container {
+            display: flex;
+            gap: 10px;
+            max-width: 500px;
+            margin: 40px auto 30px;
+            animation: slideDown 0.6s ease-out 0.2s both;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 14px 20px;
+            font-size: 1rem;
+            border: 2px solid var(--primary);
+            border-radius: 15px;
+            background: var(--white);
+            color: var(--dark);
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .search-input:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(255, 85, 85, 0.1);
+            border-color: var(--primary);
+        }
+
+        .search-input::placeholder {
+            color: #ccc;
+        }
+
+        .search-btn {
+            padding: 14px 30px;
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            border-radius: 15px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .search-btn:hover {
+            background: #FF3333;
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(255, 85, 85, 0.3);
+        }
+
+        .search-btn:active {
+            transform: scale(0.98);
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--gray);
+            font-size: 1.1rem;
+        }
+
+        .term-card.hidden {
+            display: none;
+        }
+
+        .dictionary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .term-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 30px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 0.6s ease-out both;
+        }
+
+        .term-card:nth-child(1) { animation-delay: 0.1s; }
+        .term-card:nth-child(2) { animation-delay: 0.2s; }
+        .term-card:nth-child(3) { animation-delay: 0.3s; }
+        .term-card:nth-child(4) { animation-delay: 0.4s; }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .term-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: var(--primary);
+        }
+
+        .term-card:nth-child(2)::before {
+            background: var(--primary);
+        }
+
+        .term-card:nth-child(3)::before {
+            background: var(--primary);
+        }
+
+        .term-card:nth-child(4)::before {
+            background: var(--primary);
+        }
+
+        .term-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .term-number {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background: var(--white);
+            color: var(--primary);
+            border: 3px solid var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 15px rgba(255, 85, 85, 0.2);
+        }
+
+        .term-name {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 12px;
+            color: var(--primary);
+            letter-spacing: -0.5px;
+        }
+
+        .term-card:nth-child(2) .term-name {
+            color: var(--primary);
+        }
+
+        .term-card:nth-child(3) .term-name {
+            color: var(--primary);
+        }
+
+        .term-card:nth-child(4) .term-name {
+            color: var(--primary);
+        }
+
+        .term-description {
+            font-size: 1rem;
+            color: var(--gray);
+            line-height: 1.8;
+            font-weight: 500;
+        }
+
+        .emoji-icon {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 6px 14px;
+            background: var(--light);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-top: 15px;
+            color: var(--primary);
+        }
+
+        .term-card:nth-child(2) .badge {
+            color: var(--primary);
+        }
+
+        .term-card:nth-child(3) .badge {
+            color: var(--primary);
+        }
+
+        .term-card:nth-child(4) .badge {
+            color: var(--primary);
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 30px;
+            background: var(--white);
+            border-radius: var(--radius);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .footer-text {
+            color: var(--gray);
+            font-size: 1rem;
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .title {
+                font-size: 2.5rem;
+            }
+
+            .subtitle {
+                font-size: 1rem;
+            }
+
+            .dictionary-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .term-card {
+                padding: 25px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 15px;
+            }
+
+            .title {
+                font-size: 2rem;
+            }
+
+            .term-card {
+                padding: 20px;
+            }
+
+            .term-name {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 class="title">Kamus Dasar Fans JKT48</h1>
+            <p class="subtitle">Panduan Istilah di JKT48</p>
+            <div class="divider"></div>
+
+            <div class="search-container">
+                <input 
+                    type="text" 
+                    id="searchInput" 
+                    class="search-input" 
+                    placeholder="Cari istilah..."
+                >
+                <button id="searchBtn" class="search-btn">Cari</button>
+            </div>
+        </header>
+
+        <div class="dictionary-grid">
+            <!-- Card 1: Isshou -->
+            <div class="term-card">
+                <div class="term-number">1</div>
+                <h2 class="term-name">Isshou</h2>
+                <p class="term-description">
+                    Adalah kostum atau pakaian panggung khusus yang dikenakan member saat tampil di atas panggung JKT48.
+                </p>
+                <span class="badge">isshou, ishou, isou</span>
+            </div>
+
+            <!-- Card 2: Seifuku -->
+            <div class="term-card">
+                <div class="term-number">2</div>
+                <h2 class="term-name">Seifuku</h2>
+                <p class="term-description">
+                    Adalah seragam atau kostum khas yang dikenakan oleh anggota JKT48, sering kali bergaya sekolah Jepang atau tema spesifik sesuai lagu/single.
+                </p>
+                <span class="badge">seifuku, safuku</span>
+            </div>
+
+            <!-- Card 3: Roulette -->
+            <div class="term-card">
+                <div class="term-number">3</div>
+                <h2 class="term-name">Roulette</h2>
+                <p class="term-description">
+                    Adalah sistem undian atau mekanisme pembelian tiket untuk sesi foto berdua (2-shot) antara penggemar dan member JKT48 tertentu, baik secara langsung di teater.
+                </p>
+                <span class="badge">roulete, roulette, rulet, roulet</span>
+            </div>
+
+            <!-- Card 4: 2 Shot JKT48 -->
+            <div class="term-card">
+                <div class="term-number">4</div>
+                <h2 class="term-name">2 Shot JKT48</h2>
+                <p class="term-description">
+                    Adalah sesi foto eksklusif berdua antara penggemar dan member JKT48 pilihan menggunakan kamera profesional (biasanya Instax atau kamera jepret langsung), sering kali diadakan dalam acara Personal Meet and Greet atau event spesial.
+                </p>
+                <span class="badge">2-shot, 2s, 2shot, two shot</span>
+            </div>
+
+            <!-- Card 4: 2 Shot JKT48 -->
+            <div class="term-card">
+                <div class="term-number">5</div>
+                <h2 class="term-name">Meet & Greet</h2>
+                <p class="term-description">
+                    Adalah Acara resmi di mana penggemar dapat berinteraksi langsung dengan member JKT48, seperti meet and greet, sesi 2-shot, dan mini live performance.
+                </p>
+                <span class="badge">mng, meet and greet</span>
+            </div>
+
+            <!-- Card 4: 2 Shot JKT48 -->
+            <div class="term-card">
+                <div class="term-number">6</div>
+                <h2 class="term-name">Seitansai</h2>
+                <p class="term-description">
+                     adalah pertunjukan teater khusus untuk merayakan ulang tahun member JKT48.
+                </p>
+                <span class="badge">sts, seitansai, show ulang tahun</span>
+            </div>
+
+             <!-- Card 4: 2 Shot JKT48 -->
+            <div class="term-card">
+                <div class="term-number">7</div>
+                <h2 class="term-name">Chekicha</h2>
+                <p class="term-description">
+                     adalah sesi foto seperti 2-shot tetapi secara online malalui aplikasi Chekicha.
+                </p>
+                <span class="badge">ceki, cheki, checkicha</span>
+            </div>
+            
+            <!-- Card 4: 2 Shot JKT48 -->
+            <div class="term-card">
+                <div class="term-number">8</div>
+                <h2 class="term-name">Setlist</h2>
+                <p class="term-description">
+                     adalah rangkaian daftar lagu (biasanya 10-15 lagu) yang dibawakan secara berurutan oleh member dalam satu pertunjukan teater, mencakup lagu pembuka, unit song, hingga encore.
+                </p>
+                <span class="badge">setlist, album, theater</span>
+            </div>
+
+            <!-- Card 4: 2 Shot JKT48 -->
+            <div class="term-card">
+                <div class="term-number">9</div>
+                <h2 class="term-name">Shonichi</h2>
+                <p class="term-description">
+                     adalah pertunjukan perdana dari sebuah setlist lagu baru yang dibawakan oleh para member di teater maupun show setlist baru.
+                </p>
+                <span class="badge">shonichi, sonichi</span>
+            </div>
+
+             <!-- Card 4: 2 Shot JKT48 -->
+            <div class="term-card">
+                <div class="term-number">10</div>
+                <h2 class="term-name">Last Show</h2>
+                <p class="term-description">
+                     adalah pertunjukan teater terakhir dari member yang sudah mengumumkan kelulusan nya.
+                </p>
+                <span class="badge">ls. last show</span>
+            </div>
+
+             <!-- Card 4: 2 Shot JKT48 -->
+            <div class="term-card">
+                <div class="term-number">11</div>
+                <h2 class="term-name">Senshuuraku</h2>
+                <p class="term-description">
+                     adalah pertunjukan teater terakhir dari sebuah setlist (rangkaian lagu) tertentu yang dibawakan oleh member JKT48, menandai berakhirnya masa bawakan setlist tersebut sebelum diganti atau dipensiunkan.
+                </p>
+                <span class="badge">sensu, senshu, senhuraku</span>
+            </div>
+
+             <!-- Card 4: 2 Shot JKT48 -->
+            <div class="term-card">
+                <div class="term-number">12</div>
+                <h2 class="term-name">Kageana</h2>
+                <p class="term-description">
+                     adalah pengumuman suara yang dibacakan oleh member tertentu melalui pengeras suara sebelum konser atau pertunjukan teater dimulai.
+                </p>
+                <span class="badge">kagena, kagena</span>
+            </div>
+
+            <!-- Card 4: 2 Shot JKT48 -->
+            <div class="term-card">
+                <div class="term-number">13</div>
+                <h2 class="term-name">Shimeana</h2>
+                <p class="term-description">
+                     adalah sesi pembacaan surat atau pengumuman penutup (closing statement) yang biasanya disampaikan oleh member di akhir konser, pertunjukan teater, atau momen penting.
+                </p>
+                <span class="badge">kagena, kagena</span>
+            </div>
+
+            
+            
+        </div>
+
+        <footer>
+            <p class="footer-text">Semoga kamus ini membantu Anda memahami dunia JKT48 dengan lebih baik!</p>
+            <p class="footer-text">Tetap mendukung JKT48</p>
+        </footer>
+    </div>
+
+    <script>
+        const searchInput = document.getElementById('searchInput');
+        const searchBtn = document.getElementById('searchBtn');
+        const termCards = document.querySelectorAll('.term-card');
+        const dictionaryGrid = document.querySelector('.dictionary-grid');
+
+        function performSearch() {
+            const searchTerm = searchInput.value.toLowerCase().trim();
+            let visibleCount = 0;
+
+            termCards.forEach(card => {
+                const termName = card.querySelector('.term-name').textContent.toLowerCase();
+                const termDesc = card.querySelector('.term-description').textContent.toLowerCase();
+                const badge = card.querySelector('.badge').textContent.toLowerCase();
+
+                if (termName.includes(searchTerm) || termDesc.includes(searchTerm) || badge.includes(searchTerm)) {
+                    card.classList.remove('hidden');
+                    visibleCount++;
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+
+            if (searchTerm === '') {
+                termCards.forEach(card => card.classList.remove('hidden'));
+            }
+
+            if (visibleCount === 0 && searchTerm !== '') {
+                if (!document.querySelector('.no-results')) {
+                    const noResults = document.createElement('div');
+                    noResults.className = 'no-results';
+                    noResults.textContent = 'Tidak ada hasil pencarian untuk "' + searchTerm + '"';
+                    dictionaryGrid.appendChild(noResults);
+                }
+            } else {
+                const noResults = document.querySelector('.no-results');
+                if (noResults) noResults.remove();
+            }
+        }
+
+        searchBtn.addEventListener('click', performSearch);
+        searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                performSearch();
+            }
+        });
+
+        searchInput.addEventListener('input', () => {
+            if (searchInput.value === '') {
+                termCards.forEach(card => card.classList.remove('hidden'));
+                const noResults = document.querySelector('.no-results');
+                if (noResults) noResults.remove();
+            }
+        });
+    </script>
+</body>
+</html>
