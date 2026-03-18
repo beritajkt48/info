@@ -1,689 +1,394 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JKT48 Event Schedule</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ulang Tahun Member JKT48</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #fff5f7 0%, #ffe8f0 100%);
-            color: #2d2d2d;
-            overflow-x: hidden;
-            position: relative;
-        }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #fff5f7 0%, #ffe8f0 100%);
+      background-size: 400% 400%;
+      animation: gradientShift 15s ease infinite;
+      min-height: 100vh;
+      padding: 20px;
+      color: #2d2d2d;
+    }
 
-        /* Animated Stars Background */
-        .stars-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-            pointer-events: none;
-        }
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
 
-        .star {
-            position: absolute;
-            background: white;
-            border-radius: 50%;
-            animation: twinkle 3s infinite;
-        }
+    .container {
+      max-width: 800px;
+      margin: auto;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-radius: 24px;
+      padding: 30px;
+      box-shadow: 0 8px 32px rgba(255, 68, 68, 0.15);
+      border: 2px solid rgba(255, 179, 179, 0.3);
+      animation: slideUp 0.6s ease;
+    }
 
-        @keyframes twinkle {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 1; }
-        }
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
-        @keyframes float {
-            0% { transform: translateY(0px) translateX(0px); }
-            100% { transform: translateY(-100vh) translateX(20px); }
-        }
+    h1 {
+      text-align: center;
+      color: #ff4444;
+      margin-bottom: 30px;
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
 
-        .star-moving {
-            animation: twinkle 3s infinite, float 20s linear infinite;
-        }
+    .month {
+      margin-bottom: 20px;
+      background: rgba(255, 250, 250, 0.8);
+      border-radius: 16px;
+      padding: 18px;
+      border: 2px solid rgba(255, 179, 179, 0.3);
+      animation: fadeInUp 0.5s ease forwards;
+      opacity: 0;
+      box-shadow: 0 4px 12px rgba(255, 68, 68, 0.08);
+    }
 
-        /* Main Content */
-        .container {
-            position: relative;
-            z-index: 2;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
+    .month:nth-child(1) { animation-delay: 0.1s; }
+    .month:nth-child(2) { animation-delay: 0.15s; }
+    .month:nth-child(3) { animation-delay: 0.2s; }
+    .month:nth-child(4) { animation-delay: 0.25s; }
+    .month:nth-child(5) { animation-delay: 0.3s; }
+    .month:nth-child(6) { animation-delay: 0.35s; }
+    .month:nth-child(7) { animation-delay: 0.4s; }
+    .month:nth-child(8) { animation-delay: 0.45s; }
+    .month:nth-child(9) { animation-delay: 0.5s; }
+    .month:nth-child(10) { animation-delay: 0.55s; }
+    .month:nth-child(11) { animation-delay: 0.6s; }
+    .month:nth-child(12) { animation-delay: 0.65s; }
 
-        .header {
-            text-align: center;
-            margin-bottom: 50px;
-            animation: fadeIn 0.8s ease-in;
-        }
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+      }
+    }
 
-        .header h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: #ff4444;
-        }
+    .month h2 {
+      text-align: center;
+      color: #ff4444;
+      margin-bottom: 15px;
+      font-size: 22px;
+      font-weight: 700;
+    }
 
-        .header p {
-            color: #d9678f;
-            font-size: 1rem;
-            font-weight: 300;
-        }
+    .birthday {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 16px;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 12px;
+      margin-bottom: 8px;
+      box-shadow: 0 2px 8px rgba(255, 68, 68, 0.1);
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      border: 1px solid rgba(255, 179, 179, 0.2);
+      cursor: pointer;
+    }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+    .birthday:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 6px 20px rgba(255, 68, 68, 0.2);
+      background: rgba(255, 250, 250, 1);
+      border-color: rgba(255, 68, 68, 0.3);
+    }
 
-        /* Main Wrapper */
-        .schedule-wrapper {
-            display: grid;
-            grid-template-columns: 300px 1fr;
-            gap: 40px;
-            align-items: start;
-        }
+    .birthday span:first-child::before {
+      content: '🎂 ';
+      margin-right: 4px;
+    }
 
-        /* Month Selector */
-        .month-selector {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
+    .birthday span {
+      font-weight: 500;
+      font-size: 15px;
+      color: #555;
+    }
 
-        .month-selector h2 {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 15px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            padding-bottom: 10px;
-            border-bottom: 3px solid #ff4444;
-            color: #ff4444;
-        }
+    .birthday span:last-child {
+      color: #ff4444;
+      font-weight: 600;
+    }
 
-        .month-btn {
-            padding: 12px 16px;
-            border: 2px solid #ffb3b3;
-            background: rgba(255, 255, 255, 0.6);
-            color: #ff4444;
-            cursor: pointer;
-            border-radius: 20px;
-            font-size: 0.95rem;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            text-transform: capitalize;
-        }
+    .button-home {
+      display: inline-block;
+      text-align: center;
+      margin: 30px auto 0;
+      padding: 14px 32px;
+      border-radius: 20px;
+      border: none;
+      background: #ff4444;
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 16px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 16px rgba(255, 68, 68, 0.4);
+      cursor: pointer;
+      width: 100%;
+      max-width: 300px;
+    }
 
-        .month-btn:hover {
-            border-color: #ff4444;
-            background: rgba(255, 68, 68, 0.1);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(255, 68, 68, 0.2);
-        }
+    .button-home:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(255, 68, 68, 0.5);
+      background: #ff5555;
+    }
 
-        .month-btn.active {
-            background: #ff4444;
-            color: white;
-            border-color: #ff4444;
-            box-shadow: 0 4px 16px rgba(255, 68, 68, 0.4);
-        }
+    .button-home:active {
+      transform: translateY(-1px);
+    }
 
-        /* Event List */
-        .event-list {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
+    .button-wrapper {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+    }
 
-        .event-list h2 {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 15px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            padding-bottom: 10px;
-            border-bottom: 3px solid #ff4444;
-            color: #ff4444;
-        }
+    /* Popup iklan */
+    .popup-container {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      animation: fadeIn 0.3s ease;
+      backdrop-filter: blur(4px);
+    }
 
-        .event-item {
-            background: rgba(255, 255, 255, 0.7);
-            border-left: 4px solid #ffb3b3;
-            padding: 16px;
-            border-radius: 12px;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            box-shadow: 0 2px 8px rgba(255, 68, 68, 0.1);
-        }
+    .popup-content {
+      position: relative;
+      background: transparent;
+      border-radius: 20px;
+      max-width: 90%;
+      width: 320px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      animation: popIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
 
-        .event-item:hover {
-            background: rgba(255, 255, 255, 0.95);
-            border-left-color: #ff4444;
-            transform: translateX(5px);
-            box-shadow: 0 4px 16px rgba(255, 68, 68, 0.2);
-        }
+    @keyframes popIn {
+      0% {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
 
-        .event-date {
-            font-size: 0.85rem;
-            color: #d9678f;
-            font-weight: 600;
-            text-transform: uppercase;
-            margin-bottom: 5px;
-        }
+    .popup-content img {
+      width: 100%;
+      border-radius: 20px;
+      display: block;
+      border: 3px solid rgba(255, 0, 110, 0.3);
+    }
 
-        .event-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: #ff4444;
-        }
+    .close-btn {
+      position: absolute;
+      top: -15px; right: -15px;
+      font-size: 28px;
+      font-weight: bold;
+      color: white;
+      background: #ff4444;
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(255, 68, 68, 0.4);
+      transition: all 0.3s ease;
+      border: 2px solid white;
+    }
 
-        .event-location {
-            font-size: 0.9rem;
-            color: #555;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            margin-bottom: 10px;
-        }
+    .close-btn:hover {
+      transform: rotate(90deg) scale(1.1);
+      background: #ff5555;
+    }
 
-        .event-location::before {
-            content: "📍";
-        }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
 
-        /* Event Tags */
-        .event-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-
-        .event-tag {
-            display: inline-block;
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            font-weight: bold;
-        }
-
-        .tag-jakarta {
-            background: #ff4444;
-            color: white;
-        }
-
-        .tag-luar-kota {
-            background: #22c55e;
-            color: white;
-        }
-
-        .tag-gagal {
-            background: #0ea5e9;
-            color: white;
-        }
-
-        /* Event Statistics */
-        .event-stats {
-            background: rgba(255, 255, 255, 0.8);
-            border: 2px solid #ffb3b3;
-            padding: 20px;
-            border-radius: 16px;
-            margin-top: 20px;
-            box-shadow: 0 4px 12px rgba(255, 68, 68, 0.1);
-        }
-
-        .event-stats h3 {
-            font-size: 1rem;
-            font-weight: 600;
-            margin-bottom: 15px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: #ff4444;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 12px;
-        }
-
-        .stat-item {
-            background: rgba(255, 250, 250, 0.9);
-            padding: 12px;
-            border-radius: 12px;
-            text-align: center;
-            border-left: 3px solid #ffb3b3;
-            transition: all 0.3s ease;
-        }
-
-        .stat-item:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(255, 68, 68, 0.15);
-        }
-
-        .stat-item.total {
-            border-left-color: #ff4444;
-        }
-
-        .stat-item.jakarta {
-            border-left-color: #ff4444;
-        }
-
-        .stat-item.luar-kota {
-            border-left-color: #22c55e;
-        }
-
-        .stat-item.gagal {
-            border-left-color: #0ea5e9;
-        }
-
-        .stat-value {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 5px;
-            color: #ff4444;
-        }
-
-        .stat-label {
-            font-size: 0.75rem;
-            color: #d9678f;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .empty-state {
-            text-align: center;
-            padding: 40px 20px;
-            color: #d9678f;
-            background: rgba(255, 255, 255, 0.6);
-            border-radius: 12px;
-            border: 2px dashed #ffb3b3;
-        }
-
-        .empty-state p {
-            font-size: 1rem;
-            font-style: italic;
-        }
-
-        /* Mobile Responsive */
-        @media (max-width: 768px) {
-            .header h1 {
-                font-size: 2rem;
-            }
-
-            .schedule-wrapper {
-                grid-template-columns: 1fr;
-                gap: 30px;
-            }
-
-            .month-selector {
-                flex-direction: row;
-                flex-wrap: wrap;
-                gap: 10px;
-            }
-
-            .month-selector h2 {
-                width: 100%;
-            }
-
-            .month-btn {
-                flex: 1;
-                min-width: calc(50% - 5px);
-            }
-
-            .event-list h2 {
-                margin-top: 20px;
-            }
-
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 480px) {
-            .container {
-                padding: 20px 16px;
-            }
-
-            .header h1 {
-                font-size: 1.5rem;
-            }
-
-            .event-title {
-                font-size: 1rem;
-            }
-
-            .month-btn {
-                min-width: calc(50% - 5px);
-            }
-
-            .stats-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+    @media (min-width: 768px) {
+      .popup-content {
+        width: 400px;
+      }
+    }
+  </style>
 </head>
+
 <body>
-    <!-- Stars Background -->
-    <div class="stars-container" id="starsContainer"></div>
+  <!-- Iklan Pop-up -->
+  <div class="popup-container" id="popup">
+    <div class="popup-content">
+      <span class="close-btn" onclick="closePopup()">×</span>
+      <a href="https://s.shopee.co.id/AUg4dsQtYw" target="_blank">
+        <img src="iklan.png" alt="Iklan JKT48" />
+      </a>
+    </div>
+  </div>
 
-    <!-- Main Content -->
-    <div class="container">
-        <div class="header">
-            <h1>JKT48</h1>
-            <p>Event Schedule 2026</p>
-        </div>
+  <!-- Konten utama -->
+  <div class="container">
+    <h1>Ulang Tahun Member JKT48</h1>
 
-        <div class="schedule-wrapper">
-            <!-- Month Selector -->
-            <div class="month-selector" id="monthSelector"></div>
-
-            <!-- Event List -->
-            <div class="event-list">
-                <h2 id="eventMonthTitle">Pilih Bulan</h2>
-                <div id="eventContainer"></div>
-                <!-- Add statistics section -->
-                <div id="statsContainer"></div>
-            </div>
-        </div>
+    <div class="month">
+      <h2>Januari</h2>
+      <div class="birthday"><span>9 Januari</span> <span>Marsha</span></div>
+      <div class="birthday"><span>10 Januari</span> <span>Greesel</span></div>
+      <div class="birthday"><span>13 Januari</span> <span>Ribka</span></div>
+      <div class="birthday"><span>16 Januari</span> <span>Feni</span></div>
+      <div class="birthday"><span>24 Januari</span> <span>Levi</span></div>
     </div>
 
-    <script>
-        const eventData = {
-            'januari': [
-                { date: '2026-01-08', title: 'Pertaruhan Cinta', location: 'JKT48 Theater & IDN Live', tags: ['jakarta'] },
-                { date: '2026-01-09', title: 'Cara Meminum Ramune', location: 'JKT48 Theater & IDN Live', tags: ['jakarta'] },
-                { date: '2026-01-10', title: 'Sambil Menggandeng Erat Tanganku', location: 'JKT48 Theater & IDN Live', tags: ['jakarta'] },
-                { date: '2026-01-10', title: 'Konser Raya 31 Tahun Indosiar Luar Biasa', location: 'Indosiar & vidio.com', tags: ['jakarta'] },
-                { date: '2026-01-11', title: 'Cara Meminum Ramune', location: 'JKT48 Theater & IDN Live', tags: ['jakarta'] },
-                { date: '2026-01-13', title: 'Temen Main Ep.1 New Year Starts With Us!', location: 'IDN Live', tags: ['jakarta'] },
-                { date: '2026-01-14', title: 'Episode 2 Mika’s Corner', location: 'IDN Live Paid Room', tags: ['jakarta'] },
-                { date: '2026-01-15', title: 'Cara Meminum Ramune', location: 'JKT48 Theater & IDN Live', tags: ['jakarta'] },
-                { date: '2026-01-16', title: 'Sambil Menggandeng Erat Tanganku', location: 'JKT48 Theater & IDN Live', tags: ['jakarta'] },
-                { date: '2026-01-17', title: 'Cara Meminum Ramune', location: 'JKT48 Theater & IDN Live', tags: ['jakarta'] },
-                { date: '2026-01-18', title: 'Sambil Menggandeng Erat Tanganku', location: 'JKT48 Theater & IDN Live', tags: ['jakarta'] },
-                { date: '2026-01-18', title: 'Pertaruhan Cinta', location: 'JKT48 Theater & IDN Live', tags: ['jakarta'] },
-                { date: '2026-01-19', title: 'DUA KELINCI National Sales Conference 2026', location: 'Private', tags: ['jakarta'] },
-                { date: '2026-01-20', title: 'Temen Main Ep.2 Team Play Challenge', location: 'IDN Live', tags: ['jakarta'] },
-                { date: '2026-01-22', title: 'Cara Meminum Ramune', location: 'JKT48 Theater & IDN Live', tags: ['jakarta'] },
-                { date: '2026-01-22', title: 'Temen Ngobrol Ep.3 Youthful & Energetic Room 48', location: 'IDN Live [16.00 WIB]', tags: ['jakarta'] },
-                { date: '2026-01-23', title: 'Pertaruhan Cinta', location: 'JKT48 Theater & IDN Live', tags: ['jakarta'] },
-                { date: '2026-01-24', title: 'Sambil Menggandeng Erat Tanganku', location: 'JKT48 Theater & IDN Live', tags: ['jakarta'] },
-                { date: '2026-01-25', title: 'Sambil Menggandeng Erat Tanganku', location: 'JKT48 Theater & IDN Live', tags: ['jakarta'] },
-                { date: '2026-01-25', title: 'Pertaruhan Cinta', location: 'JKT48 Theater & IDN Live', tags: ['jakarta'] },
-                { date: '2026-01-27', title: 'D7 Mega Konser - Around the world', location: 'Indosiar & vidio.com', tags: ['jakarta'] },
-                { date: '2026-01-29', title: 'Cara Meminum Ramune', location: 'JKT48 Theater & IDN Live', tags: ['jakarta'] },
-                { date: '2026-01-30', title: 'Pertaruhan Cinta', location: 'JKT48 Theater & IDN Live', tags: ['jakarta'] },
-                { date: '2026-01-31', title: 'Kin - Live Meet Up session with JKT48', location: 'Private Invitation Only', tags: ['jakarta'] },
-                { date: '2026-01-31', title: 'Sambil Menggandeng Erat Tanganku', location: 'JKT48 Theater & IDN Live', tags: ['jakarta'] }
-            ],
-            'februari': [
-                { date: '2026-02-01', title: 'JKT48 Edge Store Takeover - Olla & Muthe JKT48', location: 'Erafone Store Central Park, Lantai 1, Jakarta [15.00 WIB]', tags: ['jakarta'] },
-                { date: '2026-02-01', title: 'Cara Meminum Ramune', location: 'JKT48 Theater & IDN Live', tags: ['jakarta'] },
-                { date: '2026-02-01', title: 'SWARA SEMESTA', location: 'Gor Lembu Peteng, Tulungagung', tags: ['luar-kota'] },
-                { date: '2026-02-03', title: 'Temen Masak JKT48 Play & Plate – Ep.1 Play it First!', location: 'IDN Live', tags: ['jakarta'] },
-                { date: '2026-02-07', title: 'JKT48 & Bihunku - Live Nyaman', location: 'Live Tiktok @bihunkuid', tags: ['jakarta'] },
-                { date: '2026-02-07', title: 'AIEROFEST 2026', location: 'Uptown Park, Summarecon Mall Serpong', tags: ['luar-kota'] },
-                { date: '2026-02-07', title: 'LUNAR FESTIVAL – Year of the Fire Horse', location: 'Atrium GF, Mall@Bassura [13.00 WIB]', tags: ['jakarta'] },
-                { date: '2026-02-08', title: 'JKT48 x Arisan Trans7', location: 'Live Trans7 [20.00 WIB]', tags: ['jakarta'] },
-                { date: '2026-02-10', title: 'Temen Masak Ep.2: Cook & Create', location: 'IDN Live', tags: ['jakarta'] },
-                { date: '2026-02-11', title: 'Mika’s Corner Episode 3', location: 'IDN Live Paid Room', tags: ['jakarta'] },
-                { date: '2026-02-17', title: 'D7 Mega Konser - Kuda Api', location: 'Indosiar & vidio.com', tags: ['jakarta'] },
-                { date: '2026-02-18', title: 'V-Time Ep.3 Virgi Makes Something... Hopefully!', location: 'IDN Live Paid Room', tags: ['jakarta'] },
-                { date: '2026-02-18', title: 'Temen Masak Ep. Snack Lab Challenge', location: 'IDN Live', tags: ['jakarta'] },
-                { date: '2026-02-23', title: 'NgabubuLIVE GEN48 - Fiony & Freya', location: 'Live Streaming Noice & Tiktok @gen987fm', tags: ['jakarta'] },
-                { date: '2026-02-24', title: 'FF x JKT48 - NGABUBURIT SAMBIL JUMPSHOT!', location: 'Tiktok @freefirebgid', tags: ['jakarta'] },
-                { date: '2026-02-24', title: 'NgabubuLIVE GEN48 - Gita & Muthe', location: 'Live Streaming Noice & Tiktok @gen987fm', tags: ['jakarta'] },
-                { date: '2026-02-24', title: 'NUNGGU BEDUG Ep.1 First Ramadan', location: 'IDN Live', tags: ['jakarta'] },
-                { date: '2026-02-25', title: 'NgabubuLIVE GEN48 - Greesel & Kathrina', location: 'Live Streaming Noice & Tiktok @gen987fm', tags: ['jakarta'] }
-            ],
-            'maret': [
-                { date: '2026-03-2', title: 'NgabubuLIVE GEN48 - Michie & Gracie', location: 'Live Streaming Noice & Tiktok @gen987fm', tags: ['jakarta'] },
-                { date: '2026-03-3', title: 'NgabubuLIVE GEN48 - Olla & Jessi', location: 'Live Streaming Noice & Tiktok @gen987fm', tags: ['jakarta'] },
-                { date: '2026-03-3', title: 'NUNGGU BEDUG Ep.2 Ramadan Memories', location: 'IDN Live', tags: ['jakarta'] },
-                { date: '2026-03-4', title: 'NgabubuLIVE GEN48 - Marsha & Christy', location: 'Live Streaming Noice & Tiktok @gen987fm', tags: ['jakarta'] },
-                { date: '2026-03-5', title: 'Temen Ngabuburit JKT48', location: 'IDN Live', tags: ['jakarta'] },
-                { date: '2026-03-9', title: 'NgabubuLIVE GEN48 - Shani & Melody', location: 'Live Streaming Noice & Tiktok @gen987fm', tags: ['jakarta'] },
-                { date: '2026-03-10', title: 'NUNGGU BEDUG Ep.3 Rasa Ramadan', location: 'IDN Live', tags: ['jakarta'] },
-    { date: '2026-03-15', title: 'Gelombang Cinta x Laguna Fest - Ngabuburit Ramadhan 2026', location: 'Hal. GSC UIN Gusdur, Pekalongan', tags: ['luar-kota'] },
-                { date: '2026-03-14', title: 'Mabar Evolusi Mega Starter Deck ex! Special Guest Pokéka Club JKT48', location: 'Mall Kota Kasablanka, Jakarta Selatan', tags: ['jakarta'] },
-                { date: '2026-03-17', title: 'NUNGGU BEDUG Ep.4 Ramadan Gratitide', location: 'IDN Live', tags: ['jakarta'] },
-                { date: '2026-03-25', title: '[CANCEL] Laguna Music Fest', location: 'ASS Mall Brebes, Kabupaten Brebes', tags: ['gagal'] },
-                { date: '2026-03-28', title: 'PSSI Awards', location: 'Live di Indosiar', tags: ['jakarta'] }
-],
-'april': [
-    { date: '2026-04-26', title: 'SPECTAPHORIA VOL.2', location: 'Pantai Tanjung Pendam, Belitung', tags: ['luar-kota'] }
-],
-'mei': [
-    { date: '2026-05-01', title: 'none', location: 'none', tags: ['gagal'] }
-],
-'juni': [
-    { date: '2026-06-20', title: 'none', location: 'none', tags: ['luar-kota'] }
-],
-'juli': [
-    { date: '2026-07-08', title: 'none', location: 'none', tags: ['gagal'] }
-],
-'agustus': [
-    { date: '2026-08-22', title: 'none', location: 'none', tags: ['luar-kota'] }
-],
-'september': [
-    { date: '2026-09-12', title: 'none', location: 'none', tags: ['jakarta'] }
-],
-'oktober': [
-    { date: '2026-10-18', title: 'none', location: 'none', tags: ['gagal'] }
-],
-'november': [
-    { date: '2026-11-25', title: 'none', location: 'none', tags: ['luar-kota'] }
-],
-'desember': [
-    { date: '2026-12-20', title: 'none', location: 'none', tags: ['luar-kota'] }
-]
-        };
+    <div class="month">
+      <h2>Februari</h2>
+      <div class="birthday"><span>2 Februari</span> <span>Carissa</span></div>
+      <div class="birthday"><span>4 Februari</span> <span>Fiony</span></div>
+      <div class="birthday"><span>13 Februari</span> <span>Freya</span></div>
+      <div class="birthday"><span>16 Februari</span> <span>Trisha</span></div>
+      <div class="birthday"><span>24 Februari</span> <span>Intan</span></div>
+      <div class="birthday"><span>26 Februari</span> <span>Olla</span></div>
+    </div>
 
-        const months = Object.keys(eventData);
-        const monthSelector = document.getElementById('monthSelector');
-        const eventContainer = document.getElementById('eventContainer');
-        const eventMonthTitle = document.getElementById('eventMonthTitle');
-        const statsContainer = document.getElementById('statsContainer');
+    <div class="month">
+      <h2>Maret</h2>
+      <div class="birthday"><span>2 Maret</span> <span>Bella</span></div>
+      <div class="birthday"><span>8 Maret</span> <span>Kimmy</span></div>
+      <div class="birthday"><span>12 Maret</span> <span>Jazzy</span></div>
+      <div class="birthday"><span>20 Maret</span> <span>Indah</span></div>
+    </div>
 
-        function getTagClass(tag) {
-            switch(tag) {
-                case 'jakarta': return 'tag-jakarta';
-                case 'luar-kota': return 'tag-luar-kota';
-                case 'gagal': return 'tag-gagal';
-                default: return '';
-            }
-        }
+    <div class="month">
+      <h2>April</h2>
+      <div class="birthday"><span>1 April</span> <span>Rilly</span></div>
+      <div class="birthday"><span>9 April</span> <span>Elin</span></div>
+      <div class="birthday"><span>22 April</span> <span>Michie</span></div>
+    </div>
 
-        function getTagLabel(tag) {
-            switch(tag) {
-                case 'jakarta': return 'Jakarta';
-                case 'luar-kota': return 'Luar Kota';
-                case 'gagal': return 'Gagal';
-                default: return tag;
-            }
-        }
+    <div class="month">
+      <h2>Mei</h2>
+      <div class="birthday"><span>28 Mei</span> <span>Cathy</span></div>
+    </div>
 
-        function calculateStats(events) {
-            const stats = {
-                total: events.length,
-                jakarta: 0,
-                'luar-kota': 0,
-                gagal: 0
-            };
+    <div class="month">
+      <h2>Juni</h2>
+      <div class="birthday"><span>15 Juni</span> <span>Eli</span></div>
+      <div class="birthday"><span>18 Juni</span> <span>Nayla</span></div>
+      <div class="birthday"><span>23 Juni</span> <span>Gendis</span></div>
+      <div class="birthday"><span>30 Juni</span> <span>Gita</span></div>
+    </div>
 
-            events.forEach(event => {
-                if (event.tags) {
-                    event.tags.forEach(tag => {
-                        if (stats.hasOwnProperty(tag)) {
-                            stats[tag]++;
-                        }
-                    });
-                }
-            });
+    <div class="month">
+      <h2>Juli</h2>
+      <div class="birthday"><span>1 Juli</span> <span>Giaa</span></div>
+      <div class="birthday"><span>9 Juli</span> <span>Ekin</span></div>
+      <div class="birthday"><span>12 Juli</span> <span>Muthe</span></div>
+      <div class="birthday"><span>14 Juli</span> <span>Auwia</span></div>
+      <div class="birthday"><span>26 Juli</span> <span>Oniel</span></div>
+      <div class="birthday"><span>26 Juli</span> <span>Kathrina</span></div>
+      <div class="birthday"><span>28 Juli</span> <span>Fritzy</span></div>
+    </div>
 
-            return stats;
-        }
+    <div class="month">
+      <h2>Agustus</h2>
+      <div class="birthday"><span>6 Agustus</span> <span>Aralie</span></div>
+      <div class="birthday"><span>6 Agustus</span> <span>Virgi</span></div>
+      <div class="birthday"><span>7 Agustus</span> <span>Ella</span></div>
+      <div class="birthday"><span>13 Agustus</span> <span>Maira</span></div>
+      <div class="birthday"><span>13 Agustus</span> <span>Fahira</span></div>
+      <div class="birthday"><span>21 Agustus</span> <span>Erine</span></div>
+      <div class="birthday"><span>26 Agustus</span> <span>Alya</span></div>
+      <div class="birthday"><span>27 Agustus</span> <span>Heidi</span></div>
+      <div class="birthday"><span>30 Agustus</span> <span>Rara</span></div>
+    </div>
 
-        function renderStats(stats) {
-            statsContainer.innerHTML = `
-                <div class="event-stats">
-                    <h3>Statistik Bulan</h3>
-                    <div class="stats-grid">
-                        <div class="stat-item total">
-                            <div class="stat-value">${stats.total}</div>
-                            <div class="stat-label">Total Event</div>
-                        </div>
-                        <div class="stat-item jakarta">
-                            <div class="stat-value">${stats.jakarta}</div>
-                            <div class="stat-label">Jakarta</div>
-                        </div>
-                        <div class="stat-item luar-kota">
-                            <div class="stat-value">${stats['luar-kota']}</div>
-                            <div class="stat-label">Luar Kota</div>
-                        </div>
-                        <div class="stat-item gagal">
-                            <div class="stat-value">${stats.gagal}</div>
-                            <div class="stat-label">Gagal</div>
-                        </div>
-                    </div>
-                </div>
-            `;
-        }
+    <div class="month">
+      <h2>September</h2>
+      <div class="birthday"><span>1 September</span> <span>Delynn</span></div>
+      <div class="birthday"><span>1 September</span> <span>Nala</span></div>
+      <div class="birthday"><span>13 September</span> <span>Lyn</span></div>
+      <div class="birthday"><span>14 September</span> <span>Lana</span></div>
+      <div class="birthday"><span>23 September</span> <span>Jessi</span></div>
+    </div>
 
-        // Initialize Month Buttons
-        function initializeMonths() {
-            const title = document.createElement('h2');
-            title.textContent = 'Bulan';
-            monthSelector.appendChild(title);
+    <div class="month">
+      <h2>Oktober</h2>
+      <div class="birthday"><span>16 Oktober</span> <span>Nachia</span></div>
+      <div class="birthday"><span>18 Oktober</span> <span>Anindya</span></div>
+      <div class="birthday"><span>18 Oktober</span> <span>Gracie</span></div>
+      <div class="birthday"><span>19 Oktober</span> <span>Lily</span></div>
+      <div class="birthday"><span>20 Oktober</span> <span>Fera</span></div>
+      <div class="birthday"><span>23 Oktober</span> <span>Lulu</span></div>
+      <div class="birthday"><span>29 Oktober</span> <span>Lia</span></div>
+      <div class="birthday"><span>15 Oktober</span> <span>Ralyne</span></div>
+    </div>
 
-            months.forEach(month => {
-                const btn = document.createElement('button');
-                btn.className = 'month-btn';
-                btn.textContent = month.charAt(0).toUpperCase() + month.slice(1);
-                btn.dataset.month = month;
+    <div class="month">
+      <h2>November</h2>
+      <div class="birthday"><span>3 November</span> <span>Oline</span></div>
+      <div class="birthday"><span>9 November</span> <span>Jemima</span></div>
+      <div class="birthday"><span>11 November</span> <span>Raisha</span></div>
+      <div class="birthday"><span>22 November</span> <span>Cynthia</span></div>
+    </div>
 
-                btn.addEventListener('click', () => selectMonth(month, btn));
+    <div class="month">
+      <h2>Desember</h2>
+      <div class="birthday"><span>1 Desember</span> <span>Sona</span></div>
+      <div class="birthday"><span>2 Desember</span> <span>Maxine</span></div>
+      <div class="birthday"><span>5 Desember</span> <span>Christy</span></div>
+      <div class="birthday"><span>15 Desember</span> <span>Mikaela</span></div>
+      <div class="birthday"><span>16 Desember</span> <span>Danella</span></div>
+      <div class="birthday"><span>16 Desember</span> <span>Daisy</span></div>
+      <div class="birthday"><span>17 Desember</span> <span>Amanda</span></div>
+      <div class="birthday"><span>23 Desember</span> <span>Chelsea</span></div>
+    </div>
 
-                monthSelector.appendChild(btn);
-            });
-        }
+    <div class="button-wrapper">
+      <a class="button-home" href="https://beritajkt48.github.io/info/">Halaman Utama</a>
+    </div>
+  </div>
 
-        // Select Month and Display Events
-        function selectMonth(month, btnElement) {
-            // Update active button
-            document.querySelectorAll('.month-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            btnElement.classList.add('active');
+  <!-- Script Pop-up -->
+  <script>
+    setTimeout(function () {
+      document.getElementById("popup").style.display = "flex";
+    }, 1000);
 
-            // Update events
-            const events = eventData[month];
-            eventMonthTitle.textContent = 'Jadwal ' + month.charAt(0).toUpperCase() + month.slice(1);
-            eventContainer.innerHTML = '';
-
-            if (events && events.length > 0) {
-                events.forEach(event => {
-                    const eventEl = document.createElement('div');
-                    eventEl.className = 'event-item';
-                    
-                    let tagsHTML = '';
-                    if (event.tags && event.tags.length > 0) {
-                        tagsHTML = `
-                            <div class="event-tags">
-                                ${event.tags.map(tag => `<span class="event-tag ${getTagClass(tag)}">${getTagLabel(tag)}</span>`).join('')}
-                            </div>
-                        `;
-                    }
-
-                    eventEl.innerHTML = `
-                        <div class="event-date">${formatDate(event.date)}</div>
-                        <div class="event-title">${event.title}</div>
-                        <div class="event-location">${event.location}</div>
-                        ${tagsHTML}
-                    `;
-                    eventContainer.appendChild(eventEl);
-                });
-
-                const stats = calculateStats(events);
-                renderStats(stats);
-            } else {
-                eventContainer.innerHTML = '<div class="empty-state"><p>Tidak ada jadwal untuk bulan ini</p></div>';
-                statsContainer.innerHTML = '';
-            }
-        }
-
-        // Format Date
-        function formatDate(dateString) {
-            const date = new Date(dateString);
-            return date.toLocaleDateString('id-ID', {
-                weekday: 'short',
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric'
-            });
-        }
-
-        // Generate Random Stars
-        function generateStars() {
-            const starsContainer = document.getElementById('starsContainer');
-            const starCount = window.innerWidth > 768 ? 100 : 50;
-
-            for (let i = 0; i < starCount; i++) {
-                const star = document.createElement('div');
-                star.className = 'star';
-                
-                const size = Math.random() * 2 + 1;
-                const x = Math.random() * 100;
-                const y = Math.random() * 100;
-                const duration = Math.random() * 3 + 2;
-                const delay = Math.random() * 5;
-
-                star.style.width = size + 'px';
-                star.style.height = size + 'px';
-                star.style.left = x + '%';
-                star.style.top = y + '%';
-                star.style.animationDuration = duration + 's';
-                star.style.animationDelay = delay + 's';
-
-                // Add moving animation to some stars
-                if (Math.random() > 0.7) {
-                    star.classList.add('star-moving');
-                    star.style.animationDelay = delay + 's, ' + (Math.random() * 10) + 's';
-                }
-
-                starsContainer.appendChild(star);
-            }
-        }
-
-        // Initialize on load
-        document.addEventListener('DOMContentLoaded', () => {
-            generateStars();
-            initializeMonths();
-            // Set first month as default
-            const firstBtn = document.querySelector('[data-month="januari"]');
-            if (firstBtn) selectMonth('januari', firstBtn);
-        });
-
-        // Regenerate stars on resize
-        window.addEventListener('resize', () => {
-            const starsContainer = document.getElementById('starsContainer');
-            starsContainer.innerHTML = '';
-            generateStars();
-        });
-    </script>
+    function closePopup() {
+      document.getElementById("popup").style.display = "none";
+    }
+  </script>
 </body>
 </html>
