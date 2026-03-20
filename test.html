@@ -12,12 +12,12 @@
         }
 
         :root {
-            --primary: #FF6B9D;
-            --secondary: #00D4FF;
-            --accent: #FFD93D;
-            --dark: #1A1A2E;
-            --light: #F8F9FA;
-            --success: #6BCB77;
+            --primary: #5B5B7F;
+            --secondary: #7B8FA8;
+            --accent: #D4C4A8;
+            --dark: #2A2A3E;
+            --light: #F5F5F5;
+            --success: #8B9B7C;
         }
 
         body {
@@ -43,6 +43,43 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: 2rem;
+        }
+
+        .search-container {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--light);
+            padding: 0.6rem 1rem;
+            border-radius: 8px;
+            border: 1px solid #E0E0E0;
+        }
+
+        .search-container input {
+            border: none;
+            background: transparent;
+            outline: none;
+            width: 200px;
+            font-size: 0.9rem;
+            color: var(--dark);
+        }
+
+        .search-container input::placeholder {
+            color: #999;
+        }
+
+        .search-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #999;
+            font-size: 1.2rem;
+            padding: 0;
+        }
+
+        .search-btn:hover {
+            color: var(--primary);
         }
 
         .logo {
@@ -243,36 +280,7 @@
             transform: translateX(4px);
         }
 
-        /* Vote Button */
-        .vote-section {
-            text-align: center;
-            padding: 2rem;
-            background: linear-gradient(135deg, var(--accent), rgba(255,217,61,0.5));
-            border-radius: 16px;
-            margin: 2rem 0;
-        }
 
-        .vote-btn {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            border: none;
-            padding: 1rem 2.5rem;
-            font-size: 1.1rem;
-            font-weight: 800;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 8px 20px rgba(255,107,157,0.3);
-        }
-
-        .vote-btn:hover {
-            transform: scale(1.08);
-            box-shadow: 0 12px 32px rgba(255,107,157,0.4);
-        }
-
-        .vote-btn:active {
-            transform: scale(0.95);
-        }
 
         /* Unit Songs Section */
         .unit-section {
@@ -389,20 +397,24 @@
     <!-- Header -->
     <header>
         <div class="header-container">
-            <div class="logo">🎤 JKT48</div>
+            <div class="logo">JKT48</div>
             <nav>
                 <a href="#individual">Lagu Individual</a>
                 <a href="#units">Unit Song</a>
                 <a href="#info">Info</a>
             </nav>
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Cari lagu...">
+                <button class="search-btn">⌕</button>
+            </div>
         </div>
     </header>
 
     <!-- Hero Section -->
     <section class="hero">
-        <div class="hero-badge">🎵 Request Hour 2024</div>
+        <div class="hero-badge">Request Hour 2024</div>
         <h1>JKT48 Request Hour</h1>
-        <p>Fans memilih lagu favorit melalui voting, kemudian lagu pemenang ditampilkan dalam countdown sebagai bentuk apresiasi terhadap pilihan penggemar!</p>
+        <p>Fans memilih lagu favorit melalui voting, kemudian lagu pemenang ditampilkan dalam countdown sebagai bentuk apresiasi terhadap pilihan penggemar.</p>
     </section>
 
     <!-- Individual Songs Section -->
@@ -412,8 +424,8 @@
             <!-- Muffin -->
             <div class="song-card">
                 <div class="song-header">
-                    <div class="fanbase-name">🧁 Muffin</div>
-                    <div class="artist-name">👤 Mutiara Azzahra</div>
+                    <div class="fanbase-name">Muffin</div>
+                    <div class="artist-name">Mutiara Azzahra</div>
                 </div>
                 <div class="song-content">
                     <div class="song-title">Akai Pin Heel to Professor</div>
@@ -429,8 +441,8 @@
             <!-- Lunarian -->
             <div class="song-card">
                 <div class="song-header">
-                    <div class="fanbase-name">🌙 Lunarian</div>
-                    <div class="artist-name">👤 Lulu Azkiya Salsabila</div>
+                    <div class="fanbase-name">Lunarian</div>
+                    <div class="artist-name">Lulu Azkiya Salsabila</div>
                 </div>
                 <div class="song-content">
                     <div class="song-title">Yokaze No Shiwaza</div>
@@ -446,8 +458,8 @@
             <!-- Onielity -->
             <div class="song-card">
                 <div class="song-header">
-                    <div class="fanbase-name">✨ Onielity</div>
-                    <div class="artist-name">👤 Cornelia Syafa Vanisa</div>
+                    <div class="fanbase-name">Onielity</div>
+                    <div class="artist-name">Cornelia Syafa Vanisa</div>
                 </div>
                 <div class="song-content">
                     <div class="song-title">Boku to Juliette to Jet Coaster</div>
@@ -463,8 +475,8 @@
             <!-- Raishanrise -->
             <div class="song-card">
                 <div class="song-header">
-                    <div class="fanbase-name">🌟 Raishanrise</div>
-                    <div class="artist-name">👤 Raisha Syifa</div>
+                    <div class="fanbase-name">Raishanrise</div>
+                    <div class="artist-name">Raisha Syifa</div>
                 </div>
                 <div class="song-content">
                     <div class="song-title">Kuchi Utsushi no Chocolate</div>
@@ -480,8 +492,8 @@
             <!-- Degrees -->
             <div class="song-card">
                 <div class="song-header">
-                    <div class="fanbase-name">📐 Degrees</div>
-                    <div class="artist-name">👤 Greesella Adhalia</div>
+                    <div class="fanbase-name">Degrees</div>
+                    <div class="artist-name">Greesella Adhalia</div>
                 </div>
                 <div class="song-content">
                     <div class="song-title">Yowamushi Kemushi</div>
