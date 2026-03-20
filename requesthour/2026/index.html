@@ -638,8 +638,9 @@
 
             songCards.forEach(card => {
                 const fanbseName = card.querySelector('.fanbase-name').textContent.toLowerCase();
+                const artistName = card.querySelector('.artist-name').textContent.toLowerCase();
 
-                if (fanbseName.includes(searchTerm)) {
+                if (fanbseName.includes(searchTerm) || artistName.includes(searchTerm)) {
                     card.classList.remove('hidden');
                     visibleCount++;
                 } else {
@@ -657,7 +658,7 @@
                 if (grid.querySelectorAll('.song-card:not(.hidden)').length === 0) {
                     const noResults = document.createElement('div');
                     noResults.className = 'no-results';
-                    noResults.textContent = 'Fanbase tidak ditemukan.';
+                    noResults.textContent = 'Fanbase atau member tidak ditemukan.';
                     grid.appendChild(noResults);
                 }
             });
