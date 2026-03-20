@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kamus Dasar Fans JKT48</title>
+    <title>JKT48 Request Hour - Pilih Lagu Favoritmu!</title>
     <style>
         * {
             margin: 0;
@@ -12,532 +12,643 @@
         }
 
         :root {
-            --primary: #FF5555;
-            --secondary: #FF5555;
-            --accent: #FF5555;
-            --dark: #333333;
-            --light: #F5E6E8;
-            --white: #FFFFFF;
-            --gray: #999999;
-            --radius: 20px;
+            --primary: #FF6B9D;
+            --secondary: #00D4FF;
+            --accent: #FFD93D;
+            --dark: #1A1A2E;
+            --light: #F8F9FA;
+            --success: #6BCB77;
         }
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: var(--light);
+            background: linear-gradient(135deg, #F8F9FA 0%, #F0F0F0 100%);
             color: var(--dark);
-            line-height: 1.6;
-            min-height: 100vh;
-            padding: 20px;
+            overflow-x: hidden;
         }
 
-        .container {
-            max-width: 1000px;
+        /* Header */
+        header {
+            background: white;
+            padding: 1.5rem 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -1px;
+        }
+
+        nav a {
+            margin-left: 2rem;
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+            border-radius: 2px;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            max-width: 1200px;
+            margin: 4rem auto 3rem;
+            padding: 0 2rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 900;
+            line-height: 1.1;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 50%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: #666;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--dark);
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Section Styles */
+        .section {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 2.5rem;
+            text-align: center;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+
+        /* Songs Grid */
+        .songs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .song-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            transform: translateY(0);
+        }
+
+        .song-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 40px rgba(255,107,157,0.2);
+        }
+
+        .song-header {
+            padding: 1.5rem;
+            background: linear-gradient(135deg, rgba(255,107,157,0.1), rgba(0,212,255,0.1));
+            border-bottom: 2px solid rgba(255,107,157,0.1);
+        }
+
+        .fanbase-name {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .artist-name {
+            font-size: 0.9rem;
+            color: #888;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .song-content {
+            padding: 1.5rem;
+        }
+
+        .song-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+
+        .song-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .song-link:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(255,107,157,0.3);
+        }
+
+        .song-link svg {
+            width: 18px;
+            height: 18px;
+            transition: transform 0.3s ease;
+        }
+
+        .song-link:hover svg {
+            transform: translateX(4px);
+        }
+
+        /* Vote Button */
+        .vote-section {
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, var(--accent), rgba(255,217,61,0.5));
+            border-radius: 16px;
+            margin: 2rem 0;
+        }
+
+        .vote-btn {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            font-weight: 800;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(255,107,157,0.3);
+        }
+
+        .vote-btn:hover {
+            transform: scale(1.08);
+            box-shadow: 0 12px 32px rgba(255,107,157,0.4);
+        }
+
+        .vote-btn:active {
+            transform: scale(0.95);
+        }
+
+        /* Unit Songs Section */
+        .unit-section {
+            background: linear-gradient(135deg, rgba(255,107,157,0.05), rgba(0,212,255,0.05));
+            padding: 3rem 2rem;
+            border-radius: 16px;
+            border: 2px solid rgba(255,107,157,0.1);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
             margin: 0 auto;
         }
 
-        header {
-            text-align: center;
-            margin-bottom: 50px;
-            animation: slideDown 0.6s ease-out;
-        }
-
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .title {
-            font-size: 3.5rem;
-            font-weight: 900;
-            margin-bottom: 10px;
-            color: var(--primary);
-            letter-spacing: -2px;
-        }
-
-        .subtitle {
-            font-size: 1.2rem;
-            color: var(--gray);
-            font-weight: 500;
-        }
-
-        .divider {
-            height: 4px;
-            background: var(--primary);
-            width: 200px;
-            margin: 20px auto;
-            border-radius: 10px;
-        }
-
-        .search-container {
-            display: flex;
-            gap: 10px;
-            max-width: 500px;
-            margin: 40px auto 30px;
-            animation: slideDown 0.6s ease-out 0.2s both;
-        }
-
-        .search-input {
-            flex: 1;
-            padding: 14px 20px;
-            font-size: 1rem;
-            border: 2px solid var(--primary);
-            border-radius: 15px;
-            background: var(--white);
-            color: var(--dark);
-            transition: all 0.3s ease;
-            font-family: inherit;
-        }
-
-        .search-input:focus {
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(255, 85, 85, 0.1);
-            border-color: var(--primary);
-        }
-
-        .search-input::placeholder {
-            color: #ccc;
-        }
-
-        .search-btn {
-            padding: 14px 30px;
-            background: var(--primary);
-            color: var(--white);
-            border: none;
-            border-radius: 15px;
-            font-weight: 600;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-family: inherit;
-        }
-
-        .search-btn:hover {
-            background: #FF3333;
-            transform: scale(1.05);
-            box-shadow: 0 5px 20px rgba(255, 85, 85, 0.3);
-        }
-
-        .search-btn:active {
-            transform: scale(0.98);
-        }
-
-        .no-results {
-            text-align: center;
-            padding: 60px 20px;
-            color: var(--gray);
-            font-size: 1.1rem;
-        }
-
-        .term-card.hidden {
-            display: none;
-        }
-
-        .dictionary-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            margin-bottom: 50px;
-        }
-
-        .term-card {
-            background: var(--white);
-            border-radius: var(--radius);
-            padding: 30px;
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-            position: relative;
-            overflow: hidden;
-            animation: fadeInUp 0.6s ease-out both;
-        }
-
-        .term-card:nth-child(1) { animation-delay: 0.1s; }
-        .term-card:nth-child(2) { animation-delay: 0.2s; }
-        .term-card:nth-child(3) { animation-delay: 0.3s; }
-        .term-card:nth-child(4) { animation-delay: 0.4s; }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .term-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 6px;
-            background: var(--primary);
-        }
-
-        .term-card:nth-child(2)::before {
-            background: var(--primary);
-        }
-
-        .term-card:nth-child(3)::before {
-            background: var(--primary);
-        }
-
-        .term-card:nth-child(4)::before {
-            background: var(--primary);
-        }
-
-        .term-card:hover {
-            transform: translateY(-15px) scale(1.02);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
-        }
-
-        .term-number {
+        .footer-link {
             display: inline-block;
-            width: 50px;
-            height: 50px;
-            background: var(--white);
-            color: var(--primary);
-            border: 3px solid var(--primary);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 1.3rem;
-            margin-bottom: 15px;
-            box-shadow: 0 4px 15px rgba(255, 85, 85, 0.2);
+            margin-top: 1rem;
+            padding: 0.8rem 1.5rem;
+            background: var(--primary);
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s ease;
         }
 
-        .term-name {
-            font-size: 1.8rem;
-            font-weight: 800;
-            margin-bottom: 12px;
-            color: var(--primary);
-            letter-spacing: -0.5px;
+        .footer-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255,107,157,0.3);
         }
 
-        .term-card:nth-child(2) .term-name {
-            color: var(--primary);
-        }
-
-        .term-card:nth-child(3) .term-name {
-            color: var(--primary);
-        }
-
-        .term-card:nth-child(4) .term-name {
-            color: var(--primary);
-        }
-
-        .term-description {
-            font-size: 1rem;
-            color: var(--gray);
-            line-height: 1.8;
-            font-weight: 500;
-        }
-
-        .emoji-icon {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            display: block;
-        }
-
-        .badge {
+        .update-badge {
             display: inline-block;
-            padding: 6px 14px;
-            background: var(--light);
-            border-radius: 20px;
+            background: var(--success);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
             font-size: 0.85rem;
-            font-weight: 600;
-            margin-top: 15px;
-            color: var(--primary);
+            font-weight: 700;
+            margin-top: 1rem;
         }
 
-        .term-card:nth-child(2) .badge {
-            color: var(--primary);
-        }
-
-        .term-card:nth-child(3) .badge {
-            color: var(--primary);
-        }
-
-        .term-card:nth-child(4) .badge {
-            color: var(--primary);
-        }
-
-        footer {
-            text-align: center;
-            margin-top: 50px;
-            padding: 30px;
-            background: var(--white);
-            border-radius: var(--radius);
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
-        }
-
-        .footer-text {
-            color: var(--gray);
-            font-size: 1rem;
-            margin-bottom: 10px;
-        }
-
+        /* Responsive */
         @media (max-width: 768px) {
-            .title {
-                font-size: 2.5rem;
+            .hero h1 {
+                font-size: 2.2rem;
             }
 
-            .subtitle {
-                font-size: 1rem;
+            .hero p {
+                font-size: 1.1rem;
             }
 
-            .dictionary-grid {
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            nav a {
+                margin-left: 1rem;
+                font-size: 0.8rem;
+            }
+
+            .header-container {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            nav {
+                display: flex;
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .songs-grid {
                 grid-template-columns: 1fr;
-                gap: 20px;
-            }
-
-            .term-card {
-                padding: 25px;
+                gap: 1.5rem;
             }
         }
 
-        @media (max-width: 480px) {
-            body {
-                padding: 15px;
+        /* Animation */
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
             }
-
-            .title {
-                font-size: 2rem;
-            }
-
-            .term-card {
-                padding: 20px;
-            }
-
-            .term-name {
-                font-size: 1.5rem;
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
+
+        .song-card {
+            animation: slideIn 0.5s ease forwards;
+        }
+
+        .song-card:nth-child(1) { animation-delay: 0.1s; }
+        .song-card:nth-child(2) { animation-delay: 0.2s; }
+        .song-card:nth-child(3) { animation-delay: 0.3s; }
+        .song-card:nth-child(4) { animation-delay: 0.4s; }
+        .song-card:nth-child(5) { animation-delay: 0.5s; }
+        .song-card:nth-child(6) { animation-delay: 0.6s; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1 class="title">Kamus Dasar Fans JKT48</h1>
-            <p class="subtitle">Panduan Istilah di JKT48</p>
-            <div class="divider"></div>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">🎤 JKT48</div>
+            <nav>
+                <a href="#individual">Lagu Individual</a>
+                <a href="#units">Unit Song</a>
+                <a href="#info">Info</a>
+            </nav>
+        </div>
+    </header>
 
-            <div class="search-container">
-                <input 
-                    type="text" 
-                    id="searchInput" 
-                    class="search-input" 
-                    placeholder="Cari istilah..."
-                >
-                <button id="searchBtn" class="search-btn">Cari</button>
-            </div>
-        </header>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-badge">🎵 Request Hour 2024</div>
+        <h1>JKT48 Request Hour</h1>
+        <p>Fans memilih lagu favorit melalui voting, kemudian lagu pemenang ditampilkan dalam countdown sebagai bentuk apresiasi terhadap pilihan penggemar!</p>
+    </section>
 
-        <div class="dictionary-grid">
-            <!-- Card 1: Isshou -->
-            <div class="term-card">
-                <div class="term-number">1</div>
-                <h2 class="term-name">Isshou</h2>
-                <p class="term-description">
-                    Adalah kostum atau pakaian panggung khusus yang dikenakan member saat tampil di atas panggung JKT48.
-                </p>
-                <span class="badge">isshou, ishou, isou</span>
-            </div>
-
-            <!-- Card 2: Seifuku -->
-            <div class="term-card">
-                <div class="term-number">2</div>
-                <h2 class="term-name">Seifuku</h2>
-                <p class="term-description">
-                    Adalah seragam atau kostum khas yang dikenakan oleh anggota JKT48, sering kali bergaya sekolah Jepang atau tema spesifik sesuai lagu/single.
-                </p>
-                <span class="badge">seifuku, safuku</span>
-            </div>
-
-            <!-- Card 3: Roulette -->
-            <div class="term-card">
-                <div class="term-number">3</div>
-                <h2 class="term-name">Roulette</h2>
-                <p class="term-description">
-                    Adalah sistem undian atau mekanisme pembelian tiket untuk sesi foto berdua (2-shot) antara penggemar dan member JKT48 tertentu, baik secara langsung di teater.
-                </p>
-                <span class="badge">roulete, roulette, rulet, roulet</span>
+    <!-- Individual Songs Section -->
+    <section class="section" id="individual">
+        <h2 class="section-title">Lagu Individual</h2>
+        <div class="songs-grid">
+            <!-- Muffin -->
+            <div class="song-card">
+                <div class="song-header">
+                    <div class="fanbase-name">🧁 Muffin</div>
+                    <div class="artist-name">👤 Mutiara Azzahra</div>
+                </div>
+                <div class="song-content">
+                    <div class="song-title">Akai Pin Heel to Professor</div>
+                    <a href="https://x.com/MuffinOfficial_/status/2034213985319559230" target="_blank" class="song-link">
+                        Lihat di X
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </div>
             </div>
 
-            <!-- Card 4: 2 Shot JKT48 -->
-            <div class="term-card">
-                <div class="term-number">4</div>
-                <h2 class="term-name">2 Shot JKT48</h2>
-                <p class="term-description">
-                    Adalah sesi foto eksklusif berdua antara penggemar dan member JKT48 pilihan menggunakan kamera profesional (biasanya Instax atau kamera jepret langsung), sering kali diadakan dalam acara Personal Meet and Greet atau event spesial.
-                </p>
-                <span class="badge">2-shot, 2s, 2shot, two shot</span>
+            <!-- Lunarian -->
+            <div class="song-card">
+                <div class="song-header">
+                    <div class="fanbase-name">🌙 Lunarian</div>
+                    <div class="artist-name">👤 Lulu Azkiya Salsabila</div>
+                </div>
+                <div class="song-content">
+                    <div class="song-title">Yokaze No Shiwaza</div>
+                    <a href="https://x.com/LunarianID/status/2033173891456397386" target="_blank" class="song-link">
+                        Lihat di X
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </div>
             </div>
 
-            <!-- Card 4: 2 Shot JKT48 -->
-            <div class="term-card">
-                <div class="term-number">5</div>
-                <h2 class="term-name">Meet & Greet</h2>
-                <p class="term-description">
-                    Adalah Acara resmi di mana penggemar dapat berinteraksi langsung dengan member JKT48, seperti meet and greet, sesi 2-shot, dan mini live performance.
-                </p>
-                <span class="badge">mng, meet and greet</span>
+            <!-- Onielity -->
+            <div class="song-card">
+                <div class="song-header">
+                    <div class="fanbase-name">✨ Onielity</div>
+                    <div class="artist-name">👤 Cornelia Syafa Vanisa</div>
+                </div>
+                <div class="song-content">
+                    <div class="song-title">Boku to Juliette to Jet Coaster</div>
+                    <a href="https://x.com/onielity_ofc/status/2033513611721597118" target="_blank" class="song-link">
+                        Lihat di X
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </div>
             </div>
 
-            <!-- Card 4: 2 Shot JKT48 -->
-            <div class="term-card">
-                <div class="term-number">6</div>
-                <h2 class="term-name">Seitansai</h2>
-                <p class="term-description">
-                     adalah pertunjukan teater khusus untuk merayakan ulang tahun member JKT48.
-                </p>
-                <span class="badge">sts, seitansai, show ulang tahun</span>
+            <!-- Raishanrise -->
+            <div class="song-card">
+                <div class="song-header">
+                    <div class="fanbase-name">🌟 Raishanrise</div>
+                    <div class="artist-name">👤 Raisha Syifa</div>
+                </div>
+                <div class="song-content">
+                    <div class="song-title">Kuchi Utsushi no Chocolate</div>
+                    <a href="https://x.com/Raishanrise/status/2034621824806580528" target="_blank" class="song-link">
+                        Lihat di X
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </div>
             </div>
 
-             <!-- Card 4: 2 Shot JKT48 -->
-            <div class="term-card">
-                <div class="term-number">7</div>
-                <h2 class="term-name">Chekicha</h2>
-                <p class="term-description">
-                     adalah sesi foto seperti 2-shot tetapi secara online malalui aplikasi Chekicha.
-                </p>
-                <span class="badge">ceki, cheki, checkicha</span>
-            </div>
-            
-            <!-- Card 4: 2 Shot JKT48 -->
-            <div class="term-card">
-                <div class="term-number">8</div>
-                <h2 class="term-name">Setlist</h2>
-                <p class="term-description">
-                     adalah rangkaian daftar lagu (biasanya 10-15 lagu) yang dibawakan secara berurutan oleh member dalam satu pertunjukan teater, mencakup lagu pembuka, unit song, hingga encore.
-                </p>
-                <span class="badge">setlist, album, theater</span>
+            <!-- Degrees -->
+            <div class="song-card">
+                <div class="song-header">
+                    <div class="fanbase-name">📐 Degrees</div>
+                    <div class="artist-name">👤 Greesella Adhalia</div>
+                </div>
+                <div class="song-content">
+                    <div class="song-title">Yowamushi Kemushi</div>
+                    <a href="https://x.com/Degrees_OFC/status/2034567659166294028" target="_blank" class="song-link">
+                        Lihat di X
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </div>
             </div>
 
-            <!-- Card 4: 2 Shot JKT48 -->
-            <div class="term-card">
-                <div class="term-number">9</div>
-                <h2 class="term-name">Shonichi</h2>
-                <p class="term-description">
-                     adalah pertunjukan perdana dari sebuah setlist lagu baru yang dibawakan oleh para member di teater maupun show setlist baru.
-                </p>
-                <span class="badge">shonichi, sonichi</span>
+            <!-- Christyzer -->
+            <div class="song-card">
+                <div class="song-header">
+                    <div class="fanbase-name">💎 Christyzer</div>
+                    <div class="artist-name">👤 Angelina Christy</div>
+                </div>
+                <div class="song-content">
+                    <div class="song-title">Plastic no Kuchibiru</div>
+                    <a href="https://x.com/Christyzer/status/2034555618540065044" target="_blank" class="song-link">
+                        Lihat di X
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </div>
             </div>
-
-             <!-- Card 4: 2 Shot JKT48 -->
-            <div class="term-card">
-                <div class="term-number">10</div>
-                <h2 class="term-name">Last Show</h2>
-                <p class="term-description">
-                     adalah pertunjukan teater terakhir dari member yang sudah mengumumkan kelulusan nya.
-                </p>
-                <span class="badge">ls. last show</span>
-            </div>
-
-             <!-- Card 4: 2 Shot JKT48 -->
-            <div class="term-card">
-                <div class="term-number">11</div>
-                <h2 class="term-name">Senshuuraku</h2>
-                <p class="term-description">
-                     adalah pertunjukan teater terakhir dari sebuah setlist (rangkaian lagu) tertentu yang dibawakan oleh member JKT48, menandai berakhirnya masa bawakan setlist tersebut sebelum diganti atau dipensiunkan.
-                </p>
-                <span class="badge">sensu, senshu, senhuraku</span>
-            </div>
-
-             <!-- Card 4: 2 Shot JKT48 -->
-            <div class="term-card">
-                <div class="term-number">12</div>
-                <h2 class="term-name">Kageana</h2>
-                <p class="term-description">
-                     adalah pengumuman suara yang dibacakan oleh member tertentu melalui pengeras suara sebelum konser atau pertunjukan teater dimulai.
-                </p>
-                <span class="badge">kagena, kagena</span>
-            </div>
-
-            <!-- Card 4: 2 Shot JKT48 -->
-            <div class="term-card">
-                <div class="term-number">13</div>
-                <h2 class="term-name">Shimeana</h2>
-                <p class="term-description">
-                     adalah sesi pembacaan surat atau pengumuman penutup (closing statement) yang biasanya disampaikan oleh member di akhir konser, pertunjukan teater, atau momen penting.
-                </p>
-                <span class="badge">kagena, kagena</span>
-            </div>
-
-            
-            
         </div>
 
-        <footer>
-            <p class="footer-text">Semoga kamus ini membantu Anda memahami dunia JKT48 dengan lebih baik!</p>
-            <p class="footer-text">Tetap mendukung JKT48</p>
-        </footer>
-    </div>
+        <div class="vote-section">
+            <h3 style="margin-bottom: 1rem; font-size: 1.3rem;">Pilih Lagu Favoritmu!</h3>
+            <button class="vote-btn">Vote Sekarang ⭐</button>
+        </div>
+    </section>
+
+    <!-- Unit Songs Section -->
+    <section class="section unit-section" id="units">
+        <h2 class="section-title">Unit Song</h2>
+        <div class="songs-grid">
+            <!-- Unit 1: Lunarian, Symfiony, Onielity -->
+            <div class="song-card">
+                <div class="song-header">
+                    <div class="fanbase-name">👯 Lunarian × Symfiony × Onielity</div>
+                    <div class="artist-name">👤 Lulu, Fiony, Oniel</div>
+                </div>
+                <div class="song-content">
+                    <div class="song-title">Dakishimerareta</div>
+                    <a href="https://x.com/sedangdicaridiisiinidulu" target="_blank" class="song-link">
+                        Lihat di X
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Unit 2: Hillaryous & Fritzy Force -->
+            <div class="song-card">
+                <div class="song-header">
+                    <div class="fanbase-name">💪 Hillaryous × Fritzy Force</div>
+                    <div class="artist-name">👤 Lily & Fritzy</div>
+                </div>
+                <div class="song-content">
+                    <div class="song-title">Serigala dan Pride</div>
+                    <a href="https://x.com/sedangdicaridiisiinidulu" target="_blank" class="song-link">
+                        Lihat di X
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Unit 3: Tact, Grovy, Lanautica -->
+            <div class="song-card">
+                <div class="song-header">
+                    <div class="fanbase-name">🎭 Tact × Grovy × Lanautica</div>
+                    <div class="artist-name">👤 Trisha, Kimmy, Lana</div>
+                </div>
+                <div class="song-content">
+                    <div class="song-title">Aturan Anti Cinta</div>
+                    <a href="https://x.com/tact_id/status/2033572415889178915" target="_blank" class="song-link">
+                        Lihat di X
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Unit 4: MarshaOshi, Interindah, Kath Inc -->
+            <div class="song-card">
+                <div class="song-header">
+                    <div class="fanbase-name">💞 MarshaOshi × Interindah × Kath Inc</div>
+                    <div class="artist-name">👤 Marsha, Indah, Kathrina</div>
+                </div>
+                <div class="song-content">
+                    <div class="song-title">Cinta Pertamaku, Selamat Siang</div>
+                    <a href="https://x.com/sedangdicaridiisiinidulu" target="_blank" class="song-link">
+                        Lihat di X
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="info">
+        <div class="footer-content">
+            <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">📢 Update Terbaru</h3>
+            <p style="font-size: 1.1rem; margin-bottom: 1.5rem;">Data di-update melalui saluran WhatsApp BERITA JKT48</p>
+            <a href="https://whatsapp.com/channel/0029Vae5cgVBqbr0mRzNvA3c" target="_blank" class="footer-link">
+                💬 Bergabung di WhatsApp Channel
+            </a>
+            <div class="update-badge">✓ Data Update: Maret 2024</div>
+            <p style="margin-top: 2rem; font-size: 0.95rem; opacity: 0.8;">
+                🎤 JKT48 Request Hour - Suara Fans, Pilihan Terbaik<br>
+                © 2024 JKT48. Semua hak dilindungi.
+            </p>
+        </div>
+    </footer>
 
     <script>
-        const searchInput = document.getElementById('searchInput');
-        const searchBtn = document.getElementById('searchBtn');
-        const termCards = document.querySelectorAll('.term-card');
-        const dictionaryGrid = document.querySelector('.dictionary-grid');
-
-        function performSearch() {
-            const searchTerm = searchInput.value.toLowerCase().trim();
-            let visibleCount = 0;
-
-            termCards.forEach(card => {
-                const termName = card.querySelector('.term-name').textContent.toLowerCase();
-                const termDesc = card.querySelector('.term-description').textContent.toLowerCase();
-                const badge = card.querySelector('.badge').textContent.toLowerCase();
-
-                if (termName.includes(searchTerm) || termDesc.includes(searchTerm) || badge.includes(searchTerm)) {
-                    card.classList.remove('hidden');
-                    visibleCount++;
-                } else {
-                    card.classList.add('hidden');
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
             });
-
-            if (searchTerm === '') {
-                termCards.forEach(card => card.classList.remove('hidden'));
-            }
-
-            if (visibleCount === 0 && searchTerm !== '') {
-                if (!document.querySelector('.no-results')) {
-                    const noResults = document.createElement('div');
-                    noResults.className = 'no-results';
-                    noResults.textContent = 'Tidak ada hasil pencarian untuk "' + searchTerm + '"';
-                    dictionaryGrid.appendChild(noResults);
-                }
-            } else {
-                const noResults = document.querySelector('.no-results');
-                if (noResults) noResults.remove();
-            }
-        }
-
-        searchBtn.addEventListener('click', performSearch);
-        searchInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                performSearch();
-            }
         });
 
-        searchInput.addEventListener('input', () => {
-            if (searchInput.value === '') {
-                termCards.forEach(card => card.classList.remove('hidden'));
-                const noResults = document.querySelector('.no-results');
-                if (noResults) noResults.remove();
-            }
+        // Vote button functionality
+        const voteBtn = document.querySelector('.vote-btn');
+        voteBtn.addEventListener('click', function() {
+            this.textContent = '✨ Terima Kasih! ✨';
+            this.style.transform = 'scale(1)';
+            setTimeout(() => {
+                this.textContent = 'Vote Sekarang ⭐';
+            }, 2000);
+        });
+
+        // Animate on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.song-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            observer.observe(card);
         });
     </script>
 </body>
