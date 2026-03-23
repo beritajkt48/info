@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JKT48 Request Hour 2026</title>
+    <title>JKT48 Team Fight</title>
     <style>
         * {
             margin: 0;
@@ -11,368 +11,88 @@
             box-sizing: border-box;
         }
 
-        :root {
-            --primary: #5B5B7F;
-            --secondary: #7B8FA8;
-            --accent: #D4C4A8;
-            --dark: #2A2A3E;
-            --light: #F5F5F5;
-            --success: #8B9B7C;
-        }
-
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #F8F9FA 0%, #F0F0F0 100%);
-            color: var(--dark);
-            overflow-x: hidden;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
         /* Header */
-        header {
-            background: white;
-            padding: 1.5rem 2rem;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .header-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 2rem;
-        }
-
-        .search-container {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: var(--light);
-            padding: 0.6rem 1rem;
-            border-radius: 8px;
-            border: 1px solid #E0E0E0;
-        }
-
-        .search-container input {
-            border: none;
-            background: transparent;
-            outline: none;
-            width: 200px;
-            font-size: 0.9rem;
-            color: var(--dark);
-        }
-
-        .search-container input::placeholder {
-            color: #999;
-        }
-
-        .search-btn {
-            background: none;
-            border: none;
-            cursor: pointer;
-            color: var(--primary);
-            font-size: 0.8rem;
-            padding: 0;
-            font-weight: 600;
-            transition: opacity 0.2s;
-        }
-
-        .search-btn:hover {
-            opacity: 0.7;
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            letter-spacing: -1px;
-        }
-
-        nav a {
-            margin-left: 2rem;
-            text-decoration: none;
-            color: var(--dark);
-            font-weight: 600;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        nav a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 3px;
-            background: var(--primary);
-            transition: width 0.3s ease;
-            border-radius: 2px;
-        }
-
-        nav a:hover::after {
-            width: 100%;
-        }
-
-        /* Hero Section */
-        .hero {
-            max-width: 1200px;
-            margin: 4rem auto 3rem;
-            padding: 0 2rem;
+        .header {
             text-align: center;
+            margin-bottom: 50px;
+            color: white;
         }
 
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            font-weight: 900;
-            line-height: 1.1;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 50%, var(--accent) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        .header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            letter-spacing: 2px;
         }
 
-        .hero p {
-            font-size: 1.3rem;
-            color: #666;
-            margin-bottom: 2rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-            line-height: 1.6;
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
         }
 
-        .hero-badge {
-            display: inline-block;
-            background: var(--accent);
-            color: var(--dark);
-            padding: 0.5rem 1.2rem;
+        /* Tabs */
+        .tabs {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 12px 30px;
+            font-size: 1.1em;
+            border: none;
             border-radius: 50px;
-            font-weight: 700;
-            font-size: 0.9rem;
-            margin-bottom: 2rem;
-            animation: float 3s ease-in-out infinite;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 2px solid white;
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
+        .tab-btn:hover {
+            transform: translateY(-2px);
+            background: rgba(255, 255, 255, 0.2);
         }
 
-        /* Section Styles */
-        .section {
-            max-width: 1200px;
-            margin: 4rem auto;
-            padding: 0 2rem;
+        .tab-btn.active {
+            background: #FF0000;
+            color: white;
+            border-color: #FF0000;
         }
 
-        .section-title {
-            font-size: 2.2rem;
-            font-weight: 800;
-            margin-bottom: 2.5rem;
-            text-align: center;
-            position: relative;
-            padding-bottom: 1rem;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            border-radius: 2px;
-        }
-
-        /* Songs Grid */
-        .songs-grid {
+        /* Members Grid */
+        .members-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
         }
 
-        .song-card {
+        .member-card {
             background: white;
-            border-radius: 16px;
+            border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             transition: all 0.3s ease;
-            cursor: pointer;
-            transform: translateY(0);
+            animation: fadeIn 0.5s ease;
         }
 
-        .song-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 16px 40px rgba(255,107,157,0.2);
-        }
-
-        .song-header {
-            padding: 1.5rem;
-            background: linear-gradient(135deg, rgba(255,107,157,0.1), rgba(0,212,255,0.1));
-            border-bottom: 2px solid rgba(255,107,157,0.1);
-        }
-
-        .fanbase-name {
-            font-size: 1.2rem;
-            font-weight: 800;
-            color: var(--primary);
-            margin-bottom: 0.5rem;
-        }
-
-        .artist-name {
-            font-size: 0.9rem;
-            color: #888;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .song-content {
-            padding: 1.5rem;
-        }
-
-        .song-title {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: var(--dark);
-            margin-bottom: 1rem;
-            line-height: 1.4;
-        }
-
-        .song-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.8rem;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            padding: 0.8rem 1.5rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-        }
-
-        .song-link:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 20px rgba(255,107,157,0.3);
-        }
-
-        .song-link svg {
-            width: 18px;
-            height: 18px;
-            transition: transform 0.3s ease;
-        }
-
-        .song-link:hover svg {
-            transform: translateX(4px);
-        }
-
-
-
-        /* Unit Songs Section */
-        .unit-section {
-            background: linear-gradient(135deg, rgba(255,107,157,0.05), rgba(0,212,255,0.05));
-            padding: 3rem 2rem;
-            border-radius: 16px;
-            border: 2px solid rgba(255,107,157,0.1);
-        }
-
-        /* Footer */
-        footer {
-            background: var(--dark);
-            color: white;
-            padding: 3rem 2rem;
-            text-align: center;
-            margin-top: 4rem;
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .footer-link {
-            display: inline-block;
-            margin-top: 1rem;
-            padding: 0.8rem 1.5rem;
-            background: var(--primary);
-            color: white;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 700;
-            transition: all 0.3s ease;
-        }
-
-        .footer-link:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(255,107,157,0.3);
-        }
-
-        .update-badge {
-            display: inline-block;
-            background: var(--success);
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 50px;
-            font-size: 0.85rem;
-            font-weight: 700;
-            margin-top: 1rem;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.2rem;
-            }
-
-            .hero p {
-                font-size: 1.1rem;
-            }
-
-            .section-title {
-                font-size: 1.8rem;
-            }
-
-            nav a {
-                margin-left: 1rem;
-                font-size: 0.8rem;
-            }
-
-            .header-container {
-                flex-direction: column;
-                gap: 1.5rem;
-            }
-
-            nav {
-                display: flex;
-                gap: 1rem;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-
-            .songs-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-        }
-
-        /* Animation */
-        @keyframes slideIn {
+        @keyframes fadeIn {
             from {
                 opacity: 0;
                 transform: translateY(20px);
@@ -383,284 +103,721 @@
             }
         }
 
-        .song-card {
-            animation: slideIn 0.5s ease forwards;
+        .member-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
         }
 
-        .song-card:nth-child(1) { animation-delay: 0.1s; }
-        .song-card:nth-child(2) { animation-delay: 0.2s; }
-        .song-card:nth-child(3) { animation-delay: 0.3s; }
-        .song-card:nth-child(4) { animation-delay: 0.4s; }
-        .song-card:nth-child(5) { animation-delay: 0.5s; }
-        .song-card:nth-child(6) { animation-delay: 0.6s; }
+        /* Photo Frame Styling */
+        .member-photo-container {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+        }
 
-        .song-card.hidden {
+        /* Frame untuk Team Dream, Love, Passion (merah/pink) */
+        .member-photo-container.frame-red {
+            background: #FF4444;
+            padding: 20px;
+            aspect-ratio: 1 / 1.15;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .member-photo-container.frame-red::before {
+            content: '★';
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            font-size: 28px;
+            color: #FFEB3B;
+            z-index: 10;
+        }
+
+        .member-photo-container.frame-red::after {
+            content: '★';
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            font-size: 28px;
+            color: #FFEB3B;
+            z-index: 10;
+        }
+
+        .member-photo-container.frame-red .inner-frame {
+            width: 100%;
+            height: 100%;
+            border: 8px solid #FF69B4;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        /* Frame untuk Team Trainee (oranye) */
+        .member-photo-container.frame-orange {
+            background: #FF9500;
+            padding: 20px;
+            aspect-ratio: 1 / 1.15;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .member-photo-container.frame-orange::before {
+            content: '★';
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            font-size: 28px;
+            color: #FFEB3B;
+            z-index: 10;
+        }
+
+        .member-photo-container.frame-orange::after {
+            content: '★';
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            font-size: 28px;
+            color: #FFEB3B;
+            z-index: 10;
+        }
+
+        .member-photo-container.frame-orange .inner-frame {
+            width: 100%;
+            height: 100%;
+            border: 8px solid #FFFFEE;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .member-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            background: linear-gradient(135deg, #1a1a1a 0%, #333 100%);
+        }
+
+        .member-info {
+            padding: 20px;
+            text-align: center;
+            background: white;
+        }
+
+        .member-name {
+            font-size: 1.3em;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 5px;
+        }
+
+        .member-nickname {
+            font-size: 0.9em;
+            color: #FF0000;
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+
+        .member-details {
+            font-size: 0.9em;
+            color: #333;
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        .member-details strong {
+            color: #FF0000;
+        }
+
+        .member-socials {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+        }
+
+        .social-btn {
+            padding: 8px 12px;
+            font-size: 0.85em;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            color: white;
+            text-decoration: none;
+            display: inline-block;
+            min-width: 70px;
+        }
+
+        .social-twitter {
+            background: #1a1a1a;
+            border: 2px solid #1a1a1a;
+        }
+
+        .social-twitter:hover {
+            background: #333;
+            border-color: #333;
+            transform: translateY(-2px);
+        }
+
+        .social-instagram {
+            background: #FF0000;
+            border: 2px solid #FF0000;
+        }
+
+        .social-instagram:hover {
+            background: #cc0000;
+            border-color: #cc0000;
+            transform: translateY(-2px);
+        }
+
+        .social-tiktok {
+            background: #1a1a1a;
+            border: 2px solid #1a1a1a;
+        }
+
+        .social-tiktok:hover {
+            background: #333;
+            border-color: #333;
+            transform: translateY(-2px);
+        }
+
+        .social-showroom {
+            background: #FF0000;
+            border: 2px solid #FF0000;
+        }
+
+        .social-showroom:hover {
+            background: #cc0000;
+            border-color: #cc0000;
+            transform: translateY(-2px);
+        }
+
+        .social-idnlive {
+            background: #FF0000;
+            border: 2px solid #FF0000;
+        }
+
+        .social-idnlive:hover {
+            background: #cc0000;
+            border-color: #cc0000;
+            transform: translateY(-2px);
+        }
+
+        /* Hidden tab content */
+        .team-content {
             display: none;
         }
 
-        .no-results {
-            text-align: center;
-            padding: 3rem 2rem;
-            font-size: 1.1rem;
-            color: #999;
+        .team-content.active {
+            display: block;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .members-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 15px;
+            }
+
+            .member-photo-container {
+                aspect-ratio: 1 / 1.1;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 1.5em;
+            }
+
+            .members-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .tabs {
+                gap: 10px;
+            }
+
+            .tab-btn {
+                padding: 10px 20px;
+                font-size: 1em;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="header-container">
-            <div class="logo">JKT48</div>
-            <nav>
-                <a href="#individual">Lagu Individual</a>
-                <a href="#units">Unit Song</a>
-                <a href="#info">Info</a>
-            </nav>
-            <div class="search-container">
-                <input type="text" id="searchInput" placeholder="Cari fanbase...">
-                <button class="search-btn">Search</button>
-            </div>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>JKT48 Team Fight</h1>
+            <p>Ikuti saluran WhatsApp BERITA JKT48 untuk mendapatkan informasi terbaru.</p>
         </div>
-    </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-badge">Request Hour 2026</div>
-        <h1>JKT48 Request Hour</h1>
-        <p>Fans memilih lagu favorit melalui voting, kemudian lagu pemenang ditampilkan dalam countdown sebagai bentuk apresiasi terhadap pilihan penggemar.</p>
-    </section>
-
-    <!-- Individual Songs Section -->
-    <section class="section" id="individual">
-        <h2 class="section-title">Lagu Individual</h2>
-        <div class="songs-grid">
-            <!-- Muffin -->
-            <div class="song-card">
-                <div class="song-header">
-                    <div class="fanbase-name">Muffin</div>
-                    <div class="artist-name">Mutiara Azzahra</div>
-                </div>
-                <div class="song-content">
-                    <div class="song-title">Akai Pin Heel to Professor</div>
-                    <a href="https://x.com/MuffinOfficial_/status/2034213985319559230" target="_blank" class="song-link">
-                        Lihat di X
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M5 12h14M12 5l7 7-7 7"/>
-                        </svg>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Lunarian -->
-            <div class="song-card">
-                <div class="song-header">
-                    <div class="fanbase-name">Lunarian</div>
-                    <div class="artist-name">Lulu Azkiya Salsabila</div>
-                </div>
-                <div class="song-content">
-                    <div class="song-title">Yokaze No Shiwaza</div>
-                    <a href="https://x.com/LunarianID/status/2033173891456397386" target="_blank" class="song-link">
-                        Lihat di X
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M5 12h14M12 5l7 7-7 7"/>
-                        </svg>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Onielity -->
-            <div class="song-card">
-                <div class="song-header">
-                    <div class="fanbase-name">Onielity</div>
-                    <div class="artist-name">Cornelia Syafa Vanisa</div>
-                </div>
-                <div class="song-content">
-                    <div class="song-title">Boku to Juliette to Jet Coaster</div>
-                    <a href="https://x.com/onielity_ofc/status/2033513611721597118" target="_blank" class="song-link">
-                        Lihat di X
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M5 12h14M12 5l7 7-7 7"/>
-                        </svg>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Raishanrise -->
-            <div class="song-card">
-                <div class="song-header">
-                    <div class="fanbase-name">Raishanrise</div>
-                    <div class="artist-name">Raisha Syifa</div>
-                </div>
-                <div class="song-content">
-                    <div class="song-title">Kuchi Utsushi no Chocolate</div>
-                    <a href="https://x.com/Raishanrise/status/2034621824806580528" target="_blank" class="song-link">
-                        Lihat di X
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M5 12h14M12 5l7 7-7 7"/>
-                        </svg>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Degrees -->
-            <div class="song-card">
-                <div class="song-header">
-                    <div class="fanbase-name">Degrees</div>
-                    <div class="artist-name">Greesella Adhalia</div>
-                </div>
-                <div class="song-content">
-                    <div class="song-title">Yowamushi Kemushi</div>
-                    <a href="https://x.com/Degrees_OFC/status/2034567659166294028" target="_blank" class="song-link">
-                        Lihat di X
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M5 12h14M12 5l7 7-7 7"/>
-                        </svg>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Christyzer -->
-            <div class="song-card">
-                <div class="song-header">
-                    <div class="fanbase-name">Christyzer</div>
-                    <div class="artist-name">Angelina Christy</div>
-                </div>
-                <div class="song-content">
-                    <div class="song-title">Plastic no Kuchibiru</div>
-                    <a href="https://x.com/Christyzer/status/2034555618540065044" target="_blank" class="song-link">
-                        Lihat di X
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M5 12h14M12 5l7 7-7 7"/>
-                        </svg>
-                    </a>
-                </div>
-            </div>
+        <!-- Tabs -->
+        <div class="tabs">
+            <button class="tab-btn active" onclick="switchTeam('dream')">Team Dream</button>
+            <button class="tab-btn" onclick="switchTeam('love')">Team Love</button>
+            <button class="tab-btn" onclick="switchTeam('passion')">Team Passion</button>
+            <button class="tab-btn" onclick="switchTeam('trainee')">Trainee</button>
         </div>
-    </section>
 
-    <!-- Unit Songs Section -->
-    <section class="section unit-section" id="units">
-        <h2 class="section-title">Unit Song</h2>
-        <div class="songs-grid">
-            <!-- Unit 1: Lunarian, Symfiony, Onielity -->
-            <div class="song-card">
-                <div class="song-header">
-                    <div class="fanbase-name">Lunarian × Symfiony × Onielity</div>
-                    <div class="artist-name">Lulu, Fiony, Oniel</div>
-                </div>
-                <div class="song-content">
-                    <div class="song-title">Dakishimerareta</div>
-                    <a href="https://x.com/sedangdicaridiisiinidulu" target="_blank" class="song-link">
-                        Lihat di X
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M5 12h14M12 5l7 7-7 7"/>
-                        </svg>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Unit 2: Hillaryous & Fritzy Force -->
-            <div class="song-card">
-                <div class="song-header">
-                    <div class="fanbase-name">Hillaryous × Fritzy Force</div>
-                    <div class="artist-name">Lily & Fritzy</div>
-                </div>
-                <div class="song-content">
-                    <div class="song-title">Serigala dan Pride</div>
-                    <a href="https://x.com/sedangdicaridiisiinidulu" target="_blank" class="song-link">
-                        Lihat di X
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M5 12h14M12 5l7 7-7 7"/>
-                        </svg>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Unit 3: Tact, Grovy, Lanautica -->
-            <div class="song-card">
-                <div class="song-header">
-                    <div class="fanbase-name">Tact × Grovy × Lanautica</div>
-                    <div class="artist-name">Trisha, Kimmy, Lana</div>
-                </div>
-                <div class="song-content">
-                    <div class="song-title">Aturan Anti Cinta</div>
-                    <a href="https://x.com/tact_id/status/2033572415889178915" target="_blank" class="song-link">
-                        Lihat di X
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M5 12h14M12 5l7 7-7 7"/>
-                        </svg>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Unit 4: MarshaOshi, Interindah, Kath Inc -->
-            <div class="song-card">
-                <div class="song-header">
-                    <div class="fanbase-name">MarshaOshi × Interindah × Kath Inc</div>
-                    <div class="artist-name">Marsha, Indah, Kathrina</div>
-                </div>
-                <div class="song-content">
-                    <div class="song-title">Cinta Pertamaku, Selamat Siang</div>
-                    <a href="https://x.com/sedangdicaridiisiinidulu" target="_blank" class="song-link">
-                        Lihat di X
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M5 12h14M12 5l7 7-7 7"/>
-                        </svg>
-                    </a>
-                </div>
-            </div>
+        <!-- Team Dream -->
+        <div id="dream" class="team-content active">
+            <div class="members-grid" id="dreamGrid"></div>
         </div>
-    </section>
 
-    <!-- Footer -->
-    <footer id="info">
-        <div class="footer-content">
-            <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">📢 Update Terbaru</h3>
-            <p style="font-size: 1.1rem; margin-bottom: 1.5rem;">Data di-update melalui saluran WhatsApp BERITA JKT48</p>
-            <a href="https://whatsapp.com/channel/0029Vae5cgVBqbr0mRzNvA3c" target="_blank" class="footer-link">
-                Bergabung di WhatsApp Channel
-            </a>
-            <div class="update-badge">✓ Data Update: Maret 2026</div>
-            <p style="margin-top: 2rem; font-size: 0.95rem; opacity: 0.8;">
-                🎤 JKT48 Request Hour - Suara Fans, Pilihan Terbaik<br>
-                © 2024 BERITA JKT48.
-            </p>
+        <!-- Team Love -->
+        <div id="love" class="team-content">
+            <div class="members-grid" id="loveGrid"></div>
         </div>
-    </footer>
+
+        <!-- Team Passion -->
+        <div id="passion" class="team-content">
+            <div class="members-grid" id="passionGrid"></div>
+        </div>
+
+        <!-- Team Trainee -->
+        <div id="trainee" class="team-content">
+            <div class="members-grid" id="traineeGrid"></div>
+        </div>
+    </div>
 
     <script>
-        const searchInput = document.getElementById('searchInput');
-        const songCards = document.querySelectorAll('.song-card');
-
-        searchInput.addEventListener('input', function(e) {
-            const searchTerm = e.target.value.toLowerCase();
-            let visibleCount = 0;
-
-            songCards.forEach(card => {
-                const fanbseName = card.querySelector('.fanbase-name').textContent.toLowerCase();
-
-                if (fanbseName.includes(searchTerm)) {
-                    card.classList.remove('hidden');
-                    visibleCount++;
-                } else {
-                    card.classList.add('hidden');
+        // Data Member JKT48
+        const teamData = {
+            dream: [
+                {
+                    id: 1,
+                    name: "Amanda Sukma",
+                    nickname: "Amanda",
+                    photo: "amanda.jpg",
+                    birthDate: "17 Desember 2004",
+                    bloodType: "O",
+                    zodiac: "Sagitarius",
+                    height: "161 cm",
+                    socials: {
+                        twitter: "x.com/PS_AmandaJKT48",
+                        instagram: 'www.instagram.com/jkt48.amanda.s/',
+                        tiktok: "www.tiktok.com/@jkt48.amanda.s",
+                        showroom: "www.showroom-live.com/r/JKT48_Amanda",
+                        idnlive: "www.idn.app/jkt48_amanda"
+                    }
+                },
+                {
+                    id: 2,
+                    name: "Chelsea Davina",
+                    nickname: "Chelsea",
+                    photo: "chelsea.jpg",
+                    birthDate: "23 Desember 2009",
+                    bloodType: "B",
+                    zodiac: "Capricorn",
+                    height: "169 cm",
+                    socials: {
+                        twitter: "x.com/DC_ChelseaJKT48",
+                        instagram: "www.instagram.com/jkt48.chelsea.d/",
+                        tiktok: "www.tiktok.com/@_chelseajkt48",
+                        showroom: "www.showroom-live.com/r/JKT48_Chelsea",
+                        idnlive: "www.idn.app/jkt48_chelsea"
+                    }
+                },
+                {
+                    id: 3,
+                    name: "Adeline Wijaya",
+                    nickname: "Delynn",
+                    photo: "delynn.jpg",
+                    birthDate: "1 September 2007",
+                    bloodType: "B",
+                    zodiac: "Virgo",
+                    height: "167 cm",
+                    socials: {
+                        twitter: "x.com/Delynn_JKT48",
+                        instagram: "www.instagram.com/jkt48.delynn/",
+                        tiktok: "www.tiktok.com/@jkt48.delynn",
+                        showroom: "www.showroom-live.com/r/JKT48_Delynn",
+                        idnlive: "www.idn.app/jkt48_delynn"
+                    }
+                },
+                {
+                    id: 4,
+                    name: "Gabriela Abigail",
+                    nickname: "Ella",
+                    photo: "ella.jpg",
+                    birthDate: "7 Agustus 2006",
+                    bloodType: "B",
+                    zodiac: "Leo",
+                    height: "161 cm",
+                    socials: {
+                        twitter: "x.com/AM_EllaJKT48",
+                        instagram: "www.instagram.com/jkt48.ella.a/",
+                        tiktok: "www.tiktok.com/@jkt48.ella.a",
+                        showroom: "www.showroom-live.com/r/JKT48_Ella",
+                        idnlive: "www.idn.app/jkt48_ella"
+                    }
+                },
+                {
+                    id: 5,
+                    name: "Helisma Putri",
+                    nickname: "Eli",
+                    photo: "eli.jpg",
+                    birthDate: "15 Juni 2000",
+                    bloodType: "A",
+                    zodiac: "Gemini",
+                    height: "167 cm",
+                    socials: {
+                        twitter: "x.com/H_EliJKT48",
+                        instagram: "www.instagram.com/jkt48.eli/",
+                        tiktok: "www.tiktok.com/@elijkt48",
+                        showroom: "www.showroom-live.com/r/JKT48_Eli",
+                        idnlive: "www.idn.app/jkt48_eli"
+                    }
+                },
+                {
+                    id: 6,
+                    name: "Freya Jayawardana",
+                    nickname: "Freya",
+                    photo: "freya.jpg",
+                    birthDate: "13 Februari 2006",
+                    bloodType: "B",
+                    zodiac: "Aquarius",
+                    height: "161 cm",
+                    socials: {
+                        twitter: "x.com/Freya_JKT48",
+                        instagram: "www.instagram.com/jkt48.freya/",
+                        tiktok: "www.tiktok.com/@freyajkt48",
+                        showroom: "www.showroom-live.com/r/JKT48_Freya",
+                        idnlive: "www.idn.app/jkt48_freya"
+                    }
+                },
+                {
+                    id: 7,
+                    name: "Gendis Mayrannisa",
+                    nickname: "Gendis",
+                    photo: "gendis.jpg",
+                    birthDate: "23 Juni 2010",
+                    bloodType: "B",
+                    zodiac: "Cancer",
+                    height: "161 cm",
+                    socials: {
+                        twitter: "x.com/Gendis_JKT48",
+                        instagram: "www.instagram.com/jkt48.gendis/",
+                        tiktok: "www.tiktok.com/@gendisjkt48",
+                        showroom: "www.showroom-live.com/r/JKT48_Gendis",
+                        idnlive: "idn.onelink.me/VKUf/JKT48Gendis"
+                    }
+                },
+                {
+                    id: 8,
+                    name: "Gita Sekar Andarini",
+                    nickname: "Gita",
+                    photo: "gita.jpg",
+                    birthDate: "30 Juni 2001",
+                    bloodType: "O",
+                    zodiac: "Cancer",
+                    height: "165 cm",
+                    socials: {
+                        twitter: "x.com/A_GitaJKT48",
+                        instagram: "www.instagram.com/jkt48gita/",
+                        tiktok: "www.tiktok.com/@gitajkt48",
+                        showroom: "www.showroom-live.com/r/JKT48_Gita",
+                        idnlive: "www.idn.app/jkt48_gita"
+                    }
+                },
+                {
+                    id: 9,
+                    name: "Greesella Adhalia",
+                    nickname: "Greesel",
+                    photo: "greesel.jpg",
+                    birthDate: "10 Januari 2006",
+                    bloodType: "O",
+                    zodiac: "Capricorn",
+                    height: "165 cm",
+                    socials: {
+                        twitter: "x.com/Greesel_JKT48",
+                        instagram: "www.instagram.com/jkt48.greesel/",
+                        tiktok: "www.tiktok.com/@greeseljkt48",
+                        showroom: "www.showroom-live.com/r/JKT48_Greesel",
+                        idnlive: "www.idn.app/jkt48_greesel"
+                    }
+                },
+                {
+                    id: 10,
+                    name: "Jesslyn Elly",
+                    nickname: "Lyn",
+                    photo: "lyn.jpg",
+                    birthDate: "13 September 2001",
+                    bloodType: "O",
+                    zodiac: "Virgo",
+                    height: "155 cm",
+                    socials: {
+                        twitter: "x.com/SE_LynJKT48",
+                        instagram: "www.instagram.com/jkt48.lyn.s/",
+                        tiktok: "www.tiktok.com/@jkt48.lyn.s",
+                        showroom: "www.showroom-live.com/r/JKT48_Lyn",
+                        idnlive: "www.idn.app/jkt48_lyn"
+                    }
+                },
+                {
+                    id: 11,
+                    name: "Marsha Lenathea",
+                    nickname: "Marsha",
+                    photo: "marsha.jpg",
+                    birthDate: "9 Januari 2006",
+                    bloodType: "O",
+                    zodiac: "Capricorn",
+                    height: "165 cm",
+                    socials: {
+                        twitter: "x.com/L_MarshaJKT48",
+                        instagram: "www.instagram.com/jkt48.marsha/",
+                        tiktok: "www.tiktok.com/@marsha.jkt48?lang=id-ID",
+                        showroom: "www.showroom-live.com/r/JKT48_Marsha",
+                        idnlive: "www.idn.app/jkt48_marsha"
+                    }
+                },
+                {
+                    id: 12,
+                    name: "Nina Tutachia",
+                    nickname: "Nachia",
+                    photo: "nachia.jpg",
+                    birthDate: "16 Oktober 2009",
+                    bloodType: "O",
+                    zodiac: "Libra",
+                    height: "164 cm",
+                    socials: {
+                        twitter: "x.com/Nachia_JKT48",
+                        instagram: "www.instagram.com/jkt48.nachia.t/",
+                        tiktok: "www.tiktok.com/@jkt48.nachia?lang=id-ID",
+                        showroom: "www.showroom-live.com/r/JKT48_Nachia",
+                        idnlive: "www.idn.app/jkt48_nachia"
+                    }
+                },
+                {
+                    id: 13,
+                    name: "Shabilqis Naila",
+                    nickname: "Nala",
+                    photo: "nala.jpg",
+                    birthDate: "1 September 2008",
+                    bloodType: "B",
+                    zodiac: "Virgo",
+                    height: "160 cm",
+                    socials: {
+                        twitter: "x.com/Nala_JKT48",
+                        instagram: "www.instagram.com/jkt48.nala/",
+                        tiktok: "www.tiktok.com/@jkt48.nala?lang=id-ID",
+                        showroom: "www.showroom-live.com/r/JKT48_Nala",
+                        idnlive: "www.idn.app/jkt48_nala"
+                    }
+                },
+                {
+                    id: 14,
+                    name: "Febriola Sinambela",
+                    nickname: "Olla",
+                    photo: "olla.jpg",
+                    birthDate: "26 Februari 2005",
+                    bloodType: "B",
+                    zodiac: "Pisces",
+                    height: "157 cm",
+                    socials: {
+                        twitter: "x.com/F_OllaJKT48",
+                        instagram: "www.instagram.com/jkt48.olla/",
+                        tiktok: "www.tiktok.com/@ollajkt48",
+                        showroom: "www.showroom-live.com/r/JKT48_Olla",
+                        idnlive: "www.idn.app/jkt48_olla"
+                    }
+                },
+                {
+                    id: 15,
+                    name: "Oline Manuel",
+                    nickname: "Oline",
+                    photo: "oline.jpg",
+                    birthDate: "3 November 2007",
+                    bloodType: "B",
+                    zodiac: "Scorpio",
+                    height: "169 cm",
+                    socials: {
+                        twitter: "x.com/M_OlineJKT48",
+                        instagram: "www.instagram.com/jkt48.oline/",
+                        tiktok: "www.tiktok.com/@jkt48.oline?lang=id-ID",
+                        showroom: "www.showroom-live.com/r/JKT48_OlineM",
+                        idnlive: "www.idn.app/jkt48_oline"
+                    }
                 }
+            ],
+            love: [
+                {
+                    id: 1,
+                    name: "Alya Amanda",
+                    nickname: "Alya",
+                    photo: "alya.jpg",
+                    birthDate: "26 Agustus 2006",
+                    bloodType: "A",
+                    zodiac: "Virgo",
+                    height: "162 cm",
+                    socials: {
+                        twitter: "https://x.com/AA_AlyaJKT48",
+                        instagram: "https://www.instagram.com/jkt48.alya_/",
+                        tiktok: "https://www.tiktok.com/@alyajkt48",
+                        showroom: "https://www.showroom-live.com/r/JKT48_Alya",
+                        idnlive: "https://www.idn.app/jkt48_alya"
+                    }
+                },
+                {
+                    id: 2,
+                    name: "Anindya Ramadhani",
+                    nickname: "Anindya",
+                    photo: "anindya.jpg",
+                    birthDate: "18 Oktober 2005",
+                    bloodType: "O",
+                    zodiac: "Libra",
+                    height: "153 cm",
+                    socials: {
+                        twitter: "https://x.com/AR_AnindyaJKT48",
+                        instagram: "https://www.instagram.com/jkt48.anindya_/",
+                        tiktok: "https://www.tiktok.com/@anindyajkt48",
+                        showroom: "https://www.showroom-live.com/r/JKT48_Anindya",
+                        idnlive: "https://www.idn.app/jkt48_anindya"
+                    }
+                },
+                {
+                    id: 3,
+                    name: "Cathleen Nixie",
+                    nickname: "Cathy",
+                    photo: "cathy.jpg",
+                    birthDate: "28 Mei 2009",
+                    bloodType: "A",
+                    zodiac: "Gemini",
+                    height: "162 cm",
+                    socials: {
+                        twitter: "https://x.com/N_CathyJKT48",
+                        instagram: "https://www.instagram.com/jkt48.cathy/",
+                        tiktok: "https://www.tiktok.com/@cathyjkt48",
+                        showroom: "https://www.showroom-live.com/r/JKT48_Cathy",
+                        idnlive: "https://idn.onelink.me/VKUf/JKT48Cathy"
+                    }
+                }
+            ],
+            passion: [
+                {
+                    id: 1,
+                    name: "Cynthia Yaputera",
+                    nickname: "Cynthia",
+                    photo: "cynthia.jpg",
+                    birthDate: "22 November 2003",
+                    bloodType: "O",
+                    zodiac: "Sagitarius",
+                    height: "160 cm",
+                    socials: {
+                        twitter: "https://x.com/Y_CynthiaJKT48",
+                        instagram: "https://www.instagram.com/jkt48.cynthia/",
+                        tiktok: "https://www.tiktok.com/@cynthiajkt48",
+                        showroom: "https://www.showroom-live.com/r/JKT48_Cynthia",
+                        idnlive: "https://idn.onelink.me/VKUf/JKT48Cynthia"
+                    }
+                }
+            ],
+            trainee: [
+                {
+                    id: 1,
+                    name: "Trainee Member 1",
+                    nickname: "Trainee 1",
+                    photo: "trainee1.jpg",
+                    birthDate: "01 Januari 2010",
+                    bloodType: "O",
+                    zodiac: "Capricorn",
+                    height: "160 cm",
+                    socials: {
+                        twitter: "https://x.com/trainee1",
+                        instagram: "https://www.instagram.com/trainee1/",
+                        tiktok: "https://www.tiktok.com/@trainee1",
+                        showroom: "https://www.showroom-live.com/r/JKT48_Trainee1",
+                        idnlive: "https://www.idn.app/jkt48_trainee1"
+                    }
+                }
+            ]
+        };
+
+        function createMemberCard(member, frameClass) {
+            const card = document.createElement('div');
+            card.className = 'member-card';
+            card.innerHTML = `
+                <div class="member-photo-container ${frameClass}">
+                    <div class="inner-frame">
+                        <img src="${member.photo}" alt="${member.name}" class="member-photo">
+                    </div>
+                </div>
+                <div class="member-info">
+                    <div class="member-name">${member.name}</div>
+                    <div class="member-nickname">"${member.nickname}"</div>
+                    <div class="member-details">
+                        <strong>Lahir:</strong> ${member.birthDate}<br>
+                        <strong>Golongan Darah:</strong> ${member.bloodType}<br>
+                        <strong>Zodiak:</strong> ${member.zodiac}<br>
+                        <strong>Tinggi:</strong> ${member.height}
+                    </div>
+                    <div class="member-socials">
+                        <a href="https://${member.socials.twitter}" target="_blank" class="social-btn social-twitter">Twitter</a>
+                        <a href="https://${member.socials.instagram}" target="_blank" class="social-btn social-instagram">Instagram</a>
+                        <a href="https://${member.socials.tiktok}" target="_blank" class="social-btn social-tiktok">TikTok</a>
+                        <a href="https://${member.socials.showroom}" target="_blank" class="social-btn social-showroom">Showroom</a>
+                        <a href="https://${member.socials.idnlive}" target="_blank" class="social-btn social-idnlive">IDN Live</a>
+                    </div>
+                </div>
+            `;
+            return card;
+        }
+
+        function loadTeam(teamName) {
+            const gridId = teamName + 'Grid';
+            const grid = document.getElementById(gridId);
+            const team = teamData[teamName];
+            const frameClass = teamName === 'trainee' ? 'frame-orange' : 'frame-red';
+
+            grid.innerHTML = '';
+            team.forEach(member => {
+                grid.appendChild(createMemberCard(member, frameClass));
+            });
+        }
+
+        function switchTeam(teamName) {
+            // Hide all team contents
+            document.querySelectorAll('.team-content').forEach(content => {
+                content.classList.remove('active');
             });
 
-            const grids = document.querySelectorAll('.songs-grid');
-            grids.forEach(grid => {
-                let existingNoResults = grid.querySelector('.no-results');
-                if (existingNoResults) {
-                    existingNoResults.remove();
-                }
-
-                if (grid.querySelectorAll('.song-card:not(.hidden)').length === 0) {
-                    const noResults = document.createElement('div');
-                    noResults.className = 'no-results';
-                    noResults.textContent = 'Fanbase tidak ditemukan.';
-                    grid.appendChild(noResults);
-                }
+            // Remove active class from all buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
             });
+
+            // Show selected team
+            document.getElementById(teamName).classList.add('active');
+
+            // Add active class to clicked button
+            event.target.classList.add('active');
+
+            // Load team data
+            loadTeam(teamName);
+        }
+
+        // Load Dream team on page load
+        window.addEventListener('load', () => {
+            loadTeam('dream');
+            loadTeam('love');
+            loadTeam('passion');
+            loadTeam('trainee');
         });
     </script>
 </body>
