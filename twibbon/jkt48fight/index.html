@@ -262,6 +262,77 @@
             color: #333;
         }
 
+        .position-control {
+            background: #FFF5E6;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        .position-control h4 {
+            color: #333;
+            margin-bottom: 12px;
+            font-size: 0.95em;
+        }
+
+        .slider-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .slider-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .slider-item label {
+            width: 30px;
+            font-weight: 600;
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .slider-item input[type="range"] {
+            flex: 1;
+            height: 6px;
+            border-radius: 3px;
+            background: linear-gradient(to right, #FF7A00, #FF8C00);
+            outline: none;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+
+        .slider-item input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: #FF7A00;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .slider-item input[type="range"]::-moz-range-thumb {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: #FF7A00;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .slider-value {
+            width: 40px;
+            text-align: right;
+            font-weight: 600;
+            color: #FF7A00;
+            font-size: 0.9em;
+        }
+
         .success-message {
             display: none;
             background: #4ECDC4;
@@ -364,6 +435,22 @@
                 <div class="info-section">
                     <strong>Tips:</strong> Gunakan foto dengan wajah di tengah untuk hasil terbaik.
                 </div>
+
+                <div id="positionControl" class="position-control" style="display: none;">
+                    <h4>Sesuaikan Posisi Foto</h4>
+                    <div class="slider-group">
+                        <div class="slider-item">
+                            <label>X</label>
+                            <input type="range" id="positionX" min="-100" max="100" value="0" step="5">
+                            <span class="slider-value" id="valueX">0</span>
+                        </div>
+                        <div class="slider-item">
+                            <label>Y</label>
+                            <input type="range" id="positionY" min="-100" max="100" value="0" step="5">
+                            <span class="slider-value" id="valueY">0</span>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- Right Section: Preview & Download -->
@@ -407,6 +494,11 @@
             passion: false,
             dream: false,
             love: false
+        };
+
+        let imagePosition = {
+            x: 0,
+            y: 0
         };
 
         // Frame data
@@ -464,6 +556,23 @@
             });
         });
 
+        // Position control sliders
+        document.getElementById('positionX').addEventListener('input', function() {
+            imagePosition.x = parseInt(this.value);
+            document.getElementById('valueX').textContent = this.value;
+            if (currentImage) {
+                generatePreview();
+            }
+        });
+
+        document.getElementById('positionY').addEventListener('input', function() {
+            imagePosition.y = parseInt(this.value);
+            document.getElementById('valueY').textContent = this.value;
+            if (currentImage) {
+                generatePreview();
+            }
+        });
+
         // File input
         document.getElementById('fileInput').addEventListener('change', function(e) {
             const file = e.target.files[0];
@@ -473,6 +582,15 @@
                     const img = new Image();
                     img.onload = function() {
                         currentImage = img;
+                        // Show position control ketika ada gambar
+                        document.getElementById('positionControl').style.display = 'block';
+                        // Reset position
+                        imagePosition = { x: 0, y: 0 };
+                        document.getElementById('positionX').value = 0;
+                        document.getElementById('positionY').value = 0;
+                        document.getElementById('valueX').textContent = '0';
+                        document.getElementById('valueY').textContent = '0';
+                        
                         generatePreview();
                         showSuccessMessage();
                     };
@@ -491,12 +609,17 @@
             canvas.height = 600;
             const ctx = canvas.getContext('2d');
 
-            // Draw base photo (crop to square)
+            // Draw base photo (crop to square with position adjustment)
             if (currentImage) {
                 const size = Math.min(currentImage.width, currentImage.height);
-                const x = (currentImage.width - size) / 2;
-                const y = (currentImage.height - size) / 2;
-                ctx.drawImage(currentImage, x, y, size, size, 0, 0, 600, 600);
+                const centerX = (currentImage.width - size) / 2;
+                const centerY = (currentImage.height - size) / 2;
+                
+                // Apply position offset (convert -100 to 100 range to pixel offset)
+                const offsetX = (imagePosition.x / 100) * size * 0.2; // 0.2 untuk kontrol sensitivitas
+                const offsetY = (imagePosition.y / 100) * size * 0.2;
+                
+                ctx.drawImage(currentImage, centerX + offsetX, centerY + offsetY, size, size, 0, 0, 600, 600);
             } else {
                 ctx.fillStyle = '#f0f0f0';
                 ctx.fillRect(0, 0, 600, 600);
@@ -555,6 +678,7 @@
         document.getElementById('resetBtn').addEventListener('click', function() {
             currentImage = null;
             activeFrames = { passion: false, dream: false, love: false };
+            imagePosition = { x: 0, y: 0 };
             
             document.querySelectorAll('.frame-checkbox').forEach(cb => cb.checked = false);
             document.querySelectorAll('.frame-option').forEach(opt => opt.classList.remove('active'));
@@ -563,6 +687,12 @@
             document.getElementById('canvasContainer').innerHTML = 'Pilih foto untuk melihat preview';
             document.getElementById('downloadBtn').disabled = true;
             document.getElementById('successMessage').style.display = 'none';
+            document.getElementById('positionControl').style.display = 'none';
+            
+            document.getElementById('positionX').value = 0;
+            document.getElementById('positionY').value = 0;
+            document.getElementById('valueX').textContent = '0';
+            document.getElementById('valueY').textContent = '0';
         });
 
         // Initialize - load frames saat window load
