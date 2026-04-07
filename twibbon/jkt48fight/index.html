@@ -13,7 +13,7 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #fce7f3 0%, #fbcfe8 100%);
+            background: #FFFFFF;
             min-height: 100vh;
             padding: 20px;
             display: flex;
@@ -31,7 +31,7 @@
         }
 
         header {
-            background: linear-gradient(135deg, #fda4af 0%, #f472b6 100%);
+            background: linear-gradient(135deg, #FF7A00 0%, #FF8C00 100%);
             color: white;
             padding: 40px 20px;
             text-align: center;
@@ -75,21 +75,18 @@
         }
 
         .frame-option:hover {
-            border-color: #f472b6;
-            box-shadow: 0 5px 20px rgba(244, 114, 182, 0.2);
+            border-color: #FF7A00;
+            box-shadow: 0 5px 20px rgba(255, 122, 0, 0.2);
             transform: translateY(-2px);
         }
 
         .frame-option.active {
-            border-color: #f472b6;
-            background: linear-gradient(135deg, #fda4af15 0%, #f472b615 100%);
+            border-color: #FF7A00;
+            background: linear-gradient(135deg, #FF7A0015 0%, #FF8C0015 100%);
         }
 
         .frame-checkbox {
-            width: 20px;
-            height: 20px;
-            cursor: pointer;
-            accent-color: #f472b6;
+            display: none;
         }
 
         .frame-preview {
@@ -108,15 +105,15 @@
         }
 
         .frame-passion .frame-preview {
-            background: linear-gradient(135deg, #fda4af 0%, #f472b6 100%);
+            background: linear-gradient(135deg, #FF7A00 0%, #FF8C00 100%);
         }
 
         .frame-dream .frame-preview {
-            background: linear-gradient(135deg, #d8b4fe 0%, #c084fc 100%);
+            background: linear-gradient(135deg, #FFC300 0%, #FFB300 100%);
         }
 
         .frame-love .frame-preview {
-            background: linear-gradient(135deg, #fecdd3 0%, #fbcfe8 100%);
+            background: linear-gradient(135deg, #FFB300 0%, #FF9500 100%);
         }
 
         .frame-info h3 {
@@ -157,7 +154,7 @@
         .file-input-label {
             display: block;
             padding: 15px 20px;
-            background: linear-gradient(135deg, #fda4af 0%, #f472b6 100%);
+            background: linear-gradient(135deg, #FF7A00 0%, #FF8C00 100%);
             color: white;
             border-radius: 10px;
             cursor: pointer;
@@ -168,7 +165,7 @@
 
         .file-input-label:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(244, 114, 182, 0.4);
+            box-shadow: 0 5px 15px rgba(255, 122, 0, 0.4);
         }
 
         .right-section {
@@ -227,13 +224,13 @@
         }
 
         .btn-download {
-            background: linear-gradient(135deg, #fda4af 0%, #f472b6 100%);
+            background: linear-gradient(135deg, #FF7A00 0%, #FF8C00 100%);
             color: white;
         }
 
         .btn-download:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(244, 114, 182, 0.4);
+            box-shadow: 0 5px 15px rgba(255, 122, 0, 0.4);
         }
 
         .btn-download:disabled {
@@ -253,8 +250,8 @@
         }
 
         .info-section {
-            background: #fef2f7;
-            border-left: 4px solid #f472b6;
+            background: #FFF5E6;
+            border-left: 4px solid #FF7A00;
             padding: 15px;
             border-radius: 8px;
             font-size: 0.9em;
@@ -313,7 +310,7 @@
 <body>
     <div class="container">
         <header>
-            <h1>✨ Twibbon Maker ✨</h1>
+            <h1>Twibbon Maker</h1>
             <p>Pilih frame favorit dan ubah foto profilmu sekarang</p>
         </header>
 
@@ -322,15 +319,13 @@
             <div class="left-section">
                 <div>
                     <h2 style="margin-bottom: 15px; color: #333;">Pilih Twibbon</h2>
-                    <p style="font-size: 0.9em; color: #666; margin-bottom: 15px;">Nyalakan/matikan twibbon yang Anda inginkan (bisa lebih dari satu)</p>
                     
                     <div class="frame-option frame-passion" data-frame="passion">
                         <input type="checkbox" id="passion-check" data-frame="passion" class="frame-checkbox">
                         <label for="passion-check" style="flex: 1; cursor: pointer; display: flex; align-items: center; gap: 15px; margin: 0;">
                             <div class="frame-preview">Twibbon<br>Passion</div>
                             <div class="frame-info">
-                                <h3>🔥 Tim Passion</h3>
-                                <p>Energik & Penuh Semangat</p>
+                                <h3>Tim Passion</h3>
                             </div>
                         </label>
                     </div>
@@ -340,8 +335,7 @@
                         <label for="dream-check" style="flex: 1; cursor: pointer; display: flex; align-items: center; gap: 15px; margin: 0;">
                             <div class="frame-preview">Twibbon<br>Dream</div>
                             <div class="frame-info">
-                                <h3>💭 Tim Dream</h3>
-                                <p>Inspiratif & Imajinatif</p>
+                                <h3>Tim Dream</h3>
                             </div>
                         </label>
                     </div>
@@ -351,8 +345,7 @@
                         <label for="love-check" style="flex: 1; cursor: pointer; display: flex; align-items: center; gap: 15px; margin: 0;">
                             <div class="frame-preview">Twibbon<br>Love</div>
                             <div class="frame-info">
-                                <h3>💝 Tim Love</h3>
-                                <p>Hangat & Penuh Kasih</p>
+                                <h3>Tim Love</h3>
                             </div>
                         </label>
                     </div>
@@ -363,13 +356,13 @@
                     <div class="file-input-wrapper">
                         <input type="file" id="fileInput" accept="image/*">
                         <label for="fileInput" class="file-input-label">
-                            📷 Pilih Foto dari Perangkat
+                            Pilih Foto dari Perangkat
                         </label>
                     </div>
                 </div>
 
                 <div class="info-section">
-                    <strong>💡 Tips:</strong> Gunakan foto dengan wajah di tengah untuk hasil terbaik. Format: JPG, PNG, GIF.
+                    <strong>Tips:</strong> Gunakan foto dengan wajah di tengah untuk hasil terbaik.
                 </div>
             </div>
 
@@ -378,7 +371,7 @@
                 <div class="preview-container">
                     <h3>Preview Twibbon</h3>
                     <div id="canvasContainer" class="canvas-placeholder">
-                        👆 Pilih foto untuk melihat preview
+                        Pilih foto untuk melihat preview
                     </div>
                 </div>
 
@@ -388,15 +381,15 @@
 
                 <div class="button-group">
                     <button class="btn btn-download" id="downloadBtn" disabled>
-                        ⬇️ Unduh Twibbon
+                        Unduh Twibbon
                     </button>
                     <button class="btn btn-reset" id="resetBtn">
-                        🔄 Reset
+                        Reset
                     </button>
                 </div>
 
                 <div class="info-section">
-                    <strong>📱 Gunakan untuk:</strong> Profile picture di sosial media, WhatsApp, Instagram, TikTok, dan aplikasi lainnya.
+                    <strong>Gunakan untuk:</strong> Profile picture di sosial media, WhatsApp, Instagram, TikTok, dan aplikasi lainnya.
                 </div>
             </div>
         </div>
@@ -518,6 +511,13 @@
                 }
             });
 
+            // Add watermark
+            ctx.font = '12px Arial, sans-serif';
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.25)';
+            ctx.textAlign = 'right';
+            ctx.textBaseline = 'bottom';
+            ctx.fillText('beritajkt48.my.id', 590, 590);
+
             // Replace container with canvas
             container.innerHTML = '';
             canvas.style.maxWidth = '100%';
@@ -560,7 +560,7 @@
             document.querySelectorAll('.frame-option').forEach(opt => opt.classList.remove('active'));
             
             document.getElementById('fileInput').value = '';
-            document.getElementById('canvasContainer').innerHTML = '👆 Pilih foto untuk melihat preview';
+            document.getElementById('canvasContainer').innerHTML = 'Pilih foto untuk melihat preview';
             document.getElementById('downloadBtn').disabled = true;
             document.getElementById('successMessage').style.display = 'none';
         });
