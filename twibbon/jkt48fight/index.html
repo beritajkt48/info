@@ -13,7 +13,7 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #fce7f3 0%, #fbcfe8 100%);
             min-height: 100vh;
             padding: 20px;
             display: flex;
@@ -31,7 +31,7 @@
         }
 
         header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #fda4af 0%, #f472b6 100%);
             color: white;
             padding: 40px 20px;
             text-align: center;
@@ -75,14 +75,14 @@
         }
 
         .frame-option:hover {
-            border-color: #667eea;
-            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.2);
+            border-color: #f472b6;
+            box-shadow: 0 5px 20px rgba(244, 114, 182, 0.2);
             transform: translateY(-2px);
         }
 
         .frame-option.active {
-            border-color: #667eea;
-            background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+            border-color: #f472b6;
+            background: linear-gradient(135deg, #fda4af15 0%, #f472b615 100%);
         }
 
         .frame-preview {
@@ -101,15 +101,15 @@
         }
 
         .frame-passion .frame-preview {
-            background: linear-gradient(135deg, #FF6B9D 0%, #C44569 100%);
+            background: linear-gradient(135deg, #fda4af 0%, #f472b6 100%);
         }
 
         .frame-dream .frame-preview {
-            background: linear-gradient(135deg, #4ECDC4 0%, #44A08D 100%);
+            background: linear-gradient(135deg, #d8b4fe 0%, #c084fc 100%);
         }
 
         .frame-love .frame-preview {
-            background: linear-gradient(135deg, #FFD93D 0%, #FF6B6B 100%);
+            background: linear-gradient(135deg, #fecdd3 0%, #fbcfe8 100%);
         }
 
         .frame-info h3 {
@@ -150,7 +150,7 @@
         .file-input-label {
             display: block;
             padding: 15px 20px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #fda4af 0%, #f472b6 100%);
             color: white;
             border-radius: 10px;
             cursor: pointer;
@@ -161,7 +161,7 @@
 
         .file-input-label:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 5px 15px rgba(244, 114, 182, 0.4);
         }
 
         .right-section {
@@ -220,13 +220,13 @@
         }
 
         .btn-download {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #fda4af 0%, #f472b6 100%);
             color: white;
         }
 
         .btn-download:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 5px 15px rgba(244, 114, 182, 0.4);
         }
 
         .btn-download:disabled {
@@ -246,8 +246,8 @@
         }
 
         .info-section {
-            background: #f9f9f9;
-            border-left: 4px solid #667eea;
+            background: #fef2f7;
+            border-left: 4px solid #f472b6;
             padding: 15px;
             border-radius: 8px;
             font-size: 0.9em;
@@ -393,20 +393,20 @@
         const frames = {
             passion: {
                 name: 'Tim Passion',
-                color: '#FF6B9D',
-                gradient: ['#FF6B9D', '#C44569'],
+                color: '#fda4af',
+                gradient: ['#fda4af', '#f472b6'],
                 emoji: '🔥'
             },
             dream: {
                 name: 'Tim Dream',
-                color: '#4ECDC4',
-                gradient: ['#4ECDC4', '#44A08D'],
+                color: '#d8b4fe',
+                gradient: ['#d8b4fe', '#c084fc'],
                 emoji: '💭'
             },
             love: {
                 name: 'Tim Love',
-                color: '#FFD93D',
-                gradient: ['#FFD93D', '#FF6B6B'],
+                color: '#fecdd3',
+                gradient: ['#fecdd3', '#fbcfe8'],
                 emoji: '💝'
             }
         };
@@ -450,47 +450,69 @@
             canvas.height = 500;
             const ctx = canvas.getContext('2d');
 
-            // Fill background
-            ctx.fillStyle = '#f0f0f0';
-            ctx.fillRect(0, 0, 500, 500);
-
-            // Draw image
+            // Draw image centered and cropped to square
             if (currentImage) {
-                const size = Math.max(currentImage.width, currentImage.height);
+                const size = Math.min(currentImage.width, currentImage.height);
                 const x = (currentImage.width - size) / 2;
                 const y = (currentImage.height - size) / 2;
                 ctx.drawImage(currentImage, x, y, size, size, 0, 0, 500, 500);
+            } else {
+                ctx.fillStyle = '#f0f0f0';
+                ctx.fillRect(0, 0, 500, 500);
             }
 
-            // Draw frame border with gradient
+            // Draw frame border - MAIN FRAME
             const gradient = ctx.createLinearGradient(0, 0, 500, 500);
             gradient.addColorStop(0, frames[currentFrame].gradient[0]);
             gradient.addColorStop(1, frames[currentFrame].gradient[1]);
             
+            // Outer border
             ctx.strokeStyle = gradient;
-            ctx.lineWidth = 15;
-            ctx.strokeRect(7.5, 7.5, 485, 485);
+            ctx.lineWidth = 20;
+            ctx.strokeRect(10, 10, 480, 480);
 
-            // Draw frame corner decorations
+            // Inner accent line
+            ctx.strokeStyle = frames[currentFrame].gradient[0];
+            ctx.lineWidth = 3;
+            ctx.globalAlpha = 0.6;
+            ctx.strokeRect(15, 15, 470, 470);
+            ctx.globalAlpha = 1;
+
+            // Draw rounded corners decoration
             ctx.fillStyle = frames[currentFrame].gradient[0];
-            const decorSize = 50;
-            const positions = [[0, 0], [500-decorSize, 0], [0, 500-decorSize], [500-decorSize, 500-decorSize]];
+            ctx.globalAlpha = 0.2;
+            const cornerSize = 60;
+            const corners = [
+                {x: 0, y: 0},
+                {x: 500 - cornerSize, y: 0},
+                {x: 0, y: 500 - cornerSize},
+                {x: 500 - cornerSize, y: 500 - cornerSize}
+            ];
             
-            positions.forEach(([px, py]) => {
-                ctx.globalAlpha = 0.15;
-                ctx.fillRect(px, py, decorSize, decorSize);
+            corners.forEach(corner => {
+                ctx.beginPath();
+                ctx.arc(corner.x + cornerSize, corner.y + cornerSize, cornerSize, 0, Math.PI * 2);
+                ctx.fill();
             });
+            ctx.globalAlpha = 1;
+
+            // Draw team label with background
+            const labelBg = frames[currentFrame].gradient[0];
+            ctx.fillStyle = labelBg;
+            ctx.globalAlpha = 0.95;
+            ctx.fillRect(20, 430, 460, 50);
             ctx.globalAlpha = 1;
 
             // Draw text label
             ctx.fillStyle = 'white';
-            ctx.font = 'bold 24px Arial';
+            ctx.font = 'bold 28px Arial, sans-serif';
             ctx.textAlign = 'center';
-            ctx.shadowColor = 'rgba(0,0,0,0.5)';
-            ctx.shadowBlur = 4;
-            ctx.shadowOffsetX = 2;
-            ctx.shadowOffsetY = 2;
-            ctx.fillText(frames[currentFrame].emoji + ' ' + frames[currentFrame].name, 250, 460);
+            ctx.textBaseline = 'middle';
+            ctx.shadowColor = 'rgba(0,0,0,0.3)';
+            ctx.shadowBlur = 3;
+            ctx.shadowOffsetX = 1;
+            ctx.shadowOffsetY = 1;
+            ctx.fillText(frames[currentFrame].emoji + ' ' + frames[currentFrame].name, 250, 455);
 
             // Replace container with canvas
             container.innerHTML = '';
