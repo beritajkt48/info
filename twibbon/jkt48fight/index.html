@@ -85,6 +85,13 @@
             background: linear-gradient(135deg, #fda4af15 0%, #f472b615 100%);
         }
 
+        .frame-checkbox {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            accent-color: #f472b6;
+        }
+
         .frame-preview {
             width: 80px;
             height: 80px;
@@ -314,30 +321,40 @@
             <!-- Left Section: Frame Selection & Upload -->
             <div class="left-section">
                 <div>
-                    <h2 style="margin-bottom: 15px; color: #333;">Pilih Frame</h2>
+                    <h2 style="margin-bottom: 15px; color: #333;">Pilih Twibbon</h2>
+                    <p style="font-size: 0.9em; color: #666; margin-bottom: 15px;">Nyalakan/matikan twibbon yang Anda inginkan (bisa lebih dari satu)</p>
                     
-                    <div class="frame-option frame-passion active" data-frame="passion">
-                        <div class="frame-preview">Twibbon<br>Passion</div>
-                        <div class="frame-info">
-                            <h3>🔥 Tim Passion</h3>
-                            <p>Energik & Penuh Semangat</p>
-                        </div>
+                    <div class="frame-option frame-passion" data-frame="passion">
+                        <input type="checkbox" id="passion-check" data-frame="passion" class="frame-checkbox">
+                        <label for="passion-check" style="flex: 1; cursor: pointer; display: flex; align-items: center; gap: 15px; margin: 0;">
+                            <div class="frame-preview">Twibbon<br>Passion</div>
+                            <div class="frame-info">
+                                <h3>🔥 Tim Passion</h3>
+                                <p>Energik & Penuh Semangat</p>
+                            </div>
+                        </label>
                     </div>
 
                     <div class="frame-option frame-dream" data-frame="dream">
-                        <div class="frame-preview">Twibbon<br>Dream</div>
-                        <div class="frame-info">
-                            <h3>💭 Tim Dream</h3>
-                            <p>Inspiratif & Imajinatif</p>
-                        </div>
+                        <input type="checkbox" id="dream-check" data-frame="dream" class="frame-checkbox">
+                        <label for="dream-check" style="flex: 1; cursor: pointer; display: flex; align-items: center; gap: 15px; margin: 0;">
+                            <div class="frame-preview">Twibbon<br>Dream</div>
+                            <div class="frame-info">
+                                <h3>💭 Tim Dream</h3>
+                                <p>Inspiratif & Imajinatif</p>
+                            </div>
+                        </label>
                     </div>
 
                     <div class="frame-option frame-love" data-frame="love">
-                        <div class="frame-preview">Twibbon<br>Love</div>
-                        <div class="frame-info">
-                            <h3>💝 Tim Love</h3>
-                            <p>Hangat & Penuh Kasih</p>
-                        </div>
+                        <input type="checkbox" id="love-check" data-frame="love" class="frame-checkbox">
+                        <label for="love-check" style="flex: 1; cursor: pointer; display: flex; align-items: center; gap: 15px; margin: 0;">
+                            <div class="frame-preview">Twibbon<br>Love</div>
+                            <div class="frame-info">
+                                <h3>💝 Tim Love</h3>
+                                <p>Hangat & Penuh Kasih</p>
+                            </div>
+                        </label>
                     </div>
                 </div>
 
@@ -386,37 +403,68 @@
     </div>
 
     <script>
-        let currentFrame = 'passion';
         let currentImage = null;
+        let frameImages = {
+            passion: null,
+            dream: null,
+            love: null
+        };
 
-        // Frame data dengan emoji sebagai pengganti gambar
+        let activeFrames = {
+            passion: false,
+            dream: false,
+            love: false
+        };
+
+        // Frame data
         const frames = {
             passion: {
                 name: 'Tim Passion',
-                color: '#fda4af',
-                gradient: ['#fda4af', '#f472b6'],
-                emoji: '🔥'
+                emoji: '🔥',
+                file: 'passion.png'
             },
             dream: {
                 name: 'Tim Dream',
-                color: '#d8b4fe',
-                gradient: ['#d8b4fe', '#c084fc'],
-                emoji: '💭'
+                emoji: '💭',
+                file: 'dream.png'
             },
             love: {
                 name: 'Tim Love',
-                color: '#fecdd3',
-                gradient: ['#fecdd3', '#fbcfe8'],
-                emoji: '💝'
+                emoji: '💝',
+                file: 'love.png'
             }
         };
 
-        // Frame selection
-        document.querySelectorAll('.frame-option').forEach(option => {
-            option.addEventListener('click', function() {
-                document.querySelectorAll('.frame-option').forEach(o => o.classList.remove('active'));
-                this.classList.add('active');
-                currentFrame = this.dataset.frame;
+        // Load frame images saat halaman load
+        function loadFrameImages() {
+            Object.keys(frames).forEach(frameName => {
+                const img = new Image();
+                img.crossOrigin = "anonymous";
+                img.src = frames[frameName].file;
+                img.onload = () => {
+                    frameImages[frameName] = img;
+                    console.log(`[v0] Frame ${frameName} loaded successfully`);
+                };
+                img.onerror = () => {
+                    console.warn(`[v0] Frame ${frameName}.png tidak ditemukan. Pastikan file ada di folder root.`);
+                };
+            });
+        }
+
+        // Checkbox selection - multiple frames
+        document.querySelectorAll('.frame-checkbox').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                const frameName = this.dataset.frame;
+                activeFrames[frameName] = this.checked;
+                
+                // Highlight frame option
+                const frameOption = document.querySelector(`[data-frame="${frameName}"]`);
+                if (this.checked) {
+                    frameOption.classList.add('active');
+                } else {
+                    frameOption.classList.remove('active');
+                }
+                
                 if (currentImage) {
                     generatePreview();
                 }
@@ -446,73 +494,29 @@
             
             // Create canvas
             const canvas = document.createElement('canvas');
-            canvas.width = 500;
-            canvas.height = 500;
+            canvas.width = 600;
+            canvas.height = 600;
             const ctx = canvas.getContext('2d');
 
-            // Draw image centered and cropped to square
+            // Draw base photo (crop to square)
             if (currentImage) {
                 const size = Math.min(currentImage.width, currentImage.height);
                 const x = (currentImage.width - size) / 2;
                 const y = (currentImage.height - size) / 2;
-                ctx.drawImage(currentImage, x, y, size, size, 0, 0, 500, 500);
+                ctx.drawImage(currentImage, x, y, size, size, 0, 0, 600, 600);
             } else {
                 ctx.fillStyle = '#f0f0f0';
-                ctx.fillRect(0, 0, 500, 500);
+                ctx.fillRect(0, 0, 600, 600);
             }
 
-            // Draw frame border - MAIN FRAME
-            const gradient = ctx.createLinearGradient(0, 0, 500, 500);
-            gradient.addColorStop(0, frames[currentFrame].gradient[0]);
-            gradient.addColorStop(1, frames[currentFrame].gradient[1]);
+            // Draw active frame images on top (composite)
+            const activeFrameList = Object.keys(activeFrames).filter(name => activeFrames[name]);
             
-            // Outer border
-            ctx.strokeStyle = gradient;
-            ctx.lineWidth = 20;
-            ctx.strokeRect(10, 10, 480, 480);
-
-            // Inner accent line
-            ctx.strokeStyle = frames[currentFrame].gradient[0];
-            ctx.lineWidth = 3;
-            ctx.globalAlpha = 0.6;
-            ctx.strokeRect(15, 15, 470, 470);
-            ctx.globalAlpha = 1;
-
-            // Draw rounded corners decoration
-            ctx.fillStyle = frames[currentFrame].gradient[0];
-            ctx.globalAlpha = 0.2;
-            const cornerSize = 60;
-            const corners = [
-                {x: 0, y: 0},
-                {x: 500 - cornerSize, y: 0},
-                {x: 0, y: 500 - cornerSize},
-                {x: 500 - cornerSize, y: 500 - cornerSize}
-            ];
-            
-            corners.forEach(corner => {
-                ctx.beginPath();
-                ctx.arc(corner.x + cornerSize, corner.y + cornerSize, cornerSize, 0, Math.PI * 2);
-                ctx.fill();
+            activeFrameList.forEach(frameName => {
+                if (frameImages[frameName]) {
+                    ctx.drawImage(frameImages[frameName], 0, 0, 600, 600);
+                }
             });
-            ctx.globalAlpha = 1;
-
-            // Draw team label with background
-            const labelBg = frames[currentFrame].gradient[0];
-            ctx.fillStyle = labelBg;
-            ctx.globalAlpha = 0.95;
-            ctx.fillRect(20, 430, 460, 50);
-            ctx.globalAlpha = 1;
-
-            // Draw text label
-            ctx.fillStyle = 'white';
-            ctx.font = 'bold 28px Arial, sans-serif';
-            ctx.textAlign = 'center';
-            ctx.textBaseline = 'middle';
-            ctx.shadowColor = 'rgba(0,0,0,0.3)';
-            ctx.shadowBlur = 3;
-            ctx.shadowOffsetX = 1;
-            ctx.shadowOffsetY = 1;
-            ctx.fillText(frames[currentFrame].emoji + ' ' + frames[currentFrame].name, 250, 455);
 
             // Replace container with canvas
             container.innerHTML = '';
@@ -539,9 +543,10 @@
         // Download button
         document.getElementById('downloadBtn').addEventListener('click', function() {
             if (window.currentCanvas) {
+                const activeList = Object.keys(activeFrames).filter(name => activeFrames[name]).join('-');
                 const link = document.createElement('a');
                 link.href = window.currentCanvas.toDataURL('image/png');
-                link.download = `twibbon-${currentFrame}-${Date.now()}.png`;
+                link.download = `twibbon-${activeList || 'basic'}-${Date.now()}.png`;
                 link.click();
             }
         });
@@ -549,11 +554,19 @@
         // Reset button
         document.getElementById('resetBtn').addEventListener('click', function() {
             currentImage = null;
+            activeFrames = { passion: false, dream: false, love: false };
+            
+            document.querySelectorAll('.frame-checkbox').forEach(cb => cb.checked = false);
+            document.querySelectorAll('.frame-option').forEach(opt => opt.classList.remove('active'));
+            
             document.getElementById('fileInput').value = '';
             document.getElementById('canvasContainer').innerHTML = '👆 Pilih foto untuk melihat preview';
             document.getElementById('downloadBtn').disabled = true;
             document.getElementById('successMessage').style.display = 'none';
         });
+
+        // Initialize - load frames saat window load
+        window.addEventListener('load', loadFrameImages);
     </script>
 </body>
 </html>
