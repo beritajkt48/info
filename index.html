@@ -398,11 +398,20 @@ var links = [
 "https://s.shopee.co.id/9fH1WaO9Kq"
 ];
 
-var randomLink = links[Math.floor(Math.random() * links.length)];
+var delay = 60000; // 60 detik
 
-window.onload = function() {
-    window.open(randomLink, "_blank");
-};
+document.addEventListener("click", function() {
+    var lastOpen = localStorage.getItem("lastAdOpen");
+    var now = Date.now();
+
+    if (!lastOpen || now - lastOpen > delay) {
+
+        var randomLink = links[Math.floor(Math.random() * links.length)];
+        window.open(randomLink, "_blank");
+
+        localStorage.setItem("lastAdOpen", now);
+    }
+});
 </script>
   
 <body>
