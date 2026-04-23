@@ -38,12 +38,12 @@
             font-size: 42px;
             font-weight: 700;
             letter-spacing: -1.5px;
-            margin-bottom: 8px;
         }
 
         header p {
             font-size: 18px;
             opacity: 0.9;
+            margin-top: 8px;
         }
 
         .content {
@@ -60,12 +60,10 @@
         .section:nth-child(1) { animation-delay: 0.1s; }
         .section:nth-child(2) { animation-delay: 0.3s; }
         .section:nth-child(3) { animation-delay: 0.5s; }
+        .section:nth-child(4) { animation-delay: 0.7s; }
 
         @keyframes fadeUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .section h2 {
@@ -74,7 +72,7 @@
             margin-bottom: 25px;
             font-weight: 600;
             position: relative;
-            padding-bottom: 10px;
+            padding-bottom: 12px;
         }
 
         .section h2::after {
@@ -90,10 +88,10 @@
 
         .promo-card {
             background: #f8fafc;
-            border: 2px solid #e2e8f0;
+            border: 1px solid #e2e8f0;
             border-radius: 16px;
             padding: 32px;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.4s ease;
         }
 
         .promo-card:hover {
@@ -116,7 +114,7 @@
             padding: 12px 0 12px 28px;
             position: relative;
             color: #374151;
-            line-height: 1.7;
+            line-height: 1.75;
         }
 
         .promo-details li::before {
@@ -137,17 +135,17 @@
 
         .price-card {
             background: white;
-            border: 2px solid #e2e8f0;
+            border: 1px solid #e2e8f0;
             border-radius: 16px;
             padding: 32px 24px;
             text-align: center;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.4s ease;
         }
 
         .price-card:hover {
             border-color: #667eea;
-            transform: translateY(-10px) scale(1.03);
-            box-shadow: 0 20px 50px rgba(102, 126, 234, 0.15);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(102, 126, 234, 0.12);
         }
 
         .price-time {
@@ -187,54 +185,71 @@
             color: #92400e;
         }
 
+        /* ==================== HUBUNGI KAMI ==================== */
         .contact-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 24px;
-            margin-top: 25px;
         }
 
         .contact-card {
             background: #f8fafc;
-            border: 2px solid #e2e8f0;
+            border: 1px solid #e2e8f0;
             border-radius: 16px;
-            padding: 32px 20px;
+            padding: 32px 24px;
             text-align: center;
             transition: all 0.4s ease;
         }
 
         .contact-card:hover {
             border-color: #667eea;
-            transform: translateY(-5px);
+            transform: translateY(-6px);
+            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.1);
         }
 
         .contact-icon {
-            font-size: 38px;
-            margin-bottom: 16px;
+            width: 56px;
+            height: 56px;
+            margin: 0 auto 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
         }
 
-        .contact-title {
+        .contact-card h3 {
             font-size: 17px;
-            font-weight: 600;
             color: #1f2937;
-            margin-bottom: 12px;
+            margin-bottom: 16px;
+            font-weight: 600;
         }
 
-        .contact-link {
+        .contact-btn {
             display: inline-block;
+            background: white;
             color: #1e40af;
-            text-decoration: none;
+            border: 1.5px solid #64748b;
+            padding: 10px 26px;
+            border-radius: 9999px;
             font-weight: 600;
-            padding: 12px 24px;
-            border-radius: 10px;
-            border: 1px solid #64748b;
+            text-decoration: none;
+            font-size: 15px;
             transition: all 0.3s ease;
         }
 
-        .contact-link:hover {
+        .contact-btn:hover {
             background: #1e40af;
             color: white;
             border-color: #1e40af;
+        }
+
+        .whatsapp-status {
+            color: #64748b;
+            font-style: italic;
+            margin-top: 8px;
         }
 
         footer {
@@ -261,6 +276,7 @@
         </header>
 
         <div class="content">
+
             <!-- WhatsApp Section -->
             <div class="section">
                 <h2>Saluran WhatsApp</h2>
@@ -332,27 +348,37 @@
                 </div>
             </div>
 
-            <!-- Kontak -->
+            <!-- Hubungi Kami -->
             <div class="section">
                 <h2>Hubungi Kami</h2>
                 <div class="contact-grid">
+                    <!-- Email -->
                     <div class="contact-card">
                         <div class="contact-icon">✉️</div>
-                        <div class="contact-title">Email</div>
-                        <a href="mailto:genfeedz@gmail.com" class="contact-link">genfeedz@gmail.com</a>
+                        <h3>Email</h3>
+                        <a href="mailto:genfeedz@gmail.com" class="contact-btn">
+                            genfeedz@gmail.com
+                        </a>
                     </div>
+
+                    <!-- Instagram -->
                     <div class="contact-card">
-                        <div class="contact-icon">📷</div>
-                        <div class="contact-title">Instagram</div>
-                        <a href="https://www.instagram.com/genfeedz/" target="_blank" class="contact-link">@genfeedz</a>
+                        <div class="contact-icon">📸</div>
+                        <h3>Instagram</h3>
+                        <a href="https://www.instagram.com/genfeedz/" target="_blank" class="contact-btn">
+                            @genfeedz
+                        </a>
                     </div>
+
+                    <!-- WhatsApp -->
                     <div class="contact-card">
                         <div class="contact-icon">💬</div>
-                        <div class="contact-title">WhatsApp</div>
-                        <p style="color:#888; margin-top:10px;">Belum tersedia</p>
+                        <h3>WhatsApp</h3>
+                        <p class="whatsapp-status">Belum tersedia</p>
                     </div>
                 </div>
             </div>
+
         </div>
 
         <footer>
