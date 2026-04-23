@@ -47,6 +47,10 @@
             padding: 100px 40px 120px;
         }
 
+        .section {
+            margin-bottom: 110px;
+        }
+
         .section h2 {
             font-size: 2.6rem;
             font-weight: 800;
@@ -54,7 +58,14 @@
             margin-bottom: 50px;
         }
 
-        /* Harga & Jam Upload */
+        .promo-card {
+            background: white;
+            border-radius: 28px;
+            padding: 48px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+        }
+
+        /* Harga Reguler */
         .pricing-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -68,12 +79,6 @@
             padding: 42px 30px;
             text-align: center;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-            transition: all 0.3s ease;
-        }
-
-        .price-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 50px rgba(99, 102, 241, 0.15);
         }
 
         .price-time {
@@ -87,11 +92,6 @@
             font-weight: 800;
             color: #2563eb;
             margin: 12px 0;
-        }
-
-        .price-desc {
-            color: #475569;
-            font-size: 1rem;
         }
 
         /* Paket Profesional */
@@ -136,26 +136,13 @@
             margin: 12px 0;
         }
 
-        /* Sistem Promosi - Sesuai permintaan */
-        .sistem-promosi {
-            background: white;
-            border-radius: 28px;
-            padding: 48px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.08);
-            margin-top: 60px;
-        }
-
-        .sistem-promosi h3 {
-            text-align: center;
-            font-size: 1.8rem;
-            margin-bottom: 30px;
-            color: #1e40af;
-        }
-
-        .sistem-promosi ul {
-            line-height: 2.3;
-            font-size: 1.1rem;
-            color: #334155;
+        .attention-box {
+            background: #fef3c7;
+            border: 2px solid #f59e0b;
+            border-radius: 24px;
+            padding: 40px;
+            margin: 60px 0;
+            color: #92400e;
         }
     </style>
 </head>
@@ -171,11 +158,17 @@
 
     <div class="main-content">
 
-        <!-- Saluran WhatsApp -->
+        <!-- Saluran WhatsApp + Sistem Promosi -->
         <div class="section">
             <h2>Saluran WhatsApp</h2>
             <div class="promo-card">
                 <h3>100K+ Followers</h3>
+                <strong>Sistem Promosi:</strong>
+                <ul style="margin-top:20px; line-height:2.2; font-size:1.1rem;">
+                    <li>1× post berlaku selama 1 hari (dihapus setelah 24 jam)</li>
+                    <li>Setelah iklan diposting, tidak ada postingan lain selama 1 jam</li>
+                    <li>Materi promosi berupa 1 foto & caption disediakan oleh pengiklan</li>
+                </ul>
             </div>
         </div>
 
@@ -183,7 +176,6 @@
         <div class="section">
             <h2>Harga & Jam Upload</h2>
             
-            <!-- Harga Reguler -->
             <div class="pricing-grid">
                 <div class="price-card">
                     <div class="price-time">Pagi</div>
@@ -219,20 +211,26 @@
                         <div class="pro-price">Rp60.000</div>
                     </div>
                 </div>
+                <p style="text-align:center; margin-top:30px; color:#475569;">
+                    Selama durasi tersebut <strong>tidak akan ditimpa</strong> postingan lain<br>
+                    1× posting • Tidak ada repost
+                </p>
             </div>
 
-            <!-- Sistem Promosi -->
-            <div class="sistem-promosi">
-                <h3>Sistem Promosi</h3>
-                <ul>
-                    <li>1× post berlaku selama 1 hari (dihapus setelah 24 jam)</li>
-                    <li>Setelah iklan diposting, tidak ada postingan lain selama 1 jam</li>
-                    <li>Materi promosi berupa 1 foto & caption disediakan oleh pengiklan</li>
+            <!-- Perhatian & Ketentuan -->
+            <div class="attention-box">
+                <h3 style="margin-bottom:20px;">⚠️ Perhatian</h3>
+                <p>Kami tidak membuka layanan PP (penambahan follow/followers saluran)</p>
+                
+                <h3 style="margin: 32px 0 20px 0;">Ketentuan Layanan</h3>
+                <ul style="line-height:2.1;">
+                    <li>Toleransi keterlambatan upload maksimal 1–15 menit</li>
+                    <li>Request di luar jam yang tertera dikenakan biaya tambahan sebesar +Rp5.000</li>
                 </ul>
             </div>
         </div>
 
-        <!-- Sisanya tetap -->
+        <!-- TikTok -->
         <div class="section">
             <h2>TikTok (@ngidoljeketi48)</h2>
             <div style="background:#fef2f2; border:3px dashed #f87171; color:#b91c1c; padding:70px; text-align:center; border-radius:28px; font-size:1.35rem;">
@@ -241,6 +239,7 @@
             </div>
         </div>
 
+        <!-- Peraturan Promosi -->
         <div class="section">
             <h2>Peraturan Promosi</h2>
             <div style="background:#fefce8; padding:48px; border-radius:28px; border-left:8px solid #eab308;">
@@ -253,6 +252,7 @@
             </div>
         </div>
 
+        <!-- Hubungi Kami -->
         <div class="section" id="kontak">
             <h2>Hubungi Kami</h2>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 28px;">
