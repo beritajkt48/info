@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BERITA JKT48 - Paid Promote</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
 
         * {
             margin: 0;
@@ -17,46 +17,120 @@
             font-family: 'Inter', system-ui, sans-serif;
             background: #f8fafc;
             color: #1e2937;
-            line-height: 1.6;
             min-height: 100vh;
-            padding: 20px;
         }
 
-        .container {
-            max-width: 940px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 28px;
-            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.08);
-            overflow: hidden;
-        }
-
-        header {
-            background: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%);
-            padding: 85px 40px 70px;
-            text-align: center;
+        /* HERO SECTION - Modern SaaS Style */
+        .hero {
             position: relative;
+            background: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
+            padding: 140px 40px 100px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
             color: white;
+            min-height: 680px;
         }
 
-        header h1 {
-            font-size: 52px;
-            font-weight: 800;
-            letter-spacing: -2.5px;
-            margin-bottom: 12px;
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%);
+            animation: blobFloat 30s infinite linear;
         }
 
-        header p {
-            font-size: 19px;
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            right: -40%;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(236, 72, 153, 0.4) 0%, transparent 60%);
+            animation: blobFloat2 25s infinite linear;
+        }
+
+        @keyframes blobFloat {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(80px, 60px) rotate(10deg); }
+            100% { transform: translate(0, 0) rotate(0deg); }
+        }
+
+        @keyframes blobFloat2 {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(-100px, 80px) rotate(-15deg); }
+            100% { transform: translate(0, 0) rotate(0deg); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: 68px;
+            font-weight: 900;
+            line-height: 1.05;
+            letter-spacing: -3px;
+            margin-bottom: 16px;
+            text-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero p {
+            font-size: 22px;
+            font-weight: 500;
             opacity: 0.95;
+            max-width: 520px;
+            margin: 0 auto 40px;
+        }
+
+        /* Floating Cards */
+        .floating-card {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.95);
+            color: #1e2937;
+            border-radius: 24px;
+            padding: 20px 24px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            backdrop-filter: blur(12px);
+            z-index: 3;
+            animation: floatCard 6s ease-in-out infinite;
+        }
+
+        .floating-card:nth-child(1) {
+            top: 18%;
+            left: 8%;
+            width: 220px;
+            animation-delay: 0s;
+        }
+
+        .floating-card:nth-child(2) {
+            top: 35%;
+            right: 10%;
+            width: 240px;
+            animation-delay: 2.5s;
+        }
+
+        @keyframes floatCard {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-25px); }
         }
 
         .content {
-            padding: 60px 50px;
+            padding: 80px 50px;
+            max-width: 940px;
+            margin: 0 auto;
         }
 
         .section {
-            margin-bottom: 75px;
+            margin-bottom: 80px;
         }
 
         .section h2 {
@@ -66,35 +140,26 @@
             color: #1e2937;
         }
 
-        /* Promo Card */
-        .promo-card {
+        /* Sisanya tetap sama seperti kode sebelumnya */
+        .promo-card, .price-card, .contact-card {
             background: white;
             border: 2px solid #e0e7ff;
             border-radius: 24px;
-            padding: 38px;
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.06);
+        }
+
+        .promo-card {
+            padding: 38px;
         }
 
         .promo-card h3 {
             font-size: 29px;
             font-weight: 700;
-            background: linear-gradient(90deg, #3b82f6, #6366f1);
+            background: linear-gradient(90deg, #6366f1, #a855f7);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-bottom: 18px;
         }
 
-        .promo-card ul {
-            font-size: 16.5px;
-            color: #334155;
-            line-height: 2;
-        }
-
-        .promo-card li {
-            margin-bottom: 12px;
-        }
-
-        /* Price Grid */
         .price-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
@@ -103,88 +168,42 @@
         }
 
         .price-card {
-            background: white;
-            border: 2px solid #e0e7ff;
-            border-radius: 22px;
             padding: 38px 28px;
             text-align: center;
             transition: all 0.4s ease;
         }
 
         .price-card:hover {
-            border-color: #6366f1;
-            transform: translateY(-10px);
-            box-shadow: 0 20px 50px rgba(99, 102, 241, 0.15);
+            transform: translateY(-12px);
+            border-color: #a855f7;
         }
 
-        .price-time {
-            font-size: 16px;
-            color: #64748b;
-            font-weight: 500;
-        }
-
-        .price-amount {
-            font-size: 36px;
-            font-weight: 800;
-            color: #1e40af;
-            margin: 14px 0;
-        }
-
-        .price-desc {
-            color: #475569;
-            font-size: 15px;
-        }
-
-        /* Note */
         .note {
             background: #f0f9ff;
-            border-left: 6px solid #3b82f6;
+            border-left: 6px solid #6366f1;
             padding: 24px 28px;
             border-radius: 16px;
             margin: 35px 0;
-            color: #1e40af;
         }
 
-        /* Contact */
         .contact-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 26px;
         }
 
-        .contact-card {
-            background: white;
-            border: 2px solid #e0e7ff;
-            border-radius: 22px;
-            padding: 40px 30px;
-            text-align: center;
-            transition: all 0.4s ease;
-        }
-
-        .contact-card:hover {
-            border-color: #6366f1;
-            transform: translateY(-8px);
-        }
-
-        .contact-icon {
-            font-size: 42px;
-            margin-bottom: 18px;
-        }
-
         .contact-btn {
-            display: inline-block;
             padding: 14px 32px;
             background: white;
-            color: #3b82f6;
+            color: #6366f1;
             border: 2px solid #6366f1;
             border-radius: 9999px;
             font-weight: 700;
             text-decoration: none;
-            transition: all 0.4s ease;
         }
 
         .contact-btn:hover {
-            background: #3b82f6;
+            background: #6366f1;
             color: white;
         }
 
@@ -193,117 +212,116 @@
             padding: 45px;
             text-align: center;
             color: #64748b;
-            font-size: 15px;
         }
 
-        @media (max-width: 640px) {
-            header h1 { font-size: 40px; }
-            .content { padding: 40px 25px; }
-            .section h2 { font-size: 28px; }
+        @media (max-width: 768px) {
+            .hero { padding: 100px 20px 80px; }
+            .hero h1 { font-size: 48px; }
+            .floating-card { display: none; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>BERITA JKT48</h1>
-            <p>Platform Promosi Resmi Saluran BERITA JKT48</p>
-        </header>
 
-        <div class="content">
-
-            <!-- WhatsApp Section -->
-            <div class="section">
-                <h2>Saluran WhatsApp</h2>
-                <div class="promo-card">
-                    <h3>100K+ Followers</h3>
-                    <strong>Sistem Promosi:</strong>
-                    <ul>
-                        <li>1× post berlaku selama 1 hari (dihapus setelah 24 jam)</li>
-                        <li>Setelah iklan diposting, tidak ada postingan lain selama 1 jam</li>
-                        <li>Materi promosi (1 foto & caption) disediakan oleh pengiklan</li>
-                    </ul>
-                </div>
-
-                <h2 style="margin-top: 55px;">Harga & Jam Upload</h2>
-                <div class="price-grid">
-                    <div class="price-card">
-                        <div class="price-time">Pagi</div>
-                        <div class="price-amount">Rp85.000</div>
-                        <div class="price-desc">07.00 – 09.00 WIB</div>
-                    </div>
-                    <div class="price-card">
-                        <div class="price-time">Siang</div>
-                        <div class="price-amount">Rp90.000</div>
-                        <div class="price-desc">11.00 – 13.00 WIB</div>
-                    </div>
-                    <div class="price-card">
-                        <div class="price-time">Sore / Malam</div>
-                        <div class="price-amount">Rp100.000</div>
-                        <div class="price-desc">15.00 – 21.00 WIB</div>
-                    </div>
-                </div>
-
-                <div class="note">
-                    <strong>Perhatian:</strong> Kami tidak menyediakan layanan penambahan follower.
-                </div>
-
-                <div class="note" style="background:#ecfdf5; border-left-color:#10b981; color:#166534;">
-                    <strong>Ketentuan Layanan:</strong><br>
-                    • Toleransi keterlambatan upload maksimal 15 menit<br>
-                    • Request di luar jam dikenakan tambahan Rp5.000
-                </div>
-            </div>
-
-            <!-- TikTok -->
-            <div class="section">
-                <h2>TikTok (@ngidoljeketi48)</h2>
-                <div style="background:#fef2f2; border:2px dashed #f87171; color:#b91c1c; padding:55px; text-align:center; border-radius:24px; font-size:17.5px;">
-                    <strong>Saat ini belum tersedia</strong><br>
-                    Hubungi kami untuk informasi lebih lanjut.
-                </div>
-            </div>
-
-            <!-- Peraturan -->
-            <div class="section">
-                <h2>Peraturan Promosi</h2>
-                <div style="background:#fefce8; border-left:6px solid #eab308; padding:32px; border-radius:22px; color:#854d0e;">
-                    <strong>Kami tidak menerima promosi untuk:</strong>
-                    <ul style="margin-top:16px; padding-left:24px; line-height:1.9;">
-                        <li>Konten yang melanggar kebijakan WhatsApp</li>
-                        <li>Konten dewasa / 18+</li>
-                        <li>Judi online dan sejenisnya</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- Hubungi Kami -->
-            <div class="section">
-                <h2>Hubungi Kami</h2>
-                <div class="contact-grid">
-                    <div class="contact-card">
-                        <div class="contact-icon">✉️</div>
-                        <h3>Email</h3>
-                        <a href="mailto:genfeedz@gmail.com" class="contact-btn">genfeedz@gmail.com</a>
-                    </div>
-                    <div class="contact-card">
-                        <div class="contact-icon">📸</div>
-                        <h3>Instagram</h3>
-                        <a href="https://www.instagram.com/genfeedz/" target="_blank" class="contact-btn">@genfeedz</a>
-                    </div>
-                    <div class="contact-card">
-                        <div class="contact-icon">💬</div>
-                        <h3>WhatsApp</h3>
-                        <p style="color:#64748b; margin-top:16px;">Belum tersedia</p>
-                    </div>
-                </div>
-            </div>
-
+    <!-- HERO SECTION -->
+    <header class="hero">
+        <div class="floating-card">
+            <strong>100K+ Followers</strong><br>
+            <span style="font-size:14px; color:#64748b;">Saluran WhatsApp</span>
+        </div>
+        
+        <div class="floating-card">
+            <strong>Rp85.000</strong><br>
+            <span style="font-size:14px; color:#64748b;">Slot Pagi</span>
         </div>
 
-        <footer>
-            <p>&copy; 2026 BERITA JKT48 • Semua hak dilindungi</p>
-        </footer>
+        <div class="hero-content">
+            <h1>BERITA JKT48</h1>
+            <p>Platform Promosi Resmi • Paid Promote WhatsApp</p>
+        </div>
+    </header>
+
+    <!-- Content Section -->
+    <div class="content">
+
+        <div class="section">
+            <h2>Saluran WhatsApp</h2>
+            <div class="promo-card">
+                <h3>100K+ Followers</h3>
+                <strong>Sistem Promosi:</strong>
+                <ul>
+                    <li>1× post berlaku selama 1 hari (dihapus setelah 24 jam)</li>
+                    <li>Setelah iklan diposting, tidak ada postingan lain selama 1 jam</li>
+                    <li>Materi promosi (1 foto & caption) disediakan oleh pengiklan</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Harga & Jam Upload</h2>
+            <div class="price-grid">
+                <div class="price-card">
+                    <div class="price-time">Pagi</div>
+                    <div class="price-amount">Rp85.000</div>
+                    <div class="price-desc">07.00 – 09.00 WIB</div>
+                </div>
+                <div class="price-card">
+                    <div class="price-time">Siang</div>
+                    <div class="price-amount">Rp90.000</div>
+                    <div class="price-desc">11.00 – 13.00 WIB</div>
+                </div>
+                <div class="price-card">
+                    <div class="price-time">Sore / Malam</div>
+                    <div class="price-amount">Rp100.000</div>
+                    <div class="price-desc">15.00 – 21.00 WIB</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>TikTok (@ngidoljeketi48)</h2>
+            <div style="background:#fef2f2; border:2px dashed #f87171; color:#b91c1c; padding:55px; text-align:center; border-radius:24px;">
+                <strong>Saat ini belum tersedia</strong><br>
+                Hubungi kami untuk informasi lebih lanjut.
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Peraturan Promosi</h2>
+            <div style="background:#fefce8; border-left:6px solid #eab308; padding:32px; border-radius:22px; color:#854d0e;">
+                <strong>Kami tidak menerima promosi untuk:</strong>
+                <ul style="margin-top:16px; padding-left:24px; line-height:1.9;">
+                    <li>Konten yang melanggar kebijakan WhatsApp</li>
+                    <li>Konten dewasa / 18+</li>
+                    <li>Judi online dan sejenisnya</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Hubungi Kami</h2>
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <div class="contact-icon">✉️</div>
+                    <h3>Email</h3>
+                    <a href="mailto:genfeedz@gmail.com" class="contact-btn">genfeedz@gmail.com</a>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">📸</div>
+                    <h3>Instagram</h3>
+                    <a href="https://www.instagram.com/genfeedz/" target="_blank" class="contact-btn">@genfeedz</a>
+                </div>
+                <div class="contact-card">
+                    <div class="contact-icon">💬</div>
+                    <h3>WhatsApp</h3>
+                    <p style="color:#64748b; margin-top:16px;">Belum tersedia</p>
+                </div>
+            </div>
+        </div>
     </div>
+
+    <footer>
+        <p>&copy; 2026 BERITA JKT48 • Semua hak dilindungi</p>
+    </footer>
 </body>
 </html>
