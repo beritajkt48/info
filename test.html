@@ -31,111 +31,121 @@
             font-family: 'Inter', sans-serif;
             background: var(--bg);
             color: var(--text);
-            line-height: 1.6;
-            transition: background 0.4s ease, color 0.4s ease;
+            line-height: 1.65;
+            transition: background 0.4s, color 0.4s;
         }
 
-        /* Toggle Dark Mode */
+        /* Theme Toggle */
         .theme-toggle {
             position: fixed;
-            top: 20px;
-            right: 20px;
+            top: 18px;
+            right: 18px;
             z-index: 1000;
             background: var(--card);
             border: 2px solid var(--border);
-            width: 52px;
-            height: 52px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
+            font-size: 1.55rem;
             cursor: pointer;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
         }
 
-        .theme-toggle:hover {
-            transform: scale(1.1);
-        }
-
-        /* HERO */
+        /* HERO - Lebih centered di mobile */
         .hero {
             min-height: 100vh;
             background: linear-gradient(135deg, #4f46e5 0%, #a855f7 45%, #db2777 100%);
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 0 20px;
             text-align: center;
-            position: relative;
+            padding: 0 20px;
+        }
+
+        .hero-content {
+            max-width: 520px;
+            width: 100%;
         }
 
         .hero-content h1 {
-            font-size: clamp(3rem, 8vw, 5.2rem);
+            font-size: clamp(2.8rem, 9vw, 5rem);
             font-weight: 900;
             line-height: 1.05;
             letter-spacing: -3px;
             color: white;
-            margin-bottom: 16px;
+            margin-bottom: 12px;
         }
 
         .hero-content p {
-            font-size: clamp(1.2rem, 4vw, 1.55rem);
-            color: rgba(255,255,255,0.92);
-            max-width: 600px;
+            font-size: clamp(1.15rem, 4.5vw, 1.5rem);
+            color: rgba(255,255,255,0.93);
+            max-width: 420px;
             margin: 0 auto;
         }
 
         .main-content {
-            max-width: 1180px;
+            max-width: 1100px;
             margin: 0 auto;
-            padding: 80px 20px 100px;
+            padding: 70px 18px 90px;
         }
 
         .section {
-            margin-bottom: 100px;
+            margin-bottom: 90px;
         }
 
         .section h2 {
-            font-size: clamp(2.2rem, 5vw, 2.8rem);
+            font-size: clamp(2rem, 6.5vw, 2.7rem);
             font-weight: 800;
             text-align: center;
-            margin-bottom: 50px;
+            margin-bottom: 48px;
             color: var(--text);
         }
 
-        /* Cards */
-        .package-card, .pro-package, .contact-card {
+        /* Package Cards */
+        .package-card, .pro-package {
             background: var(--card);
             border-radius: 28px;
+            padding: 45px 20px;
             box-shadow: 0 20px 60px rgba(0,0,0,0.1);
-            transition: all 0.4s ease;
+            margin-bottom: 70px;
         }
 
-        .package-card {
-            padding: clamp(40px, 6vw, 60px);
-            border: 3px solid #3b82f6;
-            margin-bottom: 80px;
-        }
+        .package-card { border: 3px solid #3b82f6; }
+        .pro-package { border: 3px solid var(--accent); }
 
-        .pro-package {
-            padding: clamp(40px, 6vw, 55px);
-            border: 3px solid var(--accent);
+        .pricing-grid, .pro-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            justify-content: center;
         }
 
         .price-card, .pro-item {
             background: var(--bg);
+            padding: 32px 20px;
             border-radius: 20px;
+            text-align: center;
         }
 
+        .price-amount, .pro-price {
+            font-size: clamp(2.1rem, 6vw, 2.7rem);
+            font-weight: 800;
+            color: #2563eb;
+            margin: 10px 0;
+        }
+
+        /* Attention Box */
         .attention-box {
             background: #fef3c7;
             border: 3px solid #f59e0b;
             color: #92400e;
             border-radius: 24px;
-            padding: clamp(40px, 6vw, 50px);
-            margin: 70px 0;
+            padding: 40px 24px;
+            margin: 60px 0;
+            text-align: center;
         }
 
         .dark .attention-box {
@@ -144,11 +154,19 @@
             color: #fed7aa;
         }
 
-        /* Contact Grid */
+        /* Contact */
         .contact-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 24px;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+        }
+
+        .contact-card {
+            background: var(--card);
+            padding: 40px 20px;
+            border-radius: 24px;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
         }
 
         footer {
@@ -158,19 +176,31 @@
             font-size: 0.95rem;
         }
 
+        /* Mobile Optimization */
         @media (max-width: 640px) {
-            .main-content { padding: 60px 16px 80px; }
-            .section { margin-bottom: 70px; }
-            .theme-toggle { top: 15px; right: 15px; width: 48px; height: 48px; }
+            .main-content {
+                padding: 50px 16px 70px;
+            }
+            .package-card, .pro-package {
+                padding: 38px 18px;
+            }
+            .section h2 {
+                margin-bottom: 38px;
+            }
+            .theme-toggle {
+                top: 14px;
+                right: 14px;
+                width: 46px;
+                height: 46px;
+                font-size: 1.4rem;
+            }
         }
     </style>
 </head>
 <body>
 
     <!-- Dark Mode Toggle -->
-    <div class="theme-toggle" id="themeToggle" title="Ubah Tema">
-        🌙
-    </div>
+    <div class="theme-toggle" id="themeToggle">🌙</div>
 
     <!-- HERO -->
     <section class="hero">
@@ -186,28 +216,30 @@
         <div class="section">
             <h2>Paket Basic Standart</h2>
             <div class="package-card">
-                <h3>Paket Basic Standart</h3>
-                <div class="pricing-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px;">
-                    <div class="price-card" style="padding:40px 24px; text-align:center;">
-                        <div class="price-time" style="color:var(--text-secondary)">Pagi</div>
-                        <div class="price-amount" style="font-size:2.8rem; font-weight:800; color:#2563eb; margin:12px 0;">Rp85.000</div>
-                        <div class="price-time" style="color:var(--text-secondary)">07.00 – 09.00 WIB</div>
+                <h3 style="text-align:center; font-size:2.1rem; margin-bottom:32px; color:#1e40af;">Paket Basic Standart</h3>
+                
+                <div class="pricing-grid">
+                    <div class="price-card">
+                        <div style="color:var(--text-secondary); font-size:1.1rem;">Pagi</div>
+                        <div class="price-amount">Rp85.000</div>
+                        <div style="color:var(--text-secondary); font-size:0.98rem;">07.00 – 09.00 WIB</div>
                     </div>
-                    <div class="price-card" style="padding:40px 24px; text-align:center;">
-                        <div class="price-time" style="color:var(--text-secondary)">Siang</div>
-                        <div class="price-amount" style="font-size:2.8rem; font-weight:800; color:#2563eb; margin:12px 0;">Rp90.000</div>
-                        <div class="price-time" style="color:var(--text-secondary)">11.00 – 13.00 WIB</div>
+                    <div class="price-card">
+                        <div style="color:var(--text-secondary); font-size:1.1rem;">Siang</div>
+                        <div class="price-amount">Rp90.000</div>
+                        <div style="color:var(--text-secondary); font-size:0.98rem;">11.00 – 13.00 WIB</div>
                     </div>
-                    <div class="price-card" style="padding:40px 24px; text-align:center;">
-                        <div class="price-time" style="color:var(--text-secondary)">Sore / Malam</div>
-                        <div class="price-amount" style="font-size:2.8rem; font-weight:800; color:#2563eb; margin:12px 0;">Rp100.000</div>
-                        <div class="price-time" style="color:var(--text-secondary)">15.00 – 21.00 WIB</div>
+                    <div class="price-card">
+                        <div style="color:var(--text-secondary); font-size:1.1rem;">Sore / Malam</div>
+                        <div class="price-amount">Rp100.000</div>
+                        <div style="color:var(--text-secondary); font-size:0.98rem;">15.00 – 21.00 WIB</div>
                     </div>
                 </div>
-                <p style="text-align:center; margin-top:40px; color:var(--text-secondary); font-size:1.05rem;">
-                    1× post berlaku selama 1 hari (dihapus setelah 24 jam)<br>
-                    Setelah iklan diposting, tidak ada postingan lain selama 1 jam<br>
-                    <strong>Materi: 1 foto + caption</strong>
+
+                <p style="text-align:center; margin-top:38px; color:var(--text-secondary); font-size:1.02rem; line-height:1.7;">
+                    1× post berlaku 24 jam • Dihapus otomatis<br>
+                    Tidak ada postingan lain selama 1 jam setelah iklan naik<br>
+                    <strong>1 foto + caption</strong>
                 </p>
             </div>
         </div>
@@ -216,59 +248,59 @@
         <div class="section">
             <h2>Paket Profesional</h2>
             <div class="pro-package">
-                <h3>Paket Profesional</h3>
-                <div class="pro-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px;">
-                    <div class="pro-item" style="padding:32px 20px; text-align:center;">
-                        <div class="pro-duration" style="color:var(--text-secondary)">½ Jam</div>
-                        <div class="pro-price" style="font-size:2.5rem; font-weight:800; color:#2563eb; margin:10px 0;">Rp30.000</div>
+                <h3 style="text-align:center; font-size:2.1rem; margin-bottom:32px; color:#1e40af;">Paket Profesional</h3>
+                
+                <div class="pro-grid">
+                    <div class="pro-item">
+                        <div style="color:var(--text-secondary);">½ Jam</div>
+                        <div class="pro-price">Rp30.000</div>
                     </div>
-                    <div class="pro-item" style="padding:32px 20px; text-align:center;">
-                        <div class="pro-duration" style="color:var(--text-secondary)">1 Jam</div>
-                        <div class="pro-price" style="font-size:2.5rem; font-weight:800; color:#2563eb; margin:10px 0;">Rp45.000</div>
+                    <div class="pro-item">
+                        <div style="color:var(--text-secondary);">1 Jam</div>
+                        <div class="pro-price">Rp45.000</div>
                     </div>
-                    <div class="pro-item" style="padding:32px 20px; text-align:center;">
-                        <div class="pro-duration" style="color:var(--text-secondary)">2 Jam</div>
-                        <div class="pro-price" style="font-size:2.5rem; font-weight:800; color:#2563eb; margin:10px 0;">Rp60.000</div>
+                    <div class="pro-item">
+                        <div style="color:var(--text-secondary);">2 Jam</div>
+                        <div class="pro-price">Rp60.000</div>
                     </div>
                 </div>
-                <p style="text-align:center; margin-top:40px; color:var(--text-secondary); font-size:1.05rem;">
-                    Selama durasi tersebut <strong>tidak akan ditimpa</strong> postingan lain<br>
+
+                <p style="text-align:center; margin-top:38px; color:var(--text-secondary); font-size:1.02rem;">
+                    Selama durasi tersebut <strong>tidak akan ditimpa</strong><br>
                     1× posting • Tidak ada repost
                 </p>
             </div>
         </div>
 
-        <!-- Perhatian -->
+        <!-- Perhatian & Ketentuan -->
         <div class="attention-box">
-            <h3 style="margin-bottom:24px; font-size:1.8rem;">⚠️ Perhatian</h3>
-            <p>Kami tidak membuka layanan penambahan follower / PP Followers.</p>
+            <h3 style="font-size:1.75rem; margin-bottom:20px;">⚠️ Perhatian</h3>
+            <p>Kami tidak membuka layanan penambahan follower.</p>
             
-            <h3 style="margin: 32px 0 20px 0;">Ketentuan Layanan</h3>
-            <ul style="line-height:2.1; padding-left:20px;">
-                <li>Toleransi keterlambatan upload maksimal 1–15 menit</li>
-                <li>Request di luar jam operasional +Rp5.000</li>
+            <h3 style="margin:30px 0 18px 0;">Ketentuan Layanan</h3>
+            <ul style="text-align:left; display:inline-block; max-width:420px; line-height:2;">
+                <li>Toleransi keterlambatan maksimal 15 menit</li>
+                <li>Request di luar jam +Rp5.000</li>
             </ul>
         </div>
 
-        <!-- TikTok, Peraturan, Kontak tetap sama seperti sebelumnya -->
-        <!-- (Saya ringkas agar tidak terlalu panjang, tapi tetap lengkap) -->
-
+        <!-- TikTok, Peraturan, Kontak (sama seperti sebelumnya) -->
         <div class="section">
             <h2>TikTok (@ngidoljeketi48)</h2>
-            <div style="background:#fef2f2; border:3px dashed #f87171; color:#b91c1c; padding:60px 20px; text-align:center; border-radius:28px; font-size:1.3rem;">
+            <div style="background:#fef2f2; border:3px dashed #f87171; color:#b91c1c; padding:55px 20px; text-align:center; border-radius:28px; font-size:1.25rem;">
                 <strong>Saat ini belum tersedia</strong><br>
-                Hubungi kami untuk informasi lebih lanjut.
+                Hubungi kami untuk info lebih lanjut.
             </div>
         </div>
 
         <div class="section">
             <h2>Peraturan Promosi</h2>
-            <div style="background:#fefce8; padding:48px 30px; border-radius:28px; border-left:8px solid #eab308;">
+            <div style="background:#fefce8; padding:40px 24px; border-radius:28px; border-left:8px solid #eab308; text-align:center;">
                 <strong>Kami tidak menerima promosi untuk:</strong>
-                <ul style="margin-top:20px; line-height:2.1; padding-left:22px; font-size:1.08rem;">
-                    <li>Konten yang melanggar kebijakan WhatsApp</li>
+                <ul style="margin-top:18px; line-height:2; display:inline-block; text-align:left;">
                     <li>Konten dewasa / 18+</li>
-                    <li>Judi online dan sejenisnya</li>
+                    <li>Judi online</li>
+                    <li>Konten yang melanggar kebijakan WhatsApp</li>
                 </ul>
             </div>
         </div>
@@ -276,18 +308,18 @@
         <div class="section" id="kontak">
             <h2>Hubungi Kami</h2>
             <div class="contact-grid">
-                <div class="contact-card" style="padding:48px 32px; text-align:center;">
-                    <div style="font-size:3.5rem; margin-bottom:16px;">✉️</div>
+                <div class="contact-card">
+                    <div style="font-size:3.2rem; margin-bottom:12px;">✉️</div>
                     <h3>Email</h3>
                     <a href="mailto:genfeedz@gmail.com" style="color:#4f46e5; font-weight:600;">genfeedz@gmail.com</a>
                 </div>
-                <div class="contact-card" style="padding:48px 32px; text-align:center;">
-                    <div style="font-size:3.5rem; margin-bottom:16px;">📸</div>
+                <div class="contact-card">
+                    <div style="font-size:3.2rem; margin-bottom:12px;">📸</div>
                     <h3>Instagram</h3>
                     <a href="https://www.instagram.com/genfeedz/" target="_blank" style="color:#4f46e5; font-weight:600;">@genfeedz</a>
                 </div>
-                <div class="contact-card" style="padding:48px 32px; text-align:center;">
-                    <div style="font-size:3.5rem; margin-bottom:16px;">💬</div>
+                <div class="contact-card">
+                    <div style="font-size:3.2rem; margin-bottom:12px;">💬</div>
                     <h3>WhatsApp</h3>
                     <p style="color:var(--text-secondary); font-style:italic;">Belum tersedia</p>
                 </div>
@@ -303,7 +335,6 @@
         const toggle = document.getElementById('themeToggle');
         const body = document.body;
 
-        // Cek preferensi user sebelumnya
         if (localStorage.getItem('theme') === 'dark' || 
             (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
             body.classList.add('dark');
@@ -312,7 +343,6 @@
 
         toggle.addEventListener('click', () => {
             body.classList.toggle('dark');
-            
             if (body.classList.contains('dark')) {
                 toggle.textContent = '☀️';
                 localStorage.setItem('theme', 'dark');
