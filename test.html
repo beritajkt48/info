@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BERITA JKT48 - Paid Promote</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
         * {
             margin: 0;
             padding: 0;
@@ -12,200 +14,169 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: #0a1428;
-            color: #e0f2fe;
+            font-family: 'Inter', system-ui, sans-serif;
+            background: #f8fafc;
+            color: #1e2937;
+            line-height: 1.6;
             min-height: 100vh;
             padding: 20px;
-            position: relative;
-            overflow-x: hidden;
-        }
-
-        /* Background Grid + Gradient */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: 
-                linear-gradient(135deg, #0a1428 0%, #1e3a8a 100%),
-                url('https://www.transparenttextures.com/patterns/dark-mosaic.png');
-            opacity: 0.85;
-            z-index: -2;
-        }
-
-        .background-glow {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: radial-gradient(circle at 30% 20%, rgba(57, 255, 20, 0.15) 0%, transparent 50%),
-                        radial-gradient(circle at 70% 70%, rgba(57, 255, 20, 0.12) 0%, transparent 50%);
-            z-index: -1;
-            animation: glowMove 25s ease infinite;
-        }
-
-        @keyframes glowMove {
-            0%, 100% { opacity: 0.7; }
-            50% { opacity: 1; }
         }
 
         .container {
-            max-width: 920px;
+            max-width: 940px;
             margin: 0 auto;
-            background: rgba(15, 23, 42, 0.85);
-            backdrop-filter: blur(16px);
-            border: 1px solid rgba(57, 255, 20, 0.2);
+            background: white;
             border-radius: 28px;
-            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.08);
             overflow: hidden;
         }
 
         header {
-            background: linear-gradient(135deg, #1e40af, #312e81);
-            padding: 80px 30px 70px;
+            background: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%);
+            padding: 85px 40px 70px;
             text-align: center;
             position: relative;
+            color: white;
         }
 
         header h1 {
             font-size: 52px;
             font-weight: 800;
-            letter-spacing: -2px;
-            color: white;
-            text-shadow: 0 0 30px rgba(57, 255, 20, 0.5);
+            letter-spacing: -2.5px;
+            margin-bottom: 12px;
         }
 
         header p {
             font-size: 19px;
-            color: #a5f3fc;
-            margin-top: 12px;
+            opacity: 0.95;
         }
 
         .content {
-            padding: 60px 45px;
+            padding: 60px 50px;
         }
 
         .section {
-            margin-bottom: 70px;
-            animation: fadeUp 0.8s forwards;
-        }
-
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(40px); }
-            to { opacity: 1; transform: translateY(0); }
+            margin-bottom: 75px;
         }
 
         .section h2 {
-            font-size: 28px;
+            font-size: 32px;
             font-weight: 700;
-            color: #67e8f9;
             margin-bottom: 28px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
+            color: #1e2937;
         }
 
         /* Promo Card */
         .promo-card {
-            background: rgba(255,255,255,0.08);
-            border: 1px solid rgba(57, 255, 20, 0.3);
-            border-radius: 20px;
-            padding: 34px;
-            backdrop-filter: blur(12px);
+            background: white;
+            border: 2px solid #e0e7ff;
+            border-radius: 24px;
+            padding: 38px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.06);
         }
 
         .promo-card h3 {
-            font-size: 28px;
-            color: #67e8f9;
-            margin-bottom: 16px;
+            font-size: 29px;
+            font-weight: 700;
+            background: linear-gradient(90deg, #3b82f6, #6366f1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 18px;
         }
 
         .promo-card ul {
-            color: #e0f2fe;
+            font-size: 16.5px;
+            color: #334155;
             line-height: 2;
-            font-size: 16px;
+        }
+
+        .promo-card li {
+            margin-bottom: 12px;
         }
 
         /* Price Grid */
         .price-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 24px;
-            margin-top: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+            gap: 26px;
+            margin-top: 32px;
         }
 
         .price-card {
-            background: rgba(255,255,255,0.07);
-            border: 1px solid rgba(57, 255, 20, 0.25);
-            border-radius: 20px;
-            padding: 36px 28px;
+            background: white;
+            border: 2px solid #e0e7ff;
+            border-radius: 22px;
+            padding: 38px 28px;
             text-align: center;
             transition: all 0.4s ease;
-            backdrop-filter: blur(10px);
         }
 
         .price-card:hover {
-            transform: translateY(-12px);
-            border-color: #39ff14;
-            box-shadow: 0 0 40px rgba(57, 255, 20, 0.3);
+            border-color: #6366f1;
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(99, 102, 241, 0.15);
         }
 
         .price-time {
-            color: #a5f3fc;
             font-size: 16px;
-            margin-bottom: 10px;
+            color: #64748b;
+            font-weight: 500;
         }
 
         .price-amount {
-            font-size: 34px;
+            font-size: 36px;
             font-weight: 800;
-            color: #67e8f9;
-            margin: 12px 0;
+            color: #1e40af;
+            margin: 14px 0;
+        }
+
+        .price-desc {
+            color: #475569;
+            font-size: 15px;
         }
 
         /* Note */
         .note {
-            background: rgba(15, 23, 42, 0.8);
-            border-left: 5px solid #39ff14;
-            padding: 22px 26px;
-            border-radius: 12px;
+            background: #f0f9ff;
+            border-left: 6px solid #3b82f6;
+            padding: 24px 28px;
+            border-radius: 16px;
             margin: 35px 0;
-            color: #e0f2fe;
+            color: #1e40af;
         }
 
         /* Contact */
         .contact-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 24px;
+            gap: 26px;
         }
 
         .contact-card {
-            background: rgba(255,255,255,0.07);
-            border: 1px solid rgba(57, 255, 20, 0.25);
-            border-radius: 20px;
-            padding: 36px 24px;
+            background: white;
+            border: 2px solid #e0e7ff;
+            border-radius: 22px;
+            padding: 40px 30px;
             text-align: center;
             transition: all 0.4s ease;
-            backdrop-filter: blur(10px);
         }
 
         .contact-card:hover {
-            border-color: #39ff14;
-            box-shadow: 0 0 35px rgba(57, 255, 20, 0.25);
+            border-color: #6366f1;
+            transform: translateY(-8px);
         }
 
         .contact-icon {
-            font-size: 38px;
-            margin-bottom: 16px;
+            font-size: 42px;
+            margin-bottom: 18px;
         }
 
         .contact-btn {
             display: inline-block;
-            padding: 12px 32px;
-            background: transparent;
-            color: #67e8f9;
-            border: 2px solid #39ff14;
+            padding: 14px 32px;
+            background: white;
+            color: #3b82f6;
+            border: 2px solid #6366f1;
             border-radius: 9999px;
             font-weight: 700;
             text-decoration: none;
@@ -213,29 +184,26 @@
         }
 
         .contact-btn:hover {
-            background: #39ff14;
-            color: #0a1428;
-            box-shadow: 0 0 25px #39ff14;
+            background: #3b82f6;
+            color: white;
         }
 
         footer {
-            background: rgba(15, 23, 42, 0.9);
-            padding: 40px;
+            background: #f1f5f9;
+            padding: 45px;
             text-align: center;
-            color: #94a3b8;
-            border-top: 1px solid rgba(57, 255, 20, 0.2);
+            color: #64748b;
+            font-size: 15px;
         }
 
         @media (max-width: 640px) {
-            header h1 { font-size: 38px; }
-            .content { padding: 40px 20px; }
+            header h1 { font-size: 40px; }
+            .content { padding: 40px 25px; }
+            .section h2 { font-size: 28px; }
         }
     </style>
 </head>
 <body>
-
-    <div class="background-glow"></div>
-
     <div class="container">
         <header>
             <h1>BERITA JKT48</h1>
@@ -244,7 +212,7 @@
 
         <div class="content">
 
-            <!-- WhatsApp -->
+            <!-- WhatsApp Section -->
             <div class="section">
                 <h2>Saluran WhatsApp</h2>
                 <div class="promo-card">
@@ -280,7 +248,7 @@
                     <strong>Perhatian:</strong> Kami tidak menyediakan layanan penambahan follower.
                 </div>
 
-                <div class="note" style="border-left-color: #67e8f9;">
+                <div class="note" style="background:#ecfdf5; border-left-color:#10b981; color:#166534;">
                     <strong>Ketentuan Layanan:</strong><br>
                     • Toleransi keterlambatan upload maksimal 15 menit<br>
                     • Request di luar jam dikenakan tambahan Rp5.000
@@ -290,7 +258,7 @@
             <!-- TikTok -->
             <div class="section">
                 <h2>TikTok (@ngidoljeketi48)</h2>
-                <div style="background:rgba(255,255,255,0.08); border:2px dashed #f87171; color:#fda4af; padding:50px; text-align:center; border-radius:20px;">
+                <div style="background:#fef2f2; border:2px dashed #f87171; color:#b91c1c; padding:55px; text-align:center; border-radius:24px; font-size:17.5px;">
                     <strong>Saat ini belum tersedia</strong><br>
                     Hubungi kami untuk informasi lebih lanjut.
                 </div>
@@ -299,7 +267,7 @@
             <!-- Peraturan -->
             <div class="section">
                 <h2>Peraturan Promosi</h2>
-                <div style="background:rgba(255,255,255,0.08); border-left:5px solid #f59e0b; padding:30px; border-radius:20px; color:#fed7aa;">
+                <div style="background:#fefce8; border-left:6px solid #eab308; padding:32px; border-radius:22px; color:#854d0e;">
                     <strong>Kami tidak menerima promosi untuk:</strong>
                     <ul style="margin-top:16px; padding-left:24px; line-height:1.9;">
                         <li>Konten yang melanggar kebijakan WhatsApp</li>
@@ -326,7 +294,7 @@
                     <div class="contact-card">
                         <div class="contact-icon">💬</div>
                         <h3>WhatsApp</h3>
-                        <p style="color:#94a3b8; margin-top:16px;">Belum tersedia</p>
+                        <p style="color:#64748b; margin-top:16px;">Belum tersedia</p>
                     </div>
                 </div>
             </div>
