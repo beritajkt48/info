@@ -13,131 +13,118 @@
             font-family: 'Inter', sans-serif;
             background: #f8fafc;
             color: #0f172a;
+            line-height: 1.6;
         }
 
+        /* HERO */
         .hero {
             min-height: 100vh;
             background: linear-gradient(135deg, #6366f1 0%, #a855f7 45%, #ec4899 100%);
-            position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
+            position: relative;
             overflow: hidden;
+            padding: 0 20px;
+            text-align: center;
         }
 
-        .hero h1 {
-            font-size: 4.8rem;
+        .hero-content h1 {
+            font-size: clamp(3rem, 8vw, 5.2rem);
             font-weight: 900;
             line-height: 1.05;
-            letter-spacing: -4px;
+            letter-spacing: -3px;
             color: white;
-            text-align: center;
+            margin-bottom: 16px;
         }
 
-        .hero p {
-            font-size: 1.45rem;
+        .hero-content p {
+            font-size: clamp(1.2rem, 4vw, 1.55rem);
             color: rgba(255,255,255,0.92);
-            text-align: center;
-            margin-top: 16px;
+            max-width: 600px;
+            margin: 0 auto;
         }
 
         .main-content {
-            max-width: 1100px;
+            max-width: 1180px;
             margin: 0 auto;
-            padding: 100px 40px 120px;
+            padding: 80px 20px 100px;
+        }
+
+        .section {
+            margin-bottom: 100px;
         }
 
         .section h2 {
-            font-size: 2.6rem;
+            font-size: clamp(2.2rem, 5vw, 2.8rem);
             font-weight: 800;
             text-align: center;
             margin-bottom: 50px;
+            color: #1e2937;
         }
 
         /* Paket Basic Standart */
-        .basic-standart {
+        .package-card {
             background: white;
             border-radius: 28px;
-            padding: 52px;
+            padding: clamp(40px, 6vw, 60px);
             box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+            border: 3px solid #3b82f6;
             margin-bottom: 80px;
-            border: 2px solid #3b82f6;
         }
 
-        .basic-standart h3 {
+        .package-card h3 {
             text-align: center;
-            font-size: 2.2rem;
-            margin-bottom: 32px;
+            font-size: 2.3rem;
+            margin-bottom: 40px;
             color: #1e40af;
         }
 
-        .basic-standart ul {
-            line-height: 2.4;
-            font-size: 1.12rem;
-            color: #334155;
-            max-width: 720px;
-            margin: 0 auto;
-        }
-
-        /* Harga Reguler Cards */
+        /* Pricing Grid */
         .pricing-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 28px;
-            margin-bottom: 80px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
         }
 
         .price-card {
             background: white;
             border-radius: 24px;
-            padding: 42px 30px;
+            padding: 40px 24px;
             text-align: center;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
             transition: all 0.3s ease;
         }
 
         .price-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 50px rgba(99, 102, 241, 0.15);
+            transform: translateY(-12px);
+            box-shadow: 0 25px 60px rgba(99, 102, 241, 0.18);
         }
 
         .price-time {
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             color: #64748b;
-            margin-bottom: 12px;
         }
 
         .price-amount {
-            font-size: 2.8rem;
+            font-size: clamp(2.2rem, 5vw, 2.9rem);
             font-weight: 800;
             color: #2563eb;
             margin: 12px 0;
         }
 
-        .price-desc {
-            color: #475569;
-            font-size: 1rem;
-        }
-
-        /* Paket Profesional */
+        /* Pro Package */
         .pro-package {
             background: white;
             border-radius: 28px;
-            padding: 48px;
+            padding: clamp(40px, 6vw, 55px);
             box-shadow: 0 20px 60px rgba(0,0,0,0.08);
-            border: 2px solid #6366f1;
-        }
-
-        .pro-package h3 {
-            text-align: center;
-            font-size: 2.1rem;
-            margin-bottom: 36px;
-            color: #1e40af;
+            border: 3px solid #6366f1;
         }
 
         .pro-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
             gap: 24px;
         }
 
@@ -149,24 +136,66 @@
         }
 
         .pro-duration {
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             color: #64748b;
         }
 
         .pro-price {
-            font-size: 2.4rem;
+            font-size: clamp(2rem, 4.5vw, 2.6rem);
             font-weight: 800;
             color: #2563eb;
-            margin: 12px 0;
+            margin: 10px 0;
         }
 
+        /* Attention Box */
         .attention-box {
             background: #fef3c7;
-            border: 2px solid #f59e0b;
+            border: 3px solid #f59e0b;
             border-radius: 24px;
-            padding: 40px;
-            margin: 60px 0;
+            padding: clamp(40px, 6vw, 50px);
+            margin: 70px 0;
             color: #92400e;
+        }
+
+        /* Contact */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .contact-card {
+            background: white;
+            padding: 48px 32px;
+            border-radius: 24px;
+            text-align: center;
+            box-shadow: 0 15px 45px rgba(0,0,0,0.07);
+            transition: transform 0.3s;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .contact-card .icon {
+            font-size: 3.5rem;
+            margin-bottom: 16px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: #64748b;
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 640px) {
+            .main-content {
+                padding: 60px 16px 80px;
+            }
+            .section {
+                margin-bottom: 70px;
+            }
         }
     </style>
 </head>
@@ -174,7 +203,7 @@
 
     <!-- HERO -->
     <section class="hero">
-        <div style="text-align:center; z-index:2;">
+        <div class="hero-content">
             <h1>BERITA JKT48</h1>
             <p>Platform Promosi Resmi • Paid Promote WhatsApp</p>
         </div>
@@ -182,32 +211,32 @@
 
     <div class="main-content">
 
-        <!-- Paket Profesional -->
+        <!-- Paket Basic Standart -->
         <div class="section">
             <h2>Paket Basic Standart</h2>
-            <div class="pro-package">
+            <div class="package-card">
                 <h3>Paket Basic Standart</h3>
-                <div class="pro-grid">
-                    <div class="pro-item">
+                <div class="pricing-grid">
+                    <div class="price-card">
                         <div class="price-time">Pagi</div>
                         <div class="price-amount">Rp85.000</div>
-                        <div class="price-desc">07.00 – 09.00 WIB</div>
+                        <div class="price-time">07.00 – 09.00 WIB</div>
                     </div>
-                    <div class="pro-item">
+                    <div class="price-card">
                         <div class="price-time">Siang</div>
                         <div class="price-amount">Rp90.000</div>
-                        <div class="price-desc">11.00 – 13.00 WIB</div>
+                        <div class="price-time">11.00 – 13.00 WIB</div>
                     </div>
-                    <div class="pro-item">
+                    <div class="price-card">
                         <div class="price-time">Sore / Malam</div>
                         <div class="price-amount">Rp100.000</div>
-                        <div class="price-desc">15.00 – 21.00 WIB</div>
+                        <div class="price-time">15.00 – 21.00 WIB</div>
                     </div>
                 </div>
-                <p style="text-align:center; margin-top:30px; color:#475569;">
+                <p style="text-align:center; margin-top:40px; color:#475569; font-size:1.05rem;">
                     1× post berlaku selama 1 hari (dihapus setelah 24 jam)<br>
                     Setelah iklan diposting, tidak ada postingan lain selama 1 jam<br>
-                    Materi promosi berupa 1 foto & caption disediakan oleh pengiklan
+                    <strong>Materi: 1 foto + caption</strong>
                 </p>
             </div>
         </div>
@@ -231,39 +260,40 @@
                         <div class="pro-price">Rp60.000</div>
                     </div>
                 </div>
-                <p style="text-align:center; margin-top:30px; color:#475569;">
+                <p style="text-align:center; margin-top:40px; color:#475569; font-size:1.05rem;">
                     Selama durasi tersebut <strong>tidak akan ditimpa</strong> postingan lain<br>
                     1× posting • Tidak ada repost
                 </p>
             </div>
         </div>
 
-        <!-- Perhatian & Ketentuan -->
+        <!-- Perhatian -->
         <div class="attention-box">
-            <h3 style="margin-bottom:20px;">⚠️ Perhatian</h3>
-            <p>Kami tidak membuka layanan PP (penambahan follow/followers saluran)</p>
+            <h3 style="margin-bottom:24px; font-size:1.8rem;">⚠️ Perhatian</h3>
+            <p>Kami tidak membuka layanan penambahan follower / PP Followers.</p>
             
             <h3 style="margin: 32px 0 20px 0;">Ketentuan Layanan</h3>
-            <ul style="line-height:2.1;">
+            <ul style="line-height:2.1; padding-left:20px;">
                 <li>Toleransi keterlambatan upload maksimal 1–15 menit</li>
-                <li>Request di luar jam yang tertera dikenakan biaya tambahan sebesar +Rp5.000</li>
+                <li>Request di luar jam operasional +Rp5.000</li>
             </ul>
         </div>
 
-        <!-- TikTok, Peraturan, Hubungi Kami -->
+        <!-- TikTok -->
         <div class="section">
             <h2>TikTok (@ngidoljeketi48)</h2>
-            <div style="background:#fef2f2; border:3px dashed #f87171; color:#b91c1c; padding:70px; text-align:center; border-radius:28px; font-size:1.35rem;">
+            <div style="background:#fef2f2; border:3px dashed #f87171; color:#b91c1c; padding:60px 20px; text-align:center; border-radius:28px; font-size:1.3rem;">
                 <strong>Saat ini belum tersedia</strong><br>
                 Hubungi kami untuk informasi lebih lanjut.
             </div>
         </div>
 
+        <!-- Peraturan -->
         <div class="section">
             <h2>Peraturan Promosi</h2>
-            <div style="background:#fefce8; padding:48px; border-radius:28px; border-left:8px solid #eab308;">
+            <div style="background:#fefce8; padding:48px 30px; border-radius:28px; border-left:8px solid #eab308;">
                 <strong>Kami tidak menerima promosi untuk:</strong>
-                <ul style="margin-top:20px; line-height:2; font-size:1.1rem;">
+                <ul style="margin-top:20px; line-height:2.1; padding-left:22px; font-size:1.08rem;">
                     <li>Konten yang melanggar kebijakan WhatsApp</li>
                     <li>Konten dewasa / 18+</li>
                     <li>Judi online dan sejenisnya</li>
@@ -271,21 +301,22 @@
             </div>
         </div>
 
+        <!-- Hubungi Kami -->
         <div class="section" id="kontak">
             <h2>Hubungi Kami</h2>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 28px;">
-                <div style="background:white; padding:48px 32px; border-radius:24px; text-align:center; box-shadow:0 15px 45px rgba(0,0,0,0.07);">
-                    <div style="font-size:3rem; margin-bottom:16px;">✉️</div>
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <div class="icon">✉️</div>
                     <h3>Email</h3>
-                    <a href="mailto:genfeedz@gmail.com" style="color:#4f46e5; font-weight:600;">genfeedz@gmail.com</a>
+                    <a href="mailto:genfeedz@gmail.com" style="color:#4f46e5; font-weight:600; text-decoration:none;">genfeedz@gmail.com</a>
                 </div>
-                <div style="background:white; padding:48px 32px; border-radius:24px; text-align:center; box-shadow:0 15px 45px rgba(0,0,0,0.07);">
-                    <div style="font-size:3rem; margin-bottom:16px;">📸</div>
+                <div class="contact-card">
+                    <div class="icon">📸</div>
                     <h3>Instagram</h3>
-                    <a href="https://www.instagram.com/genfeedz/" target="_blank" style="color:#4f46e5; font-weight:600;">@genfeedz</a>
+                    <a href="https://www.instagram.com/genfeedz/" target="_blank" style="color:#4f46e5; font-weight:600; text-decoration:none;">@genfeedz</a>
                 </div>
-                <div style="background:white; padding:48px 32px; border-radius:24px; text-align:center; box-shadow:0 15px 45px rgba(0,0,0,0.07);">
-                    <div style="font-size:3rem; margin-bottom:16px;">💬</div>
+                <div class="contact-card">
+                    <div class="icon">💬</div>
                     <h3>WhatsApp</h3>
                     <p style="color:#64748b; font-style:italic;">Belum tersedia</p>
                 </div>
