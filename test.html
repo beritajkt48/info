@@ -13,22 +13,75 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* === ANIMATED BACKGROUND === */
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #a78bfa 100%);
+            animation: gradientShift 25s ease infinite;
+        }
+
+        .background::before,
+        .background::after {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.25;
+            animation: float 30s ease-in-out infinite;
+        }
+
+        .background::before {
+            background: #f472b6;
+            top: -10%;
+            left: -10%;
+            animation-delay: 0s;
+        }
+
+        .background::after {
+            background: #60a5fa;
+            bottom: -15%;
+            right: -10%;
+            animation-delay: 12s;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(80px, 100px) rotate(15deg); }
         }
 
         .container {
             max-width: 900px;
             margin: 0 auto;
-            background: white;
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(12px);
             border-radius: 24px;
-            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.25);
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.2);
             overflow: hidden;
+            position: relative;
+            z-index: 1;
         }
 
         header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #4f46e5, #7c3aed);
             color: white;
             padding: 70px 30px;
             text-align: center;
@@ -42,7 +95,7 @@
 
         header p {
             font-size: 18px;
-            opacity: 0.9;
+            opacity: 0.95;
             margin-top: 8px;
         }
 
@@ -82,129 +135,22 @@
             left: 0;
             width: 50px;
             height: 3px;
-            background: #667eea;
+            background: #6366f1;
             border-radius: 3px;
         }
 
-        .promo-card {
-            background: #f8fafc;
-            border: 1px solid #e2e8f0;
-            border-radius: 16px;
-            padding: 32px;
-            transition: all 0.4s ease;
-        }
-
-        .promo-card:hover {
-            border-color: #667eea;
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.1);
-        }
-
-        .promo-card h3 {
-            color: #1e40af;
-            font-size: 26px;
-            margin-bottom: 20px;
-        }
-
-        .promo-details ul {
-            list-style: none;
-        }
-
-        .promo-details li {
-            padding: 12px 0 12px 28px;
-            position: relative;
-            color: #374151;
-            line-height: 1.75;
-        }
-
-        .promo-details li::before {
-            content: "•";
-            position: absolute;
-            left: 0;
-            color: #667eea;
-            font-size: 20px;
-            font-weight: bold;
-        }
-
-        .price-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 24px;
-            margin-top: 25px;
-        }
-
-        .price-card {
+        /* Card styles tetap sama seperti sebelumnya */
+        .promo-card, .price-card, .contact-card {
             background: white;
             border: 1px solid #e2e8f0;
             border-radius: 16px;
-            padding: 32px 24px;
-            text-align: center;
             transition: all 0.4s ease;
         }
 
-        .price-card:hover {
-            border-color: #667eea;
-            transform: translateY(-10px);
-            box-shadow: 0 20px 50px rgba(102, 126, 234, 0.12);
-        }
-
-        .price-time {
-            font-size: 15px;
-            color: #64748b;
-            margin-bottom: 8px;
-            font-weight: 500;
-        }
-
-        .price-amount {
-            font-size: 36px;
-            font-weight: 700;
-            color: #1e40af;
-            margin: 12px 0;
-        }
-
-        .price-desc {
-            color: #475569;
-            font-size: 14.5px;
-        }
-
-        .note-section {
-            background: #f1f5f9;
-            border-left: 5px solid #64748b;
-            padding: 22px 25px;
-            border-radius: 12px;
-            margin: 30px 0;
-            color: #334155;
-            font-size: 15px;
-        }
-
-        .rules-content {
-            background: #fef3c7;
-            border-left: 5px solid #f59e0b;
-            padding: 22px 25px;
-            border-radius: 12px;
-            color: #92400e;
-        }
-
-        /* ==================== HUBUNGI KAMI ==================== */
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 24px;
-        }
-
-        .contact-card {
-            background: #f8fafc;
-            border: 1px solid #e2e8f0;
-            border-radius: 16px;
-            padding: 32px 24px;
-            text-align: center;
-            transition: all 0.4s ease;
-        }
-
-        .contact-card:hover {
-            border-color: #667eea;
+        .promo-card:hover, .price-card:hover, .contact-card:hover {
+            border-color: #6366f1;
             transform: translateY(-6px);
-            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.1);
+            box-shadow: 0 20px 50px rgba(99, 102, 241, 0.12);
         }
 
         .contact-icon {
@@ -220,17 +166,10 @@
             box-shadow: 0 2px 8px rgba(0,0,0,0.05);
         }
 
-        .contact-card h3 {
-            font-size: 17px;
-            color: #1f2937;
-            margin-bottom: 16px;
-            font-weight: 600;
-        }
-
         .contact-btn {
             display: inline-block;
             background: white;
-            color: #1e40af;
+            color: #4f46e5;
             border: 1.5px solid #64748b;
             padding: 10px 26px;
             border-radius: 9999px;
@@ -241,15 +180,9 @@
         }
 
         .contact-btn:hover {
-            background: #1e40af;
+            background: #4f46e5;
             color: white;
-            border-color: #1e40af;
-        }
-
-        .whatsapp-status {
-            color: #64748b;
-            font-style: italic;
-            margin-top: 8px;
+            border-color: #4f46e5;
         }
 
         footer {
@@ -264,11 +197,14 @@
         @media (max-width: 600px) {
             header h1 { font-size: 34px; }
             .content { padding: 35px 20px; }
-            .section h2 { font-size: 24px; }
         }
     </style>
 </head>
 <body>
+
+    <!-- Animated Background -->
+    <div class="background"></div>
+
     <div class="container">
         <header>
             <h1>BERITA JKT48</h1>
@@ -280,8 +216,7 @@
             <!-- WhatsApp Section -->
             <div class="section">
                 <h2>Saluran WhatsApp</h2>
-                
-                <div class="promo-card">
+                <div class="promo-card" style="padding:32px;">
                     <h3>100K+ Followers</h3>
                     <div class="promo-details">
                         <strong>Sistem Promosi:</strong>
@@ -297,25 +232,25 @@
                     Harga & Jam Upload
                 </strong>
 
-                <div class="price-grid">
-                    <div class="price-card">
+                <div class="price-grid" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap:24px; margin-top:25px;">
+                    <div class="price-card" style="padding:32px 24px; text-align:center;">
                         <div class="price-time">Pagi</div>
                         <div class="price-amount">Rp85.000</div>
                         <div class="price-desc">07.00 – 09.00 WIB</div>
                     </div>
-                    <div class="price-card">
+                    <div class="price-card" style="padding:32px 24px; text-align:center;">
                         <div class="price-time">Siang</div>
                         <div class="price-amount">Rp90.000</div>
                         <div class="price-desc">11.00 – 13.00 WIB</div>
                     </div>
-                    <div class="price-card">
+                    <div class="price-card" style="padding:32px 24px; text-align:center;">
                         <div class="price-time">Sore / Malam</div>
                         <div class="price-amount">Rp100.000</div>
                         <div class="price-desc">15.00 – 21.00 WIB</div>
                     </div>
                 </div>
 
-                <div class="note-section">
+                <div class="note-section" style="background:#f1f5f9; border-left:5px solid #64748b; padding:22px 25px; border-radius:12px; margin:30px 0; color:#334155;">
                     <strong>Perhatian:</strong> Kami tidak menyediakan layanan penambahan follower.
                 </div>
 
@@ -326,10 +261,10 @@
                 </div>
             </div>
 
-            <!-- TikTok Section -->
+            <!-- TikTok -->
             <div class="section">
                 <h2>TikTok (@ngidoljeketi48)</h2>
-                <div style="background:#fee2e2; border:2px dashed #ef4444; color:#b91c1c; padding:45px; text-align:center; border-radius:16px; font-size:17px;">
+                <div style="background:#fee2e2; border:2px dashed #ef4444; color:#b91c1c; padding:45px; text-align:center; border-radius:16px;">
                     <strong>Saat ini belum tersedia</strong><br>
                     Hubungi kami untuk informasi lebih lanjut.
                 </div>
@@ -338,7 +273,7 @@
             <!-- Peraturan -->
             <div class="section">
                 <h2>Peraturan Promosi</h2>
-                <div class="rules-content">
+                <div style="background:#fef3c7; border-left:5px solid #f59e0b; padding:22px 25px; border-radius:12px; color:#92400e;">
                     <strong>Kami tidak menerima promosi untuk:</strong>
                     <ul style="margin-top:12px; padding-left:20px;">
                         <li>Konten yang melanggar kebijakan WhatsApp</li>
@@ -351,30 +286,21 @@
             <!-- Hubungi Kami -->
             <div class="section">
                 <h2>Hubungi Kami</h2>
-                <div class="contact-grid">
-                    <!-- Email -->
-                    <div class="contact-card">
+                <div class="contact-grid" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:24px;">
+                    <div class="contact-card" style="padding:32px 24px; text-align:center;">
                         <div class="contact-icon">✉️</div>
                         <h3>Email</h3>
-                        <a href="mailto:genfeedz@gmail.com" class="contact-btn">
-                            genfeedz@gmail.com
-                        </a>
+                        <a href="mailto:genfeedz@gmail.com" class="contact-btn">genfeedz@gmail.com</a>
                     </div>
-
-                    <!-- Instagram -->
-                    <div class="contact-card">
+                    <div class="contact-card" style="padding:32px 24px; text-align:center;">
                         <div class="contact-icon">📸</div>
                         <h3>Instagram</h3>
-                        <a href="https://www.instagram.com/genfeedz/" target="_blank" class="contact-btn">
-                            @genfeedz
-                        </a>
+                        <a href="https://www.instagram.com/genfeedz/" target="_blank" class="contact-btn">@genfeedz</a>
                     </div>
-
-                    <!-- WhatsApp -->
-                    <div class="contact-card">
+                    <div class="contact-card" style="padding:32px 24px; text-align:center;">
                         <div class="contact-icon">💬</div>
                         <h3>WhatsApp</h3>
-                        <p class="whatsapp-status">Belum tersedia</p>
+                        <p class="whatsapp-status" style="color:#64748b; font-style:italic; margin-top:8px;">Belum tersedia</p>
                     </div>
                 </div>
             </div>
