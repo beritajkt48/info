@@ -16,7 +16,7 @@
             overflow-x: hidden;
         }
 
-        /* HERO SECTION - Futuristic SaaS */
+        /* HERO SECTION */
         .hero {
             min-height: 100vh;
             background: linear-gradient(135deg, #6366f1 0%, #a855f7 45%, #ec4899 100%);
@@ -67,7 +67,6 @@
             letter-spacing: -4px;
             color: white;
             margin-bottom: 16px;
-            text-shadow: 0 15px 40px rgba(0,0,0,0.3);
         }
 
         .hero p {
@@ -92,7 +91,6 @@
 
         .cta-button:hover {
             transform: translateY(-6px);
-            box-shadow: 0 25px 50px rgba(79, 70, 229, 0.4);
         }
 
         /* Floating Cards */
@@ -108,7 +106,7 @@
             animation: float 7s ease-in-out infinite;
         }
 
-        .float-card1 { top: 22%; left: 8%; width: 240px; animation-delay: 0s; }
+        .float-card1 { top: 22%; left: 8%; width: 240px; }
         .float-card2 { top: 48%; right: 10%; width: 260px; animation-delay: 3s; }
 
         @keyframes float {
@@ -151,6 +149,7 @@
             margin-bottom: 20px;
         }
 
+        /* PRICE GRID */
         .price-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -169,7 +168,6 @@
 
         .price-card:hover {
             transform: translateY(-15px);
-            box-shadow: 0 30px 70px rgba(99, 102, 241, 0.2);
         }
 
         .price-amount {
@@ -178,37 +176,28 @@
             color: #4f46e5;
         }
 
-        .note {
-            background: #f0f9ff;
-            border-left: 6px solid #6366f1;
-            padding: 28px;
-            border-radius: 20px;
-            margin: 40px 0;
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 28px;
-            margin-top: 40px;
-        }
-
-        .contact-card {
-            background: white;
-            padding: 48px 32px;
+        /* PERHATIAN & KETENTUAN - NEW SECTION */
+        .attention-box {
+            background: #fef3c7;
+            border: 2px solid #f59e0b;
             border-radius: 24px;
-            text-align: center;
-            box-shadow: 0 15px 45px rgba(0,0,0,0.07);
-            transition: all 0.4s;
+            padding: 40px;
+            margin: 60px 0;
         }
 
-        .contact-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .contact-icon {
-            font-size: 3.2rem;
+        .attention-box h3 {
+            color: #b45309;
+            font-size: 1.5rem;
             margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .attention-box ul {
+            line-height: 2.1;
+            font-size: 1.1rem;
+            color: #92400e;
         }
 
         footer {
@@ -225,12 +214,12 @@
     <section class="hero">
         <div class="float-card float-card1">
             <strong>100K+ Followers</strong><br>
-            <small style="color:#64748b;">Saluran WhatsApp BERITA JKT48</small>
+            <small style="color:#64748b;">Saluran WhatsApp</small>
         </div>
         
         <div class="float-card float-card2">
-            <strong>50K+ Followers</strong><br>
-            <small style="color:#64748b;">Tiktok NGIDOL JKT48</small>
+            <strong>Rp 85.000</strong><br>
+            <small style="color:#64748b;">Slot Pagi</small>
         </div>
 
         <div class="hero-content">
@@ -264,18 +253,30 @@
                 <div class="price-card">
                     <div style="color:#64748b; font-size:1.1rem;">Pagi</div>
                     <div class="price-amount">Rp85.000</div>
-                    <div style="margin-top:12px; color:#475569;">07.00 – 09.00 WIB</div>
+                    <div style="margin-top:12px; color:#475569;">07.00 – 10.00 WIB</div>
                 </div>
                 <div class="price-card">
                     <div style="color:#64748b; font-size:1.1rem;">Siang</div>
                     <div class="price-amount">Rp90.000</div>
-                    <div style="margin-top:12px; color:#475569;">11.00 – 13.00 WIB</div>
+                    <div style="margin-top:12px; color:#475569;">11.00 – 14.00 WIB</div>
                 </div>
                 <div class="price-card">
-                    <div style="color:#64748b; font-size:1.1rem;">Sore / Malam</div>
+                    <div style="color:#64748b; font-size:1.1rem;">Malam</div>
                     <div class="price-amount">Rp100.000</div>
                     <div style="margin-top:12px; color:#475569;">15.00 – 21.00 WIB</div>
                 </div>
+            </div>
+
+            <!-- PERHATIAN & KETENTUAN -->
+            <div class="attention-box">
+                <h3>⚠️ Perhatian</h3>
+                <p>Kami tidak membuka layanan PP (penambahan follow/followers saluran)</p>
+                
+                <h3 style="margin-top: 32px;">Ketentuan Layanan</h3>
+                <ul>
+                    <li>Toleransi keterlambatan upload maksimal 1–15 menit</li>
+                    <li>Request di luar jam yang tertera dikenakan biaya tambahan sebesar +Rp5.000</li>
+                </ul>
             </div>
         </div>
 
@@ -304,19 +305,19 @@
         <!-- Contact -->
         <div class="section" id="kontak">
             <h2>Hubungi Kami</h2>
-            <div class="contact-grid">
-                <div class="contact-card">
-                    <div class="contact-icon">✉️</div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 28px;">
+                <div style="background: white; padding: 48px 32px; border-radius: 24px; text-align: center; box-shadow: 0 15px 45px rgba(0,0,0,0.07);">
+                    <div style="font-size: 3.2rem; margin-bottom: 20px;">✉️</div>
                     <h3>Email</h3>
                     <a href="mailto:genfeedz@gmail.com" style="color:#4f46e5; font-weight:600; text-decoration:none;">genfeedz@gmail.com</a>
                 </div>
-                <div class="contact-card">
-                    <div class="contact-icon">📸</div>
+                <div style="background: white; padding: 48px 32px; border-radius: 24px; text-align: center; box-shadow: 0 15px 45px rgba(0,0,0,0.07);">
+                    <div style="font-size: 3.2rem; margin-bottom: 20px;">📸</div>
                     <h3>Instagram</h3>
                     <a href="https://www.instagram.com/genfeedz/" target="_blank" style="color:#4f46e5; font-weight:600; text-decoration:none;">@genfeedz</a>
                 </div>
-                <div class="contact-card">
-                    <div class="contact-icon">💬</div>
+                <div style="background: white; padding: 48px 32px; border-radius: 24px; text-align: center; box-shadow: 0 15px 45px rgba(0,0,0,0.07);">
+                    <div style="font-size: 3.2rem; margin-bottom: 20px;">💬</div>
                     <h3>WhatsApp</h3>
                     <p style="color:#64748b; font-style:italic;">Belum tersedia</p>
                 </div>
