@@ -54,29 +54,69 @@
             margin-bottom: 50px;
         }
 
-        /* Paket Basic Standart - Tampilan seperti Paket Profesional */
-        .basic-package {
+        /* Paket Basic Standart */
+        .basic-standart {
             background: white;
             border-radius: 28px;
-            padding: 50px;
+            padding: 52px;
             box-shadow: 0 20px 60px rgba(0,0,0,0.08);
             margin-bottom: 80px;
             border: 2px solid #3b82f6;
         }
 
-        .basic-package h3 {
+        .basic-standart h3 {
             text-align: center;
             font-size: 2.2rem;
-            margin-bottom: 40px;
+            margin-bottom: 32px;
             color: #1e40af;
         }
 
-        .basic-content ul {
+        .basic-standart ul {
             line-height: 2.4;
-            font-size: 1.15rem;
+            font-size: 1.12rem;
             color: #334155;
-            max-width: 700px;
+            max-width: 720px;
             margin: 0 auto;
+        }
+
+        /* Harga Reguler Cards */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 28px;
+            margin-bottom: 80px;
+        }
+
+        .price-card {
+            background: white;
+            border-radius: 24px;
+            padding: 42px 30px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .price-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(99, 102, 241, 0.15);
+        }
+
+        .price-time {
+            font-size: 1.1rem;
+            color: #64748b;
+            margin-bottom: 12px;
+        }
+
+        .price-amount {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: #2563eb;
+            margin: 12px 0;
+        }
+
+        .price-desc {
+            color: #475569;
+            font-size: 1rem;
         }
 
         /* Paket Profesional */
@@ -146,36 +186,34 @@
         <div class="section">
             <h2>Paket Basic Standart</h2>
             
-            <div class="basic-package">
+            <div class="basic-standart">
                 <h3>Paket Basic Standart</h3>
-                <div class="basic-content">
-                    <ul>
-                        <li>1× post berlaku selama 1 hari (dihapus setelah 24 jam)</li>
-                        <li>Setelah iklan diposting, tidak ada postingan lain selama 1 jam</li>
-                        <li>Materi promosi berupa 1 foto & caption disediakan oleh pengiklan</li>
-                    </ul>
-                </div>
+                <ul>
+                    <li>1× post berlaku selama 1 hari (dihapus setelah 24 jam)</li>
+                    <li>Setelah iklan diposting, tidak ada postingan lain selama 1 jam</li>
+                    <li>Materi promosi berupa 1 foto & caption disediakan oleh pengiklan</li>
+                </ul>
             </div>
         </div>
 
-        <!-- Harga Reguler (tetap ada) -->
+        <!-- Harga Reguler -->
         <div class="section">
             <h2>Harga Reguler</h2>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 28px;">
-                <div style="background: white; border-radius: 24px; padding: 42px 30px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.08);">
-                    <div style="color:#64748b; font-size:1.1rem;">Pagi</div>
-                    <div style="font-size:2.8rem; font-weight:800; color:#2563eb; margin:12px 0;">Rp85.000</div>
-                    <div style="color:#475569;">07.00 – 09.00 WIB</div>
+            <div class="pricing-grid">
+                <div class="price-card">
+                    <div class="price-time">Pagi</div>
+                    <div class="price-amount">Rp85.000</div>
+                    <div class="price-desc">07.00 – 09.00 WIB</div>
                 </div>
-                <div style="background: white; border-radius: 24px; padding: 42px 30px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.08);">
-                    <div style="color:#64748b; font-size:1.1rem;">Siang</div>
-                    <div style="font-size:2.8rem; font-weight:800; color:#2563eb; margin:12px 0;">Rp90.000</div>
-                    <div style="color:#475569;">11.00 – 13.00 WIB</div>
+                <div class="price-card">
+                    <div class="price-time">Siang</div>
+                    <div class="price-amount">Rp90.000</div>
+                    <div class="price-desc">11.00 – 13.00 WIB</div>
                 </div>
-                <div style="background: white; border-radius: 24px; padding: 42px 30px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.08);">
-                    <div style="color:#64748b; font-size:1.1rem;">Sore / Malam</div>
-                    <div style="font-size:2.8rem; font-weight:800; color:#2563eb; margin:12px 0;">Rp100.000</div>
-                    <div style="color:#475569;">15.00 – 21.00 WIB</div>
+                <div class="price-card">
+                    <div class="price-time">Sore / Malam</div>
+                    <div class="price-amount">Rp100.000</div>
+                    <div class="price-desc">15.00 – 21.00 WIB</div>
                 </div>
             </div>
         </div>
@@ -206,7 +244,7 @@
             </div>
         </div>
 
-        <!-- Perhatian -->
+        <!-- Perhatian & Ketentuan -->
         <div class="attention-box">
             <h3 style="margin-bottom:20px;">⚠️ Perhatian</h3>
             <p>Kami tidak membuka layanan PP (penambahan follow/followers saluran)</p>
@@ -218,7 +256,7 @@
             </ul>
         </div>
 
-        <!-- Bagian lain tetap -->
+        <!-- TikTok, Peraturan, Hubungi Kami -->
         <div class="section">
             <h2>TikTok (@ngidoljeketi48)</h2>
             <div style="background:#fef2f2; border:3px dashed #f87171; color:#b91c1c; padding:70px; text-align:center; border-radius:28px; font-size:1.35rem;">
