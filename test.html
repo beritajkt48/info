@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JKT48 Team Fight</title>
+    <title>BERITA JKT48 - Paid Promote</title>
     <style>
         * {
             margin: 0;
@@ -12,1507 +12,342 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #F0F4F8 0%, #E8F0F7 100%);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             padding: 20px;
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 900px;
             margin: 0 auto;
-        }
-
-        /* Header */
-        .header {
-            text-align: center;
-            margin-bottom: 50px;
-            color: #2C3E50;
-        }
-
-        .header h1 {
-            font-size: 3em;
-            margin-bottom: 10px;
-            letter-spacing: 2px;
-            font-weight: 800;
-            background: linear-gradient(135deg, #FF6B9D 0%, #FFA552 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .header p {
-            font-size: 1.1em;
-            opacity: 0.85;
-            color: #5F7B96;
-        }
-
-        /* Tabs */
-        .tabs {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 40px;
-            flex-wrap: wrap;
-        }
-
-        .tab-btn {
-            padding: 12px 30px;
-            font-size: 1.1em;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: 600;
             background: white;
-            color: #5F7B96;
-            border: 2px solid white;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
         }
 
-        .tab-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
-            background: #FFF8F0;
-        }
-
-        .tab-btn.active {
-            background: linear-gradient(135deg, #FF6B9D 0%, #FFA552 100%);
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            border-color: transparent;
-        }
-
-        /* Members Grid */
-        .members-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 25px;
-            margin-top: 30px;
-        }
-
-        .member-card {
-            background: white;
-            border-radius: 24px;
-            overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            transition: all 0.3s ease;
-            animation: fadeIn 0.5s ease;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .member-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
-        }
-
-        /* Photo Frame Styling */
-        .member-photo-container {
-            position: relative;
-            width: 100%;
-            overflow: hidden;
-        }
-
-        /* Frame untuk Team Dream, Love, Passion (pink playful) */
-        .member-photo-container.frame-red {
-            background: #FF6B9D;
-            padding: 20px;
-            aspect-ratio: 1 / 1.15;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .member-photo-container.frame-red::before {
-            content: '★';
-            position: absolute;
-            top: 15px;
-            left: 15px;
-            font-size: 28px;
-            color: #FFE66D;
-            z-index: 10;
-        }
-
-        .member-photo-container.frame-red::after {
-            content: '★';
-            position: absolute;
-            bottom: 15px;
-            right: 15px;
-            font-size: 28px;
-            color: #FFE66D;
-            z-index: 10;
-        }
-
-        .member-photo-container.frame-red .inner-frame {
-            width: 100%;
-            height: 100%;
-            border: 8px solid #FFB8D1;
-            background: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            border-radius: 12px;
-        }
-
-        /* Frame untuk Team Trainee (oranye playful) */
-        .member-photo-container.frame-orange {
-            background: #FFA552;
-            padding: 20px;
-            aspect-ratio: 1 / 1.15;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .member-photo-container.frame-orange::before {
-            content: '★';
-            position: absolute;
-            top: 15px;
-            left: 15px;
-            font-size: 28px;
-            color: #FFE66D;
-            z-index: 10;
-        }
-
-        .member-photo-container.frame-orange::after {
-            content: '★';
-            position: absolute;
-            bottom: 15px;
-            right: 15px;
-            font-size: 28px;
-            color: #FFE66D;
-            z-index: 10;
-        }
-
-        .member-photo-container.frame-orange .inner-frame {
-            width: 100%;
-            height: 100%;
-            border: 8px solid #FFD9B5;
-            background: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            border-radius: 12px;
-        }
-
-        .member-photo {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            background: linear-gradient(135deg, #1a1a1a 0%, #333 100%);
-        }
-
-        .member-info {
-            padding: 20px;
+            padding: 60px 30px;
             text-align: center;
-            background: white;
         }
 
-        .member-name {
-            font-size: 1.3em;
+        header h1 {
+            font-size: 48px;
             font-weight: 700;
-            color: #2C3E50;
-            margin-bottom: 5px;
+            margin-bottom: 10px;
+            letter-spacing: -1px;
         }
 
-        .member-nickname {
-            font-size: 0.9em;
-            color: #FF6B9D;
-            margin-bottom: 15px;
-            font-style: italic;
+        header p {
+            font-size: 18px;
+            opacity: 0.95;
         }
 
-        .member-details {
-            font-size: 0.9em;
-            color: #5F7B96;
+        .content {
+            padding: 50px 30px;
+        }
+
+        .section {
+            margin-bottom: 50px;
+        }
+
+        .section h2 {
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section h2::before {
+            font-size: 32px;
+        }
+
+        .promo-card {
+            background: #f8f9fa;
+            border: 2px solid #667eea;
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        .promo-card h3 {
+            color: #667eea;
+            font-size: 24px;
+            margin-bottom: 18px;
+        }
+
+        .promo-details ul {
+            list-style: none;
+        }
+
+        .promo-details li {
+            padding: 10px 0 10px 30px;
+            position: relative;
+            line-height: 1.7;
+            color: #444;
+        }
+
+        .promo-details li::before {
+            content: "✅";
+            position: absolute;
+            left: 0;
+            color: #10b981;
+            font-size: 18px;
+        }
+
+        .price-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .price-card {
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 16px;
+            padding: 28px 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .price-card:hover {
+            border-color: #667eea;
+            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.15);
+            transform: translateY(-8px);
+        }
+
+        .price-time {
+            font-size: 15px;
+            color: #666;
             margin-bottom: 8px;
+        }
+
+        .price-amount {
+            font-size: 38px;
+            font-weight: 700;
+            color: #667eea;
+            margin: 12px 0;
+        }
+
+        .price-desc {
+            font-size: 14px;
+            color: #555;
             line-height: 1.6;
         }
 
-        .member-details strong {
-            color: #FFA552;
+        .note-section {
+            background: #e8f5e9;
+            border-left: 5px solid #4caf50;
+            padding: 22px;
+            border-radius: 10px;
+            margin: 25px 0;
+            color: #2e7d32;
         }
 
-        .member-socials {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            justify-content: center;
-            margin-top: 15px;
-            padding-top: 15px;
-            border-top: 1px solid #eee;
+        .rules-content {
+            background: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 22px;
+            border-radius: 10px;
+            color: #856404;
         }
 
-        .social-btn {
-            padding: 8px 12px;
-            font-size: 0.85em;
-            border: none;
-            border-radius: 20px;
-            cursor: pointer;
+        .rules-content ul {
+            list-style: none;
+            margin-top: 12px;
+        }
+
+        .rules-content li {
+            padding: 8px 0 8px 30px;
+            position: relative;
+        }
+
+        .rules-content li::before {
+            content: "❌";
+            position: absolute;
+            left: 0;
+            color: #e74c3c;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .contact-card {
+            background: #f0f4ff;
+            border: 2px solid #667eea;
+            border-radius: 16px;
+            padding: 30px 20px;
+            text-align: center;
             transition: all 0.3s ease;
+        }
+
+        .contact-card:hover {
+            background: #e8eeff;
+            transform: translateY(-5px);
+        }
+
+        .contact-icon {
+            font-size: 42px;
+            margin-bottom: 15px;
+        }
+
+        .contact-title {
+            font-size: 18px;
             font-weight: 600;
-            color: white;
-            text-decoration: none;
+            color: #333;
+            margin-bottom: 12px;
+        }
+
+        .contact-link {
             display: inline-block;
-            min-width: 70px;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 12px 20px;
+            border-radius: 10px;
+            background: white;
+            border: 1px solid #667eea;
+            transition: all 0.3s ease;
         }
 
-        .social-twitter {
-            background: #5F7B96;
-            border: 2px solid #5F7B96;
+        .contact-link:hover {
+            background: #667eea;
+            color: white;
         }
 
-        .social-twitter:hover {
-            background: #7A92AF;
-            border-color: #7A92AF;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(95, 123, 150, 0.3);
+        footer {
+            background: #f5f5f5;
+            padding: 35px;
+            text-align: center;
+            color: #777;
+            font-size: 14px;
+            border-top: 1px solid #e0e0e0;
         }
 
-        .social-instagram {
-            background: #FF6B9D;
-            border: 2px solid #FF6B9D;
-        }
-
-        .social-instagram:hover {
-            background: #FF5589;
-            border-color: #FF5589;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(255, 107, 157, 0.3);
-        }
-
-        .social-tiktok {
-            background: #5F7B96;
-            border: 2px solid #5F7B96;
-        }
-
-        .social-tiktok:hover {
-            background: #7A92AF;
-            border-color: #7A92AF;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(95, 123, 150, 0.3);
-        }
-
-        .social-showroom {
-            background: #FFA552;
-            border: 2px solid #FFA552;
-        }
-
-        .social-showroom:hover {
-            background: #FF943F;
-            border-color: #FF943F;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(255, 165, 82, 0.3);
-        }
-
-        .social-idnlive {
-            background: #FF6B9D;
-            border: 2px solid #FF6B9D;
-        }
-
-        .social-idnlive:hover {
-            background: #FF5589;
-            border-color: #FF5589;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(255, 107, 157, 0.3);
-        }
-
-        /* Hidden tab content */
-        .team-content {
-            display: none;
-        }
-
-        .team-content.active {
-            display: block;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .header h1 {
-                font-size: 2em;
-            }
-
-            .members-grid {
-                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-                gap: 15px;
-            }
-
-            .member-photo-container {
-                aspect-ratio: 1 / 1.1;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .header h1 {
-                font-size: 1.5em;
-            }
-
-            .members-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .tabs {
-                gap: 10px;
-            }
-
-            .tab-btn {
-                padding: 10px 20px;
-                font-size: 1em;
-            }
+        @media (max-width: 600px) {
+            header h1 { font-size: 36px; }
+            .content { padding: 30px 20px; }
+            .section h2 { font-size: 24px; }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- Header -->
-        <div class="header">
-            <h1>JKT48 Team Fight</h1>
-            <p>Ikuti saluran WhatsApp BERITA JKT48 untuk mendapatkan informasi terbaru.</p>
+        <header>
+            <h1>BERITA JKT48</h1>
+            <p>Platform Promosi Resmi Saluran BERITA JKT48</p>
+        </header>
+
+        <div class="content">
+            <!-- WhatsApp Section -->
+            <div class="section">
+                <h2>📢 Saluran WhatsApp BERITA JKT48</h2>
+                
+                <div class="promo-card">
+                    <h3>100K+ Followers</h3>
+                    <div class="promo-details">
+                        <strong>🔹 Sistem Promosi:</strong>
+                        <ul>
+                            <li>1× post berlaku selama 1 hari (akan dihapus setelah 24 jam)</li>
+                            <li>Setelah iklan diposting, tidak ada postingan lain selama 1 jam ke depan</li>
+                            <li>Materi promosi berupa 1 foto & caption disediakan oleh pengiklan (bukan dari kami)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <strong style="display: block; font-size: 20px; color: #333; margin: 30px 0 20px;">
+                    💰 Harga & Jam Upload
+                </strong>
+
+                <div class="price-grid">
+                    <div class="price-card">
+                        <div class="price-time">🌅 Pagi</div>
+                        <div class="price-amount">Rp85.000</div>
+                        <div class="price-desc">Upload pukul 07.00 – 09.00</div>
+                    </div>
+                    <div class="price-card">
+                        <div class="price-time">☀️ Siang</div>
+                        <div class="price-amount">Rp90.000</div>
+                        <div class="price-desc">Upload pukul 11.00 – 13.00</div>
+                    </div>
+                    <div class="price-card">
+                        <div class="price-time">🌆 Sore / Malam</div>
+                        <div class="price-amount">Rp100.000</div>
+                        <div class="price-desc">Upload pukul 15.00 – 21.00</div>
+                    </div>
+                </div>
+
+                <div class="note-section">
+                    <strong>⚠️ Perhatian</strong>
+                    <p>Kami tidak membuka layanan PP (penambahan follower).</p>
+                </div>
+
+                <div class="note-section" style="background: #f0f9ff; border-left-color: #3b82f6; color: #1e40af;">
+                    <strong>📋 Ketentuan Layanan</strong>
+                    <p>• Toleransi keterlambatan upload maksimal 1–15 menit.</p>
+                    <p>• Request di luar jam yang tertera dikenakan biaya tambahan <strong>+Rp5.000</strong>.</p>
+                </div>
+            </div>
+
+            <!-- TikTok Section -->
+            <div class="section">
+                <h2>🎵 TikTok (@ngidoljeketi48)</h2>
+                <div class="no-service" style="background:#fee2e2; border:2px dashed #ef4444; color:#b91c1c; padding:40px; text-align:center; border-radius:16px;">
+                    <p style="font-size:18px; font-weight:600;">🔒 Saat ini belum tersedia</p>
+                    <p style="margin-top:8px;">Hubungi kami untuk informasi lebih lanjut.</p>
+                </div>
+            </div>
+
+            <!-- Peraturan -->
+            <div class="section">
+                <h2>⛔ Peraturan Promosi</h2>
+                <div class="rules-content">
+                    <strong>Kami tidak menerima promosi untuk:</strong>
+                    <ul>
+                        <li>Konten yang melanggar kebijakan WhatsApp</li>
+                        <li>Konten 18+ / Adult</li>
+                        <li>Judi online dan sejenisnya</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Kontak -->
+            <div class="section contact">
+                <h2>📞 Hubungi Kami</h2>
+                <div class="contact-grid">
+                    <div class="contact-card">
+                        <div class="contact-icon">✉️</div>
+                        <div class="contact-title">Email</div>
+                        <a href="mailto:genfeedz@gmail.com" class="contact-link">genfeedz@gmail.com</a>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">📷</div>
+                        <div class="contact-title">Instagram</div>
+                        <a href="https://www.instagram.com/genfeedz/" target="_blank" class="contact-link">@genfeedz</a>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-icon">💬</div>
+                        <div class="contact-title">WhatsApp</div>
+                        <p style="color:#888; margin-top:10px;">Saat ini belum tersedia</p>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <!-- Tabs -->
-        <div class="tabs">
-            <button class="tab-btn active" onclick="switchTeam('dream')">Team Dream</button>
-            <button class="tab-btn" onclick="switchTeam('love')">Team Love</button>
-            <button class="tab-btn" onclick="switchTeam('passion')">Team Passion</button>
-            <button class="tab-btn" onclick="switchTeam('trainee')">Trainee</button>
-        </div>
-
-        <!-- Team Dream -->
-        <div id="dream" class="team-content active">
-            <div class="members-grid" id="dreamGrid"></div>
-        </div>
-
-        <!-- Team Love -->
-        <div id="love" class="team-content">
-            <div class="members-grid" id="loveGrid"></div>
-        </div>
-
-        <!-- Team Passion -->
-        <div id="passion" class="team-content">
-            <div class="members-grid" id="passionGrid"></div>
-        </div>
-
-        <!-- Team Trainee -->
-        <div id="trainee" class="team-content">
-            <div class="members-grid" id="traineeGrid"></div>
-        </div>
+        <footer>
+            <p>&copy; 2026 BERITA JKT48. Semua hak dilindungi.</p>
+            <p>Hubungi kami untuk informasi lebih lanjut.</p>
+        </footer>
     </div>
-
-    <script>
-        // Data Member JKT48
-        const teamData = {
-            dream: [
-                {
-                    id: 1,
-                    name: "Amanda Sukma",
-                    nickname: "Amanda",
-                    photo: "amanda.jpg",
-                    birthDate: "17 Desember 2004",
-                    bloodType: "O",
-                    zodiac: "Sagitarius",
-                    height: "161 cm",
-                    socials: {
-                        twitter: "x.com/PS_AmandaJKT48",
-                        instagram: 'www.instagram.com/jkt48.amanda.s/',
-                        tiktok: "www.tiktok.com/@jkt48.amanda.s",
-                        showroom: "www.showroom-live.com/r/JKT48_Amanda",
-                        idnlive: "www.idn.app/jkt48_amanda"
-                    }
-                },
-                {
-                    id: 2,
-                    name: "Chelsea Davina",
-                    nickname: "Chelsea",
-                    photo: "chelsea.jpg",
-                    birthDate: "23 Desember 2009",
-                    bloodType: "B",
-                    zodiac: "Capricorn",
-                    height: "169 cm",
-                    socials: {
-                        twitter: "x.com/DC_ChelseaJKT48",
-                        instagram: "www.instagram.com/jkt48.chelsea.d/",
-                        tiktok: "www.tiktok.com/@_chelseajkt48",
-                        showroom: "www.showroom-live.com/r/JKT48_Chelsea",
-                        idnlive: "www.idn.app/jkt48_chelsea"
-                    }
-                },
-                {
-                    id: 3,
-                    name: "Adeline Wijaya",
-                    nickname: "Delynn",
-                    photo: "delynn.jpg",
-                    birthDate: "1 September 2007",
-                    bloodType: "B",
-                    zodiac: "Virgo",
-                    height: "167 cm",
-                    socials: {
-                        twitter: "x.com/Delynn_JKT48",
-                        instagram: "www.instagram.com/jkt48.delynn/",
-                        tiktok: "www.tiktok.com/@jkt48.delynn",
-                        showroom: "www.showroom-live.com/r/JKT48_Delynn",
-                        idnlive: "www.idn.app/jkt48_delynn"
-                    }
-                },
-                {
-                    id: 4,
-                    name: "Gabriela Abigail",
-                    nickname: "Ella",
-                    photo: "ella.jpg",
-                    birthDate: "7 Agustus 2006",
-                    bloodType: "B",
-                    zodiac: "Leo",
-                    height: "161 cm",
-                    socials: {
-                        twitter: "x.com/AM_EllaJKT48",
-                        instagram: "www.instagram.com/jkt48.ella.a/",
-                        tiktok: "www.tiktok.com/@jkt48.ella.a",
-                        showroom: "www.showroom-live.com/r/JKT48_Ella",
-                        idnlive: "www.idn.app/jkt48_ella"
-                    }
-                },
-                {
-                    id: 5,
-                    name: "Helisma Putri",
-                    nickname: "Eli",
-                    photo: "eli.jpg",
-                    birthDate: "15 Juni 2000",
-                    bloodType: "A",
-                    zodiac: "Gemini",
-                    height: "167 cm",
-                    socials: {
-                        twitter: "x.com/H_EliJKT48",
-                        instagram: "www.instagram.com/jkt48.eli/",
-                        tiktok: "www.tiktok.com/@elijkt48",
-                        showroom: "www.showroom-live.com/r/JKT48_Eli",
-                        idnlive: "www.idn.app/jkt48_eli"
-                    }
-                },
-                {
-    id: 6,
-    name: "Freya Jayawardana",
-    nickname: "Freya",
-    photo: "freya.jpg",
-    birthDate: "13 Februari 2006",
-    bloodType: "B",
-    zodiac: "Aquarius",
-    height: "161 cm",
-    socials: {
-        twitter: "x.com/Freya_JKT48",
-        instagram: "www.instagram.com/jkt48.freya/",
-        tiktok: "www.tiktok.com/@freyajkt48",
-        showroom: "www.showroom-live.com/r/JKT48_Freya",
-        idnlive: "www.idn.app/jkt48_freya"
-    }
-},
-{
-    id: 7,
-    name: "Gendis Mayrannisa",
-    nickname: "Gendis",
-    photo: "gendis.jpg",
-    birthDate: "23 Juni 2010",
-    bloodType: "B",
-    zodiac: "Cancer",
-    height: "161 cm",
-    socials: {
-        twitter: "x.com/Gendis_JKT48",
-        instagram: "www.instagram.com/jkt48.gendis/",
-        tiktok: "www.tiktok.com/@gendisjkt48",
-        showroom: "www.showroom-live.com/r/JKT48_Gendis",
-        idnlive: "idn.onelink.me/VKUf/JKT48Gendis"
-    }
-},
-{
-    id: 8,
-    name: "Gita Sekar Andarini",
-    nickname: "Gita",
-    photo: "gita.jpg",
-    birthDate: "30 Juni 2001",
-    bloodType: "O",
-    zodiac: "Cancer",
-    height: "165 cm",
-    socials: {
-        twitter: "x.com/A_GitaJKT48",
-        instagram: "www.instagram.com/jkt48gita/",
-        tiktok: "www.tiktok.com/@gitajkt48",
-        showroom: "www.showroom-live.com/r/JKT48_Gita",
-        idnlive: "www.idn.app/jkt48_gita"
-    }
-},
-{
-    id: 9,
-    name: "Greesella Adhalia",
-    nickname: "Greesel",
-    photo: "greesel.jpg",
-    birthDate: "10 Januari 2006",
-    bloodType: "O",
-    zodiac: "Capricorn",
-    height: "165 cm",
-    socials: {
-        twitter: "x.com/Greesel_JKT48",
-        instagram: "www.instagram.com/jkt48.greesel/",
-        tiktok: "www.tiktok.com/@greeseljkt48",
-        showroom: "www.showroom-live.com/r/JKT48_Greesel",
-        idnlive: "www.idn.app/jkt48_greesel"
-    }
-},
-{
-    id: 10,
-    name: "Jesslyn Elly",
-    nickname: "Lyn",
-    photo: "lyn.jpg",
-    birthDate: "13 September 2001",
-    bloodType: "O",
-    zodiac: "Virgo",
-    height: "155 cm",
-    socials: {
-        twitter: "x.com/SE_LynJKT48",
-        instagram: "www.instagram.com/jkt48.lyn.s/",
-        tiktok: "www.tiktok.com/@jkt48.lyn.s",
-        showroom: "www.showroom-live.com/r/JKT48_Lyn",
-        idnlive: "www.idn.app/jkt48_lyn"
-    }
-},
-{
-    id: 11,
-    name: "Marsha Lenathea",
-    nickname: "Marsha",
-    photo: "marsha.jpg",
-    birthDate: "9 Januari 2006",
-    bloodType: "O",
-    zodiac: "Capricorn",
-    height: "165 cm",
-    socials: {
-        twitter: "x.com/L_MarshaJKT48",
-        instagram: "www.instagram.com/jkt48.marsha/",
-        tiktok: "www.tiktok.com/@marsha.jkt48?lang=id-ID",
-        showroom: "www.showroom-live.com/r/JKT48_Marsha",
-        idnlive: "www.idn.app/jkt48_marsha"
-    }
-},
-{
-    id: 12,
-    name: "Nina Tutachia",
-    nickname: "Nachia",
-    photo: "nachia.jpg",
-    birthDate: "16 Oktober 2009",
-    bloodType: "O",
-    zodiac: "Libra",
-    height: "164 cm",
-    socials: {
-        twitter: "x.com/Nachia_JKT48",
-        instagram: "www.instagram.com/jkt48.nachia.t/",
-        tiktok: "www.tiktok.com/@jkt48.nachia?lang=id-ID",
-        showroom: "www.showroom-live.com/r/JKT48_Nachia",
-        idnlive: "www.idn.app/jkt48_nachia"
-    }
-},
-{
-    id: 13,
-    name: "Shabilqis Naila",
-    nickname: "Nala",
-    photo: "nala.jpg",
-    birthDate: "1 September 2008",
-    bloodType: "B",
-    zodiac: "Virgo",
-    height: "160 cm",
-    socials: {
-        twitter: "x.com/Nala_JKT48",
-        instagram: "www.instagram.com/jkt48.nala/",
-        tiktok: "www.tiktok.com/@jkt48.nala?lang=id-ID",
-        showroom: "www.showroom-live.com/r/JKT48_Nala",
-        idnlive: "www.idn.app/jkt48_nala"
-    }
-},
-{
-    id: 14,
-    name: "Febriola Sinambela",
-    nickname: "Olla",
-    photo: "olla.jpg",
-    birthDate: "26 Februari 2005",
-    bloodType: "B",
-    zodiac: "Pisces",
-    height: "157 cm",
-    socials: {
-        twitter: "x.com/F_OllaJKT48",
-        instagram: "www.instagram.com/jkt48.olla/",
-        tiktok: "www.tiktok.com/@ollajkt48",
-        showroom: "www.showroom-live.com/r/JKT48_Olla",
-        idnlive: "www.idn.app/jkt48_olla"
-    }
-},
-{
-    id: 15,
-    name: "Oline Manuel",
-    nickname: "Oline",
-    photo: "oline.jpg",
-    birthDate: "3 November 2007",
-    bloodType: "B",
-    zodiac: "Scorpio",
-    height: "169 cm",
-    socials: {
-        twitter: "x.com/M_OlineJKT48",
-        instagram: "www.instagram.com/jkt48.oline/",
-        tiktok: "www.tiktok.com/@jkt48.oline?lang=id-ID",
-        showroom: "www.showroom-live.com/r/JKT48_OlineM",
-        idnlive: "www.idn.app/jkt48_oline"
-    }
-                }
-            ],
-            love: [
-                {
-    id: 1,
-    name: "Alya Amanda",
-    nickname: "Alya",
-    photo: "alya.jpg",
-    birthDate: "26 Agustus 2006",
-    bloodType: "A",
-    zodiac: "Virgo",
-    height: "162 cm",
-    socials: {
-        twitter: "x.com/AA_AlyaJKT48",
-        instagram: "www.instagram.com/jkt48.alya_/",
-        tiktok: "www.tiktok.com/@alyajkt48",
-        showroom: "www.showroom-live.com/r/JKT48_Alya",
-        idnlive: "www.idn.app/jkt48_alya"
-    }
-},
-{
-    id: 2,
-    name: "Anindya Ramadhani",
-    nickname: "Anindya",
-    photo: "anindya.jpg",
-    birthDate: "18 Oktober 2005",
-    bloodType: "O",
-    zodiac: "Libra",
-    height: "153 cm",
-    socials: {
-        twitter: "x.com/AR_AnindyaJKT48",
-        instagram: "www.instagram.com/jkt48.anindya_/",
-        tiktok: "www.tiktok.com/@anindyajkt48",
-        showroom: "www.showroom-live.com/r/JKT48_Anindya",
-        idnlive: "www.idn.app/jkt48_anindya"
-    }
-},
-{
-    id: 3,
-    name: "Cathleen Nixie",
-    nickname: "Cathy",
-    photo: "cathy.jpg",
-    birthDate: "28 Mei 2009",
-    bloodType: "A",
-    zodiac: "Gemini",
-    height: "162 cm",
-    socials: {
-        twitter: "x.com/N_CathyJKT48",
-        instagram: "www.instagram.com/jkt48.cathy/",
-        tiktok: "www.tiktok.com/@cathyjkt48",
-        showroom: "www.showroom-live.com/r/JKT48_Cathy",
-        idnlive: "idn.onelink.me/VKUf/JKT48Cathy"
-    }
-},
-{
-    id: 4,
-    name: "Cynthia Yaputera",
-    nickname: "Cynthia",
-    photo: "cynthia.jpg",
-    birthDate: "22 November 2003",
-    bloodType: "O",
-    zodiac: "Sagitarius",
-    height: "160 cm",
-    socials: {
-        twitter: "x.com/Y_CynthiaJKT48",
-        instagram: "www.instagram.com/jkt48.cynthia/",
-        tiktok: "www.tiktok.com/@cynthiajkt48",
-        showroom: "www.showroom-live.com/r/JKT48_Cynthia",
-        idnlive: "idn.onelink.me/VKUf/JKT48Cynthia"
-    }
-},
-{
-    id: 5,
-    name: "Celline Thefani",
-    nickname: "Elin",
-    photo: "elin.jpg",
-    birthDate: "9 April 2007",
-    bloodType: "O",
-    zodiac: "Aries",
-    height: "164 cm",
-    socials: {
-        twitter: "x.com/Elin_JKT48",
-        instagram: "www.instagram.com/jkt48.elin_/",
-        tiktok: "www.tiktok.com/@elinjkt48",
-        showroom: "www.showroom-live.com/r/JKT48_Elin",
-        idnlive: "idn.onelink.me/VKUf/JKT48Elin"
-    }
-},
-                {
-    id: 6,
-    name: "Fiony Alveria",
-    nickname: "Fiony",
-    photo: "fiony.jpg",
-    birthDate: "4 Februari 2002",
-    bloodType: "O",
-    zodiac: "Aquarius",
-    height: "164 cm",
-    socials: {
-        twitter: "x.com/A_FionyJKT48",
-        instagram: "www.instagram.com/jkt48.fiony/",
-        tiktok: "www.tiktok.com/@fionyjkt48",
-        showroom: "www.showroom-live.com/r/JKT48_Fiony",
-        idnlive: "www.idn.app/jkt48_fiony"
-    }
-},
-{
-    id: 7,
-    name: "Fritzy Rosmerian",
-    nickname: "Fritzy",
-    photo: "fritzy.jpg",
-    birthDate: "28 Juli 2008",
-    bloodType: "A",
-    zodiac: "Leo",
-    height: "155 cm",
-    socials: {
-        twitter: "x.com/RFritzy_JKT48",
-        instagram: "www.instagram.com/jkt48.fritzy.r/",
-        tiktok: "www.tiktok.com/@jkt48.fritzy?lang=id-ID",
-        showroom: "www.showroom-live.com/r/JKT48_Fritzy",
-        idnlive: "idn.onelink.me/VKUf/FritzyJKT48"
-    }
-},
-{
-    id: 8,
-    name: "Grace Octaviani",
-    nickname: "Gracie",
-    photo: "gracie.jpg",
-    birthDate: "18 Oktober 2007",
-    bloodType: "B",
-    zodiac: "Libra",
-    height: "166 cm",
-    socials: {
-        twitter: "x.com/Gracie_JKT48",
-        instagram: "www.instagram.com/jkt48.gracie/",
-        tiktok: "www.tiktok.com/@graciejkt48",
-        showroom: "www.showroom-live.com/r/JKT48_Gracie",
-        idnlive: "idn.onelink.me/VKUf/JKT48Gracie"
-    }
-},
-{
-    id: 9,
-    name: "Indah Cahya",
-    nickname: "Indah",
-    photo: "indah.jpg",
-    birthDate: "20 Maret 2001",
-    bloodType: "A",
-    zodiac: "Pisces",
-    height: "169 cm",
-    socials: {
-        twitter: "x.com/C_IndahJKT48",
-        instagram: "www.instagram.com/jkt48indah_/",
-        tiktok: "www.tiktok.com/@indahjkt48",
-        showroom: "www.showroom-live.com/r/JKT48_Indah",
-        idnlive: "www.idn.app/jkt48_indah"
-    }
-},
-{
-    id: 10,
-    name: "Aurhel Alana",
-    nickname: "Lana",
-    photo: "lana.jpg",
-    birthDate: "14 September 2006",
-    bloodType: "-",
-    zodiac: "Virgo",
-    height: "162 cm",
-    socials: {
-        twitter: "x.com/AR_LanaJKT48",
-        instagram: "www.instagram.com/jkt48.lana.a/",
-        tiktok: "www.tiktok.com/@jkt48.lana",
-        showroom: "www.showroom-live.com/r/JKT48_Lana",
-        idnlive: "idn.onelink.me/VKUf/LanaJKT48"
-    }
-},
-                {
-    id: 11,
-    name: "Aurellia",
-    nickname: "Lia",
-    photo: "lia.jpg",
-    birthDate: "29 Oktober 2002",
-    bloodType: "O",
-    zodiac: "Scorpio",
-    height: "157 cm",
-    socials: {
-        twitter: "x.com/AU_LiaJKT48",
-        instagram: "www.instagram.com/jkt48.aurellia_/",
-        tiktok: "www.tiktok.com/@jkt48.aurellia_",
-        showroom: "www.showroom-live.com/r/JKT48_Lia",
-        idnlive: "www.idn.app/jkt48_lia"
-    }
-},
-{
-    id: 12,
-    name: "Hillary Abigail",
-    nickname: "Lily",
-    photo: "lily.jpg",
-    birthDate: "19 Oktober 2007",
-    bloodType: "O",
-    zodiac: "Libra",
-    height: "163 cm",
-    socials: {
-        twitter: "x.com/Lily_JKT48",
-        instagram: "www.instagram.com/jkt48.lily_/",
-        tiktok: "www.tiktok.com/@jkt48.lily?lang=id-ID",
-        showroom: "www.showroom-live.com/r/JKT48_Lily",
-        idnlive: "idn.onelink.me/VKUf/LilyJKT48"
-    }
-},
-{
-    id: 13,
-    name: "Michelle Alexandra",
-    nickname: "Michie",
-    photo: "michie.jpg",
-    birthDate: "22 April 2009",
-    bloodType: "O",
-    zodiac: "Taurus",
-    height: "162 cm",
-    socials: {
-        twitter: "x.com/Michie_JKT48",
-        instagram: "www.instagram.com/jkt48.michie_/",
-        tiktok: "www.tiktok.com/@michiejkt48",
-        showroom: "www.showroom-live.com/r/JKT48_Michie",
-        idnlive: "idn.onelink.me/VKUf/JKT48Michie"
-    }
-},
-{
-    id: 14,
-    name: "Nayla Suji",
-    nickname: "Nayla",
-    photo: "nayla.jpg",
-    birthDate: "18 Juni 2007",
-    bloodType: "AB",
-    zodiac: "Gemini",
-    height: "163 cm",
-    socials: {
-        twitter: "x.com/SNayla_JKT48",
-        instagram: "www.instagram.com/jkt48.nayla.s/",
-        tiktok: "www.tiktok.com/@jkt48.nayla?lang=id-ID",
-        showroom: "www.showroom-live.com/r/JKT48_Nayla",
-        idnlive: "idn.onelink.me/VKUf/NaylaJKT48"
-    }
-},
-{
-    id: 15,
-    name: "Jazzlyn Trisha",
-    nickname: "Trisha",
-    photo: "trisha.jpg",
-    birthDate: "16 Februari 2011",
-    bloodType: "O",
-    zodiac: "Aquarius",
-    height: "161 cm",
-    socials: {
-        twitter: "x.com/JTrisha_JKT48",
-        instagram: "www.instagram.com/jkt48.trisha/",
-        tiktok: "www.tiktok.com/@jkt48.trisha?lang=id-ID",
-        showroom: "www.showroom-live.com/r/JKT48_Trisha",
-        idnlive: "idn.onelink.me/VKUf/TrishaJKT48"
-    }
-}
-],
-            passion: [
-                {
-    id: 1,
-    name: "Abigail Rachel",
-    nickname: "Aralie",
-    photo: "aralie.jpg",
-    birthDate: "6 Agustus 2008",
-    bloodType: "B",
-    zodiac: "Leo",
-    height: "164 cm",
-    socials: {
-        twitter: "x.com/Aralie_JKT48",
-        instagram: "www.instagram.com/jkt48.aralie/",
-        tiktok: "www.tiktok.com/@jkt48.aralie",
-        showroom: "www.showroom-live.com/r/JKT48_Aralie",
-        idnlive: "idn.onelink.me/VKUf/AralieJKT48"
-    }
-},
-{
-    id: 2,
-    name: "Angelina Christy",
-    nickname: "Christy",
-    photo: "christy.jpg",
-    birthDate: "5 Desember 2005",
-    bloodType: "O",
-    zodiac: "Sagitarius",
-    height: "166 cm",
-    socials: {
-        twitter: "x.com/A_ChristyJKT48",
-        instagram: "www.instagram.com/jkt48.christy/",
-        tiktok: "www.tiktok.com/@christyjkt48",
-        showroom: "www.showroom-live.com/r/JKT48_Christy",
-        idnlive: "www.idn.app/jkt48_christy"
-    }
-},
-{
-    id: 3,
-    name: "Desy Natalia",
-    nickname: "Daisy",
-    photo: "daisy.jpg",
-    birthDate: "16 Desember 2005",
-    bloodType: "O",
-    zodiac: "Sagittarius",
-    height: "165 cm",
-    socials: {
-        twitter: "x.com/Daisy_JKT48",
-        instagram: "www.instagram.com/jkt48.daisy/",
-        tiktok: "www.tiktok.com/@daisyjkt48",
-        showroom: "www.showroom-live.com/r/JKT48_Daisy",
-        idnlive: "idn.onelink.me/VKUf/JKT48Daisy"
-    }
-},
-{
-    id: 4,
-    name: "Dena Natalia",
-    nickname: "Danella",
-    photo: "danella.jpg",
-    birthDate: "16 Desember 2005",
-    bloodType: "O",
-    zodiac: "Sagitarius",
-    height: "163 cm",
-    socials: {
-        twitter: "x.com/Danella_JKT48",
-        instagram: "www.instagram.com/jkt48.danella/",
-        tiktok: "www.tiktok.com/@danellajkt48",
-        showroom: "www.showroom-live.com/r/JKT48_Danella",
-        idnlive: "idn.onelink.me/VKUf/JKT48Danella"
-    }
-},
-{
-    id: 5,
-    name: "Catherina Vallencia",
-    nickname: "Erine",
-    photo: "erine.jpg",
-    birthDate: "21 Agustus 2007",
-    bloodType: "B",
-    zodiac: "Leo",
-    height: "162 cm",
-    socials: {
-        twitter: "x.com/CErine_JKT48",
-        instagram: "www.instagram.com/jkt48.erine/",
-        tiktok: "www.tiktok.com/@jkt48.erine_?lang=id-ID",
-        showroom: "www.showroom-live.com/r/JKT48_Erine",
-        idnlive: "idn.onelink.me/VKUf/ErineJKT48"
-    }
-},
-                {
-    id: 6,
-    name: "Feni Fitriyanti",
-    nickname: "Feni",
-    photo: "feni.jpg",
-    birthDate: "16 Januari 1999",
-    bloodType: "O",
-    zodiac: "Capricorn",
-    height: "163 cm",
-    socials: {
-        twitter: "x.com/F_FeniJKT48",
-        instagram: "www.instagram.com/jkt48feni/",
-        tiktok: "www.tiktok.com/@fenijkt48",
-        showroom: "www.showroom-live.com/r/JKT48_Feni",
-        idnlive: "www.idn.app/jkt48_feni"
-    }
-},
-{
-    id: 7,
-    name: "Jessica Chandra",
-    nickname: "Jessi",
-    photo: "jessi.jpg",
-    birthDate: "23 September 2005",
-    bloodType: "O",
-    zodiac: "Libra",
-    height: "165 cm",
-    socials: {
-        twitter: "x.com/C_JessiJKT48",
-        instagram: "www.instagram.com/jkt48.jessi/",
-        tiktok: "www.tiktok.com/@jessijkt48",
-        showroom: "www.showroom-live.com/r/JKT48_Jessi",
-        idnlive: "www.idn.app/jkt48_jessi"
-    }
-},
-{
-    id: 8,
-    name: "Kathrina Irene",
-    nickname: "Kathrina",
-    photo: "kathrina.jpg",
-    birthDate: "26 Juli 2006",
-    bloodType: "A",
-    zodiac: "Leo",
-    height: "166 cm",
-    socials: {
-        twitter: "x.com/I_KathrinaJKT48",
-        instagram: "www.instagram.com/jkt48.kathrina/",
-        tiktok: "www.tiktok.com/@kathrinjkt48",
-        showroom: "www.showroom-live.com/r/JKT48_Kathrina",
-        idnlive: "www.idn.app/jkt48_kathrina"
-    }
-},
-{
-    id: 9,
-    name: "Victoria Kimberly",
-    nickname: "Kimmy",
-    photo: "kimmy.jpg",
-    birthDate: "8 Maret 2010",
-    bloodType: "AB",
-    zodiac: "Pisces",
-    height: "162 cm",
-    socials: {
-        twitter: "x.com/Kimmy_JKT48",
-        instagram: "www.instagram.com/jkt48.kimmy/",
-        tiktok: "www.tiktok.com/@jkt48.kimmy?lang=id-ID",
-        showroom: "www.showroom-live.com/r/JKT48_Kimmy",
-        idnlive: "idn.onelink.me/VKUf/KimmyJKT48"
-    }
-},
-{
-    id: 10,
-    name: "Cornelia Vanisa",
-    nickname: "Oniel",
-    photo: "oniel.jpg",
-    birthDate: "26 Juli 2002",
-    bloodType: "0",
-    zodiac: "Leo",
-    height: "165 cm",
-    socials: {
-        twitter: "twitter.com/C_OnielJKT48",
-        instagram: "instagram.com/jkt48.oniel",
-        tiktok: "tiktok.com/@onieljkt48",
-        showroom: "www.showroom-live.com/r/JKT48_Oniel",
-        idnlive: "www.idn.app/jkt48_oniel"
-    }
-},
-                {
-    id: 11,
-    name: "Lulu Salsabila",
-    nickname: "Lulu",
-    photo: "lulu.jpg",
-    birthDate: "23 Oktober 2002",
-    bloodType: "B",
-    zodiac: "Scorpio",
-    height: "160 cm",
-    socials: {
-        twitter: "x.com/A_LuluJKT48",
-        instagram: "www.instagram.com/jkt48.lulu/",
-        tiktok: "www.tiktok.com/@lulu_jkt48?lang=id-ID",
-        showroom: "www.showroom-live.com/r/JKT48_Lulu",
-        idnlive: "www.idn.app/jkt48_lulu"
-    }
-},
-{
-    id: 12,
-    name: "Michelle Levia",
-    nickname: "Levi",
-    photo: "levi.jpg",
-    birthDate: "24 Januari 2009",
-    bloodType: "O",
-    zodiac: "Aquarius",
-    height: "169 cm",
-    socials: {
-        twitter: "twitter.com/Levi_JKT48",
-        instagram: "instagram.com/jkt48.levi",
-        tiktok: "tiktok.com/@jkt48.levi",
-        showroom: "www.showroom-live.com/r/JKT48_Levi",
-        idnlive: "idn.onelink.me/VKUf/LeviJKT48"
-    }
-},
-{
-    id: 13,
-    name: "Mutiara Azzahra",
-    nickname: "Muthe",
-    photo: "muthe.jpg",
-    birthDate: "12 Juli 2004",
-    bloodType: "B",
-    zodiac: "Cancer",
-    height: "165 cm",
-    socials: {
-        twitter: "x.com/A_MutheJKT48",
-        instagram: "instagram.com/jkt48.muthe_",
-        tiktok: "tiktok.com/@muthejkt48",
-        showroom: "www.showroom-live.com/r/JKT48_Muthe",
-        idnlive: "www.idn.app/jkt48_muthe"
-    }
-},
-{
-    id: 14,
-    name: "Raisha Syifa",
-    nickname: "Raisha",
-    photo: "raisha.jpg",
-    birthDate: "11 November 2007",
-    bloodType: "AB",
-    zodiac: "Scorpio",
-    height: "169 cm",
-    socials: {
-        twitter: "twitter.com/SW_RaishaJKT48",
-        instagram: "instagram.com/jkt48.raisha.s",
-        tiktok: "tiktok.com/@jkt48.raisha.s",
-        showroom: "www.showroom-live.com/r/JKT48_Raisha",
-        idnlive: "www.idn.app/jkt48_raisha"
-    }
-},
-{
-    id: 15,
-    name: "Ribka Budiman",
-    nickname: "Ribka",
-    photo: "ribka.jpg",
-    birthDate: "13 Januari 2009",
-    bloodType: "O",
-    zodiac: "Capricorn",
-    height: "162 cm",
-    socials: {
-        twitter: "twitter.com/Ribka_JKT48",
-        instagram: "instagram.com/jkt48.ribka",
-        tiktok: "tiktok.com/@jkt48.ribka",
-        showroom: "www.showroom-live.com/r/JKT48_Ribka",
-        idnlive: "idn.onelink.me/VKUf/RibkaJKT48"
-    }
-}
-],
-            trainee: [
-                {
-                    id: 1,
-                    name: "Elena Putri",
-                    nickname: "Elena",
-                    photo: "elena_putri.png",
-                    birthDate: "5 Januari 2006",
-                    bloodType: "A",
-                    zodiac: "Capricorn",
-                    height: "161 cm",
-                    socials: {
-                        twitter: "twitter.com/elena_putri",
-                        instagram: "instagram.com/elena_putri",
-                        tiktok: "tiktok.com/elena_putri",
-                        showroom: "showroom.com/elena_putri",
-                        idnlive: "idnlive.com/elena_putri"
-                    }
-                },
-                {
-                    id: 2,
-                    name: "Feby Azura",
-                    nickname: "Feby",
-                    photo: "feby_azura.png",
-                    birthDate: "18 Februari 2006",
-                    bloodType: "B",
-                    zodiac: "Aquarius",
-                    height: "160 cm",
-                    socials: {
-                        twitter: "twitter.com/feby_azura",
-                        instagram: "instagram.com/feby_azura",
-                        tiktok: "tiktok.com/feby_azura",
-                        showroom: "showroom.com/feby_azura",
-                        idnlive: "idnlive.com/feby_azura"
-                    }
-                },
-                {
-                    id: 3,
-                    name: "Gina Salsabila",
-                    nickname: "Gina",
-                    photo: "gina_salsabila.png",
-                    birthDate: "22 Maret 2006",
-                    bloodType: "O",
-                    zodiac: "Aries",
-                    height: "159 cm",
-                    socials: {
-                        twitter: "twitter.com/gina_salsabila",
-                        instagram: "instagram.com/gina_salsabila",
-                        tiktok: "tiktok.com/gina_salsabila",
-                        showroom: "showroom.com/gina_salsabila",
-                        idnlive: "idnlive.com/gina_salsabila"
-                    }
-                },
-                {
-                    id: 4,
-                    name: "Hasti Wijaya",
-                    nickname: "Hasti",
-                    photo: "hasti_wijaya.png",
-                    birthDate: "10 April 2006",
-                    bloodType: "AB",
-                    zodiac: "Aries",
-                    height: "162 cm",
-                    socials: {
-                        twitter: "twitter.com/hasti_wijaya",
-                        instagram: "instagram.com/hasti_wijaya",
-                        tiktok: "tiktok.com/hasti_wijaya",
-                        showroom: "showroom.com/hasti_wijaya",
-                        idnlive: "idnlive.com/hasti_wijaya"
-                    }
-                },
-                {
-                    id: 5,
-                    name: "Indri Lestari",
-                    nickname: "Indri",
-                    photo: "indri_lestari.png",
-                    birthDate: "15 Mei 2006",
-                    bloodType: "A",
-                    zodiac: "Taurus",
-                    height: "160 cm",
-                    socials: {
-                        twitter: "twitter.com/indri_lestari",
-                        instagram: "instagram.com/indri_lestari",
-                        tiktok: "tiktok.com/indri_lestari",
-                        showroom: "showroom.com/indri_lestari",
-                        idnlive: "idnlive.com/indri_lestari"
-                    }
-                },
-                {
-                    id: 6,
-                    name: "Jeni Kusuma",
-                    nickname: "Jeni",
-                    photo: "jeni_kusuma.png",
-                    birthDate: "28 Juni 2006",
-                    bloodType: "B",
-                    zodiac: "Cancer",
-                    height: "161 cm",
-                    socials: {
-                        twitter: "twitter.com/jeni_kusuma",
-                        instagram: "instagram.com/jeni_kusuma",
-                        tiktok: "tiktok.com/jeni_kusuma",
-                        showroom: "showroom.com/jeni_kusuma",
-                        idnlive: "idnlive.com/jeni_kusuma"
-                    }
-                },
-                {
-                    id: 7,
-                    name: "Kara Melinda",
-                    nickname: "Kara",
-                    photo: "kara_melinda.png",
-                    birthDate: "9 Juli 2006",
-                    bloodType: "O",
-                    zodiac: "Cancer",
-                    height: "159 cm",
-                    socials: {
-                        twitter: "twitter.com/kara_melinda",
-                        instagram: "instagram.com/kara_melinda",
-                        tiktok: "tiktok.com/kara_melinda",
-                        showroom: "showroom.com/kara_melinda",
-                        idnlive: "idnlive.com/kara_melinda"
-                    }
-                },
-                {
-                    id: 8,
-                    name: "Lina Artika",
-                    nickname: "Lina",
-                    photo: "lina_artika.png",
-                    birthDate: "19 Agustus 2006",
-                    bloodType: "A",
-                    zodiac: "Leo",
-                    height: "162 cm",
-                    socials: {
-                        twitter: "twitter.com/lina_artika",
-                        instagram: "instagram.com/lina_artika",
-                        tiktok: "tiktok.com/lina_artika",
-                        showroom: "showroom.com/lina_artika",
-                        idnlive: "idnlive.com/lina_artika"
-                    }
-                },
-                {
-                    id: 9,
-                    name: "Mega Putri",
-                    nickname: "Mega",
-                    photo: "mega_putri.png",
-                    birthDate: "3 September 2006",
-                    bloodType: "B",
-                    zodiac: "Virgo",
-                    height: "160 cm",
-                    socials: {
-                        twitter: "twitter.com/mega_putri",
-                        instagram: "instagram.com/mega_putri",
-                        tiktok: "tiktok.com/mega_putri",
-                        showroom: "showroom.com/mega_putri",
-                        idnlive: "idnlive.com/mega_putri"
-                    }
-                },
-                {
-                    id: 10,
-                    name: "Freya Jayawardana",
-                    nickname: "Freya",
-                    photo: "freya.jpg",
-                    birthDate: "13 Februari 2006",
-                    bloodType: "B",
-                    zodiac: "Aquarius",
-                    height: "161 cm",
-                    socials: {
-                        twitter: "https://x.com/Freya_JKT48",
-                        instagram: "https://www.instagram.com/jkt48.freya/",
-                        tiktok: "https://www.tiktok.com/@freyajkt48",
-                        showroom: "https://www.showroom-live.com/r/JKT48_Freya",
-                        idnlive: "https://www.idn.app/jkt48_freya"
-                    }
-                },
-                {
-                    id: 11,
-                    name: "Freya Jayawardana",
-                    nickname: "Freya",
-                    photo: "freya.jpg",
-                    birthDate: "13 Februari 2006",
-                    bloodType: "B",
-                    zodiac: "Aquarius",
-                    height: "161 cm",
-                    socials: {
-                        twitter: "https://x.com/Freya_JKT48",
-                        instagram: "https://www.instagram.com/jkt48.freya/",
-                        tiktok: "https://www.tiktok.com/@freyajkt48",
-                        showroom: "https://www.showroom-live.com/r/JKT48_Freya",
-                        idnlive: "https://www.idn.app/jkt48_freya"
-                    }
-                },
-                {
-                    id: 12,
-                    name: "Freya Jayawardana",
-                    nickname: "Freya",
-                    photo: "freya.jpg",
-                    birthDate: "13 Februari 2006",
-                    bloodType: "B",
-                    zodiac: "Aquarius",
-                    height: "161 cm",
-                    socials: {
-                        twitter: "https://x.com/Freya_JKT48",
-                        instagram: "https://www.instagram.com/jkt48.freya/",
-                        tiktok: "https://www.tiktok.com/@freyajkt48",
-                        showroom: "https://www.showroom-live.com/r/JKT48_Freya",
-                        idnlive: "https://www.idn.app/jkt48_freya"
-                    }
-                },
-                {
-                    id: 13,
-                    name: "Freya Jayawardana",
-                    nickname: "Freya",
-                    photo: "freya.jpg",
-                    birthDate: "13 Februari 2006",
-                    bloodType: "B",
-                    zodiac: "Aquarius",
-                    height: "161 cm",
-                    socials: {
-                        twitter: "https://x.com/Freya_JKT48",
-                        instagram: "https://www.instagram.com/jkt48.freya/",
-                        tiktok: "https://www.tiktok.com/@freyajkt48",
-                        showroom: "https://www.showroom-live.com/r/JKT48_Freya",
-                        idnlive: "https://www.idn.app/jkt48_freya"
-                    }
-                },
-                {
-                    id: 14,
-                    name: "Freya Jayawardana",
-                    nickname: "Freya",
-                    photo: "freya.jpg",
-                    birthDate: "13 Februari 2006",
-                    bloodType: "B",
-                    zodiac: "Aquarius",
-                    height: "161 cm",
-                    socials: {
-                        twitter: "https://x.com/Freya_JKT48",
-                        instagram: "https://www.instagram.com/jkt48.freya/",
-                        tiktok: "https://www.tiktok.com/@freyajkt48",
-                        showroom: "https://www.showroom-live.com/r/JKT48_Freya",
-                        idnlive: "https://www.idn.app/jkt48_freya"
-                    }
-                },
-                {
-                    id: 15,
-                    name: "Nina Amelia",
-                    nickname: "Nina",
-                    photo: "nina_amelia.png",
-                    birthDate: "24 Oktober 2006",
-                    bloodType: "O",
-                    zodiac: "Scorpio",
-                    height: "161 cm",
-                    socials: {
-                        twitter: "twitter.com/nina_amelia",
-                        instagram: "instagram.com/nina_amelia",
-                        tiktok: "tiktok.com/nina_amelia",
-                        showroom: "showroom.com/nina_amelia",
-                        idnlive: "idnlive.com/nina_amelia"
-                    }
-                }
-            ]
-        };
-        function createMemberCard(member, frameClass) {
-            const card = document.createElement('div');
-            card.className = 'member-card';
-            card.innerHTML = `
-                <div class="member-photo-container ${frameClass}">
-                    <div class="inner-frame">
-                        <img src="${member.photo}" alt="${member.name}" class="member-photo">
-                    </div>
-                </div>
-                <div class="member-info">
-                    <div class="member-name">${member.name}</div>
-                    <div class="member-nickname">"${member.nickname}"</div>
-                    <div class="member-details">
-                        <strong>Lahir:</strong> ${member.birthDate}<br>
-                        <strong>Golongan Darah:</strong> ${member.bloodType}<br>
-                        <strong>Zodiak:</strong> ${member.zodiac}<br>
-                        <strong>Tinggi:</strong> ${member.height}
-                    </div>
-                    <div class="member-socials">
-                        <a href="https://${member.socials.twitter}" target="_blank" class="social-btn social-twitter">Twitter</a>
-                        <a href="https://${member.socials.instagram}" target="_blank" class="social-btn social-instagram">Instagram</a>
-                        <a href="https://${member.socials.tiktok}" target="_blank" class="social-btn social-tiktok">TikTok</a>
-                        <a href="https://${member.socials.showroom}" target="_blank" class="social-btn social-showroom">Showroom</a>
-                        <a href="https://${member.socials.idnlive}" target="_blank" class="social-btn social-idnlive">IDN Live</a>
-                    </div>
-                </div>
-            `;
-            return card;
-        }
-
-        function loadTeam(teamName) {
-            const gridId = teamName + 'Grid';
-            const grid = document.getElementById(gridId);
-            const team = teamData[teamName];
-            const frameClass = teamName === 'trainee' ? 'frame-orange' : 'frame-red';
-
-            grid.innerHTML = '';
-            team.forEach(member => {
-                grid.appendChild(createMemberCard(member, frameClass));
-            });
-        }
-
-        function switchTeam(teamName) {
-            // Hide all team contents
-            document.querySelectorAll('.team-content').forEach(content => {
-                content.classList.remove('active');
-            });
-
-            // Remove active class from all buttons
-            document.querySelectorAll('.tab-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-
-            // Show selected team
-            document.getElementById(teamName).classList.add('active');
-
-            // Add active class to clicked button
-            event.target.classList.add('active');
-
-            // Load team data
-            loadTeam(teamName);
-        }
-
-        // Load Dream team on page load
-        window.addEventListener('load', () => {
-            loadTeam('dream');
-            loadTeam('love');
-            loadTeam('passion');
-            loadTeam('trainee');
-        });
-    </script>
 </body>
 </html>
