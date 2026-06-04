@@ -5,12 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JKT48 Event Schedule</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #fff5f7 0%, #ffe8f0 100%);
@@ -18,366 +13,170 @@
             overflow-x: hidden;
             position: relative;
         }
+        .stars-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
+        .star { position: absolute; background: white; border-radius: 50%; animation: twinkle 3s infinite; }
+        @keyframes twinkle { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
+        @keyframes float { 0% { transform: translateY(0px) translateX(0px); } 100% { transform: translateY(-100vh) translateX(20px); } }
+        .star-moving { animation: twinkle 3s infinite, float 20s linear infinite; }
 
-        /* Animated Stars Background */
-        .stars-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-            pointer-events: none;
-        }
+        .container { position: relative; z-index: 2; max-width: 1200px; margin: 0 auto; padding: 40px 20px; }
 
-        .star {
-            position: absolute;
-            background: white;
-            border-radius: 50%;
-            animation: twinkle 3s infinite;
-        }
+        .header { text-align: center; margin-bottom: 30px; animation: fadeIn 0.8s ease-in; }
+        .header h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 10px; letter-spacing: 2px; text-transform: uppercase; color: #ff4444; }
+        .header p { color: #d9678f; font-size: 1rem; font-weight: 300; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
 
-        @keyframes twinkle {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 1; }
-        }
-
-        @keyframes float {
-            0% { transform: translateY(0px) translateX(0px); }
-            100% { transform: translateY(-100vh) translateX(20px); }
-        }
-
-        .star-moving {
-            animation: twinkle 3s infinite, float 20s linear infinite;
-        }
-
-        /* Main Content */
-        .container {
-            position: relative;
-            z-index: 2;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
-
-        .header {
-            text-align: center;
-            margin-bottom: 50px;
-            animation: fadeIn 0.8s ease-in;
-        }
-
-        .header h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: #ff4444;
-        }
-
-        .header p {
-            color: #d9678f;
-            font-size: 1rem;
-            font-weight: 300;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* Main Wrapper */
-        .schedule-wrapper {
-            display: grid;
-            grid-template-columns: 300px 1fr;
-            gap: 40px;
-            align-items: start;
-        }
-
-        /* Month Selector */
-        .month-selector {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .month-selector h2 {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 15px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            padding-bottom: 10px;
-            border-bottom: 3px solid #ff4444;
-            color: #ff4444;
-        }
-
-        .month-btn {
-            padding: 12px 16px;
-            border: 2px solid #ffb3b3;
-            background: rgba(255, 255, 255, 0.6);
-            color: #ff4444;
-            cursor: pointer;
+        /* ===== UPCOMING 7 DAYS WIDGET ===== */
+        .upcoming-section {
+            background: rgba(255,255,255,0.75);
+            border: 1.5px solid #ffb3b3;
             border-radius: 20px;
-            font-size: 0.95rem;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            text-transform: capitalize;
+            padding: 20px 24px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 20px rgba(255,68,68,0.08);
         }
-
-        .month-btn:hover {
-            border-color: #ff4444;
-            background: rgba(255, 68, 68, 0.1);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(255, 68, 68, 0.2);
-        }
-
-        .month-btn.active {
-            background: #ff4444;
-            color: white;
-            border-color: #ff4444;
-            box-shadow: 0 4px 16px rgba(255, 68, 68, 0.4);
-        }
-
-        /* Event List */
-        .event-list {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
-
-        .event-list h2 {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 15px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            padding-bottom: 10px;
-            border-bottom: 3px solid #ff4444;
-            color: #ff4444;
-        }
-
-        .event-item {
-            background: rgba(255, 255, 255, 0.7);
-            border-left: 4px solid #ffb3b3;
-            padding: 16px;
-            border-radius: 12px;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            box-shadow: 0 2px 8px rgba(255, 68, 68, 0.1);
-        }
-
-        .event-item:hover {
-            background: rgba(255, 255, 255, 0.95);
-            border-left-color: #ff4444;
-            transform: translateX(5px);
-            box-shadow: 0 4px 16px rgba(255, 68, 68, 0.2);
-        }
-
-        .event-date {
-            font-size: 0.85rem;
-            color: #d9678f;
-            font-weight: 600;
-            text-transform: uppercase;
-            margin-bottom: 5px;
-        }
-
-        .event-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: #ff4444;
-        }
-
-        .event-location {
-            font-size: 0.9rem;
-            color: #555;
+        .upcoming-header {
             display: flex;
             align-items: center;
-            gap: 5px;
-            margin-bottom: 10px;
-        }
-
-        .event-location::before {
-            content: "📍";
-        }
-
-        /* Event Tags */
-        .event-tags {
-            display: flex;
+            justify-content: space-between;
+            margin-bottom: 14px;
             flex-wrap: wrap;
             gap: 8px;
         }
-
-        .event-tag {
-            display: inline-block;
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            font-weight: bold;
-        }
-
-        .tag-jakarta {
+        .upcoming-title-row { display: flex; align-items: center; gap: 10px; }
+        .live-dot {
+            width: 8px; height: 8px; border-radius: 50%;
             background: #ff4444;
-            color: white;
+            animation: pulse 1.5s infinite;
+            display: inline-block;
+            flex-shrink: 0;
         }
-
-        .tag-luar-kota {
-            background: #22c55e;
-            color: white;
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.25; } }
+        .upcoming-title { font-size: 1rem; font-weight: 700; color: #ff4444; text-transform: uppercase; letter-spacing: 1px; }
+        .upcoming-date-info { font-size: 0.8rem; color: #d9678f; }
+        .upcoming-refresh-btn {
+            font-size: 0.75rem; padding: 4px 14px; border-radius: 999px;
+            border: 1.5px solid #ffb3b3; background: transparent; color: #ff4444;
+            cursor: pointer; transition: all 0.2s;
         }
+        .upcoming-refresh-btn:hover { background: #ff4444; color: white; }
 
-        .tag-gagal {
-            background: #0ea5e9;
-            color: white;
+        /* Day pills */
+        .day-pills { display: flex; gap: 7px; flex-wrap: wrap; margin-bottom: 16px; }
+        .day-pill {
+            padding: 5px 13px; border-radius: 999px; font-size: 0.75rem; font-weight: 600;
+            border: 1.5px solid #ffccd5; background: rgba(255,255,255,0.6); color: #c0768e;
+            transition: all 0.2s;
         }
+        .day-pill.has-event { background: #fff0f3; border-color: #ff9ab2; color: #cc3360; }
+        .day-pill.today-pill { background: #ff4444; border-color: #ff4444; color: white; }
 
-        /* Event Statistics */
-        .event-stats {
-            background: rgba(255, 255, 255, 0.8);
-            border: 2px solid #ffb3b3;
-            padding: 20px;
-            border-radius: 16px;
-            margin-top: 20px;
-            box-shadow: 0 4px 12px rgba(255, 68, 68, 0.1);
+        /* Event cards inside upcoming */
+        .upcoming-events { display: flex; flex-direction: column; gap: 0; }
+        .upcoming-day-group { margin-bottom: 10px; }
+        .upcoming-day-label {
+            display: flex; align-items: center; gap: 8px; margin-bottom: 6px;
         }
-
-        .event-stats h3 {
-            font-size: 1rem;
-            font-weight: 600;
-            margin-bottom: 15px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: #ff4444;
+        .upcoming-day-label span {
+            font-size: 0.72rem; font-weight: 700; color: #d9678f;
+            text-transform: uppercase; letter-spacing: 0.6px; white-space: nowrap;
         }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 12px;
+        .upcoming-day-label::after {
+            content: ''; flex: 1; height: 1px; background: #ffd6e0;
         }
-
-        .stat-item {
-            background: rgba(255, 250, 250, 0.9);
-            padding: 12px;
-            border-radius: 12px;
-            text-align: center;
+        .upcoming-card {
+            background: rgba(255,255,255,0.8);
             border-left: 3px solid #ffb3b3;
-            transition: all 0.3s ease;
+            border-radius: 10px;
+            padding: 10px 14px;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            transition: all 0.2s;
+        }
+        .upcoming-card:hover { background: rgba(255,255,255,0.98); border-left-color: #ff4444; transform: translateX(3px); }
+        .upcoming-card.today-card { border-left-color: #ff4444; background: #fff5f7; }
+        .upcoming-card-left { min-width: 44px; text-align: center; }
+        .upcoming-card-day-num { font-size: 1.3rem; font-weight: 700; color: #ff4444; line-height: 1; }
+        .upcoming-card-day-name { font-size: 0.68rem; color: #d9678f; font-weight: 600; text-transform: uppercase; }
+        .upcoming-card-body { flex: 1; min-width: 0; }
+        .upcoming-card-title { font-size: 0.9rem; font-weight: 600; color: #2d2d2d; margin-bottom: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .upcoming-card-loc { font-size: 0.78rem; color: #777; margin-bottom: 5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .upcoming-card-right { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; flex-shrink: 0; }
+        .upcoming-days-left {
+            font-size: 0.7rem; font-weight: 700; padding: 2px 9px; border-radius: 999px;
+            background: #fff0f3; color: #cc3360; border: 1px solid #ffb3b3; white-space: nowrap;
+        }
+        .upcoming-days-left.is-today { background: #ff4444; color: white; border-color: #ff4444; }
+        .uc-tag {
+            font-size: 0.65rem; font-weight: 700; padding: 2px 8px; border-radius: 999px;
+            text-transform: uppercase; letter-spacing: 0.3px;
+        }
+        .uc-tag-jakarta { background: #ff4444; color: white; }
+        .uc-tag-luar-kota { background: #22c55e; color: white; }
+        .uc-tag-gagal { background: #0ea5e9; color: white; }
+        .upcoming-empty {
+            text-align: center; padding: 24px 16px; color: #d9678f;
+            font-size: 0.9rem; font-style: italic;
         }
 
-        .stat-item:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(255, 68, 68, 0.15);
-        }
+        /* ===== MAIN SCHEDULE ===== */
+        .schedule-wrapper { display: grid; grid-template-columns: 300px 1fr; gap: 40px; align-items: start; }
+        .month-selector { display: flex; flex-direction: column; gap: 12px; }
+        .month-selector h2 { font-size: 1.2rem; font-weight: 600; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px; padding-bottom: 10px; border-bottom: 3px solid #ff4444; color: #ff4444; }
+        .month-btn { padding: 12px 16px; border: 2px solid #ffb3b3; background: rgba(255,255,255,0.6); color: #ff4444; cursor: pointer; border-radius: 20px; font-size: 0.95rem; font-weight: 500; transition: all 0.3s ease; text-transform: capitalize; }
+        .month-btn:hover { border-color: #ff4444; background: rgba(255,68,68,0.1); transform: translateY(-2px); box-shadow: 0 4px 12px rgba(255,68,68,0.2); }
+        .month-btn.active { background: #ff4444; color: white; border-color: #ff4444; box-shadow: 0 4px 16px rgba(255,68,68,0.4); }
 
-        .stat-item.total {
-            border-left-color: #ff4444;
-        }
+        .event-list { display: flex; flex-direction: column; gap: 16px; }
+        .event-list h2 { font-size: 1.2rem; font-weight: 600; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px; padding-bottom: 10px; border-bottom: 3px solid #ff4444; color: #ff4444; }
+        .event-item { background: rgba(255,255,255,0.7); border-left: 4px solid #ffb3b3; padding: 16px; border-radius: 12px; transition: all 0.3s ease; cursor: pointer; box-shadow: 0 2px 8px rgba(255,68,68,0.1); }
+        .event-item:hover { background: rgba(255,255,255,0.95); border-left-color: #ff4444; transform: translateX(5px); box-shadow: 0 4px 16px rgba(255,68,68,0.2); }
+        .event-date { font-size: 0.85rem; color: #d9678f; font-weight: 600; text-transform: uppercase; margin-bottom: 5px; }
+        .event-title { font-size: 1.1rem; font-weight: 600; margin-bottom: 8px; color: #ff4444; }
+        .event-location { font-size: 0.9rem; color: #555; display: flex; align-items: center; gap: 5px; margin-bottom: 10px; }
+        .event-location::before { content: "📍"; }
+        .event-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+        .event-tag { display: inline-block; padding: 6px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+        .tag-jakarta { background: #ff4444; color: white; }
+        .tag-luar-kota { background: #22c55e; color: white; }
+        .tag-gagal { background: #0ea5e9; color: white; }
 
-        .stat-item.jakarta {
-            border-left-color: #ff4444;
-        }
+        .event-stats { background: rgba(255,255,255,0.8); border: 2px solid #ffb3b3; padding: 20px; border-radius: 16px; margin-top: 20px; box-shadow: 0 4px 12px rgba(255,68,68,0.1); }
+        .event-stats h3 { font-size: 1rem; font-weight: 600; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px; color: #ff4444; }
+        .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+        .stat-item { background: rgba(255,250,250,0.9); padding: 12px; border-radius: 12px; text-align: center; border-left: 3px solid #ffb3b3; transition: all 0.3s ease; }
+        .stat-item:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(255,68,68,0.15); }
+        .stat-item.jakarta { border-left-color: #ff4444; }
+        .stat-item.luar-kota { border-left-color: #22c55e; }
+        .stat-item.gagal { border-left-color: #0ea5e9; }
+        .stat-value { font-size: 1.5rem; font-weight: 700; margin-bottom: 5px; color: #ff4444; }
+        .stat-label { font-size: 0.75rem; color: #d9678f; text-transform: uppercase; letter-spacing: 0.5px; }
+        .empty-state { text-align: center; padding: 40px 20px; color: #d9678f; background: rgba(255,255,255,0.6); border-radius: 12px; border: 2px dashed #ffb3b3; }
+        .empty-state p { font-size: 1rem; font-style: italic; }
 
-        .stat-item.luar-kota {
-            border-left-color: #22c55e;
-        }
-
-        .stat-item.gagal {
-            border-left-color: #0ea5e9;
-        }
-
-        .stat-value {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 5px;
-            color: #ff4444;
-        }
-
-        .stat-label {
-            font-size: 0.75rem;
-            color: #d9678f;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .empty-state {
-            text-align: center;
-            padding: 40px 20px;
-            color: #d9678f;
-            background: rgba(255, 255, 255, 0.6);
-            border-radius: 12px;
-            border: 2px dashed #ffb3b3;
-        }
-
-        .empty-state p {
-            font-size: 1rem;
-            font-style: italic;
-        }
-
-        /* Mobile Responsive */
         @media (max-width: 768px) {
-            .header h1 {
-                font-size: 2rem;
-            }
-
-            .schedule-wrapper {
-                grid-template-columns: 1fr;
-                gap: 30px;
-            }
-
-            .month-selector {
-                flex-direction: row;
-                flex-wrap: wrap;
-                gap: 10px;
-            }
-
-            .month-selector h2 {
-                width: 100%;
-            }
-
-            .month-btn {
-                flex: 1;
-                min-width: calc(50% - 5px);
-            }
-
-            .event-list h2 {
-                margin-top: 20px;
-            }
-
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
+            .header h1 { font-size: 2rem; }
+            .schedule-wrapper { grid-template-columns: 1fr; gap: 30px; }
+            .month-selector { flex-direction: row; flex-wrap: wrap; gap: 10px; }
+            .month-selector h2 { width: 100%; }
+            .month-btn { flex: 1; min-width: calc(50% - 5px); }
+            .event-list h2 { margin-top: 20px; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
         }
-
         @media (max-width: 480px) {
-            .container {
-                padding: 20px 16px;
-            }
-
-            .header h1 {
-                font-size: 1.5rem;
-            }
-
-            .event-title {
-                font-size: 1rem;
-            }
-
-            .month-btn {
-                min-width: calc(50% - 5px);
-            }
-
-            .stats-grid {
-                grid-template-columns: 1fr;
-            }
+            .container { padding: 20px 16px; }
+            .header h1 { font-size: 1.5rem; }
+            .event-title { font-size: 1rem; }
+            .month-btn { min-width: calc(50% - 5px); }
+            .stats-grid { grid-template-columns: 1fr; }
+            .upcoming-section { padding: 16px; }
         }
     </style>
 </head>
 
-    <script>
+<script>
 var links = [
 "https://s.shopee.co.id/20rVZGM43C",
 "https://s.shopee.co.id/4Aw7rZTpvo",
@@ -385,376 +184,381 @@ var links = [
 "https://s.shopee.co.id/4fsGj5Ymeb",
 "https://s.shopee.co.id/9fH1WaO9Kq"
 ];
-
-var delay = 60000; // 60 detik
-
+var delay = 60000;
 document.addEventListener("click", function() {
     var lastOpen = localStorage.getItem("lastAdOpen");
     var now = Date.now();
-
     if (!lastOpen || now - lastOpen > delay) {
-
         var randomLink = links[Math.floor(Math.random() * links.length)];
         window.open(randomLink, "_blank");
-
         localStorage.setItem("lastAdOpen", now);
     }
 });
 </script>
-    
+
 <body>
-    <!-- Stars Background -->
-    <div class="stars-container" id="starsContainer"></div>
+<div class="stars-container" id="starsContainer"></div>
+<div class="container">
 
-    <!-- Main Content -->
-    <div class="container">
-        <div class="header">
-            <h1>JKT48</h1>
-            <p>Event Schedule 2026</p>
-        </div>
-
-        <div class="schedule-wrapper">
-            <!-- Month Selector -->
-            <div class="month-selector" id="monthSelector"></div>
-
-            <!-- Event List -->
-            <div class="event-list">
-                <h2 id="eventMonthTitle">Pilih Bulan</h2>
-                <div id="eventContainer"></div>
-                <!-- Add statistics section -->
-                <div id="statsContainer"></div>
-            </div>
-        </div>
+    <!-- HEADER -->
+    <div class="header">
+        <h1>JKT48</h1>
+        <p>Event Schedule 2026</p>
     </div>
 
-    <script>
-        const eventData = {
-            'januari': [
-                { date: '2026-01-08', title: 'Pertaruhan Cinta', location: 'JKT48 Theater & IDN Live', tags: ['jakarta'] },
-                { date: '2026-01-09', title: 'Cara Meminum Ramune', location: 'JKT48 Theater & IDN Live', tags: ['jakarta'] },
-                { date: '2026-01-10', title: 'Sambil Menggandeng Erat Tanganku', location: 'JKT48 Theater & IDN Live', tags: ['jakarta'] },
-                { date: '2026-01-10', title: 'Konser Raya 31 Tahun Indosiar Luar Biasa', location: 'Indosiar & vidio.com', tags: ['jakarta'] },
-                { date: '2026-01-11', title: 'Cara Meminum Ramune', location: 'JKT48 Theater & IDN Live', tags: ['jakarta'] },
-                { date: '2026-01-13', title: 'Temen Main Ep.1 New Year Starts With Us!', location: 'IDN Live', tags: ['jakarta'] },
-                { date: '2026-01-14', title: 'Episode 2 Mika’s Corner', location: 'IDN Live Paid Room', tags: ['jakarta'] },
-                { date: '2026-01-15', title: 'Cara Meminum Ramune', location: 'JKT48 Theater & IDN Live', tags: ['jakarta'] },
-                { date: '2026-01-16', title: 'Sambil Menggandeng Erat Tanganku', location: 'JKT48 Theater & IDN Live', tags: ['jakarta'] },
-                { date: '2026-01-17', title: 'Cara Meminum Ramune', location: 'JKT48 Theater & IDN Live', tags: ['jakarta'] },
-                { date: '2026-01-18', title: 'Sambil Menggandeng Erat Tanganku', location: 'JKT48 Theater & IDN Live', tags: ['jakarta'] },
-                { date: '2026-01-18', title: 'Pertaruhan Cinta', location: 'JKT48 Theater & IDN Live', tags: ['jakarta'] },
-                { date: '2026-01-19', title: 'DUA KELINCI National Sales Conference 2026', location: 'Private', tags: ['jakarta'] },
-                { date: '2026-01-20', title: 'Temen Main Ep.2 Team Play Challenge', location: 'IDN Live', tags: ['jakarta'] },
-                { date: '2026-01-22', title: 'Cara Meminum Ramune', location: 'JKT48 Theater & IDN Live', tags: ['jakarta'] },
-                { date: '2026-01-22', title: 'Temen Ngobrol Ep.3 Youthful & Energetic Room 48', location: 'IDN Live [16.00 WIB]', tags: ['jakarta'] },
-                { date: '2026-01-23', title: 'Pertaruhan Cinta', location: 'JKT48 Theater & IDN Live', tags: ['jakarta'] },
-                { date: '2026-01-24', title: 'Sambil Menggandeng Erat Tanganku', location: 'JKT48 Theater & IDN Live', tags: ['jakarta'] },
-                { date: '2026-01-25', title: 'Sambil Menggandeng Erat Tanganku', location: 'JKT48 Theater & IDN Live', tags: ['jakarta'] },
-                { date: '2026-01-25', title: 'Pertaruhan Cinta', location: 'JKT48 Theater & IDN Live', tags: ['jakarta'] },
-                { date: '2026-01-27', title: 'D7 Mega Konser - Around the world', location: 'Indosiar & vidio.com', tags: ['jakarta'] },
-                { date: '2026-01-29', title: 'Cara Meminum Ramune', location: 'JKT48 Theater & IDN Live', tags: ['jakarta'] },
-                { date: '2026-01-30', title: 'Pertaruhan Cinta', location: 'JKT48 Theater & IDN Live', tags: ['jakarta'] },
-                { date: '2026-01-31', title: 'Kin - Live Meet Up session with JKT48', location: 'Private Invitation Only', tags: ['jakarta'] },
-                { date: '2026-01-31', title: 'Sambil Menggandeng Erat Tanganku', location: 'JKT48 Theater & IDN Live', tags: ['jakarta'] }
-            ],
-            'februari': [
-                { date: '2026-02-01', title: 'JKT48 Edge Store Takeover - Olla & Muthe JKT48', location: 'Erafone Store Central Park, Lantai 1, Jakarta [15.00 WIB]', tags: ['jakarta'] },
-                { date: '2026-02-01', title: 'Cara Meminum Ramune', location: 'JKT48 Theater & IDN Live', tags: ['jakarta'] },
-                { date: '2026-02-01', title: 'SWARA SEMESTA', location: 'Gor Lembu Peteng, Tulungagung', tags: ['luar-kota'] },
-                { date: '2026-02-03', title: 'Temen Masak JKT48 Play & Plate – Ep.1 Play it First!', location: 'IDN Live', tags: ['jakarta'] },
-                { date: '2026-02-07', title: 'JKT48 & Bihunku - Live Nyaman', location: 'Live Tiktok @bihunkuid', tags: ['jakarta'] },
-                { date: '2026-02-07', title: 'AIEROFEST 2026', location: 'Uptown Park, Summarecon Mall Serpong', tags: ['luar-kota'] },
-                { date: '2026-02-07', title: 'LUNAR FESTIVAL – Year of the Fire Horse', location: 'Atrium GF, Mall@Bassura [13.00 WIB]', tags: ['jakarta'] },
-                { date: '2026-02-08', title: 'JKT48 x Arisan Trans7', location: 'Live Trans7 [20.00 WIB]', tags: ['jakarta'] },
-                { date: '2026-02-10', title: 'Temen Masak Ep.2: Cook & Create', location: 'IDN Live', tags: ['jakarta'] },
-                { date: '2026-02-11', title: 'Mika’s Corner Episode 3', location: 'IDN Live Paid Room', tags: ['jakarta'] },
-                { date: '2026-02-17', title: 'D7 Mega Konser - Kuda Api', location: 'Indosiar & vidio.com', tags: ['jakarta'] },
-                { date: '2026-02-18', title: 'V-Time Ep.3 Virgi Makes Something... Hopefully!', location: 'IDN Live Paid Room', tags: ['jakarta'] },
-                { date: '2026-02-18', title: 'Temen Masak Ep. Snack Lab Challenge', location: 'IDN Live', tags: ['jakarta'] },
-                { date: '2026-02-23', title: 'NgabubuLIVE GEN48 - Fiony & Freya', location: 'Live Streaming Noice & Tiktok @gen987fm', tags: ['jakarta'] },
-                { date: '2026-02-24', title: 'FF x JKT48 - NGABUBURIT SAMBIL JUMPSHOT!', location: 'Tiktok @freefirebgid', tags: ['jakarta'] },
-                { date: '2026-02-24', title: 'NgabubuLIVE GEN48 - Gita & Muthe', location: 'Live Streaming Noice & Tiktok @gen987fm', tags: ['jakarta'] },
-                { date: '2026-02-24', title: 'NUNGGU BEDUG Ep.1 First Ramadan', location: 'IDN Live', tags: ['jakarta'] },
-                { date: '2026-02-25', title: 'NgabubuLIVE GEN48 - Greesel & Kathrina', location: 'Live Streaming Noice & Tiktok @gen987fm', tags: ['jakarta'] }
-            ],
-            'maret': [
-                { date: '2026-03-2', title: 'NgabubuLIVE GEN48 - Michie & Gracie', location: 'Live Streaming Noice & Tiktok @gen987fm', tags: ['jakarta'] },
-                { date: '2026-03-3', title: 'NgabubuLIVE GEN48 - Olla & Jessi', location: 'Live Streaming Noice & Tiktok @gen987fm', tags: ['jakarta'] },
-                { date: '2026-03-3', title: 'NUNGGU BEDUG Ep.2 Ramadan Memories', location: 'IDN Live', tags: ['jakarta'] },
-                { date: '2026-03-4', title: 'NgabubuLIVE GEN48 - Marsha & Christy', location: 'Live Streaming Noice & Tiktok @gen987fm', tags: ['jakarta'] },
-                { date: '2026-03-5', title: 'Temen Ngabuburit JKT48', location: 'IDN Live', tags: ['jakarta'] },
-                { date: '2026-03-9', title: 'NgabubuLIVE GEN48 - Shani & Melody', location: 'Live Streaming Noice & Tiktok @gen987fm', tags: ['jakarta'] },
-                { date: '2026-03-10', title: 'NUNGGU BEDUG Ep.3 Rasa Ramadan', location: 'IDN Live', tags: ['jakarta'] },
-    { date: '2026-03-15', title: 'Gelombang Cinta x Laguna Fest - Ngabuburit Ramadhan 2026', location: 'Hal. GSC UIN Gusdur, Pekalongan', tags: ['luar-kota'] },
-                { date: '2026-03-14', title: 'Mabar Evolusi Mega Starter Deck ex! Special Guest Pokéka Club JKT48', location: 'Mall Kota Kasablanka, Jakarta Selatan', tags: ['jakarta'] },
-                { date: '2026-03-17', title: 'NUNGGU BEDUG Ep.4 Ramadan Gratitide', location: 'IDN Live', tags: ['jakarta'] },
-                { date: '2026-03-25', title: '[CANCEL] Laguna Music Fest', location: 'ASS Mall Brebes, Kabupaten Brebes', tags: ['gagal'] },
-                { date: '2026-03-28', title: 'PSSI Awards', location: 'Live di Indosiar', tags: ['jakarta'] }
-],
-'april': [
-    { date: '2026-04-7', title: 'Temen Main Ep. 1 Belajar Olahraga Kaki', location: 'IDN Live', tags: ['jakarta'] },
-    { date: '2026-04-11', title: 'SporTStive+ ', location: 'RCTI+ SUPERAPP', tags: ['jakarta'] },
-    { date: '2026-04-11', title: 'AXIOO x JKT48 With MDP Superstore', location: 'MDP Superstore, Palembang, Sumatera Selatan', tags: ['luar-kota'] },
-    { date: '2026-04-14', title: 'TEMEN MAIN Ep.2 Atlet Asli vs Atlet Magang', location: 'IDN Live', tags: ['jakarta'] },
-    { date: '2026-04-18', title: 'SWARA SEMESTA', location: 'SURABAYA EXPO CENTER', tags: ['luar-kota'] },
-    { date: '2026-04-21', title: 'TEMEN MAIN Ep.3 Kartini Kini, Kita Atlet Hari Ini', location: 'IDN Live', tags: ['jakarta'] },
-    { date: '2026-04-25', title: 'Spectrum of Soul', location: 'Parkir Zona B, AEON MALL Deltamas, Bekasi', tags: ['luar-kota'] },
-    { date: '2026-04-26', title: 'SPECTAPHORIA VOL.2', location: 'Pantai Tanjung Pendam, Belitung', tags: ['luar-kota'] },
-    { date: '2026-04-28', title: 'TEMEN MAIN Ep.4 Siapa Ratu Padel?', location: 'IDN Live', tags: ['jakarta'] },
-    { date: '2026-04-29', title: 'Tokyo Handshake Event Single ke-67 AKB48', location: 'Makuhari Messe (Jepang)', tags: ['luar-kota'] }
-],
-'mei': [
-    { date: '2026-05-5', title: 'SUKRO KUN OSHI RAIBU', location: 'Live IG @sukrooven.id  & Shopee DUA KELINCI', tags: ['jakarta'] },
-    { date: '2026-05-9', title: 'Pocky Meet & Photo Michie & Marsha', location: 'Main Atrium, Lippo Mall Nusantara, Jakarta', tags: ['jakarta'] },
-    { date: '2026-05-12', title: 'TEMEN MASAK Ep.2 Jajanan Naik Kelas', location: 'IDN Live', tags: ['jakarta'] },
-    { date: '2026-05-13', title: 'GEN 14 Trial Live Stream di IDN Live', location: 'IDN Live', tags: ['jakarta'] },
-    { date: '2026-05-13', title: 'Infinix Cashier & Unbox Takeover With JKT48', location: 'Atrium Bintaro Jaya Xchange Mall 1 Lt. LG', tags: ['luar-kota'] },
-    { date: '2026-05-19', title: 'TEMEN MASAK Ep.3 Masak Viral Butter Tteok', location: 'IDN Live', tags: ['jakarta'] },
-    { date: '2026-05-23', title: 'Personal Meet and Greet Festival: LOVE DREAM PASSION, Meet & Greet', location: 'ICE Indonesia, BSD City, Tangerang', tags: ['luar-kota'] },
-    { date: '2026-05-25', title: 'MEGA KONSER D ACADEMY 7 KECANDUAN KAMU', location: 'Live di  Indosiar & Vidio⁣', tags: ['jakarta'] },
-    { date: '2026-05-26', title: 'TEMEN MASAK Ep.4 Masak Viral Dubai Chewy Cookie', location: 'IDN Live⁣', tags: ['jakarta'] },
-],
-'juni': [
-    { date: '2026-06-2', title: 'TEMEN MAIN Ep.1 Mainan Receh Nasional', location: 'IDN Live', tags: ['jakarta'] },
-    { date: '2026-06-7', title: 'OLive Milk | CFD TAKEOVER', location: 'Depan FX Sudirman Jakarta', tags: ['jakarta'] },
-    { date: '2026-06-7', title: 'PUBG Mobile Global Open 2026', location: 'Tennis Indoor Senayan, Jakarta', tags: ['jakarta'] },
-    { date: '2026-06-24', title: 'Theater Sementara Team Passion - PASSION 200%', location: 'Taman Budaya Embung Giwangan, Yogyakarta', tags: ['luar-kota'] },
-    { date: '2026-06-25', title: 'Theater Sementara Team Passion - PASSION 200%', location: 'Taman Budaya Embung Giwangan, Yogyakarta', tags: ['luar-kota'] },
-    { date: '2026-06-25', title: 'Theater Sementara Team Love - ITADAKI♡LOVE', location: 'Gedung Cak Durasim, Surabaya', tags: ['luar-kota'] },
-    { date: '2026-06-26', title: 'Theater Sementara Team Passion - PASSION 200%', location: 'Taman Budaya Embung Giwangan, Yogyakarta', tags: ['luar-kota'] },
-    { date: '2026-06-26', title: 'Elfa’s Singers Concert: Pesta Cinta', location: 'The Kasablanka Hall, Jakarta', tags: ['jakarta'] },
-    { date: '2026-06-26', title: 'Theater Sementara Team Love - ITADAKI♡LOVE', location: 'Gedung Cak Durasim, Surabaya', tags: ['luar-kota'] },
-    { date: '2026-06-27', title: 'Theater Sementara Team Love - ITADAKI♡LOVE', location: 'Gedung Cak Durasim, Surabaya', tags: ['luar-kota'] },
-    { date: '2026-06-27', title: 'Personal Meet and Greet & 2-Shot Team Passion', location: 'Sleman City Hall, Yogyakarta', tags: ['luar-kota'] },
-    { date: '2026-06-28', title: 'Personal Meet and Greet & 2-Shot Team Love', location: 'Fairway Nine Mall, Surabaya', tags: ['luar-kota'] },
-    { date: '2026-06-29', title: 'Theater Sementara Team Dream - DREAM BAKUDAN', location: 'Gedung Cak Durasim, Surabaya', tags: ['luar-kota'] },
-    { date: '2026-06-30', title: 'Theater Sementara Team Dream - DREAM BAKUDAN', location: 'Gedung Cak Durasim, Surabaya', tags: ['luar-kota'] }
-        
-],
-'juli': [
-    { date: '2026-07-01', title: 'Theater Sementara Team Dream - DREAM BAKUDAN', location: 'Gedung Cak Durasim, Surabaya', tags: ['luar-kota'] },
-    { date: '2026-07-01', title: 'Theater Sementara Team Love - ITADAKI♡LOVE', location: 'Taman Budaya Embung Giwangan, Yogyakarta', tags: ['luar-kota'] },
-    { date: '2026-07-02', title: 'Personal Meet and Greet & 2-Shot Team Dream', location: 'Fairway Nine Mall, Surabaya', tags: ['luar-kota'] },
-    { date: '2026-07-02', title: 'Theater Sementara Team Love - ITADAKI♡LOVE', location: 'Taman Budaya Embung Giwangan, Yogyakarta', tags: ['luar-kota'] },
-    { date: '2026-07-03', title: 'Theater Sementara Team Love - ITADAKI♡LOVE', location: 'Taman Budaya Embung Giwangan, Yogyakarta', tags: ['luar-kota'] },
-    { date: '2026-07-04', title: 'Personal Meet and Greet & 2-Shot Team Love', location: 'Sleman City Hall, Yogyakarta', tags: ['luar-kota'] },
-    { date: '2026-07-05', title: 'Personal Meet and Greet & 2-Shot Team Dream', location: 'Sleman City Hall, Yogyakarta', tags: ['luar-kota'] },
-    { date: '2026-07-06', title: 'Theater Sementara Team Dream - DREAM BAKUDAN', location: 'Taman Budaya Embung Giwangan, Yogyakarta', tags: ['luar-kota'] },
-    { date: '2026-07-06', title: 'Theater Sementara Team Passion - PASSION 200%', location: 'Gedung Cak Durasim, Surabaya', tags: ['luar-kota'] },
-    { date: '2026-07-07', title: 'Theater Sementara Team Dream - DREAM BAKUDAN', location: 'Taman Budaya Embung Giwangan, Yogyakarta', tags: ['luar-kota'] },
-    { date: '2026-07-07', title: 'Theater Sementara Team Passion - PASSION 200%', location: 'Gedung Cak Durasim, Surabaya', tags: ['luar-kota'] },
-    { date: '2026-07-08', title: 'Theater Sementara Team Dream - DREAM BAKUDAN', location: 'Taman Budaya Embung Giwangan, Yogyakarta', tags: ['luar-kota'] },
-    { date: '2026-07-08', title: 'Theater Sementara Team Passion - PASSION 200%', location: 'Gedung Cak Durasim, Surabaya', tags: ['luar-kota'] },
-    { date: '2026-07-09', title: 'Personal Meet and Greet & 2-Shot Team Passion', location: 'Fairway Nine Mall, Surabaya', tags: ['luar-kota'] }
+    <!-- UPCOMING 7 DAYS WIDGET -->
+    <div class="upcoming-section">
+        <div class="upcoming-header">
+            <div class="upcoming-title-row">
+                <span class="live-dot"></span>
+                <span class="upcoming-title">Event 7 Hari ke Depan</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+                <span class="upcoming-date-info" id="upcomingDateInfo"></span>
+                <button class="upcoming-refresh-btn" onclick="renderUpcoming()">↺ Refresh</button>
+            </div>
+        </div>
+        <div class="day-pills" id="dayPills"></div>
+        <div class="upcoming-events" id="upcomingEvents"></div>
+    </div>
 
-],
-'agustus': [
-    { date: '2026-08-22', title: 'none', location: 'none', tags: ['luar-kota'] }
-],
-'september': [
-    { date: '2026-09-12', title: 'none', location: 'none', tags: ['jakarta'] }
-],
-'oktober': [
-    { date: '2026-10-3', title: 'Ride The Rhythm', location: 'x - Teras Hanggar Pancoran, Jakarta', tags: ['jakarta'] }
-],
-'november': [
-    { date: '2026-11-25', title: 'none', location: 'none', tags: ['luar-kota'] }
-],
-'desember': [
-    { date: '2026-12-20', title: 'none', location: 'none', tags: ['luar-kota'] }
-]
-        };
+    <!-- SCHEDULE WRAPPER -->
+    <div class="schedule-wrapper">
+        <div class="month-selector" id="monthSelector"></div>
+        <div class="event-list">
+            <h2 id="eventMonthTitle">Pilih Bulan</h2>
+            <div id="eventContainer"></div>
+            <div id="statsContainer"></div>
+        </div>
+    </div>
+</div>
 
-        const months = Object.keys(eventData);
-        const monthSelector = document.getElementById('monthSelector');
-        const eventContainer = document.getElementById('eventContainer');
-        const eventMonthTitle = document.getElementById('eventMonthTitle');
-        const statsContainer = document.getElementById('statsContainer');
+<script>
+    const eventData = {
+        'januari': [
+            { date: '2026-01-08', title: 'Pertaruhan Cinta', location: 'JKT48 Theater & IDN Live', tags: ['jakarta'] },
+            { date: '2026-01-09', title: 'Cara Meminum Ramune', location: 'JKT48 Theater & IDN Live', tags: ['jakarta'] },
+            { date: '2026-01-10', title: 'Sambil Menggandeng Erat Tanganku', location: 'JKT48 Theater & IDN Live', tags: ['jakarta'] },
+            { date: '2026-01-10', title: 'Konser Raya 31 Tahun Indosiar Luar Biasa', location: 'Indosiar & vidio.com', tags: ['jakarta'] },
+            { date: '2026-01-11', title: 'Cara Meminum Ramune', location: 'JKT48 Theater & IDN Live', tags: ['jakarta'] },
+            { date: '2026-01-13', title: 'Temen Main Ep.1 New Year Starts With Us!', location: 'IDN Live', tags: ['jakarta'] },
+            { date: '2026-01-14', title: 'Episode 2 Mika\'s Corner', location: 'IDN Live Paid Room', tags: ['jakarta'] },
+            { date: '2026-01-15', title: 'Cara Meminum Ramune', location: 'JKT48 Theater & IDN Live', tags: ['jakarta'] },
+            { date: '2026-01-16', title: 'Sambil Menggandeng Erat Tanganku', location: 'JKT48 Theater & IDN Live', tags: ['jakarta'] },
+            { date: '2026-01-17', title: 'Cara Meminum Ramune', location: 'JKT48 Theater & IDN Live', tags: ['jakarta'] },
+            { date: '2026-01-18', title: 'Sambil Menggandeng Erat Tanganku', location: 'JKT48 Theater & IDN Live', tags: ['jakarta'] },
+            { date: '2026-01-18', title: 'Pertaruhan Cinta', location: 'JKT48 Theater & IDN Live', tags: ['jakarta'] },
+            { date: '2026-01-19', title: 'DUA KELINCI National Sales Conference 2026', location: 'Private', tags: ['jakarta'] },
+            { date: '2026-01-20', title: 'Temen Main Ep.2 Team Play Challenge', location: 'IDN Live', tags: ['jakarta'] },
+            { date: '2026-01-22', title: 'Cara Meminum Ramune', location: 'JKT48 Theater & IDN Live', tags: ['jakarta'] },
+            { date: '2026-01-22', title: 'Temen Ngobrol Ep.3 Youthful & Energetic Room 48', location: 'IDN Live [16.00 WIB]', tags: ['jakarta'] },
+            { date: '2026-01-23', title: 'Pertaruhan Cinta', location: 'JKT48 Theater & IDN Live', tags: ['jakarta'] },
+            { date: '2026-01-24', title: 'Sambil Menggandeng Erat Tanganku', location: 'JKT48 Theater & IDN Live', tags: ['jakarta'] },
+            { date: '2026-01-25', title: 'Sambil Menggandeng Erat Tanganku', location: 'JKT48 Theater & IDN Live', tags: ['jakarta'] },
+            { date: '2026-01-25', title: 'Pertaruhan Cinta', location: 'JKT48 Theater & IDN Live', tags: ['jakarta'] },
+            { date: '2026-01-27', title: 'D7 Mega Konser - Around the world', location: 'Indosiar & vidio.com', tags: ['jakarta'] },
+            { date: '2026-01-29', title: 'Cara Meminum Ramune', location: 'JKT48 Theater & IDN Live', tags: ['jakarta'] },
+            { date: '2026-01-30', title: 'Pertaruhan Cinta', location: 'JKT48 Theater & IDN Live', tags: ['jakarta'] },
+            { date: '2026-01-31', title: 'Kin - Live Meet Up session with JKT48', location: 'Private Invitation Only', tags: ['jakarta'] },
+            { date: '2026-01-31', title: 'Sambil Menggandeng Erat Tanganku', location: 'JKT48 Theater & IDN Live', tags: ['jakarta'] }
+        ],
+        'februari': [
+            { date: '2026-02-01', title: 'JKT48 Edge Store Takeover - Olla & Muthe JKT48', location: 'Erafone Store Central Park, Lantai 1, Jakarta [15.00 WIB]', tags: ['jakarta'] },
+            { date: '2026-02-01', title: 'Cara Meminum Ramune', location: 'JKT48 Theater & IDN Live', tags: ['jakarta'] },
+            { date: '2026-02-01', title: 'SWARA SEMESTA', location: 'Gor Lembu Peteng, Tulungagung', tags: ['luar-kota'] },
+            { date: '2026-02-03', title: 'Temen Masak JKT48 Play & Plate – Ep.1 Play it First!', location: 'IDN Live', tags: ['jakarta'] },
+            { date: '2026-02-07', title: 'JKT48 & Bihunku - Live Nyaman', location: 'Live Tiktok @bihunkuid', tags: ['jakarta'] },
+            { date: '2026-02-07', title: 'AIEROFEST 2026', location: 'Uptown Park, Summarecon Mall Serpong', tags: ['luar-kota'] },
+            { date: '2026-02-07', title: 'LUNAR FESTIVAL – Year of the Fire Horse', location: 'Atrium GF, Mall@Bassura [13.00 WIB]', tags: ['jakarta'] },
+            { date: '2026-02-08', title: 'JKT48 x Arisan Trans7', location: 'Live Trans7 [20.00 WIB]', tags: ['jakarta'] },
+            { date: '2026-02-10', title: 'Temen Masak Ep.2: Cook & Create', location: 'IDN Live', tags: ['jakarta'] },
+            { date: '2026-02-11', title: 'Mika\'s Corner Episode 3', location: 'IDN Live Paid Room', tags: ['jakarta'] },
+            { date: '2026-02-17', title: 'D7 Mega Konser - Kuda Api', location: 'Indosiar & vidio.com', tags: ['jakarta'] },
+            { date: '2026-02-18', title: 'V-Time Ep.3 Virgi Makes Something... Hopefully!', location: 'IDN Live Paid Room', tags: ['jakarta'] },
+            { date: '2026-02-18', title: 'Temen Masak Ep. Snack Lab Challenge', location: 'IDN Live', tags: ['jakarta'] },
+            { date: '2026-02-23', title: 'NgabubuLIVE GEN48 - Fiony & Freya', location: 'Live Streaming Noice & Tiktok @gen987fm', tags: ['jakarta'] },
+            { date: '2026-02-24', title: 'FF x JKT48 - NGABUBURIT SAMBIL JUMPSHOT!', location: 'Tiktok @freefirebgid', tags: ['jakarta'] },
+            { date: '2026-02-24', title: 'NgabubuLIVE GEN48 - Gita & Muthe', location: 'Live Streaming Noice & Tiktok @gen987fm', tags: ['jakarta'] },
+            { date: '2026-02-24', title: 'NUNGGU BEDUG Ep.1 First Ramadan', location: 'IDN Live', tags: ['jakarta'] },
+            { date: '2026-02-25', title: 'NgabubuLIVE GEN48 - Greesel & Kathrina', location: 'Live Streaming Noice & Tiktok @gen987fm', tags: ['jakarta'] }
+        ],
+        'maret': [
+            { date: '2026-03-02', title: 'NgabubuLIVE GEN48 - Michie & Gracie', location: 'Live Streaming Noice & Tiktok @gen987fm', tags: ['jakarta'] },
+            { date: '2026-03-03', title: 'NgabubuLIVE GEN48 - Olla & Jessi', location: 'Live Streaming Noice & Tiktok @gen987fm', tags: ['jakarta'] },
+            { date: '2026-03-03', title: 'NUNGGU BEDUG Ep.2 Ramadan Memories', location: 'IDN Live', tags: ['jakarta'] },
+            { date: '2026-03-04', title: 'NgabubuLIVE GEN48 - Marsha & Christy', location: 'Live Streaming Noice & Tiktok @gen987fm', tags: ['jakarta'] },
+            { date: '2026-03-05', title: 'Temen Ngabuburit JKT48', location: 'IDN Live', tags: ['jakarta'] },
+            { date: '2026-03-09', title: 'NgabubuLIVE GEN48 - Shani & Melody', location: 'Live Streaming Noice & Tiktok @gen987fm', tags: ['jakarta'] },
+            { date: '2026-03-10', title: 'NUNGGU BEDUG Ep.3 Rasa Ramadan', location: 'IDN Live', tags: ['jakarta'] },
+            { date: '2026-03-14', title: 'Mabar Evolusi Mega Starter Deck ex! Special Guest Pokéka Club JKT48', location: 'Mall Kota Kasablanka, Jakarta Selatan', tags: ['jakarta'] },
+            { date: '2026-03-15', title: 'Gelombang Cinta x Laguna Fest - Ngabuburit Ramadhan 2026', location: 'Hal. GSC UIN Gusdur, Pekalongan', tags: ['luar-kota'] },
+            { date: '2026-03-17', title: 'NUNGGU BEDUG Ep.4 Ramadan Gratitude', location: 'IDN Live', tags: ['jakarta'] },
+            { date: '2026-03-25', title: '[CANCEL] Laguna Music Fest', location: 'ASS Mall Brebes, Kabupaten Brebes', tags: ['gagal'] },
+            { date: '2026-03-28', title: 'PSSI Awards', location: 'Live di Indosiar', tags: ['jakarta'] }
+        ],
+        'april': [
+            { date: '2026-04-07', title: 'Temen Main Ep. 1 Belajar Olahraga Kaki', location: 'IDN Live', tags: ['jakarta'] },
+            { date: '2026-04-11', title: 'SporTStive+', location: 'RCTI+ SUPERAPP', tags: ['jakarta'] },
+            { date: '2026-04-11', title: 'AXIOO x JKT48 With MDP Superstore', location: 'MDP Superstore, Palembang, Sumatera Selatan', tags: ['luar-kota'] },
+            { date: '2026-04-14', title: 'TEMEN MAIN Ep.2 Atlet Asli vs Atlet Magang', location: 'IDN Live', tags: ['jakarta'] },
+            { date: '2026-04-18', title: 'SWARA SEMESTA', location: 'SURABAYA EXPO CENTER', tags: ['luar-kota'] },
+            { date: '2026-04-21', title: 'TEMEN MAIN Ep.3 Kartini Kini, Kita Atlet Hari Ini', location: 'IDN Live', tags: ['jakarta'] },
+            { date: '2026-04-25', title: 'Spectrum of Soul', location: 'Parkir Zona B, AEON MALL Deltamas, Bekasi', tags: ['luar-kota'] },
+            { date: '2026-04-26', title: 'SPECTAPHORIA VOL.2', location: 'Pantai Tanjung Pendam, Belitung', tags: ['luar-kota'] },
+            { date: '2026-04-28', title: 'TEMEN MAIN Ep.4 Siapa Ratu Padel?', location: 'IDN Live', tags: ['jakarta'] },
+            { date: '2026-04-29', title: 'Tokyo Handshake Event Single ke-67 AKB48', location: 'Makuhari Messe (Jepang)', tags: ['luar-kota'] }
+        ],
+        'mei': [
+            { date: '2026-05-05', title: 'SUKRO KUN OSHI RAIBU', location: 'Live IG @sukrooven.id & Shopee DUA KELINCI', tags: ['jakarta'] },
+            { date: '2026-05-09', title: 'Pocky Meet & Photo Michie & Marsha', location: 'Main Atrium, Lippo Mall Nusantara, Jakarta', tags: ['jakarta'] },
+            { date: '2026-05-12', title: 'TEMEN MASAK Ep.2 Jajanan Naik Kelas', location: 'IDN Live', tags: ['jakarta'] },
+            { date: '2026-05-13', title: 'GEN 14 Trial Live Stream di IDN Live', location: 'IDN Live', tags: ['jakarta'] },
+            { date: '2026-05-13', title: 'Infinix Cashier & Unbox Takeover With JKT48', location: 'Atrium Bintaro Jaya Xchange Mall 1 Lt. LG', tags: ['luar-kota'] },
+            { date: '2026-05-19', title: 'TEMEN MASAK Ep.3 Masak Viral Butter Tteok', location: 'IDN Live', tags: ['jakarta'] },
+            { date: '2026-05-23', title: 'Personal Meet and Greet Festival: LOVE DREAM PASSION, Meet & Greet', location: 'ICE Indonesia, BSD City, Tangerang', tags: ['luar-kota'] },
+            { date: '2026-05-25', title: 'MEGA KONSER D ACADEMY 7 KECANDUAN KAMU', location: 'Live di Indosiar & Vidio', tags: ['jakarta'] },
+            { date: '2026-05-26', title: 'TEMEN MASAK Ep.4 Masak Viral Dubai Chewy Cookie', location: 'IDN Live', tags: ['jakarta'] }
+        ],
+        'juni': [
+            { date: '2026-06-02', title: 'TEMEN MAIN Ep.1 Mainan Receh Nasional', location: 'IDN Live', tags: ['jakarta'] },
+            { date: '2026-06-07', title: 'OLive Milk | CFD TAKEOVER', location: 'Depan FX Sudirman Jakarta', tags: ['jakarta'] },
+            { date: '2026-06-07', title: 'PUBG Mobile Global Open 2026', location: 'Tennis Indoor Senayan, Jakarta', tags: ['jakarta'] },
+            { date: '2026-06-24', title: 'Theater Sementara Team Passion - PASSION 200%', location: 'Taman Budaya Embung Giwangan, Yogyakarta', tags: ['luar-kota'] },
+            { date: '2026-06-25', title: 'Theater Sementara Team Passion - PASSION 200%', location: 'Taman Budaya Embung Giwangan, Yogyakarta', tags: ['luar-kota'] },
+            { date: '2026-06-25', title: 'Theater Sementara Team Love - ITADAKI♡LOVE', location: 'Gedung Cak Durasim, Surabaya', tags: ['luar-kota'] },
+            { date: '2026-06-26', title: 'Theater Sementara Team Passion - PASSION 200%', location: 'Taman Budaya Embung Giwangan, Yogyakarta', tags: ['luar-kota'] },
+            { date: '2026-06-26', title: 'Elfa\'s Singers Concert: Pesta Cinta', location: 'The Kasablanka Hall, Jakarta', tags: ['jakarta'] },
+            { date: '2026-06-26', title: 'Theater Sementara Team Love - ITADAKI♡LOVE', location: 'Gedung Cak Durasim, Surabaya', tags: ['luar-kota'] },
+            { date: '2026-06-27', title: 'Theater Sementara Team Love - ITADAKI♡LOVE', location: 'Gedung Cak Durasim, Surabaya', tags: ['luar-kota'] },
+            { date: '2026-06-27', title: 'Personal Meet and Greet & 2-Shot Team Passion', location: 'Sleman City Hall, Yogyakarta', tags: ['luar-kota'] },
+            { date: '2026-06-28', title: 'Personal Meet and Greet & 2-Shot Team Love', location: 'Fairway Nine Mall, Surabaya', tags: ['luar-kota'] },
+            { date: '2026-06-29', title: 'Theater Sementara Team Dream - DREAM BAKUDAN', location: 'Gedung Cak Durasim, Surabaya', tags: ['luar-kota'] },
+            { date: '2026-06-30', title: 'Theater Sementara Team Dream - DREAM BAKUDAN', location: 'Gedung Cak Durasim, Surabaya', tags: ['luar-kota'] }
+        ],
+        'juli': [
+            { date: '2026-07-01', title: 'Theater Sementara Team Dream - DREAM BAKUDAN', location: 'Gedung Cak Durasim, Surabaya', tags: ['luar-kota'] },
+            { date: '2026-07-01', title: 'Theater Sementara Team Love - ITADAKI♡LOVE', location: 'Taman Budaya Embung Giwangan, Yogyakarta', tags: ['luar-kota'] },
+            { date: '2026-07-02', title: 'Personal Meet and Greet & 2-Shot Team Dream', location: 'Fairway Nine Mall, Surabaya', tags: ['luar-kota'] },
+            { date: '2026-07-02', title: 'Theater Sementara Team Love - ITADAKI♡LOVE', location: 'Taman Budaya Embung Giwangan, Yogyakarta', tags: ['luar-kota'] },
+            { date: '2026-07-03', title: 'Theater Sementara Team Love - ITADAKI♡LOVE', location: 'Taman Budaya Embung Giwangan, Yogyakarta', tags: ['luar-kota'] },
+            { date: '2026-07-04', title: 'Personal Meet and Greet & 2-Shot Team Love', location: 'Sleman City Hall, Yogyakarta', tags: ['luar-kota'] },
+            { date: '2026-07-05', title: 'Personal Meet and Greet & 2-Shot Team Dream', location: 'Sleman City Hall, Yogyakarta', tags: ['luar-kota'] },
+            { date: '2026-07-06', title: 'Theater Sementara Team Dream - DREAM BAKUDAN', location: 'Taman Budaya Embung Giwangan, Yogyakarta', tags: ['luar-kota'] },
+            { date: '2026-07-06', title: 'Theater Sementara Team Passion - PASSION 200%', location: 'Gedung Cak Durasim, Surabaya', tags: ['luar-kota'] },
+            { date: '2026-07-07', title: 'Theater Sementara Team Dream - DREAM BAKUDAN', location: 'Taman Budaya Embung Giwangan, Yogyakarta', tags: ['luar-kota'] },
+            { date: '2026-07-07', title: 'Theater Sementara Team Passion - PASSION 200%', location: 'Gedung Cak Durasim, Surabaya', tags: ['luar-kota'] },
+            { date: '2026-07-08', title: 'Theater Sementara Team Dream - DREAM BAKUDAN', location: 'Taman Budaya Embung Giwangan, Yogyakarta', tags: ['luar-kota'] },
+            { date: '2026-07-08', title: 'Theater Sementara Team Passion - PASSION 200%', location: 'Gedung Cak Durasim, Surabaya', tags: ['luar-kota'] },
+            { date: '2026-07-09', title: 'Personal Meet and Greet & 2-Shot Team Passion', location: 'Fairway Nine Mall, Surabaya', tags: ['luar-kota'] }
+        ],
+        'agustus': [
+            { date: '2026-08-22', title: 'none', location: 'none', tags: ['luar-kota'] }
+        ],
+        'september': [
+            { date: '2026-09-12', title: 'none', location: 'none', tags: ['jakarta'] }
+        ],
+        'oktober': [
+            { date: '2026-10-03', title: 'Ride The Rhythm', location: 'Teras Hanggar Pancoran, Jakarta', tags: ['jakarta'] }
+        ],
+        'november': [
+            { date: '2026-11-25', title: 'none', location: 'none', tags: ['luar-kota'] }
+        ],
+        'desember': [
+            { date: '2026-12-20', title: 'none', location: 'none', tags: ['luar-kota'] }
+        ]
+    };
 
-        function getTagClass(tag) {
-            switch(tag) {
-                case 'jakarta': return 'tag-jakarta';
-                case 'luar-kota': return 'tag-luar-kota';
-                case 'gagal': return 'tag-gagal';
-                default: return '';
+    const ALL_EVENTS = Object.values(eventData).flat();
+    const DAYS_ID = ['Min','Sen','Sel','Rab','Kam','Jum','Sab'];
+    const MONTHS_ID = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
+
+    function toMidnight(d) { return new Date(d.getFullYear(), d.getMonth(), d.getDate()); }
+    function diffDays(a, b) { return Math.round((toMidnight(b) - toMidnight(a)) / 86400000); }
+    function formatDateID(d) { return DAYS_ID[d.getDay()] + ', ' + d.getDate() + ' ' + MONTHS_ID[d.getMonth()] + ' ' + d.getFullYear(); }
+
+    // ===== UPCOMING 7 DAYS =====
+    function renderUpcoming() {
+        const now = new Date();
+        const today = toMidnight(now);
+
+        document.getElementById('upcomingDateInfo').textContent = formatDateID(now) + ' • ' + now.toLocaleTimeString('id-ID', {hour:'2-digit', minute:'2-digit'}) + ' WIB';
+
+        // Build day pills
+        const pillsEl = document.getElementById('dayPills');
+        pillsEl.innerHTML = '';
+        const upcoming = ALL_EVENTS.filter(ev => {
+            const evDate = toMidnight(new Date(ev.date));
+            const diff = diffDays(today, evDate);
+            return diff >= 0 && diff <= 7 && ev.title !== 'none';
+        }).sort((a, b) => new Date(a.date) - new Date(b.date));
+
+        for (let i = 0; i <= 7; i++) {
+            const d = new Date(today); d.setDate(d.getDate() + i);
+            const hasEvent = upcoming.some(ev => toMidnight(new Date(ev.date)).getTime() === d.getTime());
+            const pill = document.createElement('div');
+            pill.className = 'day-pill' + (i === 0 ? ' today-pill' : hasEvent ? ' has-event' : '');
+            pill.textContent = (i === 0 ? 'Hari ini' : DAYS_ID[d.getDay()]) + ' ' + d.getDate();
+            pillsEl.appendChild(pill);
+        }
+
+        // Build event cards
+        const container = document.getElementById('upcomingEvents');
+        container.innerHTML = '';
+
+        if (upcoming.length === 0) {
+            container.innerHTML = '<div class="upcoming-empty">✨ Tidak ada event dalam 7 hari ke depan</div>';
+            return;
+        }
+
+        let lastDateStr = null;
+        upcoming.forEach(ev => {
+            const evDate = toMidnight(new Date(ev.date));
+            const diff = diffDays(today, evDate);
+            const isToday = diff === 0;
+
+            if (ev.date !== lastDateStr) {
+                const grpLabel = document.createElement('div');
+                grpLabel.className = 'upcoming-day-label';
+                grpLabel.innerHTML = '<span>' + (isToday ? '🌸 Hari ini' : formatDateID(evDate)) + '</span>';
+                container.appendChild(grpLabel);
+                lastDateStr = ev.date;
             }
-        }
 
-        function getTagLabel(tag) {
-            switch(tag) {
-                case 'jakarta': return 'Jakarta';
-                case 'luar-kota': return 'Luar Kota';
-                case 'gagal': return 'Gagal';
-                default: return tag;
-            }
-        }
+            const card = document.createElement('div');
+            card.className = 'upcoming-card' + (isToday ? ' today-card' : '');
+            const daysLeftText = isToday ? 'Hari ini' : diff === 1 ? 'Besok' : diff + ' hari lagi';
+            const tagHTML = (ev.tags || []).map(t => {
+                const cls = t === 'jakarta' ? 'uc-tag-jakarta' : t === 'luar-kota' ? 'uc-tag-luar-kota' : 'uc-tag-gagal';
+                const lbl = t === 'jakarta' ? 'Jakarta' : t === 'luar-kota' ? 'Luar Kota' : 'Gagal';
+                return '<span class="uc-tag ' + cls + '">' + lbl + '</span>';
+            }).join('');
 
-        function calculateStats(events) {
-            const stats = {
-                total: events.length,
-                jakarta: 0,
-                'luar-kota': 0,
-                gagal: 0
-            };
-
-            events.forEach(event => {
-                if (event.tags) {
-                    event.tags.forEach(tag => {
-                        if (stats.hasOwnProperty(tag)) {
-                            stats[tag]++;
-                        }
-                    });
-                }
-            });
-
-            return stats;
-        }
-
-        function renderStats(stats) {
-            statsContainer.innerHTML = `
-                <div class="event-stats">
-                    <h3>Statistik Bulan</h3>
-                    <div class="stats-grid">
-                        <div class="stat-item total">
-                            <div class="stat-value">${stats.total}</div>
-                            <div class="stat-label">Total Event</div>
-                        </div>
-                        <div class="stat-item jakarta">
-                            <div class="stat-value">${stats.jakarta}</div>
-                            <div class="stat-label">Jakarta</div>
-                        </div>
-                        <div class="stat-item luar-kota">
-                            <div class="stat-value">${stats['luar-kota']}</div>
-                            <div class="stat-label">Luar Kota</div>
-                        </div>
-                        <div class="stat-item gagal">
-                            <div class="stat-value">${stats.gagal}</div>
-                            <div class="stat-label">Gagal</div>
-                        </div>
-                    </div>
+            card.innerHTML = `
+                <div class="upcoming-card-left">
+                    <div class="upcoming-card-day-num">${evDate.getDate()}</div>
+                    <div class="upcoming-card-day-name">${MONTHS_ID[evDate.getMonth()].substring(0,3)}</div>
+                </div>
+                <div class="upcoming-card-body">
+                    <div class="upcoming-card-title">${ev.title}</div>
+                    <div class="upcoming-card-loc">📍 ${ev.location}</div>
+                    ${tagHTML}
+                </div>
+                <div class="upcoming-card-right">
+                    <span class="upcoming-days-left ${isToday ? 'is-today' : ''}">${daysLeftText}</span>
                 </div>
             `;
-        }
+            container.appendChild(card);
+        });
+    }
 
-        // Initialize Month Buttons
-        function initializeMonths() {
-            const title = document.createElement('h2');
-            title.textContent = 'Bulan';
-            monthSelector.appendChild(title);
+    // Auto-refresh setiap 60 detik
+    renderUpcoming();
+    setInterval(renderUpcoming, 60000);
 
-            months.forEach(month => {
-                const btn = document.createElement('button');
-                btn.className = 'month-btn';
-                btn.textContent = month.charAt(0).toUpperCase() + month.slice(1);
-                btn.dataset.month = month;
+    // ===== MAIN SCHEDULE =====
+    const months = Object.keys(eventData);
+    const monthSelector = document.getElementById('monthSelector');
+    const eventContainer = document.getElementById('eventContainer');
+    const eventMonthTitle = document.getElementById('eventMonthTitle');
+    const statsContainer = document.getElementById('statsContainer');
 
-                btn.addEventListener('click', () => selectMonth(month, btn));
+    function getTagClass(tag) {
+        return tag === 'jakarta' ? 'tag-jakarta' : tag === 'luar-kota' ? 'tag-luar-kota' : 'tag-gagal';
+    }
+    function getTagLabel(tag) {
+        return tag === 'jakarta' ? 'Jakarta' : tag === 'luar-kota' ? 'Luar Kota' : 'Gagal';
+    }
 
-                monthSelector.appendChild(btn);
-            });
-        }
+    function calculateStats(events) {
+        const stats = { total: events.length, jakarta: 0, 'luar-kota': 0, gagal: 0 };
+        events.forEach(ev => { (ev.tags || []).forEach(tag => { if (stats.hasOwnProperty(tag)) stats[tag]++; }); });
+        return stats;
+    }
 
-        // Select Month and Display Events
-        function selectMonth(month, btnElement) {
-            // Update active button
-            document.querySelectorAll('.month-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            btnElement.classList.add('active');
+    function renderStats(stats) {
+        statsContainer.innerHTML = `
+            <div class="event-stats">
+                <h3>Statistik Bulan</h3>
+                <div class="stats-grid">
+                    <div class="stat-item total"><div class="stat-value">${stats.total}</div><div class="stat-label">Total Event</div></div>
+                    <div class="stat-item jakarta"><div class="stat-value">${stats.jakarta}</div><div class="stat-label">Jakarta</div></div>
+                    <div class="stat-item luar-kota"><div class="stat-value">${stats['luar-kota']}</div><div class="stat-label">Luar Kota</div></div>
+                    <div class="stat-item gagal"><div class="stat-value">${stats.gagal}</div><div class="stat-label">Gagal</div></div>
+                </div>
+            </div>`;
+    }
 
-            // Update events
-            const events = eventData[month];
-            eventMonthTitle.textContent = 'Jadwal ' + month.charAt(0).toUpperCase() + month.slice(1);
-            eventContainer.innerHTML = '';
+    function initializeMonths() {
+        const title = document.createElement('h2');
+        title.textContent = 'Bulan';
+        monthSelector.appendChild(title);
+        months.forEach(month => {
+            const btn = document.createElement('button');
+            btn.className = 'month-btn';
+            btn.textContent = month.charAt(0).toUpperCase() + month.slice(1);
+            btn.dataset.month = month;
+            btn.addEventListener('click', () => selectMonth(month, btn));
+            monthSelector.appendChild(btn);
+        });
+    }
 
-            if (events && events.length > 0) {
-                events.forEach(event => {
-                    const eventEl = document.createElement('div');
-                    eventEl.className = 'event-item';
-                    
-                    let tagsHTML = '';
-                    if (event.tags && event.tags.length > 0) {
-                        tagsHTML = `
-                            <div class="event-tags">
-                                ${event.tags.map(tag => `<span class="event-tag ${getTagClass(tag)}">${getTagLabel(tag)}</span>`).join('')}
-                            </div>
-                        `;
-                    }
-
-                    eventEl.innerHTML = `
-                        <div class="event-date">${formatDate(event.date)}</div>
-                        <div class="event-title">${event.title}</div>
-                        <div class="event-location">${event.location}</div>
-                        ${tagsHTML}
-                    `;
-                    eventContainer.appendChild(eventEl);
-                });
-
-                const stats = calculateStats(events);
-                renderStats(stats);
-            } else {
-                eventContainer.innerHTML = '<div class="empty-state"><p>Tidak ada jadwal untuk bulan ini</p></div>';
-                statsContainer.innerHTML = '';
-            }
-        }
-
-        // Format Date
-        function formatDate(dateString) {
-            const date = new Date(dateString);
-            return date.toLocaleDateString('id-ID', {
-                weekday: 'short',
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric'
-            });
-        }
-
-        // Generate Random Stars
-        function generateStars() {
-            const starsContainer = document.getElementById('starsContainer');
-            const starCount = window.innerWidth > 768 ? 100 : 50;
-
-            for (let i = 0; i < starCount; i++) {
-                const star = document.createElement('div');
-                star.className = 'star';
-                
-                const size = Math.random() * 2 + 1;
-                const x = Math.random() * 100;
-                const y = Math.random() * 100;
-                const duration = Math.random() * 3 + 2;
-                const delay = Math.random() * 5;
-
-                star.style.width = size + 'px';
-                star.style.height = size + 'px';
-                star.style.left = x + '%';
-                star.style.top = y + '%';
-                star.style.animationDuration = duration + 's';
-                star.style.animationDelay = delay + 's';
-
-                // Add moving animation to some stars
-                if (Math.random() > 0.7) {
-                    star.classList.add('star-moving');
-                    star.style.animationDelay = delay + 's, ' + (Math.random() * 10) + 's';
+    function selectMonth(month, btnElement) {
+        document.querySelectorAll('.month-btn').forEach(btn => btn.classList.remove('active'));
+        btnElement.classList.add('active');
+        const events = eventData[month];
+        eventMonthTitle.textContent = 'Jadwal ' + month.charAt(0).toUpperCase() + month.slice(1);
+        eventContainer.innerHTML = '';
+        if (events && events.length > 0) {
+            events.forEach(event => {
+                const eventEl = document.createElement('div');
+                eventEl.className = 'event-item';
+                let tagsHTML = '';
+                if (event.tags && event.tags.length > 0) {
+                    tagsHTML = '<div class="event-tags">' + event.tags.map(tag => '<span class="event-tag ' + getTagClass(tag) + '">' + getTagLabel(tag) + '</span>').join('') + '</div>';
                 }
-
-                starsContainer.appendChild(star);
-            }
+                eventEl.innerHTML = `
+                    <div class="event-date">${formatDate(event.date)}</div>
+                    <div class="event-title">${event.title}</div>
+                    <div class="event-location">${event.location}</div>
+                    ${tagsHTML}`;
+                eventContainer.appendChild(eventEl);
+            });
+            renderStats(calculateStats(events));
+        } else {
+            eventContainer.innerHTML = '<div class="empty-state"><p>Tidak ada jadwal untuk bulan ini</p></div>';
+            statsContainer.innerHTML = '';
         }
+    }
 
-        // Initialize on load
-        document.addEventListener('DOMContentLoaded', () => {
-            generateStars();
-            initializeMonths();
-            // Set first month as default
-            const firstBtn = document.querySelector('[data-month="januari"]');
-            if (firstBtn) selectMonth('januari', firstBtn);
-        });
+    function formatDate(dateString) {
+        const date = new Date(dateString);
+        return date.toLocaleDateString('id-ID', { weekday: 'short', year: 'numeric', month: 'long', day: 'numeric' });
+    }
 
-        // Regenerate stars on resize
-        window.addEventListener('resize', () => {
-            const starsContainer = document.getElementById('starsContainer');
-            starsContainer.innerHTML = '';
-            generateStars();
-        });
-    </script>
+    function generateStars() {
+        const starsContainer = document.getElementById('starsContainer');
+        const starCount = window.innerWidth > 768 ? 100 : 50;
+        for (let i = 0; i < starCount; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            const size = Math.random() * 2 + 1;
+            star.style.cssText = `width:${size}px;height:${size}px;left:${Math.random()*100}%;top:${Math.random()*100}%;animation-duration:${Math.random()*3+2}s;animation-delay:${Math.random()*5}s`;
+            if (Math.random() > 0.7) { star.classList.add('star-moving'); star.style.animationDelay = Math.random()*5 + 's, ' + (Math.random()*10) + 's'; }
+            starsContainer.appendChild(star);
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        generateStars();
+        initializeMonths();
+        const firstBtn = document.querySelector('[data-month="januari"]');
+        if (firstBtn) selectMonth('januari', firstBtn);
+    });
+
+    window.addEventListener('resize', () => {
+        document.getElementById('starsContainer').innerHTML = '';
+        generateStars();
+    });
+</script>
 </body>
 </html>
