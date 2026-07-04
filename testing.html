@@ -7,23 +7,48 @@
 <!-- ============================================= -->
 <!-- SEO META TAGS                                  -->
 <!-- ============================================= -->
-<title>OSHITIVE+ | JKT48 · Idol · Music</title>
-<meta name="description" content="OSHITIVE+ adalah media komunitas penggemar JKT48 yang menghadirkan berita, update event, theater, konser, foto, video, dan konten kreatif seputar idol secara positif.">
-<meta name="keywords" content="OSHITIVE, JKT48, Idol, Oshi, Theater JKT48, Konser JKT48, Berita JKT48, Komunitas JKT48, Fanbase JKT48">
+<title>OSHITIVE+ | Music • Idol • Entertainment</title>
+<meta name="description" content="OSHITIVE+ adalah media digital kreatif yang menghadirkan berita terbaru seputar musik, idol, hiburan, event, konser, budaya pop, komunitas, dan berbagai konten positif.">
+<meta name="keywords" content="Music Indonesia, Idol Indonesia, Entertainment, Pop Culture, Event, Festival, Concert, News, Community, Creative, OSHITIVE">
 <meta name="author" content="OSHITIVE+">
 <meta name="robots" content="index, follow">
+<link rel="canonical" href="https://oshitive.example.com">
 
 <!-- Open Graph -->
 <meta property="og:type" content="website">
-<meta property="og:title" content="OSHITIVE+ | JKT48 · Idol · Music">
-<meta property="og:description" content="Creative & Positive Space for Oshi. Berita, event, foto, video, dan konten kreatif seputar JKT48.">
+<meta property="og:title" content="OSHITIVE+ | Music • Idol • Entertainment">
+<meta property="og:description" content="Creative & Positive Space for Music, Idol & Entertainment. Berita, event, konser, dan konten kreatif setiap hari.">
 <meta property="og:image" content="assets/og-image.jpg">
 <meta property="og:url" content="https://oshitive.example.com">
 <meta property="og:site_name" content="OSHITIVE+">
+<meta property="og:locale" content="id_ID">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="OSHITIVE+ | Music • Idol • Entertainment">
+<meta name="twitter:description" content="Media digital kreatif seputar musik, idol, hiburan, event, dan komunitas positif.">
+<meta name="twitter:image" content="assets/og-image.jpg">
 
 <!-- Favicon placeholder -->
-<!-- Saya akan mengganti favicon sendiri nanti. -->
+<!-- Logo akan saya ganti sendiri -->
 <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+<!-- Schema.org JSON-LD -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "OSHITIVE+",
+  "url": "https://oshitive.example.com",
+  "description": "Media digital kreatif yang menghadirkan berita terbaru seputar musik, idol, hiburan, event, konser, budaya pop, komunitas, dan berbagai konten positif.",
+  "sameAs": [
+    "https://x.com/oshitivee",
+    "https://instagram.com/oshitive",
+    "https://tiktok.com/oshitive",
+    "https://whatsapp.com/channel/0029Vb8Vwgc2v1IrvLzVp142"
+  ]
+}
+</script>
 
 <!-- Google Font: Poppins -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -117,7 +142,7 @@ button{ font-family:inherit; border:none; cursor:pointer; background:none; }
 
 .text-center{ text-align:center; margin-left:auto; margin-right:auto; }
 
-/* Fade up animation (scroll reveal) */
+/* Fade up / scroll reveal */
 .reveal{
   opacity:0;
   transform:translateY(28px);
@@ -126,6 +151,14 @@ button{ font-family:inherit; border:none; cursor:pointer; background:none; }
 .reveal.is-visible{
   opacity:1;
   transform:translateY(0);
+}
+
+/* Glassmorphism ringan (dipakai pada badge & stat card) */
+.glass{
+  background:rgba(255,255,255,0.55);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  border:1px solid rgba(255,255,255,0.6);
 }
 
 /* ============================================= */
@@ -149,6 +182,7 @@ button{ font-family:inherit; border:none; cursor:pointer; background:none; }
   pointer-events:none;
 }
 .loader-logo{
+  /* Logo akan saya ganti sendiri */
   width:64px;
   height:64px;
   border-radius:18px;
@@ -164,6 +198,12 @@ button{ font-family:inherit; border:none; cursor:pointer; background:none; }
 @keyframes pulseLogo{
   0%,100%{ transform:scale(1); }
   50%{ transform:scale(1.08); }
+}
+.loader-text{
+  font-size:0.85rem;
+  font-weight:600;
+  letter-spacing:0.08em;
+  color:var(--color-text-soft);
 }
 .loader-bar{
   width:140px;
@@ -197,9 +237,9 @@ button{ font-family:inherit; border:none; cursor:pointer; background:none; }
 }
 .navbar.scrolled{
   padding:12px 0;
-  background:rgba(255,255,255,0.75);
-  backdrop-filter:blur(14px);
-  -webkit-backdrop-filter:blur(14px);
+  background:rgba(255,255,255,0.7);
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
   box-shadow:0 2px 20px rgba(20,23,31,0.06);
 }
 .navbar .container{
@@ -216,7 +256,7 @@ button{ font-family:inherit; border:none; cursor:pointer; background:none; }
   letter-spacing:-0.02em;
 }
 .nav-logo-mark{
-  /* Saya akan mengganti logo sendiri nanti. */
+  /* Logo akan saya ganti sendiri */
   width:38px;
   height:38px;
   border-radius:10px;
@@ -232,7 +272,7 @@ button{ font-family:inherit; border:none; cursor:pointer; background:none; }
 .nav-menu{
   display:flex;
   align-items:center;
-  gap:36px;
+  gap:34px;
 }
 .nav-menu a{
   font-size:0.94rem;
@@ -288,22 +328,27 @@ button{ font-family:inherit; border:none; cursor:pointer; background:none; }
   filter:blur(90px);
   opacity:0.35;
   z-index:0;
-  animation:floatBlob 10s ease-in-out infinite;
+  background-size:200% 200%;
+  animation:floatBlob 12s ease-in-out infinite, gradientShift 8s ease infinite;
 }
 .hero-blob.b1{
-  width:420px; height:420px;
-  background:var(--color-primary);
-  top:-120px; right:-100px;
+  width:440px; height:440px;
+  background:linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
+  top:-130px; right:-110px;
 }
 .hero-blob.b2{
-  width:320px; height:320px;
-  background:var(--color-primary-light);
-  bottom:-100px; left:-80px;
-  animation-delay:2s;
+  width:340px; height:340px;
+  background:linear-gradient(135deg, var(--color-primary-light), var(--color-primary));
+  bottom:-110px; left:-90px;
+  animation-delay:2.5s, 1s;
 }
 @keyframes floatBlob{
   0%,100%{ transform:translate(0,0) scale(1); }
-  50%{ transform:translate(20px,-30px) scale(1.08); }
+  50%{ transform:translate(24px,-32px) scale(1.08); }
+}
+@keyframes gradientShift{
+  0%,100%{ background-position:0% 50%; }
+  50%{ background-position:100% 50%; }
 }
 .hero-content{
   position:relative;
@@ -316,7 +361,7 @@ button{ font-family:inherit; border:none; cursor:pointer; background:none; }
   align-items:center;
 }
 .hero-logo{
-  /* Saya akan mengganti logo sendiri nanti. */
+  /* Logo akan saya ganti sendiri */
   width:84px;
   height:84px;
   border-radius:22px;
@@ -334,7 +379,6 @@ button{ font-family:inherit; border:none; cursor:pointer; background:none; }
   display:inline-flex;
   align-items:center;
   gap:8px;
-  background:rgba(66,98,178,0.08);
   color:var(--color-primary);
   font-size:0.8rem;
   font-weight:600;
@@ -342,6 +386,7 @@ button{ font-family:inherit; border:none; cursor:pointer; background:none; }
   padding:8px 18px;
   border-radius:999px;
   margin-bottom:22px;
+  background:rgba(66,98,178,0.08);
 }
 .hero-badge .dot{
   width:8px; height:8px;
@@ -374,7 +419,7 @@ button{ font-family:inherit; border:none; cursor:pointer; background:none; }
   margin-top:20px;
   font-size:1.04rem;
   color:var(--color-text-soft);
-  max-width:560px;
+  max-width:600px;
 }
 .hero-ctas{
   margin-top:38px;
@@ -451,18 +496,23 @@ button{ font-family:inherit; border:none; cursor:pointer; background:none; }
   margin-top:10px;
 }
 .about-stats{
-  display:flex;
-  gap:30px;
+  display:grid;
+  grid-template-columns:repeat(2, 1fr);
+  gap:16px;
   margin-top:32px;
-  flex-wrap:wrap;
+}
+.about-stat{
+  padding:18px 20px;
+  border-radius:var(--radius-sm);
+  box-shadow:var(--shadow-sm);
 }
 .about-stat h3{
-  font-size:1.8rem;
+  font-size:1.5rem;
   font-weight:800;
   color:var(--color-primary);
 }
 .about-stat span{
-  font-size:0.85rem;
+  font-size:0.82rem;
   color:var(--color-text-soft);
   font-weight:500;
 }
@@ -502,14 +552,14 @@ button{ font-family:inherit; border:none; cursor:pointer; background:none; }
 .features-header{ margin-bottom:56px; }
 .features-grid{
   display:grid;
-  grid-template-columns:repeat(3, 1fr);
-  gap:28px;
+  grid-template-columns:repeat(4, 1fr);
+  gap:24px;
 }
 .feature-card{
   background:var(--color-white);
   border:1px solid var(--color-border);
   border-radius:var(--radius-md);
-  padding:34px 28px;
+  padding:30px 24px;
   transition:transform var(--transition), box-shadow var(--transition), border-color var(--transition);
 }
 .feature-card:hover{
@@ -518,28 +568,28 @@ button{ font-family:inherit; border:none; cursor:pointer; background:none; }
   border-color:transparent;
 }
 .feature-icon{
-  width:56px;
-  height:56px;
+  width:52px;
+  height:52px;
   border-radius:14px;
   background:rgba(66,98,178,0.08);
   display:flex;
   align-items:center;
   justify-content:center;
-  font-size:1.5rem;
-  margin-bottom:20px;
+  font-size:1.4rem;
+  margin-bottom:18px;
 }
 .feature-card h3{
-  font-size:1.1rem;
+  font-size:1.02rem;
   font-weight:700;
   margin-bottom:8px;
 }
 .feature-card p{
   color:var(--color-text-soft);
-  font-size:0.94rem;
+  font-size:0.9rem;
 }
 
 /* ============================================= */
-/* 7. SOCIAL MEDIA SECTION (Photocard style)      */
+/* 7. SOCIAL MEDIA SECTION (Card premium)         */
 /* ============================================= */
 .social{
   padding:110px 0;
@@ -562,7 +612,6 @@ button{ font-family:inherit; border:none; cursor:pointer; background:none; }
   transition:transform var(--transition), box-shadow var(--transition);
 }
 .social-card::before{
-  /* signature: aksen foil/holografik ala photocard idol */
   content:'';
   position:absolute;
   top:-2px; left:-2px; right:-2px;
@@ -575,15 +624,6 @@ button{ font-family:inherit; border:none; cursor:pointer; background:none; }
 .social-card:hover{
   transform:translateY(-10px);
   box-shadow:var(--shadow-lg);
-}
-.social-id{
-  position:absolute;
-  top:14px; right:18px;
-  font-size:0.7rem;
-  font-weight:600;
-  letter-spacing:0.08em;
-  color:var(--color-text-soft);
-  opacity:0.5;
 }
 .social-icon{
   width:64px;
@@ -628,30 +668,42 @@ button{ font-family:inherit; border:none; cursor:pointer; background:none; }
 }
 
 /* ============================================= */
-/* 8. CONTACT / CTA SECTION                       */
+/* 8. CTA SECTION                                 */
 /* ============================================= */
-.contact{
+.cta{
   padding:100px 0;
   background:linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
   text-align:center;
   color:#fff;
+  position:relative;
+  overflow:hidden;
 }
-.contact h2{
+.cta::before{
+  content:'';
+  position:absolute;
+  width:500px; height:500px;
+  background:rgba(255,255,255,0.06);
+  border-radius:50%;
+  top:-220px; left:50%;
+  transform:translateX(-50%);
+}
+.cta-content{ position:relative; z-index:1; }
+.cta h2{
   font-size:clamp(1.7rem, 3.4vw, 2.4rem);
   font-weight:700;
   margin-bottom:14px;
 }
-.contact p{
+.cta p{
   color:rgba(255,255,255,0.85);
-  max-width:520px;
+  max-width:560px;
   margin:0 auto 32px;
 }
-.contact .btn-outline{
+.cta .btn-outline{
   background:transparent;
   border:1.5px solid rgba(255,255,255,0.5);
   color:#fff;
 }
-.contact .btn-outline:hover{
+.cta .btn-outline:hover{
   background:#fff;
   color:var(--color-primary);
   border-color:#fff;
@@ -680,7 +732,7 @@ button{ font-family:inherit; border:none; cursor:pointer; background:none; }
   margin-bottom:10px;
 }
 .footer-brand .nav-logo-mark{ width:34px; height:34px; font-size:0.9rem; }
-.footer-tagline{ font-size:0.9rem; color:rgba(255,255,255,0.55); }
+.footer-tagline{ font-size:0.9rem; color:rgba(255,255,255,0.55); max-width:280px; }
 .footer h4{
   color:#fff;
   font-size:0.9rem;
@@ -765,14 +817,16 @@ button{ font-family:inherit; border:none; cursor:pointer; background:none; }
   .hero{ padding:120px 0 80px; }
   .hero-ctas{ flex-direction:column; width:100%; }
   .hero-ctas .btn{ justify-content:center; width:100%; }
+  .about-stats{ grid-template-columns:1fr 1fr; }
   .footer .container{ grid-template-columns:1fr; text-align:center; }
   .footer-links a{ justify-content:center; }
-  .about-stats{ justify-content:center; }
+  .footer-tagline{ margin:0 auto; }
 }
 
 @media (max-width: 560px){
   .features-grid{ grid-template-columns:1fr; }
   .social-grid{ grid-template-columns:1fr; }
+  .about-stats{ grid-template-columns:1fr; }
   .section-title{ text-align:center; }
 }
 
@@ -795,8 +849,9 @@ a:focus-visible, button:focus-visible{
 <!-- LOADING SCREEN                                 -->
 <!-- ============================================= -->
 <div id="loading-screen">
-  <!-- Saya akan mengganti logo sendiri nanti. -->
+  <!-- Logo akan saya ganti sendiri -->
   <div class="loader-logo">O+</div>
+  <span class="loader-text">OSHITIVE+</span>
   <div class="loader-bar"></div>
 </div>
 
@@ -806,7 +861,7 @@ a:focus-visible, button:focus-visible{
 <header class="navbar" id="navbar">
   <div class="container">
     <a href="#home" class="nav-logo">
-      <!-- Saya akan mengganti logo sendiri nanti. -->
+      <!-- Logo akan saya ganti sendiri -->
       <span class="nav-logo-mark">O+</span>
       <span>OSHITIVE+</span>
     </a>
@@ -814,6 +869,7 @@ a:focus-visible, button:focus-visible{
     <nav class="nav-menu" id="navMenu">
       <a href="#home" class="nav-link">Home</a>
       <a href="#about" class="nav-link">About</a>
+      <a href="#features" class="nav-link">Features</a>
       <a href="#social" class="nav-link">Social Media</a>
       <a href="#contact" class="nav-link">Contact</a>
     </nav>
@@ -833,19 +889,20 @@ a:focus-visible, button:focus-visible{
 
   <div class="container">
     <div class="hero-content reveal">
-      <!-- Saya akan mengganti logo sendiri nanti. -->
+      <!-- Logo akan saya ganti sendiri -->
       <div class="hero-logo">O+</div>
 
-      <div class="hero-badge">
+      <div class="hero-badge glass">
         <span class="dot"></span>
-        LIVE UPDATE UNTUK OSHI
+        MEDIA DIGITAL KREATIF
       </div>
 
       <h1>OSHITIVE+</h1>
-      <p class="hero-tagline">JKT48 · Idol · Music | Creative &amp; Positive Space for Oshi</p>
+      <p class="hero-tagline">Creative &amp; Positive Space for Music, Idol &amp; Entertainment</p>
       <p class="hero-desc">
-        Media komunitas penggemar JKT48 yang menghadirkan berita, update event, foto, video,
-        dan berbagai konten kreatif seputar idol secara positif.
+        OSHITIVE+ merupakan media digital kreatif yang menghadirkan berita terbaru, informasi event,
+        konser, festival, budaya pop, dunia idol, musik Indonesia, komunitas, hingga berbagai konten
+        inspiratif dan positif untuk seluruh penikmat hiburan.
       </p>
 
       <div class="hero-ctas">
@@ -875,23 +932,28 @@ a:focus-visible, button:focus-visible{
       <span class="section-tag">Tentang Kami</span>
       <h2 class="section-title">About OSHITIVE+</h2>
       <p>
-        OSHITIVE+ merupakan media kreatif yang berfokus pada berbagai informasi seputar JKT48,
-        mulai dari berita terbaru, event, theater, konser, hingga berbagai konten positif
-        untuk para oshi dan penggemar idol.
+        OSHITIVE+ adalah media digital yang menyajikan informasi terkini seputar dunia musik, idol,
+        hiburan, budaya pop, event, konser, festival, komunitas kreatif, hingga berbagai tren yang
+        sedang berkembang. Kami berkomitmen menghadirkan konten yang informatif, positif, cepat,
+        dan menarik bagi seluruh penikmat hiburan.
       </p>
 
       <div class="about-stats">
-        <div class="about-stat">
+        <div class="about-stat glass">
           <h3>24/7</h3>
-          <span>Update Informasi</span>
+          <span>Update</span>
         </div>
-        <div class="about-stat">
+        <div class="about-stat glass">
           <h3>100%</h3>
-          <span>Konten Positif</span>
+          <span>Creative Content</span>
         </div>
-        <div class="about-stat">
-          <h3>4</h3>
-          <span>Platform Media Sosial</span>
+        <div class="about-stat glass">
+          <h3>Multi</h3>
+          <span>Platform</span>
+        </div>
+        <div class="about-stat glass">
+          <h3>Positive</h3>
+          <span>Community</span>
         </div>
       </div>
     </div>
@@ -909,42 +971,52 @@ a:focus-visible, button:focus-visible{
   <div class="container">
     <div class="features-header text-center reveal">
       <span class="section-tag">Kenapa Harus Kami</span>
-      <h2 class="section-title">Mengapa OSHITIVE+?</h2>
+      <h2 class="section-title">Why OSHITIVE+</h2>
       <p class="section-desc text-center">
-        Semua yang oshi butuhkan untuk terus dekat dengan idol favoritnya, dalam satu ruang yang positif.
+        Satu ruang digital untuk semua kebutuhan informasi musik, idol, dan hiburan favoritmu.
       </p>
     </div>
 
     <div class="features-grid">
       <div class="feature-card reveal">
         <div class="feature-icon">📰</div>
-        <h3>Update Berita JKT48</h3>
-        <p>Informasi terbaru seputar aktivitas dan perkembangan member JKT48.</p>
+        <h3>Latest News</h3>
+        <p>Berita terbaru seputar dunia musik, idol, dan hiburan.</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon">🎤</div>
+        <h3>Music &amp; Entertainment</h3>
+        <p>Sorotan musik Indonesia dan dunia hiburan terkini.</p>
       </div>
       <div class="feature-card reveal">
         <div class="feature-icon">🎭</div>
-        <h3>Informasi Theater &amp; Event</h3>
-        <p>Jadwal theater, event, dan kegiatan JKT48 yang selalu ter-update.</p>
+        <h3>Event &amp; Festival</h3>
+        <p>Informasi jadwal event, festival, dan konser terbaru.</p>
       </div>
       <div class="feature-card reveal">
-        <div class="feature-icon">🎵</div>
-        <h3>Music &amp; Performance</h3>
-        <p>Sorotan penampilan, single terbaru, dan momen panggung idol.</p>
+        <div class="feature-icon">⭐</div>
+        <h3>Idol &amp; Artist</h3>
+        <p>Kabar dan momen dari idol serta artis kesayangan.</p>
       </div>
       <div class="feature-card reveal">
         <div class="feature-icon">📸</div>
-        <h3>Foto dan Video</h3>
-        <p>Kumpulan dokumentasi visual member dalam berbagai momen spesial.</p>
+        <h3>Photo &amp; Video</h3>
+        <p>Dokumentasi visual dalam berbagai momen spesial.</p>
       </div>
       <div class="feature-card reveal">
-        <div class="feature-icon">💙</div>
-        <h3>Komunitas Positif</h3>
-        <p>Ruang aman dan suportif untuk sesama oshi saling berbagi.</p>
+        <div class="feature-icon">🎬</div>
+        <h3>Creative Content</h3>
+        <p>Konten kreatif dan inspiratif seputar budaya pop.</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon">🌐</div>
+        <h3>Community</h3>
+        <p>Ruang komunitas positif bagi seluruh penikmat hiburan.</p>
       </div>
       <div class="feature-card reveal">
         <div class="feature-icon">⚡</div>
-        <h3>Update Cepat</h3>
-        <p>Informasi tersampaikan secara cepat langsung ke genggaman oshi.</p>
+        <h3>Fast Update</h3>
+        <p>Informasi tersampaikan secara cepat dan akurat.</p>
       </div>
     </div>
   </div>
@@ -965,7 +1037,6 @@ a:focus-visible, button:focus-visible{
 
       <!-- Card: X -->
       <div class="social-card reveal">
-        <span class="social-id">#01</span>
         <div class="social-icon"><i class="fa-brands fa-x-twitter"></i></div>
         <h3>X</h3>
         <p class="handle">@oshitivee</p>
@@ -976,7 +1047,6 @@ a:focus-visible, button:focus-visible{
 
       <!-- Card: Instagram -->
       <div class="social-card reveal">
-        <span class="social-id">#02</span>
         <div class="social-icon"><i class="fa-brands fa-instagram"></i></div>
         <h3>Instagram</h3>
         <p class="handle">@oshitive</p>
@@ -987,7 +1057,6 @@ a:focus-visible, button:focus-visible{
 
       <!-- Card: TikTok -->
       <div class="social-card reveal">
-        <span class="social-id">#03</span>
         <div class="social-icon"><i class="fa-brands fa-tiktok"></i></div>
         <h3>TikTok</h3>
         <p class="handle">@oshitive</p>
@@ -998,7 +1067,6 @@ a:focus-visible, button:focus-visible{
 
       <!-- Card: WhatsApp Channel -->
       <div class="social-card reveal">
-        <span class="social-id">#04</span>
         <div class="social-icon"><i class="fa-brands fa-whatsapp"></i></div>
         <h3>WhatsApp Channel</h3>
         <p class="handle">Channel resmi OSHITIVE+</p>
@@ -1012,14 +1080,14 @@ a:focus-visible, button:focus-visible{
 </section>
 
 <!-- ============================================= -->
-<!-- CONTACT / CTA SECTION                          -->
+<!-- CTA SECTION                                    -->
 <!-- ============================================= -->
-<section class="contact" id="contact">
-  <div class="container reveal">
-    <h2>Mari Bergabung Bersama Oshi Lainnya</h2>
-    <p>Jangan lewatkan update terbaru JKT48. Ikuti OSHITIVE+ sekarang dan jadilah bagian dari komunitas positif ini.</p>
+<section class="cta" id="contact">
+  <div class="container cta-content reveal">
+    <h2>Stay Connected with OSHITIVE+</h2>
+    <p>Ikuti seluruh platform resmi OSHITIVE+ untuk mendapatkan berita terbaru, informasi event, musik, idol, hiburan, dan berbagai konten kreatif setiap hari.</p>
     <a href="https://whatsapp.com/channel/0029Vb8Vwgc2v1IrvLzVp142" target="_blank" rel="noopener" class="btn btn-outline" data-ripple>
-      <i class="fa-brands fa-whatsapp"></i> Gabung WhatsApp Channel
+      <i class="fa-brands fa-whatsapp"></i> Join WhatsApp Channel
     </a>
   </div>
 </section>
@@ -1031,11 +1099,11 @@ a:focus-visible, button:focus-visible{
   <div class="container">
     <div>
       <div class="footer-brand">
-        <!-- Saya akan mengganti logo sendiri nanti. -->
+        <!-- Logo akan saya ganti sendiri -->
         <span class="nav-logo-mark">O+</span>
         <span>OSHITIVE+</span>
       </div>
-      <p class="footer-tagline">Creative &amp; Positive Space for Oshi</p>
+      <p class="footer-tagline">Creative &amp; Positive Space for Music, Idol &amp; Entertainment</p>
     </div>
 
     <div>
@@ -1043,6 +1111,7 @@ a:focus-visible, button:focus-visible{
       <ul class="footer-links">
         <li><a href="#home">Home</a></li>
         <li><a href="#about">About</a></li>
+        <li><a href="#features">Features</a></li>
         <li><a href="#social">Social Media</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
@@ -1103,7 +1172,6 @@ navToggle.addEventListener('click', () => {
   navMenu.classList.toggle('open');
 });
 
-// Tutup menu mobile ketika salah satu link diklik
 document.querySelectorAll('.nav-link').forEach(link => {
   link.addEventListener('click', () => {
     navToggle.classList.remove('open');
