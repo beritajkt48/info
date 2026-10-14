@@ -25,7 +25,6 @@ const PRODUCTS = [
     ]
   }
 ];
-}));
 /* ===== HELPER ===== */
 const $=s=>document.querySelector(s), app=$("#app");
 const rp=n=>"Rp"+Number(n).toLocaleString("id-ID");
