@@ -1,10 +1,30 @@
 /* ===== KONFIGURASI (edit di sini) ===== */
 const WA_NUMBER = "6285711128781";           // 085711128781
 const IMG = { banner:"assets/img/banner.png", produk:"assets/img/produk.png", qris:"assets/img/QRIS.png" };
-const PRODUCTS = Array.from({length:8},(_,i)=>({
-  id:i+1, name:"Contoh Produk "+(i+1), category:["Streaming","Game","Software","Edukasi"][i%4], img:IMG.produk,
-  desc:"Deskripsi contoh produk digital. Pengiriman instan setelah pembayaran dikonfirmasi. Ganti teks ini sesuai produk Anda.",
-  variants:[{name:"Contoh Varian 1",price:10000,stock:25},{name:"Contoh Varian 2",price:10000,stock:10},{name:"Contoh Varian 3",price:10000,stock:3},{name:"Contoh Varian 4",price:10000,stock:0}]
+const PRODUCTS = [
+  {
+    id: 1,
+    name: "Nama Produk Anda",
+    category: "Streaming",
+    img: IMG.produk,
+    desc: "Deskripsi produk Anda.",
+    variants: [
+      { name: "Varian A", price: 10000, stock: 20 },
+      { name: "Varian B", price: 15000, stock: 5 },
+      { name: "Varian C", price: 20000, stock: 0 }
+    ]
+  },
+  {
+    id: 2,
+    name: "Produk Kedua",
+    category: "Game",
+    img: IMG.produk,
+    desc: "Deskripsi produk kedua.",
+    variants: [
+      { name: "Varian A", price: 10000, stock: 10 }
+    ]
+  }
+];
 }));
 /* ===== HELPER ===== */
 const $=s=>document.querySelector(s), app=$("#app");
